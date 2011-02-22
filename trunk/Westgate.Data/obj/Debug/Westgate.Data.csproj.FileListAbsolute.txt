@@ -1,0 +1,6 @@
+E:\MyProjects\Westgate\Westgate.Data\bin\Debug\Westgate.Data.dll.config
+E:\MyProjects\Westgate\Westgate.Data\bin\Debug\Westgate.Data.dll
+E:\MyProjects\Westgate\Westgate.Data\bin\Debug\Westgate.Data.pdb
+E:\MyProjects\Westgate\Westgate.Data\obj\Debug\ResolveAssemblyReference.cache
+E:\MyProjects\Westgate\Westgate.Data\obj\Debug\Westgate.Data.dll
+E:\MyProjects\Westgate\Westgate.Data\obj\Debug\Westgate.Data.pdb
