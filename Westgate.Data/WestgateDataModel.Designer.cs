@@ -19,7 +19,6 @@ using System.Runtime.Serialization;
 #region EDM Relationship Metadata
 
 [assembly: EdmRelationshipAttribute("Westgate.Data.Model", "FK_Subcategories_Categories", "Category", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Westgate.Data.Category), "Subcategory", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Westgate.Data.Subcategory), true)]
-[assembly: EdmRelationshipAttribute("Westgate.Data.Model", "FK_Images_Images", "Image", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Westgate.Data.Image), "Image1", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Westgate.Data.Image), true)]
 [assembly: EdmRelationshipAttribute("Westgate.Data.Model", "FK_Images_Stories", "Story", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Westgate.Data.Story), "Image", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Westgate.Data.Image), true)]
 [assembly: EdmRelationshipAttribute("Westgate.Data.Model", "FK_Stories_Subcategories", "Subcategory", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Westgate.Data.Subcategory), "Story", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Westgate.Data.Story), true)]
 
@@ -466,232 +465,76 @@ namespace Westgate.Data
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public global::System.String ActualImagePath
+        public global::System.String BeforeImagePath
         {
             get
             {
-                return _ActualImagePath;
+                return _BeforeImagePath;
             }
             set
             {
-                OnActualImagePathChanging(value);
-                ReportPropertyChanging("ActualImagePath");
-                _ActualImagePath = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("ActualImagePath");
-                OnActualImagePathChanged();
+                OnBeforeImagePathChanging(value);
+                ReportPropertyChanging("BeforeImagePath");
+                _BeforeImagePath = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("BeforeImagePath");
+                OnBeforeImagePathChanged();
             }
         }
-        private global::System.String _ActualImagePath;
-        partial void OnActualImagePathChanging(global::System.String value);
-        partial void OnActualImagePathChanged();
+        private global::System.String _BeforeImagePath;
+        partial void OnBeforeImagePathChanging(global::System.String value);
+        partial void OnBeforeImagePathChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public global::System.String HeaderImagePath
+        public global::System.String AfterImagePath
         {
             get
             {
-                return _HeaderImagePath;
+                return _AfterImagePath;
             }
             set
             {
-                OnHeaderImagePathChanging(value);
-                ReportPropertyChanging("HeaderImagePath");
-                _HeaderImagePath = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("HeaderImagePath");
-                OnHeaderImagePathChanged();
+                OnAfterImagePathChanging(value);
+                ReportPropertyChanging("AfterImagePath");
+                _AfterImagePath = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("AfterImagePath");
+                OnAfterImagePathChanged();
             }
         }
-        private global::System.String _HeaderImagePath;
-        partial void OnHeaderImagePathChanging(global::System.String value);
-        partial void OnHeaderImagePathChanged();
+        private global::System.String _AfterImagePath;
+        partial void OnAfterImagePathChanging(global::System.String value);
+        partial void OnAfterImagePathChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public global::System.String SliderImagePath
+        public global::System.String CombinedImagePath
         {
             get
             {
-                return _SliderImagePath;
+                return _CombinedImagePath;
             }
             set
             {
-                OnSliderImagePathChanging(value);
-                ReportPropertyChanging("SliderImagePath");
-                _SliderImagePath = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("SliderImagePath");
-                OnSliderImagePathChanged();
+                OnCombinedImagePathChanging(value);
+                ReportPropertyChanging("CombinedImagePath");
+                _CombinedImagePath = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("CombinedImagePath");
+                OnCombinedImagePathChanged();
             }
         }
-        private global::System.String _SliderImagePath;
-        partial void OnSliderImagePathChanging(global::System.String value);
-        partial void OnSliderImagePathChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public global::System.String ContentImagePath
-        {
-            get
-            {
-                return _ContentImagePath;
-            }
-            set
-            {
-                OnContentImagePathChanging(value);
-                ReportPropertyChanging("ContentImagePath");
-                _ContentImagePath = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("ContentImagePath");
-                OnContentImagePathChanged();
-            }
-        }
-        private global::System.String _ContentImagePath;
-        partial void OnContentImagePathChanging(global::System.String value);
-        partial void OnContentImagePathChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public Nullable<global::System.Boolean> IsDefault
-        {
-            get
-            {
-                return _IsDefault;
-            }
-            set
-            {
-                OnIsDefaultChanging(value);
-                ReportPropertyChanging("IsDefault");
-                _IsDefault = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("IsDefault");
-                OnIsDefaultChanged();
-            }
-        }
-        private Nullable<global::System.Boolean> _IsDefault;
-        partial void OnIsDefaultChanging(Nullable<global::System.Boolean> value);
-        partial void OnIsDefaultChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public Nullable<global::System.Boolean> IsAfter
-        {
-            get
-            {
-                return _IsAfter;
-            }
-            set
-            {
-                OnIsAfterChanging(value);
-                ReportPropertyChanging("IsAfter");
-                _IsAfter = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("IsAfter");
-                OnIsAfterChanged();
-            }
-        }
-        private Nullable<global::System.Boolean> _IsAfter;
-        partial void OnIsAfterChanging(Nullable<global::System.Boolean> value);
-        partial void OnIsAfterChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public Nullable<global::System.Int32> CoupleImageId
-        {
-            get
-            {
-                return _CoupleImageId;
-            }
-            set
-            {
-                OnCoupleImageIdChanging(value);
-                ReportPropertyChanging("CoupleImageId");
-                _CoupleImageId = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("CoupleImageId");
-                OnCoupleImageIdChanged();
-            }
-        }
-        private Nullable<global::System.Int32> _CoupleImageId;
-        partial void OnCoupleImageIdChanging(Nullable<global::System.Int32> value);
-        partial void OnCoupleImageIdChanged();
+        private global::System.String _CombinedImagePath;
+        partial void OnCombinedImagePathChanging(global::System.String value);
+        partial void OnCombinedImagePathChanged();
 
         #endregion
     
         #region Navigation Properties
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("Westgate.Data.Model", "FK_Images_Images", "Image1")]
-        public EntityCollection<Image> Images1
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Image>("Westgate.Data.Model.FK_Images_Images", "Image1");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Image>("Westgate.Data.Model.FK_Images_Images", "Image1", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("Westgate.Data.Model", "FK_Images_Images", "Image")]
-        public Image Image1
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Image>("Westgate.Data.Model.FK_Images_Images", "Image").Value;
-            }
-            set
-            {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Image>("Westgate.Data.Model.FK_Images_Images", "Image").Value = value;
-            }
-        }
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [BrowsableAttribute(false)]
-        [DataMemberAttribute()]
-        public EntityReference<Image> Image1Reference
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Image>("Westgate.Data.Model.FK_Images_Images", "Image");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Image>("Westgate.Data.Model.FK_Images_Images", "Image", value);
-                }
-            }
-        }
     
         /// <summary>
         /// No Metadata Documentation available.

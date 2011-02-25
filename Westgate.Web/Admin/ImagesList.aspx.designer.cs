@@ -10,7 +10,7 @@
 namespace Westgate.Web.Admin {
     
     
-    public partial class StoryList {
+    public partial class ImagesList {
         
         /// <summary>
         /// Label1 control.
@@ -49,22 +49,31 @@ namespace Westgate.Web.Admin {
         protected global::System.Web.UI.WebControls.DropDownList ddlSubcategories;
         
         /// <summary>
-        /// GridView1 control.
+        /// Label3 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView GridView1;
+        protected global::System.Web.UI.WebControls.Label Label3;
         
         /// <summary>
-        /// EntityDataSource1 control.
+        /// ddlStories control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.EntityDataSource EntityDataSource1;
+        protected global::System.Web.UI.WebControls.DropDownList ddlStories;
+        
+        /// <summary>
+        /// gvImages control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gvImages;
         
         /// <summary>
         /// edsCategory control.
@@ -83,5 +92,23 @@ namespace Westgate.Web.Admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.EntityDataSource edsSubcategory;
+        
+        /// <summary>
+        /// edsStory control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.EntityDataSource edsStory;
+        
+        /// <summary>
+        /// edsImages control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.EntityDataSource edsImages;
     }
 }

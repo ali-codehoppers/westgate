@@ -8,7 +8,7 @@ using Westgate.Web.Pages;
 
 namespace Westgate.Web.Admin
 {
-    public partial class StoryList : AuthenticatedPage
+    public partial class ImagesList : AuthenticatedPage
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -17,7 +17,7 @@ namespace Westgate.Web.Admin
 
         protected void ddlSubcategories_DataBound(object sender, EventArgs e)
         {
-            GridView1.DataBind();
+            ddlStories.DataBind();
         }
     }
 }

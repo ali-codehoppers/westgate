@@ -2,7 +2,12 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    
+    <div><asp:Label ID="Label1" runat="server" Text="Category:" Width="200px"></asp:Label>
+    <asp:DropDownList ID="ddlCategory" runat="server" AutoPostBack="True" 
+        DataSourceID="edsCategory" DataTextField="Name" DataValueField="CategoryId">
+    </asp:DropDownList>
+</div>
+    <div>
     <asp:GridView ID="GridView1" runat="server" AllowPaging="True" 
         AllowSorting="True" AutoGenerateColumns="False" BackColor="White" 
         BorderColor="#DEDFDE" BorderStyle="None" BorderWidth="1px" CellPadding="4" 
@@ -43,9 +48,20 @@
         <SortedDescendingCellStyle BackColor="#EAEAD3" />
         <SortedDescendingHeaderStyle BackColor="#575357" />
     </asp:GridView>
+    </div>
     <asp:EntityDataSource ID="EntityDataSource1" runat="server" 
         ConnectionString="name=WestgateEntities" 
         DefaultContainerName="WestgateEntities" EnableFlattening="False" 
-        EntitySetName="Subcategories" EnableDelete="True">
+        EntitySetName="Subcategories" EnableDelete="True" 
+        AutoGenerateWhereClause="True" EntityTypeFilter="" Select="" Where="">
+        <WhereParameters>
+            <asp:ControlParameter ControlID="ddlCategory" DbType="Int32" DefaultValue="0" 
+                Name="CategoryId" PropertyName="SelectedValue" />
+        </WhereParameters>
+    </asp:EntityDataSource>
+    <asp:EntityDataSource ID="edsCategory" runat="server" 
+        ConnectionString="name=WestgateEntities" 
+        DefaultContainerName="WestgateEntities" EnableFlattening="False" 
+        EntitySetName="Categories" EntityTypeFilter="Category">
     </asp:EntityDataSource>
 </asp:Content>

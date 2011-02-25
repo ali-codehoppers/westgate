@@ -12,3 +12,10 @@ D:\Project\WestGate\Westgate.Web\bin\Westgate.Data.dll
 D:\Project\WestGate\Westgate.Web\bin\Westgate.Data.pdb
 D:\Project\WestGate\Westgate.Web\obj\Debug\Westgate.Web.dll
 D:\Project\WestGate\Westgate.Web\obj\Debug\Westgate.Web.pdb
+E:\MyProjects\Westgate\trunk\Westgate.Web\bin\Westgate.Web.dll
+E:\MyProjects\Westgate\trunk\Westgate.Web\bin\Westgate.Web.pdb
+E:\MyProjects\Westgate\trunk\Westgate.Web\bin\Westgate.Data.dll
+E:\MyProjects\Westgate\trunk\Westgate.Web\bin\Westgate.Data.pdb
+E:\MyProjects\Westgate\trunk\Westgate.Web\obj\Debug\ResolveAssemblyReference.cache
+E:\MyProjects\Westgate\trunk\Westgate.Web\obj\Debug\Westgate.Web.dll
+E:\MyProjects\Westgate\trunk\Westgate.Web\obj\Debug\Westgate.Web.pdb

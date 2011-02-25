@@ -2,6 +2,18 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <div><asp:Label ID="Label1" runat="server" Text="Category:" Width="200px"></asp:Label>
+    <asp:DropDownList ID="ddlCategory" runat="server" AutoPostBack="True" 
+        DataSourceID="edsCategory" DataTextField="Name" DataValueField="CategoryId">
+    </asp:DropDownList>
+</div>
+<div><asp:Label ID="Label2" runat="server" Text="Subcategory:" Width="200px"></asp:Label>
+    <asp:DropDownList ID="ddlSubcategories" runat="server" AutoPostBack="True" 
+        DataSourceID="edsSubcategory" DataTextField="Name" 
+        DataValueField="SubcategoryId" ondatabound="ddlSubcategories_DataBound">
+    </asp:DropDownList>
+</div>
+    <div>
     <asp:GridView ID="GridView1" runat="server" AllowPaging="True" 
         AllowSorting="True" AutoGenerateColumns="False" BackColor="White" 
         BorderColor="#DEDFDE" BorderStyle="None" BorderWidth="1px" CellPadding="4" 
@@ -40,9 +52,30 @@
         <SortedDescendingCellStyle BackColor="#EAEAD3" />
         <SortedDescendingHeaderStyle BackColor="#575357" />
     </asp:GridView>
+    </div>
     <asp:EntityDataSource ID="EntityDataSource1" runat="server" 
         ConnectionString="name=WestgateEntities" 
         DefaultContainerName="WestgateEntities" EnableFlattening="False" 
-        EntitySetName="Stories" EnableDelete="True">
+        EntitySetName="Stories" EnableDelete="True" AutoGenerateWhereClause="True" 
+        EntityTypeFilter="" Select="" Where="">
+        <WhereParameters>
+            <asp:ControlParameter ControlID="ddlSubcategories" DbType="Int32" 
+                DefaultValue="0" Name="SubcategoryId" PropertyName="SelectedValue" />
+        </WhereParameters>
+    </asp:EntityDataSource>
+    <asp:EntityDataSource ID="edsCategory" runat="server" 
+        ConnectionString="name=WestgateEntities" 
+        DefaultContainerName="WestgateEntities" EnableFlattening="False" 
+        EntitySetName="Categories" EntityTypeFilter="Category">
+    </asp:EntityDataSource>
+    <asp:EntityDataSource ID="edsSubcategory" runat="server" 
+        ConnectionString="name=WestgateEntities" 
+        DefaultContainerName="WestgateEntities" EnableFlattening="False" 
+        EntitySetName="Subcategories" Where="" AutoGenerateWhereClause="True" 
+        EntityTypeFilter="" Select="">
+        <WhereParameters>
+            <asp:ControlParameter ControlID="ddlCategory" DefaultValue="0" 
+                Name="CategoryId" PropertyName="SelectedValue" DbType="Int32" />
+        </WhereParameters>
     </asp:EntityDataSource>
 </asp:Content>
