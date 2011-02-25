@@ -20,7 +20,7 @@ namespace Westgate.Web.Admin
             if (tbUserName.Text.Equals("admin") && tbPassword.Text.Equals("admin"))
             {
                 Session[ParameterNames.Session.LOGGED_IS_USERID] = "1";
-                Response.Redirect("~/Admin/CategoryList.aspx");
+                Response.Redirect("~/Admin/CategoriesList.aspx");
             }
             else
             {

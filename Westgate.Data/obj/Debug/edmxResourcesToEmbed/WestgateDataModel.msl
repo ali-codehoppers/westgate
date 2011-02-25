@@ -4,48 +4,48 @@
     <EntitySetMapping Name="Categories">
       <EntityTypeMapping TypeName="Westgate.Data.Model.Category">
         <MappingFragment StoreEntitySet="Categories">
-          <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
-          <ScalarProperty Name="Name" ColumnName="Name" />
-          <ScalarProperty Name="Description" ColumnName="Description" />
           <ScalarProperty Name="NumberOfSubcategories" ColumnName="NumberOfSubcategories" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Images">
       <EntityTypeMapping TypeName="Westgate.Data.Model.Image">
         <MappingFragment StoreEntitySet="Images">
-          <ScalarProperty Name="ImageId" ColumnName="ImageId" />
-          <ScalarProperty Name="StoryId" ColumnName="StoryId" />
-          <ScalarProperty Name="Name" ColumnName="Name" />
-          <ScalarProperty Name="Description" ColumnName="Description" />
-          <ScalarProperty Name="ActualImagePath" ColumnName="ActualImagePath" />
-          <ScalarProperty Name="HeaderImagePath" ColumnName="HeaderImagePath" />
-          <ScalarProperty Name="SliderImagePath" ColumnName="SliderImagePath" />
-          <ScalarProperty Name="ContentImagePath" ColumnName="ContentImagePath" />
-          <ScalarProperty Name="IsDefault" ColumnName="IsDefault" />
-          <ScalarProperty Name="IsAfter" ColumnName="IsAfter" />
           <ScalarProperty Name="CoupleImageId" ColumnName="CoupleImageId" />
+          <ScalarProperty Name="IsAfter" ColumnName="IsAfter" />
+          <ScalarProperty Name="IsDefault" ColumnName="IsDefault" />
+          <ScalarProperty Name="ContentImagePath" ColumnName="ContentImagePath" />
+          <ScalarProperty Name="SliderImagePath" ColumnName="SliderImagePath" />
+          <ScalarProperty Name="HeaderImagePath" ColumnName="HeaderImagePath" />
+          <ScalarProperty Name="ActualImagePath" ColumnName="ActualImagePath" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="StoryId" ColumnName="StoryId" />
+          <ScalarProperty Name="ImageId" ColumnName="ImageId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Stories">
       <EntityTypeMapping TypeName="Westgate.Data.Model.Story">
         <MappingFragment StoreEntitySet="Stories">
-          <ScalarProperty Name="StoryId" ColumnName="StoryId" />
-          <ScalarProperty Name="SubcategoryId" ColumnName="SubcategoryId" />
-          <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="SubcategoryId" ColumnName="SubcategoryId" />
+          <ScalarProperty Name="StoryId" ColumnName="StoryId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Subcategories">
       <EntityTypeMapping TypeName="Westgate.Data.Model.Subcategory">
         <MappingFragment StoreEntitySet="Subcategories">
-          <ScalarProperty Name="SubcategoryId" ColumnName="SubcategoryId" />
-          <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
-          <ScalarProperty Name="Name" ColumnName="Name" />
-          <ScalarProperty Name="Description" ColumnName="Description" />
           <ScalarProperty Name="DefaultStoryId" ColumnName="DefaultStoryId" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+          <ScalarProperty Name="SubcategoryId" ColumnName="SubcategoryId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

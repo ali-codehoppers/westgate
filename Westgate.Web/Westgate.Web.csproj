@@ -51,8 +51,17 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Admin\AddCategory.aspx" />
+    <Content Include="Admin\addEdit.ascx" />
+    <Content Include="Admin\AddStory.aspx" />
+    <Content Include="Admin\AddSubCategory.aspx" />
     <Content Include="Admin\CategoriesList.aspx" />
+    <Content Include="Admin\EditCategory.aspx" />
+    <Content Include="Admin\EditStory.aspx" />
+    <Content Include="Admin\EditSubCategory.aspx" />
     <Content Include="Admin\Login.aspx" />
+    <Content Include="Admin\StoryList.aspx" />
+    <Content Include="Admin\subCategoryList.aspx" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -62,6 +71,34 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Admin\AddCategory.aspx.cs">
+      <DependentUpon>AddCategory.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\AddCategory.aspx.designer.cs">
+      <DependentUpon>AddCategory.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\addEdit.ascx.cs">
+      <DependentUpon>addEdit.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\addEdit.ascx.designer.cs">
+      <DependentUpon>addEdit.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\AddStory.aspx.cs">
+      <DependentUpon>AddStory.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\AddStory.aspx.designer.cs">
+      <DependentUpon>AddStory.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\AddSubCategory.aspx.cs">
+      <DependentUpon>AddSubCategory.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\AddSubCategory.aspx.designer.cs">
+      <DependentUpon>AddSubCategory.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Admin\Admin.Master.cs">
       <DependentUpon>Admin.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -76,12 +113,47 @@
     <Compile Include="Admin\CategoriesList.aspx.designer.cs">
       <DependentUpon>CategoriesList.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Admin\EditCategory.aspx.cs">
+      <DependentUpon>EditCategory.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\EditCategory.aspx.designer.cs">
+      <DependentUpon>EditCategory.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\EditStory.aspx.cs">
+      <DependentUpon>EditStory.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\EditStory.aspx.designer.cs">
+      <DependentUpon>EditStory.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\EditSubCategory.aspx.cs">
+      <DependentUpon>EditSubCategory.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\EditSubCategory.aspx.designer.cs">
+      <DependentUpon>EditSubCategory.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Admin\Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Admin\Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\StoryList.aspx.cs">
+      <DependentUpon>StoryList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\StoryList.aspx.designer.cs">
+      <DependentUpon>StoryList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\subCategoryList.aspx.cs">
+      <DependentUpon>subCategoryList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\subCategoryList.aspx.designer.cs">
+      <DependentUpon>subCategoryList.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\AuthenticatedPage.cs">
       <SubType>ASPXCodeBehind</SubType>
@@ -91,7 +163,6 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\Westgate.Data\Westgate.Data.csproj">
       <Project>{DFC51855-D98E-4A18-9B92-01DF201F3760}</Project>
@@ -100,6 +171,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Admin\Admin.Master" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="script\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

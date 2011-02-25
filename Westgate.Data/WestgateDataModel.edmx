@@ -84,7 +84,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Images_Stories">
-          <End Role="Stories" Type="WestgateModel.Store.Stories" Multiplicity="1" />
+          <End Role="Stories" Type="WestgateModel.Store.Stories" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Images" Type="WestgateModel.Store.Images" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Stories">
@@ -96,7 +98,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Stories_Subcategories">
-          <End Role="Subcategories" Type="WestgateModel.Store.Subcategories" Multiplicity="1" />
+          <End Role="Subcategories" Type="WestgateModel.Store.Subcategories" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Stories" Type="WestgateModel.Store.Stories" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Subcategories">
@@ -108,14 +112,16 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Subcategories_Categories">
-          <End Role="Categories" Type="WestgateModel.Store.Categories" Multiplicity="1" />
-          <End Role="Subcategories" Type="WestgateModel.Store.Subcategories" Multiplicity="0..1" />
+          <End Role="Categories" Type="WestgateModel.Store.Categories" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Subcategories" Type="WestgateModel.Store.Subcategories" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Categories">
               <PropertyRef Name="CategoryId" />
             </Principal>
             <Dependent Role="Subcategories">
-              <PropertyRef Name="SubcategoryId" />
+              <PropertyRef Name="CategoryId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -129,160 +135,176 @@
           <EntitySet Name="Stories" EntityType="Westgate.Data.Model.Story" />
           <EntitySet Name="Subcategories" EntityType="Westgate.Data.Model.Subcategory" />
           <AssociationSet Name="FK_Subcategories_Categories" Association="Westgate.Data.Model.FK_Subcategories_Categories">
-            <End Role="Categories" EntitySet="Categories" />
-            <End Role="Subcategories" EntitySet="Subcategories" />
+            <End Role="Category" EntitySet="Categories" />
+            <End Role="Subcategory" EntitySet="Subcategories" />
           </AssociationSet>
           <AssociationSet Name="FK_Images_Images" Association="Westgate.Data.Model.FK_Images_Images">
-            <End Role="Images" EntitySet="Images" />
-            <End Role="Images1" EntitySet="Images" />
+            <End Role="Image" EntitySet="Images" />
+            <End Role="Image1" EntitySet="Images" />
           </AssociationSet>
           <AssociationSet Name="FK_Images_Stories" Association="Westgate.Data.Model.FK_Images_Stories">
-            <End Role="Stories" EntitySet="Stories" />
-            <End Role="Images" EntitySet="Images" />
+            <End Role="Story" EntitySet="Stories" />
+            <End Role="Image" EntitySet="Images" />
           </AssociationSet>
           <AssociationSet Name="FK_Stories_Subcategories" Association="Westgate.Data.Model.FK_Stories_Subcategories">
-            <End Role="Subcategories" EntitySet="Subcategories" />
-            <End Role="Stories" EntitySet="Stories" />
+            <End Role="Subcategory" EntitySet="Subcategories" />
+            <End Role="Story" EntitySet="Stories" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="Category">
           <Key>
             <PropertyRef Name="CategoryId" />
           </Key>
-          <Property Name="CategoryId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
-          <Property Name="Description" Type="String" MaxLength="1000" Unicode="false" FixedLength="false" />
-          <Property Name="NumberOfSubcategories" Type="Int32" />
-          <NavigationProperty Name="Subcategory" Relationship="Westgate.Data.Model.FK_Subcategories_Categories" FromRole="Categories" ToRole="Subcategories" />
+          <Property Type="Int32" Name="CategoryId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Description" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="NumberOfSubcategories" />
+          <NavigationProperty Name="Subcategories" Relationship="Westgate.Data.Model.FK_Subcategories_Categories" FromRole="Category" ToRole="Subcategory" />
         </EntityType>
         <EntityType Name="Image">
           <Key>
             <PropertyRef Name="ImageId" />
           </Key>
-          <Property Name="ImageId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="StoryId" Type="Int32" Nullable="false" />
-          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
-          <Property Name="Description" Type="String" MaxLength="1000" Unicode="false" FixedLength="false" />
-          <Property Name="ActualImagePath" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
-          <Property Name="HeaderImagePath" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
-          <Property Name="SliderImagePath" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
-          <Property Name="ContentImagePath" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
-          <Property Name="IsDefault" Type="Boolean" />
-          <Property Name="IsAfter" Type="Boolean" />
-          <Property Name="CoupleImageId" Type="Int32" />
-          <NavigationProperty Name="SiblingImages" Relationship="Westgate.Data.Model.FK_Images_Images" FromRole="Images" ToRole="Images1" />
-          <NavigationProperty Name="CoupleImage" Relationship="Westgate.Data.Model.FK_Images_Images" FromRole="Images1" ToRole="Images" />
-          <NavigationProperty Name="Story" Relationship="Westgate.Data.Model.FK_Images_Stories" FromRole="Images" ToRole="Stories" />
+          <Property Type="Int32" Name="ImageId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="StoryId" Nullable="false" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Description" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="ActualImagePath" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="HeaderImagePath" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="SliderImagePath" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="ContentImagePath" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="Boolean" Name="IsDefault" />
+          <Property Type="Boolean" Name="IsAfter" />
+          <Property Type="Int32" Name="CoupleImageId" />
+          <NavigationProperty Name="Images1" Relationship="Westgate.Data.Model.FK_Images_Images" FromRole="Image" ToRole="Image1" />
+          <NavigationProperty Name="Image1" Relationship="Westgate.Data.Model.FK_Images_Images" FromRole="Image1" ToRole="Image" />
+          <NavigationProperty Name="Story" Relationship="Westgate.Data.Model.FK_Images_Stories" FromRole="Image" ToRole="Story" />
         </EntityType>
         <EntityType Name="Story">
           <Key>
             <PropertyRef Name="StoryId" />
           </Key>
-          <Property Name="StoryId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="SubcategoryId" Type="Int32" Nullable="false" />
-          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
-          <Property Name="Description" Type="String" MaxLength="1000" Unicode="false" FixedLength="false" />
-          <NavigationProperty Name="Images" Relationship="Westgate.Data.Model.FK_Images_Stories" FromRole="Stories" ToRole="Images" />
-          <NavigationProperty Name="Subcategory" Relationship="Westgate.Data.Model.FK_Stories_Subcategories" FromRole="Stories" ToRole="Subcategories" />
+          <Property Type="Int32" Name="StoryId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="SubcategoryId" Nullable="false" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Description" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Images" Relationship="Westgate.Data.Model.FK_Images_Stories" FromRole="Story" ToRole="Image" />
+          <NavigationProperty Name="Subcategory" Relationship="Westgate.Data.Model.FK_Stories_Subcategories" FromRole="Story" ToRole="Subcategory" />
         </EntityType>
         <EntityType Name="Subcategory">
           <Key>
             <PropertyRef Name="SubcategoryId" />
           </Key>
-          <Property Name="SubcategoryId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="CategoryId" Type="Int32" Nullable="false" />
-          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
-          <Property Name="Description" Type="String" MaxLength="1000" Unicode="false" FixedLength="false" />
-          <Property Name="DefaultStoryId" Type="Int32" />
-          <NavigationProperty Name="Category" Relationship="Westgate.Data.Model.FK_Subcategories_Categories" FromRole="Subcategories" ToRole="Categories" />
-          <NavigationProperty Name="Stories" Relationship="Westgate.Data.Model.FK_Stories_Subcategories" FromRole="Subcategories" ToRole="Stories" />
+          <Property Type="Int32" Name="SubcategoryId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="CategoryId" Nullable="false" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Description" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="DefaultStoryId" />
+          <NavigationProperty Name="Category" Relationship="Westgate.Data.Model.FK_Subcategories_Categories" FromRole="Subcategory" ToRole="Category" />
+          <NavigationProperty Name="Stories" Relationship="Westgate.Data.Model.FK_Stories_Subcategories" FromRole="Subcategory" ToRole="Story" />
         </EntityType>
         <Association Name="FK_Subcategories_Categories">
-          <End Role="Categories" Type="Westgate.Data.Model.Category" Multiplicity="1" />
-          <End Role="Subcategories" Type="Westgate.Data.Model.Subcategory" Multiplicity="0..1" />
+          <End Type="Westgate.Data.Model.Category" Role="Category" Multiplicity="1" />
+          <End Type="Westgate.Data.Model.Subcategory" Role="Subcategory" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Categories">
+            <Principal Role="Category">
               <PropertyRef Name="CategoryId" />
             </Principal>
-            <Dependent Role="Subcategories">
-              <PropertyRef Name="SubcategoryId" />
+            <Dependent Role="Subcategory">
+              <PropertyRef Name="CategoryId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Images_Images">
-          <End Role="Images" Type="Westgate.Data.Model.Image" Multiplicity="0..1" />
-          <End Role="Images1" Type="Westgate.Data.Model.Image" Multiplicity="*" />
+          <End Type="Westgate.Data.Model.Image" Role="Image" Multiplicity="0..1" />
+          <End Type="Westgate.Data.Model.Image" Role="Image1" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Images">
+            <Principal Role="Image">
               <PropertyRef Name="ImageId" />
             </Principal>
-            <Dependent Role="Images1">
+            <Dependent Role="Image1">
               <PropertyRef Name="CoupleImageId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Images_Stories">
-          <End Role="Stories" Type="Westgate.Data.Model.Story" Multiplicity="1" />
-          <End Role="Images" Type="Westgate.Data.Model.Image" Multiplicity="*" />
+          <End Type="Westgate.Data.Model.Story" Role="Story" Multiplicity="1" />
+          <End Type="Westgate.Data.Model.Image" Role="Image" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Stories">
+            <Principal Role="Story">
               <PropertyRef Name="StoryId" />
             </Principal>
-            <Dependent Role="Images">
+            <Dependent Role="Image">
               <PropertyRef Name="StoryId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Stories_Subcategories">
-          <End Role="Subcategories" Type="Westgate.Data.Model.Subcategory" Multiplicity="1" />
-          <End Role="Stories" Type="Westgate.Data.Model.Story" Multiplicity="*" />
+          <End Type="Westgate.Data.Model.Subcategory" Role="Subcategory" Multiplicity="1" />
+          <End Type="Westgate.Data.Model.Story" Role="Story" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Subcategories">
+            <Principal Role="Subcategory">
               <PropertyRef Name="SubcategoryId" />
             </Principal>
-            <Dependent Role="Stories">
+            <Dependent Role="Story">
               <PropertyRef Name="SubcategoryId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="WestgateModelStoreContainer" CdmEntityContainer="WestgateEntities">
-          <EntitySetMapping Name="Categories"><EntityTypeMapping TypeName="Westgate.Data.Model.Category"><MappingFragment StoreEntitySet="Categories">
-            <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
-            <ScalarProperty Name="Name" ColumnName="Name" />
-            <ScalarProperty Name="Description" ColumnName="Description" />
-            <ScalarProperty Name="NumberOfSubcategories" ColumnName="NumberOfSubcategories" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="Images"><EntityTypeMapping TypeName="Westgate.Data.Model.Image"><MappingFragment StoreEntitySet="Images">
-            <ScalarProperty Name="ImageId" ColumnName="ImageId" />
-            <ScalarProperty Name="StoryId" ColumnName="StoryId" />
-            <ScalarProperty Name="Name" ColumnName="Name" />
-            <ScalarProperty Name="Description" ColumnName="Description" />
-            <ScalarProperty Name="ActualImagePath" ColumnName="ActualImagePath" />
-            <ScalarProperty Name="HeaderImagePath" ColumnName="HeaderImagePath" />
-            <ScalarProperty Name="SliderImagePath" ColumnName="SliderImagePath" />
-            <ScalarProperty Name="ContentImagePath" ColumnName="ContentImagePath" />
-            <ScalarProperty Name="IsDefault" ColumnName="IsDefault" />
-            <ScalarProperty Name="IsAfter" ColumnName="IsAfter" />
-            <ScalarProperty Name="CoupleImageId" ColumnName="CoupleImageId" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="Stories"><EntityTypeMapping TypeName="Westgate.Data.Model.Story"><MappingFragment StoreEntitySet="Stories">
-            <ScalarProperty Name="StoryId" ColumnName="StoryId" />
-            <ScalarProperty Name="SubcategoryId" ColumnName="SubcategoryId" />
-            <ScalarProperty Name="Name" ColumnName="Name" />
-            <ScalarProperty Name="Description" ColumnName="Description" />
-            </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="Subcategories"><EntityTypeMapping TypeName="Westgate.Data.Model.Subcategory"><MappingFragment StoreEntitySet="Subcategories">
-            <ScalarProperty Name="SubcategoryId" ColumnName="SubcategoryId" />
-            <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
-            <ScalarProperty Name="Name" ColumnName="Name" />
-            <ScalarProperty Name="Description" ColumnName="Description" />
-            <ScalarProperty Name="DefaultStoryId" ColumnName="DefaultStoryId" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="Categories">
+            <EntityTypeMapping TypeName="Westgate.Data.Model.Category">
+              <MappingFragment StoreEntitySet="Categories">
+                <ScalarProperty Name="NumberOfSubcategories" ColumnName="NumberOfSubcategories" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Images">
+            <EntityTypeMapping TypeName="Westgate.Data.Model.Image">
+              <MappingFragment StoreEntitySet="Images">
+                <ScalarProperty Name="CoupleImageId" ColumnName="CoupleImageId" />
+                <ScalarProperty Name="IsAfter" ColumnName="IsAfter" />
+                <ScalarProperty Name="IsDefault" ColumnName="IsDefault" />
+                <ScalarProperty Name="ContentImagePath" ColumnName="ContentImagePath" />
+                <ScalarProperty Name="SliderImagePath" ColumnName="SliderImagePath" />
+                <ScalarProperty Name="HeaderImagePath" ColumnName="HeaderImagePath" />
+                <ScalarProperty Name="ActualImagePath" ColumnName="ActualImagePath" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="StoryId" ColumnName="StoryId" />
+                <ScalarProperty Name="ImageId" ColumnName="ImageId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Stories">
+            <EntityTypeMapping TypeName="Westgate.Data.Model.Story">
+              <MappingFragment StoreEntitySet="Stories">
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="SubcategoryId" ColumnName="SubcategoryId" />
+                <ScalarProperty Name="StoryId" ColumnName="StoryId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Subcategories">
+            <EntityTypeMapping TypeName="Westgate.Data.Model.Subcategory">
+              <MappingFragment StoreEntitySet="Subcategories">
+                <ScalarProperty Name="DefaultStoryId" ColumnName="DefaultStoryId" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+                <ScalarProperty Name="SubcategoryId" ColumnName="SubcategoryId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -304,27 +326,27 @@
     <!-- Diagram content (shape and connector positions) -->
     <Diagrams>
       <Diagram Name="WestgateDataModel">
-        <EntityTypeShape EntityType="Westgate.Data.Model.Category" Width="1.5" PointX="0.75" PointY="1.875" Height="1.9802864583333335" IsExpanded="true" />
-        <EntityTypeShape EntityType="Westgate.Data.Model.Image" Width="1.5" PointX="7.5" PointY="1" Height="3.7109993489583331" IsExpanded="true" />
-        <EntityTypeShape EntityType="Westgate.Data.Model.Story" Width="1.5" PointX="5.25" PointY="1.375" Height="2.172587890625" IsExpanded="true" />
-        <EntityTypeShape EntityType="Westgate.Data.Model.Subcategory" Width="1.5" PointX="3" PointY="1.625" Height="2.3648893229166656" IsExpanded="true" />
-        <AssociationConnector Association="Westgate.Data.Model.FK_Subcategories_Categories" ManuallyRouted="false">
-          <ConnectorPoint PointX="2.25" PointY="2.8651432291666667" />
-          <ConnectorPoint PointX="3" PointY="2.8651432291666667" />
+        <EntityTypeShape EntityType="Westgate.Data.Model.Category" Width="1.5" PointX="0.75" PointY="1.75" Height="1.7566536458333335" />
+        <EntityTypeShape EntityType="Westgate.Data.Model.Image" Width="1.5" PointX="7.5" PointY="1" Height="3.2357796223958322" />
+        <EntityTypeShape EntityType="Westgate.Data.Model.Story" Width="1.5" PointX="5.25" PointY="1.625" Height="1.9210009765624996" />
+        <EntityTypeShape EntityType="Westgate.Data.Model.Subcategory" Width="1.5" PointX="3" PointY="1.5" Height="2.0853483072916674" />
+        <AssociationConnector Association="Westgate.Data.Model.FK_Subcategories_Categories" >
+          <ConnectorPoint PointX="2.25" PointY="2.6283268229166667" />
+          <ConnectorPoint PointX="3" PointY="2.6283268229166667" />
         </AssociationConnector>
-        <AssociationConnector Association="Westgate.Data.Model.FK_Images_Images" ManuallyRouted="false">
-          <ConnectorPoint PointX="8.0319230769230767" PointY="4.7109993489583335" />
-          <ConnectorPoint PointX="8.0319230769230767" PointY="4.9609993489583335" />
-          <ConnectorPoint PointX="8.47846153846154" PointY="4.9609993489583335" />
-          <ConnectorPoint PointX="8.47846153846154" PointY="4.7109993489583335" />
+        <AssociationConnector Association="Westgate.Data.Model.FK_Images_Images" >
+          <ConnectorPoint PointX="8.0319230769230767" PointY="4.2357796223958317" />
+          <ConnectorPoint PointX="8.0319230769230767" PointY="4.4857796223958317" />
+          <ConnectorPoint PointX="8.47846153846154" PointY="4.4857796223958317" />
+          <ConnectorPoint PointX="8.47846153846154" PointY="4.2357796223958317" />
         </AssociationConnector>
-        <AssociationConnector Association="Westgate.Data.Model.FK_Images_Stories" ManuallyRouted="false">
-          <ConnectorPoint PointX="6.75" PointY="2.4612939453125" />
-          <ConnectorPoint PointX="7.5" PointY="2.4612939453125" />
+        <AssociationConnector Association="Westgate.Data.Model.FK_Images_Stories" >
+          <ConnectorPoint PointX="6.75" PointY="2.58550048828125" />
+          <ConnectorPoint PointX="7.5" PointY="2.58550048828125" />
         </AssociationConnector>
-        <AssociationConnector Association="Westgate.Data.Model.FK_Stories_Subcategories" ManuallyRouted="false">
-          <ConnectorPoint PointX="4.5" PointY="2.5862939453125" />
-          <ConnectorPoint PointX="5.25" PointY="2.5862939453125" />
+        <AssociationConnector Association="Westgate.Data.Model.FK_Stories_Subcategories" >
+          <ConnectorPoint PointX="4.5" PointY="2.58550048828125" />
+          <ConnectorPoint PointX="5.25" PointY="2.58550048828125" />
         </AssociationConnector>
       </Diagram>
     </Diagrams>
