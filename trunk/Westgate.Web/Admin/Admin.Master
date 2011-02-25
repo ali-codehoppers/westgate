@@ -14,12 +14,12 @@
     <div>
         <div style="width:800px">        
             <div style="float:left;width:200px;">
-                <asp:HyperLink ID="HyperLink1" runat="server">View all Categories</asp:HyperLink>
-                <asp:HyperLink ID="HyperLink2" runat="server">Add a new Category</asp:HyperLink>
-                <asp:HyperLink ID="HyperLink3" runat="server">View all Subcategories</asp:HyperLink>
-                <asp:HyperLink ID="HyperLink4" runat="server">Add a new Subcategory</asp:HyperLink>
-                <asp:HyperLink ID="HyperLink5" runat="server">View all Stories</asp:HyperLink>
-                <asp:HyperLink ID="HyperLink6" runat="server">Add a new Story</asp:HyperLink>
+                <div><asp:HyperLink ID="HyperLink1" NavigateUrl="~/Admin/CategoriesList.aspx" runat="server">View all Categories</asp:HyperLink></div>
+                <div><asp:HyperLink ID="HyperLink2" NavigateUrl="~/Admin/AddCategory.aspx" runat="server">Add a new Category</asp:HyperLink></div>
+                <div><asp:HyperLink ID="HyperLink3" NavigateUrl="~/Admin/subCategoryList.aspx" runat="server">View all Subcategories</asp:HyperLink></div>
+                <div><asp:HyperLink ID="HyperLink4" NavigateUrl="~/Admin/AddSubCategory.aspx" runat="server">Add a new Subcategory</asp:HyperLink></div>
+                <div><asp:HyperLink ID="HyperLink5" NavigateUrl="~/Admin/StoryList.aspx" runat="server">View all Stories</asp:HyperLink></div>
+                <div><asp:HyperLink ID="HyperLink6" NavigateUrl="~/Admin/AddStory.aspx" runat="server">Add a new Story</asp:HyperLink></div>
             </div>
             
             <div style="float:left;width:600px;">

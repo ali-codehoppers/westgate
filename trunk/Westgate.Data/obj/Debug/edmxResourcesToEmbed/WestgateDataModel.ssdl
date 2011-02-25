@@ -79,7 +79,9 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_Images_Stories">
-    <End Role="Stories" Type="WestgateModel.Store.Stories" Multiplicity="1" />
+    <End Role="Stories" Type="WestgateModel.Store.Stories" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Role="Images" Type="WestgateModel.Store.Images" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Stories">
@@ -91,7 +93,9 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_Stories_Subcategories">
-    <End Role="Subcategories" Type="WestgateModel.Store.Subcategories" Multiplicity="1" />
+    <End Role="Subcategories" Type="WestgateModel.Store.Subcategories" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Role="Stories" Type="WestgateModel.Store.Stories" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Subcategories">
@@ -103,14 +107,16 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_Subcategories_Categories">
-    <End Role="Categories" Type="WestgateModel.Store.Categories" Multiplicity="1" />
-    <End Role="Subcategories" Type="WestgateModel.Store.Subcategories" Multiplicity="0..1" />
+    <End Role="Categories" Type="WestgateModel.Store.Categories" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Subcategories" Type="WestgateModel.Store.Subcategories" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Categories">
         <PropertyRef Name="CategoryId" />
       </Principal>
       <Dependent Role="Subcategories">
-        <PropertyRef Name="SubcategoryId" />
+        <PropertyRef Name="CategoryId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

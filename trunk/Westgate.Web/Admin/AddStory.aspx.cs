@@ -8,12 +8,11 @@ using Westgate.Web.Pages;
 
 namespace Westgate.Web.Admin
 {
-    public partial class CategoriesList : AuthenticatedPage
+    public partial class AddStory : AuthenticatedPage
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            
-        }
 
+        }
     }
 }
