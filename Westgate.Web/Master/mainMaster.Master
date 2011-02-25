@@ -1,0 +1,403 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="mainMaster.master.cs"
+    Inherits="Westgate.Web.Master.mainMaster" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head id="Head1" runat="server">
+    <title></title>
+    <link href="<%=this.ResolveClientUrl("~/stylesheet/stylesheet.css")%>" rel="stylesheet" type="text/css" />
+    <script src="<%=this.ResolveClientUrl("~/script/jQuery.js")%>" type="text/javascript"></script>
+    <link href="<%=this.ResolveClientUrl("~/script/galleryview-2.1.1/galleryview.css")%>" rel="stylesheet" type="text/css" />
+    <script src="<%=this.ResolveClientUrl("~/script/galleryview-2.1.1/jquery.easing.1.3.js")%>" type="text/javascript"></script>
+    <script src="<%=this.ResolveClientUrl("~/script/galleryview-2.1.1/jquery.galleryview-2.1.1.js")%>" type="text/javascript"></script>
+    <script src="<%=this.ResolveClientUrl("~/script/galleryview-2.1.1/jquery.timers-1.2.js")%>" type="text/javascript"></script>
+    <link href="<%=this.ResolveClientUrl("~/script/pagination/pagination.css")%>" rel="stylesheet" type="text/css" />
+    <link href="<%=this.ResolveClientUrl("~/script/pagination/demo.css")%>" rel="stylesheet" type="text/css" />
+    <script src="<%=this.ResolveClientUrl("~/script/pagination/jquery.pagination.js")%>" type="text/javascript"></script>
+    <script src="<%=this.ResolveClientUrl("~/script/lightbox/jquery.lightbox-0.5.js")%>" type="text/javascript"></script>
+    <link href="<%=this.ResolveClientUrl("~/script/lightbox/jquery.lightbox-0.5.css")%>" rel="stylesheet" type="text/css" />
+    <script src="<%=this.ResolveClientUrl("~/script/tab/jquery-ui.min.js")%>" type="text/javascript"></script>
+    <link href="<%=this.ResolveClientUrl("~/script/tab/jquery-ui.css")%>" rel="stylesheet" type="text/css" />
+    <asp:ContentPlaceHolder ID="headplace" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body style="margin:auto; width:995px" >
+    <form id="form1" runat="server">
+    <table width="995" border="0" align="center" cellpadding="0" cellspacing="0">
+        <tr>
+            <td class="left_r">
+                &nbsp;
+            </td>
+            <td align="center" valign="top">
+                <table width="936" border="0" cellpadding="0" cellspacing="0">
+                    <tr>
+                        <td valign="top">
+                            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                <tr>
+                                    <td width="22%" align="left">
+                                        <img src='<%=this.ResolveClientUrl("~/images/logo.jpg")%>' alt="" width="187" height="129" />
+                                    </td>
+                                    <td width="78%" align="right" valign="top">
+                                        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                            <tr>
+                                                <td align="right">
+                                                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                                        <tr>
+                                                            <td height="41" align="right">
+                                                                <table border="0" cellspacing="0" cellpadding="0">
+                                                                    <tr>
+                                                                        <td width="108" align="center">
+                                                                            <div>
+                                                                                <a href="#" id="login"></a>
+                                                                            </div>
+                                                                        </td>
+                                                                        <td width="160" align="right">
+                                                                            <input name="textfield" type="text" class="search_field" id="textfield" />
+                                                                        </td>
+                                                                        <td width="22" align="left">
+                                                                            <a href="#">
+                                                                                <img src="<%=this.ResolveClientUrl("~/images/search.jpg")%>" alt="" width="22" height="22"
+                                                                                    border="0" /></a>
+                                                                        </td>
+                                                                    </tr>
+                                                                </table>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td align="right">
+                                                                <table border="0" cellspacing="0" cellpadding="3">
+                                                                    <tr>
+                                                                        <td class="top_nav_partition">
+                                                                            <a href="#" class="top">Careers</a>
+                                                                        </td>
+                                                                        <td class="top_nav_partition">
+                                                                            <a href="#" class="top">Downloads</a>
+                                                                        </td>
+                                                                        <td class="top_nav_partition">
+                                                                            <a href="#" class="top">FAQ</a>
+                                                                        </td>
+                                                                        <td class="top_nav_partition">
+                                                                            <a href="#" class="top">Sitemap</a>
+                                                                        </td>
+                                                                        <td class="top_nav_partition">
+                                                                            <a href="#" class="top">Contact Us</a>
+                                                                        </td>
+                                                                    </tr>
+                                                                </table>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left">
+                                                    <img src="<%=this.ResolveClientUrl("~/images/logo_txt.jpg")%>" alt="" width="225"
+                                                        height="47" />
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td height="30" valign="bottom">
+                            <table width="936" border="0" cellspacing="0" cellpadding="0">
+                                <tr>
+
+                                    <td width="38" valign="bottom">
+                                        <a href="#">
+                                            <img src="<%=this.ResolveClientUrl("~/images/btn_home.jpg")%>" alt="" width="38"
+                                                height="38" border="0" /></a>
+                                    </td>
+                                    <td width="894" align="left" valign="bottom" class="nav_r">
+                                        <table height="32" border="0" cellpadding="3" cellspacing="0">
+                                            <tr>
+                                                <td class="top_grey_nav_partition">
+                                                    <a href="#" class="grey_top">Company</a> 
+                                                </td>
+                                                <asp:Repeater ID="Repeater1" runat="server" DataSourceID="CategoryListSource">
+                                                    <ItemTemplate>
+                                                      <td class="top_grey_nav_partition">  
+                                                        <asp:HyperLink ID="Linking1" class="grey_top" runat="server" NavigateUrl="#" Text='<%# Eval("Name")%>'></asp:HyperLink>
+                                                      </td>
+                                                    </ItemTemplate>
+                                                </asp:Repeater>
+                                                <asp:EntityDataSource ID="CategoryListSource" runat="server" 
+                                                    ConnectionString="name=WestgateEntities" 
+                                                    DefaultContainerName="WestgateEntities" EnableFlattening="False" 
+                                                    EntitySetName="Categories" EntityTypeFilter="Category" Select="it.[Name]">
+                                                </asp:EntityDataSource>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                    <td width="10">
+                                        <img src="<%=this.ResolveClientUrl("~/images/nav_right.jpg")%>" alt="" width="12"
+                                            height="46" />
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <ul id="photos" class="galleryview">
+                                <li>
+                                    <img src="<%=this.ResolveClientUrl("~/images/image1.jpg")%>" alt="" />
+                                    <div class="panel-overlay">
+                                        <h3>
+                                            Pretty Picture</h3>
+                                        <p>
+                                            Some more information about this photo, perhaps with a <a href="http://some.web.site"
+                                                target="_blank">link</a> to another page.</p>
+                                    </div>
+                                </li>
+                                <li>
+                                    <img src="<%=this.ResolveClientUrl("~/images/image2.jpg")%>" alt="" />
+                                    <div class="panel-overlay">
+                                        <h3>
+                                            Pretty Picture</h3>
+                                        <p>
+                                            Some more information about this photo, perhaps with a <a href="http://some.web.site"
+                                                target="_blank">link</a> to another page.</p>
+                                    </div>
+                                </li>
+                                <li>
+                                    <img src="<%=this.ResolveClientUrl("~/images/image3.jpg")%>" alt="" />
+                                    <div class="panel-overlay">
+                                        <h3>
+                                            Pretty Picture</h3>
+                                        <p>
+                                            Some more information about this photo, perhaps with a <a href="http://some.web.site"
+                                                target="_blank">link</a> to another page.</p>
+                                    </div>
+                                </li>
+                                <li>
+                                    <img src="<%=this.ResolveClientUrl("~/images/image4.jpg")%>" alt="" />
+                                    <div class="panel-overlay">
+                                        <h3>
+                                            Pretty Picture</h3>
+                                        <p>
+                                            Some more information about this photo, perhaps with a <a href="http://some.web.site"
+                                                target="_blank">link</a> to another page.</p>
+                                    </div>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="double_dotted">
+                            <img src="<%=this.ResolveClientUrl("~/images/double_dotted.jpg")%>" alt="" width="4"
+                                height="4" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <table width="936" border="0" cellspacing="0" cellpadding="0">
+                                <tr>
+                                    <td valign="top">
+                                        <table width="100%" border="0" cellspacing="4" cellpadding="0">
+                                            <tr>
+                                                <td width="71%" valign="top" style="border-right: 1px dotted #CCCCCC">
+                                                    <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                                                    </asp:ContentPlaceHolder>
+                                                </td>
+                                                <td width="29%" valign="top" class="newsletter_bg">
+                                                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                                        <tr>
+                                                            <td width="44%" height="88" align="left" valign="top">
+                                                                <img src="<%=this.ResolveClientUrl("~/images/news_icon.jpg")%>" alt="" width="87"
+                                                                    height="76" />
+                                                            </td>
+                                                            <td width="56%" align="left">
+                                                                <h2>
+                                                                    Request for a</h2>
+                                                                <span class="txt_blue">Business Profile</span>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td align="left">
+                                                                Company Name
+                                                            </td>
+                                                            <td align="left">
+                                                                <input name="textfield2" type="text" class="newsletter_field" id="textfield2" />
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td align="left">
+                                                                Person's Name
+                                                            </td>
+                                                            <td align="left">
+                                                                <input name="textfield3" type="text" class="newsletter_field" id="textfield3" />
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td align="left">
+                                                                Email Address
+                                                            </td>
+                                                            <td align="left">
+                                                                <input name="textfield4" type="text" class="newsletter_field" id="textfield4" />
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td align="left">
+                                                                Post Code
+                                                            </td>
+                                                            <td align="left">
+                                                                <input name="textfield5" type="text" class="newsletter_field" id="textfield5" />
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td align="left">
+                                                                Phone Number
+                                                            </td>
+                                                            <td align="left">
+                                                                <input name="textfield6" type="text" class="newsletter_field" id="textfield6" />
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td align="left">
+                                                                Nature of Enquiry
+                                                            </td>
+                                                            <td align="left">
+                                                                <select name="select" class="newsletter_field" id="select">
+                                                                </select>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td height="51" align="left">
+                                                                &nbsp;
+                                                            </td>
+                                                            <td align="left">
+                                                                <a href="#">
+                                                                    <img src="<%=this.ResolveClientUrl("~/images/btn_submit.jpg")%>" alt="" width="98"
+                                                                        height="29" border="0" /></a>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="border-top: 1px dotted #CCCCCC">
+                            <table width="100%" border="0" cellspacing="0" cellpadding="0" style="margin-top: 10px">
+                                <tr>
+                                    <td width="1%">
+                                        <img src="<%=this.ResolveClientUrl("~/images/left_top.jpg")%>" alt="" width="7" height="5" />
+                                    </td>
+                                    <td width="98%" bgcolor="#f6f6f6">
+                                        <img src="<%=this.ResolveClientUrl("~/images/mid_top.jpg")%>" alt="" width="7" height="5" />
+                                    </td>
+                                    <td width="1%">
+                                        <img src="<%=this.ResolveClientUrl("~/images/right_top.jpg")%>" alt="" width="7"
+                                            height="5" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td height="66" bgcolor="#f6f6f6">
+                                        &nbsp;
+                                    </td>
+                                    <td align="center" valign="top" bgcolor="#f6f6f6">
+                                        <div style="width:95%">
+                                            <div style="float:left; width:15%;">
+                                                <strong>Company</strong>
+                                            </div>
+                                            <div style="width:90%">
+                                                <asp:Repeater ID="CategoryRepeater" runat="server" 
+                                                    OnItemDataBound="CategoryRepeater_ItemCommand" >   
+                                                    <ItemTemplate>
+                                                            <div style="float:left;min-width:16%">
+                                                                <strong>
+                                                                   <asp:HyperLink runat="server" ID="Link1" Text='<%#Eval("Name") %>'></asp:HyperLink>
+                                                                </strong>
+                                                                <asp:Label runat="server" ID="CatId" Text='<%#Eval("CategoryId")%>' Visible="false"></asp:Label>
+                                                                <asp:Repeater ID="subCategoryRepeater" runat="server">   
+                                                                    <ItemTemplate>
+                                                                    <div>    
+                                                                        <asp:HyperLink runat="server" ID="Link2" Text='<%#Eval("Name") %>'></asp:HyperLink>
+                                                                    </div>
+                                                                    </ItemTemplate>
+                                                                </asp:Repeater>
+                                                            </div>
+                                                    </ItemTemplate>
+                                                </asp:Repeater>
+                                            </div>                                              
+                                        </div>
+                                        
+                                    </td>
+                                    <td bgcolor="#f6f6f6">
+                                        &nbsp;
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <img src="<%=this.ResolveClientUrl("~/images/left_bottom.jpg")%>" alt="" width="7"
+                                            height="5" />
+                                    </td>
+                                    <td bgcolor="#F6F6F6">
+                                        <img src="<%=this.ResolveClientUrl("~/images/mid_top.jpg")%>" alt="" width="7" height="5" />
+                                    </td>
+                                    <td>
+                                        <img src="<%=this.ResolveClientUrl("~/images/right_bottom.jpg")%>" alt="" width="7"
+                                            height="5" />
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            &nbsp;
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="double_dotted">
+                            <img src="<%=this.ResolveClientUrl("~/images/double_dotted.jpg")%>" alt="" width="4"
+                                height="4" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <table width="100%" height="86" border="0" cellpadding="0" cellspacing="0">
+                                <tr>
+                                    <td width="9%" height="86">
+                                        <img src="<%=this.ResolveClientUrl("~/images/logo_footer.jpg")%>" alt="" width="86"
+                                            height="61" />
+                                    </td>
+                                    <td width="91%" align="center" class="txt_pipe">
+                                        Copyright©2011 West Gate Maintenance Limited. All Rights Reserved.<br />
+                                        <a href="#" class="top">Privacy Policy</a> | <a href="#" class="top">Terms &amp; Conditions</a>
+                                        | <a href="#" class="top">Disclaimer</a> | <a href="#" class="top">Sitemap</a> |
+                                        <a href="#" class="top">Help</a> |<a href="#" class="top"> Contact Us</a>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+            <td class="right_r">
+                &nbsp;
+            </td>
+        </tr>
+    </table>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#photos').galleryView({
+                panel_width: 936,
+                panel_height: 273,
+                frame_width: 70,
+                frame_height: 70,
+                nav_theme: 'dark'
+            });
+        });
+    </script>
+    </form>
+</body>
+</html>
