@@ -5,10 +5,6 @@
     <EntitySet Name="Images" EntityType="WestgateModel.Store.Images" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Stories" EntityType="WestgateModel.Store.Stories" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Subcategories" EntityType="WestgateModel.Store.Subcategories" store:Type="Tables" Schema="dbo" />
-    <AssociationSet Name="FK_Images_Images" Association="WestgateModel.Store.FK_Images_Images">
-      <End Role="Images" EntitySet="Images" />
-      <End Role="Images1" EntitySet="Images" />
-    </AssociationSet>
     <AssociationSet Name="FK_Images_Stories" Association="WestgateModel.Store.FK_Images_Stories">
       <End Role="Stories" EntitySet="Stories" />
       <End Role="Images" EntitySet="Images" />
@@ -39,13 +35,9 @@
     <Property Name="StoryId" Type="int" Nullable="false" />
     <Property Name="Name" Type="varchar" Nullable="false" MaxLength="50" />
     <Property Name="Description" Type="varchar" MaxLength="1000" />
-    <Property Name="ActualImagePath" Type="varchar" MaxLength="100" />
-    <Property Name="HeaderImagePath" Type="varchar" MaxLength="100" />
-    <Property Name="SliderImagePath" Type="varchar" MaxLength="100" />
-    <Property Name="ContentImagePath" Type="varchar" MaxLength="100" />
-    <Property Name="IsDefault" Type="bit" />
-    <Property Name="IsAfter" Type="bit" />
-    <Property Name="CoupleImageId" Type="int" />
+    <Property Name="BeforeImagePath" Type="varchar" MaxLength="100" />
+    <Property Name="AfterImagePath" Type="varchar" MaxLength="100" />
+    <Property Name="CombinedImagePath" Type="varchar" MaxLength="100" />
   </EntityType>
   <EntityType Name="Stories">
     <Key>
@@ -66,18 +58,6 @@
     <Property Name="Description" Type="varchar" MaxLength="1000" />
     <Property Name="DefaultStoryId" Type="int" />
   </EntityType>
-  <Association Name="FK_Images_Images">
-    <End Role="Images" Type="WestgateModel.Store.Images" Multiplicity="0..1" />
-    <End Role="Images1" Type="WestgateModel.Store.Images" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Images">
-        <PropertyRef Name="ImageId" />
-      </Principal>
-      <Dependent Role="Images1">
-        <PropertyRef Name="CoupleImageId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_Images_Stories">
     <End Role="Stories" Type="WestgateModel.Store.Stories" Multiplicity="1">
       <OnDelete Action="Cascade" />
