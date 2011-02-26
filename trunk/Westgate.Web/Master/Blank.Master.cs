@@ -4,18 +4,14 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using Westgate.Data;
 
-namespace Westgate.Web
+namespace Westgate.Web.Master
 {
-    public partial class Default : Pages.GenericPage
+    public partial class Blank : System.Web.UI.MasterPage
     {
-
         protected void Page_Load(object sender, EventArgs e)
         {
-           
-        }
-        
 
+        }
     }
 }
