@@ -1,6 +1,7 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master/Blank.Master" AutoEventWireup="true" CodeBehind="Images.aspx.cs" Inherits="Westgate.Web.ajax.Images" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master/Blank.Master" AutoEventWireup="true"
+    CodeBehind="Images.aspx.cs" Inherits="Westgate.Web.ajax.Images" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <ul id="#ph
         <asp:Repeater ID="rptImages" runat="server">
             <ItemTemplate>
                 <li>
@@ -14,6 +15,4 @@
                 </li>    
             </ItemTemplate>
         </asp:Repeater>
-
-
 </asp:Content>
