@@ -20,17 +20,62 @@
     <link href="<%=this.ResolveClientUrl("~/script/tab/jquery-ui.css")%>" rel="stylesheet" type="text/css" />
     <asp:ContentPlaceHolder ID="headplace" runat="server">
     </asp:ContentPlaceHolder>
-
+    
+   	<style type="text/css">
+	/* jQuery lightBox plugin - Gallery style */
+	#gallery {
+		background-color: #444;
+		padding: 10px;
+		width: 520px;
+	}
+	#gallery ul { list-style: none; }
+	#gallery ul li { display: inline; }
+	#gallery ul img {
+		border: 5px solid #3e3e3e;
+		border-width: 5px 5px 20px;
+	}
+	#gallery ul a:hover img {
+		border: 5px solid #fff;
+		border-width: 5px 5px 20px;
+		color: #fff;
+	}
+	#gallery ul a:hover { color: #fff; }
+	</style>
+    
     <script type="text/javascript">
         function OnHomeClick() {
-            //alert("123");
             var images = new Array();
             $.post('ajax/homecontents.aspx', function (data) {
                 $('#contentsDiv').html(data);
             });
+            $.post('ajax/images.aspx?pageType=HOME', function (data) {
+                $('#photos').html(data);
+            });
             $("#imagesFrame").attr("src", "ajax/imagecontents.aspx?pageType=HOME");
         }
-        
+        function OnContentClick(id) {
+            $.post('ajax/CategoryContents.aspx?categoryId='+id, function (data) {
+                $('#contentsDiv').html(data);
+            });
+            $.post('ajax/images.aspx?pageType=CATEGORY&categoryId='+id, function (data) {
+                $('#photos').html(data);
+            });
+            $("#imagesFrame").attr("src", "ajax/imagecontents.aspx?pageType=CATEGORY&categoryId="+id);
+        }
+        function OnSubcontentClick(id) {
+            $.post('ajax/SubcategoryContents.aspx?SubcategoryId=' + id, function (data) {
+                $('#contentsDiv').html(data);
+            });
+            $.post('ajax/images.aspx?pageType=SUBCATEGORY&subcategoryId=' + id, function (data) {
+                $('#photos').html(data);
+            });
+            $("#imagesFrame").attr("src", "ajax/imagecontents.aspx?pageType=SUBCATEGORY&subcategoryId=" + id);
+        }
+        function OnStoryClick(id) {
+            $.post('ajax/StoryContents.aspx?StoryId=' + id, function (data) {
+                $('#contentsDiv').html(data);
+            });
+        }
     </script>
 </head>
 <body style="margin:auto; width:995px" >
@@ -133,14 +178,15 @@
                                                 <asp:Repeater ID="Repeater1" runat="server" DataSourceID="CategoryListSource">
                                                     <ItemTemplate>
                                                       <td class="top_grey_nav_partition">  
-                                                        <asp:HyperLink ID="Linking1" class="grey_top" runat="server" NavigateUrl="#" Text='<%# Eval("Name")%>'></asp:HyperLink>
+                                                        <asp:HyperLink ID="Linking1" class="grey_top" runat="server" NavigateUrl='<%# "javascript:OnContentClick("+Eval("CategoryId")+")"%>' Text='<%# Eval("Name")%>' ></asp:HyperLink>
                                                       </td>
                                                     </ItemTemplate>
                                                 </asp:Repeater>
                                                 <asp:EntityDataSource ID="CategoryListSource" runat="server" 
                                                     ConnectionString="name=WestgateEntities" 
                                                     DefaultContainerName="WestgateEntities" EnableFlattening="False" 
-                                                    EntitySetName="Categories" EntityTypeFilter="Category" Select="it.[Name]">
+                                                    EntitySetName="Categories" EntityTypeFilter="Category" 
+                                                    Select="it.[Name], it.[CategoryId]">
                                                 </asp:EntityDataSource>
                                             </tr>
                                         </table>
@@ -155,7 +201,7 @@
                     </tr>
                     <tr>
                         <td>
-                            <iframe width="956" height="405" border="0" id="imagesFrame" style="border:0"></iframe>                         
+                            <iframe width="956" height="405" border="0" id="imagesFrame" style="border:0px"></iframe>                         
                         </td>
                     </tr>
                     <tr>
@@ -172,7 +218,7 @@
                                         <table width="100%" border="0" cellspacing="4" cellpadding="0">
                                             <tr>
                                                 <td width="71%" valign="top" style="border-right: 1px dotted #CCCCCC">                                                    
-                                                    <div id="contentsDiv">
+                                                    <div id="contentsDiv" class="grey_welcome" style="padding-top: 10px; min-height: 300px">
                                                     <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
                                                     </asp:ContentPlaceHolder>
                                                     </div>

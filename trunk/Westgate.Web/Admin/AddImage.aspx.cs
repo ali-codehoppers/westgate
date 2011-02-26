@@ -72,19 +72,19 @@ namespace Westgate.Web.Admin
             string beforeImagePath = SaveFile(fileBeforeImage);
             if (beforeImagePath != null)
             {
-                image.BeforeImagePath = beforeImagePath;
+                image.BeforeImagePath = beforeImagePath.Replace("~/","");
             }
             string afterImagePath = SaveFile(fileAfterImage);
             if (afterImagePath != null)
             {
-                image.AfterImagePath = afterImagePath;
+                image.AfterImagePath = afterImagePath.Replace("~/", "");
             }
             if (beforeImagePath != null && afterImagePath != null)
             {
                 string combinedFilePath = CreateCombinedImage(beforeImagePath, afterImagePath);
                 if (combinedFilePath != null)
                 {
-                    image.CombinedImagePath = combinedFilePath;
+                    image.CombinedImagePath = combinedFilePath.Replace("~/", "");
                 }
             }
         }

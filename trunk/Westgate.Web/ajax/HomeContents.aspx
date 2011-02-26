@@ -27,7 +27,8 @@
                     <%# Container.ItemIndex % 2 == 0?"<div class='result' style='float:left; padding-top:10px;width:90%'>":"" %>
                            <div style="float:left; width:40%;">
                                 <h2 style="padding-top:0px; margin-top:0px;" align="left">
-                                    <asp:HyperLink runat="server" ID="Link1" Text='<%#Eval("Name") %>'></asp:HyperLink>
+                                    <asp:HyperLink runat="server" ID="Link1" Text='<%#Eval("Name") %>' NavigateUrl='<%# "javascript:OnContentClick("+Eval("CategoryId")+")"%>' style="font: normal 14px 'Lucida Sans Unicode', 'Lucida Grande', sans-serif;
+	color: #f99e1b;	padding:0px 0px 0px 0px;	margin: 0px 0px 0px 0px;	text-decoration:none	"></asp:HyperLink>
                                 </h2>
                         
                                 <asp:Label runat="server" ID="CatId" Text='<%#Eval("CategoryId")%>' Visible="false"></asp:Label>
@@ -35,7 +36,7 @@
                                     <ItemTemplate>
                                         <div style="padding:5px;clear:both">
                                             <img src="images/tick_icon.jpg" alt="" width="16" height="16" align="left" style="padding-right:10px;"/>
-                                            <asp:HyperLink runat="server" ID="Link2" Text='<%#Eval("Name") %>' style="float:left"></asp:HyperLink>
+                                            <asp:HyperLink runat="server" ID="Link2" Text='<%#Eval("Name") %>' style="float:left" NavigateUrl='<%# "javascript:OnSubcontentClick("+Eval("SubcategoryId")+")"%>'></asp:HyperLink>
                                         </div>
                                     </ItemTemplate>
                                 </asp:Repeater>
