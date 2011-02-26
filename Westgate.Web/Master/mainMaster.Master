@@ -23,22 +23,14 @@
 
     <script type="text/javascript">
         function OnHomeClick() {
-            alert("123");
+            //alert("123");
+            var images = new Array();
             $.post('ajax/homecontents.aspx', function (data) {
                 $('#contentsDiv').html(data);
             });
-            $.post('ajax/images.aspx?pageType=HOME', function (data) {
-                alert(data);
-                $('#imagesDiv').html(data);
-                $('#photos').galleryView({
-                    panel_width: 936,
-                    panel_height: 273,
-                    frame_width: 70,
-                    frame_height: 70,
-                    nav_theme: 'dark'
-                });
-            });
+            $("#imagesFrame").attr("src", "ajax/imagecontents.aspx?pageType=HOME");
         }
+        
     </script>
 </head>
 <body style="margin:auto; width:995px" >
@@ -163,7 +155,7 @@
                     </tr>
                     <tr>
                         <td>
-                            <div id="imagesDiv">hello</div>                            
+                            <iframe width="956" height="405" border="0" id="imagesFrame" style="border:0"></iframe>                         
                         </td>
                     </tr>
                     <tr>
@@ -369,7 +361,6 @@
             </td>
         </tr>
     </table>
-    
     </form>
 </body>
 </html>
