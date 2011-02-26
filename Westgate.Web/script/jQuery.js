@@ -5457,8 +5457,10 @@ delegate = function (event) {
 
                 // Using Sizzle here is crazy slow, so we use getElementsByTagName
                 // instead
-                srcElements = elem.getElementsByTagName("*");
-                destElements = clone.getElementsByTagName("*");
+                //if(elem.getElementsByTagName != undefined)
+                    srcElements = elem.getElementsByTagName("*");
+                //if(clone.getElementsByTagName != undefined)
+                    destElements = clone.getElementsByTagName("*");
 
                 // Weird iteration because IE will replace the length property
                 // with an element if you are cloning the body and one of the
