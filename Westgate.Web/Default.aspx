@@ -21,29 +21,34 @@
             </tr>
         </table>
     </div>
-    <div id="Searchresult" class="grey_welcome" style="min-height: 200px;">
+    <div id="Searchresult" class="grey_welcome" style="height: 300px;">
     </div>
+    <asp:Label ID="Label1" runat="server" Text="0" Visible="false"></asp:Label>
     <div id="hiddenresult" style="display: none;">
-                <asp:Repeater ID="CategoryRepeater" runat="server" OnItemDataBound="CategoryRepeater_ItemCommand">
+                <asp:Repeater ID="CategoryRepeater" runat="server" OnItemDataBound="CategoryRepeater_ItemCommand"> 
                     <ItemTemplate>
-                       <div class="result">                         
-                           
-                           <div>
-                                <h2 style="padding-top:0px; margin-top:0px;">
+                       
+                    <%# Container.ItemIndex % 2 == 0?"<div class='result' style='float:left; padding-top:10px;width:90%'>":"" %>
+                           <div style="float:left; width:40%;">
+                                <h2 style="padding-top:0px; margin-top:0px;" align="left">
                                     <asp:HyperLink runat="server" ID="Link1" Text='<%#Eval("Name") %>'></asp:HyperLink>
                                 </h2>
                         
                                 <asp:Label runat="server" ID="CatId" Text='<%#Eval("CategoryId")%>' Visible="false"></asp:Label>
                                 <asp:Repeater ID="subCategoryRepeater" runat="server">
                                     <ItemTemplate>
-                                        <img src="images/tick_icon.jpg" alt="" width="16" height="16" />
-                                        <asp:HyperLink runat="server" ID="Link2" Text='<%#Eval("Name") %>'></asp:HyperLink>
+                                        <div style="padding:5px;clear:both">
+                                            <img src="images/tick_icon.jpg" alt="" width="16" height="16" align="left" style="padding-right:10px;"/>
+                                            <asp:HyperLink runat="server" ID="Link2" Text='<%#Eval("Name") %>' style="float:left"></asp:HyperLink>
+                                        </div>
                                     </ItemTemplate>
                                 </asp:Repeater>
                            </div>
-                           </div>
+                  <%# (Container.ItemIndex % 2 != 0 || Container.ItemIndex==(int.Parse(Label1.Text)-1)) ? "</div>" : ""%>
+                                      
                     </ItemTemplate>
                 </asp:Repeater>
+                
     </div>
     <div id="Pagination" class="grey_top">
     </div>
@@ -66,7 +71,7 @@
             // Create content inside pagination element
             $("#Pagination").pagination(num_entries, {
                 callback: pageselectCallback,
-                items_per_page: 2 // Show only one item per page
+                items_per_page: 1 // Show only one item per page
             });
         }
 

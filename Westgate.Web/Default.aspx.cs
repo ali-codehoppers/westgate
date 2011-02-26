@@ -15,16 +15,17 @@ namespace Westgate.Web
         
         protected void Page_Load(object sender, EventArgs e)
         {
-            
             if (!IsPostBack)
             {
                 categoryItem = from rowCat in DatabaseContext.Categories select rowCat;
+                Label1.Text = categoryItem.Count().ToString();
                 CategoryRepeater.DataSource = categoryItem;
                 CategoryRepeater.DataBind();
             }
         }
         protected void CategoryRepeater_ItemCommand(object source, RepeaterItemEventArgs e)
         {
+            
             Repeater rptHeader = (Repeater)e.Item.FindControl("subCategoryRepeater");
             if (rptHeader != null)
             {
@@ -35,5 +36,6 @@ namespace Westgate.Web
                 rptHeader.DataBind();
             }
         }
+
     }
 }
