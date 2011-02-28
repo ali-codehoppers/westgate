@@ -78,6 +78,7 @@
     <Content Include="bin\Westgate.Web.pdb" />
     <Content Include="Default.aspx" />
     <Content Include="Home.aspx" />
+    <Content Include="images\ajax-loader.gif" />
     <Content Include="images\bg_in.jpg" />
     <Content Include="images\blue_bar.png" />
     <Content Include="images\btn_home.jpg" />
