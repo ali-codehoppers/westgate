@@ -13,6 +13,15 @@ namespace Westgate.Web.ajax {
     public partial class SubcategoryContents {
         
         /// <summary>
+        /// rptImageCategories control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Repeater rptImageCategories;
+        
+        /// <summary>
         /// SubcategoryName control.
         /// </summary>
         /// <remarks>
@@ -31,21 +40,21 @@ namespace Westgate.Web.ajax {
         protected global::System.Web.UI.WebControls.Label SubcategoryDescription;
         
         /// <summary>
-        /// rptCategories control.
+        /// rptStoryCategories control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater rptCategories;
+        protected global::System.Web.UI.WebControls.Repeater rptStoryCategories;
         
         /// <summary>
-        /// edsSubcategories control.
+        /// edsStories control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.EntityDataSource edsSubcategories;
+        protected global::System.Web.UI.WebControls.EntityDataSource edsStories;
     }
 }

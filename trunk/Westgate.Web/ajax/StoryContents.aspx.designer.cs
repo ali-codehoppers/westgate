@@ -13,6 +13,15 @@ namespace Westgate.Web.ajax {
     public partial class StoryContents {
         
         /// <summary>
+        /// rptCategories control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Repeater rptCategories;
+        
+        /// <summary>
         /// StorycategoryName control.
         /// </summary>
         /// <remarks>
@@ -29,23 +38,5 @@ namespace Westgate.Web.ajax {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label StorycategoryDescription;
-        
-        /// <summary>
-        /// rptCategories control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater rptCategories;
-        
-        /// <summary>
-        /// edsStorycategories control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.EntityDataSource edsStorycategories;
     }
 }

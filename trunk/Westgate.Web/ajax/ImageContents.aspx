@@ -20,9 +20,10 @@
                 <li>
                     <asp:Image ID="Image1" runat="server" ImageUrl='<%#Eval("AfterImagePath")%>' AlternateText='<%#Eval("Name")%>'></asp:Image>
 			        <div class="panel-content">
-                        <asp:Image ID="Image2" runat="server" ImageUrl='<%#Eval("CombinedImagePath")%>' AlternateText='<%#Eval("Name")%>'></asp:Image>			        </div>
-                    <div class="panel-overlay">
-                        <h3><%#Eval("Name")%></h3>                        
+                        <asp:Image ID="Image3" runat="server" ImageUrl='<%#Eval("CombinedImagePath")%>' AlternateText='<%#Eval("Name")%>'></asp:Image>				        
+			            <div class="panel-overlay">
+                            <h3><%#Eval("Name")%></h3>                        
+                        </div>
                     </div>
                 </li>    
             </ItemTemplate>

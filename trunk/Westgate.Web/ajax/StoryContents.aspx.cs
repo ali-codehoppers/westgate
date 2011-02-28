@@ -21,6 +21,8 @@ namespace Westgate.Web.ajax
                 {
                     StorycategoryName.Text = Storycategory.Name;
                     StorycategoryDescription.Text = Storycategory.Description;
+                    rptCategories.DataSource = (from row in DatabaseContext.Images where row.StoryId == StoryId orderby row.ImageId descending select row).Take(4);
+                    rptCategories.DataBind();
                 }
             }
         }

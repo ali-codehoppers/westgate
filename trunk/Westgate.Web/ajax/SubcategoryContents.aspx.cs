@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using Westgate.Data;
 using Westgate.Web.Pages;
+
 namespace Westgate.Web.ajax
 {
     public partial class SubcategoryContents : AJAXPage
@@ -20,6 +21,8 @@ namespace Westgate.Web.ajax
                 {
                     SubcategoryName.Text = Subcategory.Name;
                     SubcategoryDescription.Text = Subcategory.Description;
+                    rptImageCategories.DataSource = (from row in DatabaseContext.Images where (from n in DatabaseContext.Stories where n.SubcategoryId == SubcategoryId select n.StoryId).Contains(row.StoryId) orderby row.ImageId descending select row).Take(4);
+                    rptImageCategories.DataBind();
                 }
             }
         }

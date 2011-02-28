@@ -7,7 +7,8 @@
                 <li>
                     <asp:Image runat="server" ImageUrl='<%#Eval("AfterImagePath")%>' AlternateText='<%#Eval("Name")%>'></asp:Image>
                            
-			        <div class="panel-content">
+                    
+                    <div class="panel-content">
                         <asp:Image runat="server" ImageUrl='<%#Eval("CombinedImagePath")%>' AlternateText='<%#Eval("Name")%>'></asp:Image>
 			        </div>
                     <div class="panel-overlay">
