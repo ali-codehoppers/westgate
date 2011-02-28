@@ -44,7 +44,7 @@
                 <asp:TextBox ID="TextBox1" runat="server" Text='<%# Bind("BeforeImagePath") %>'></asp:TextBox>
             </EditItemTemplate>
             <ItemTemplate>
-                <asp:Image Width="32" Height="19" ImageUrl='<%# "~/" + Eval("BeforeImagePath") %>' runat="server"/> 
+                <asp:Image Width="32" Height="19" ImageUrl='<%# Eval("BeforeImagePath") %>' runat="server"/> 
                 <asp:HyperLink runat="server" NavigateUrl='<%# Eval("BeforeImagePath") %>' Target="_blank">Open</asp:HyperLink>              
             </ItemTemplate>
         </asp:TemplateField>
@@ -53,7 +53,7 @@
                 <asp:TextBox ID="TextBox2" runat="server" Text='<%# Bind("AfterImagePath") %>'></asp:TextBox>
             </EditItemTemplate>
             <ItemTemplate>
-                <asp:Image Width="32" Height="19" ImageUrl='<%#"~/" + Eval("AfterImagePath") %>' runat="server"/>  
+                <asp:Image Width="32" Height="19" ImageUrl='<%# Eval("AfterImagePath") %>' runat="server"/>  
                 <asp:HyperLink ID="HyperLink2" runat="server" NavigateUrl='<%# Eval("AfterImagePath") %>' Target="_blank">Open</asp:HyperLink>
             </ItemTemplate>
         </asp:TemplateField>
@@ -65,7 +65,7 @@
             </EditItemTemplate>
             <ItemTemplate>
                 
-                <asp:Image Width="64" Height="19" ImageUrl='<%#"~/" + Eval("CombinedImagePath") %>' runat="server"/>  
+                <asp:Image Width="64" Height="19" ImageUrl='<%# Eval("CombinedImagePath") %>' runat="server"/>  
                 <asp:HyperLink ID="HyperLink3" runat="server" NavigateUrl='<%# Eval("CombinedImagePath") %>' Target="_blank">Open</asp:HyperLink>
             </ItemTemplate>
         </asp:TemplateField>

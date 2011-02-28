@@ -44,16 +44,12 @@
     
     <script type="text/javascript">
         function OnHomeClick() {
-            var images = new Array();
             $.post('ajax/homecontents.aspx', function (data) {
                 $('#contentsDiv').html(data);
-            });
-            $.post('ajax/images.aspx?pageType=HOME', function (data) {
-                $('#photos').html(data);
-            });
+            });            
             $("#imagesFrame").attr("src", "ajax/imagecontents.aspx?pageType=HOME");
         }
-        function OnContentClick(id) {
+        function OnCategoryClick(id) {
             $.post('ajax/CategoryContents.aspx?categoryId='+id, function (data) {
                 $('#contentsDiv').html(data);
             });
@@ -62,7 +58,7 @@
             });
             $("#imagesFrame").attr("src", "ajax/imagecontents.aspx?pageType=CATEGORY&categoryId="+id);
         }
-        function OnSubcontentClick(id) {
+        function OnSubcategoryClick(id) {
             $.post('ajax/SubcategoryContents.aspx?SubcategoryId=' + id, function (data) {
                 $('#contentsDiv').html(data);
             });
@@ -159,8 +155,8 @@
                         </td>
                     </tr>
                     <tr>
-                        <td height="30" valign="bottom">
-                            <table width="936" border="0" cellspacing="0" cellpadding="0">
+                        <td height="30" valign="bottom" style="padding-left:9px">
+                            <table width="941" border="0" cellspacing="0" cellpadding="0">
                                 <tr>
 
                                     <td width="38" valign="bottom">
@@ -173,12 +169,12 @@
                                         <table height="32" border="0" cellpadding="3" cellspacing="0">
                                             <tr>
                                                 <td class="top_grey_nav_partition">
-                                                    <a href="#" class="grey_top">Company</a> 
+                                                    <a href="javascript:OnHomeClick()" class="grey_top">Company</a> 
                                                 </td>
                                                 <asp:Repeater ID="Repeater1" runat="server" DataSourceID="CategoryListSource">
                                                     <ItemTemplate>
                                                       <td class="top_grey_nav_partition">  
-                                                        <asp:HyperLink ID="Linking1" class="grey_top" runat="server" NavigateUrl='<%# "javascript:OnContentClick("+Eval("CategoryId")+")"%>' Text='<%# Eval("Name")%>' ></asp:HyperLink>
+                                                        <asp:HyperLink ID="Linking1" class="grey_top" runat="server" NavigateUrl='<%# "javascript:OnCategoryClick("+Eval("CategoryId")+")"%>' Text='<%# Eval("Name")%>' ></asp:HyperLink>
                                                       </td>
                                                     </ItemTemplate>
                                                 </asp:Repeater>
@@ -201,7 +197,7 @@
                     </tr>
                     <tr>
                         <td>
-                            <iframe width="956" height="405" border="0" id="imagesFrame" style="border:0px"></iframe>                         
+                            <iframe width="956" height="405" border="0" id="imagesFrame" style="border:0px" src="ajax/Loading.aspx"></iframe>                         
                         </td>
                     </tr>
                     <tr>
@@ -218,7 +214,7 @@
                                         <table width="100%" border="0" cellspacing="4" cellpadding="0">
                                             <tr>
                                                 <td width="71%" valign="top" style="border-right: 1px dotted #CCCCCC">                                                    
-                                                    <div id="contentsDiv" class="grey_welcome" style="padding-top: 10px; min-height: 300px">
+                                                    <div id="contentsDiv" class="grey_welcome" style="padding-top: 10px; min-height: 400px">
                                                     <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
                                                     </asp:ContentPlaceHolder>
                                                     </div>
@@ -326,7 +322,9 @@
                                     <td align="center" valign="top" bgcolor="#f6f6f6">
                                         <div style="width:95%">
                                             <div style="float:left; width:15%;">
-                                                <strong>Company</strong>
+                                                <strong>
+                                                   <asp:HyperLink CssClass="black_link" runat="server" ID="Link1" Text='Company' NavigateUrl="javascript:OnHomeClick()"></asp:HyperLink>
+                                                </strong>
                                             </div>
                                             <div style="width:90%">
                                                 <asp:Repeater ID="CategoryRepeater" runat="server" 
@@ -334,13 +332,13 @@
                                                     <ItemTemplate>
                                                             <div style="float:left;min-width:16%">
                                                                 <strong>
-                                                                   <asp:HyperLink runat="server" ID="Link1" Text='<%#Eval("Name") %>'></asp:HyperLink>
+                                                                   <asp:HyperLink CssClass="black_link" runat="server" ID="Link1" Text='<%#Eval("Name") %>' NavigateUrl='<%#"javascript:OnCategoryClick(" + Eval("CategoryId") + ")"%>'></asp:HyperLink>
                                                                 </strong>
                                                                 <asp:Label runat="server" ID="CatId" Text='<%#Eval("CategoryId")%>' Visible="false"></asp:Label>
                                                                 <asp:Repeater ID="subCategoryRepeater" runat="server">   
                                                                     <ItemTemplate>
                                                                     <div>    
-                                                                        <asp:HyperLink runat="server" ID="Link2" Text='<%#Eval("Name") %>'></asp:HyperLink>
+                                                                        <asp:HyperLink CssClass="black_link" NavigateUrl='<%#"javascript:OnSubcategoryClick(" + Eval("SubcategoryId") + ")"%>' runat="server" ID="Link2" Text='<%#Eval("Name") %>'></asp:HyperLink>
                                                                     </div>
                                                                     </ItemTemplate>
                                                                 </asp:Repeater>

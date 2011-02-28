@@ -1,5 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master/Blank.Master" AutoEventWireup="true" CodeBehind="StoryContents.aspx.cs" Inherits="Westgate.Web.ajax.StoryContents" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+   <div style="text-align:left">
    <div style="width:100%">        
         <h1><asp:label runat="server" text="Label" ID="StorycategoryName"></asp:label></h1>
     </div>
@@ -11,10 +12,15 @@
             <asp:repeater runat="server" ID="rptCategories" DataSourceID="edsStorycategories">
                 <ItemTemplate>
                     <li>
-                        <a href="<%=this.ResolveClientUrl("~/images/image1.jpg")%>">
-                            <img src="<%=this.ResolveClientUrl("~/images/img_thumb1.jpg")%>" alt="" />
+                        <a href='<%#Eval("BeforeImagePath")%>'>
+                            <img src='<%#Eval("BeforeImagePath")%>' alt="" width="70" height="70"/>
                         </a>
                      </li>
+                     <li>
+                        <a href='<%#Eval("AfterImagePath")%>'>
+                            <img src='<%#Eval("AfterImagePath")%>' alt=""  width="70" height="70"/>
+                        </a>
+                     </li>          
                 </ItemTemplate>            
             </asp:repeater>
         </ul>
@@ -24,6 +30,7 @@
             $('#gallery a').lightBox();
         });
     </script>
+    </div>
     <asp:entitydatasource runat="server" ID="edsStorycategories" 
         ConnectionString="name=WestgateEntities" 
         DefaultContainerName="WestgateEntities" EnableFlattening="False" 
