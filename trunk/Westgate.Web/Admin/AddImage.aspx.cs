@@ -30,9 +30,9 @@ namespace Westgate.Web.Admin
                     imgBefore.Visible = true;
 
                     Westgate.Data.Image image = GetImage();
-                    imgBefore.ImageUrl = "~/" + image.BeforeImagePath;
-                    imgAfter.ImageUrl = "~/" + image.AfterImagePath;
-                    imgCombined.ImageUrl = "~/" + image.CombinedImagePath;
+                    imgBefore.ImageUrl = image.BeforeImagePath;
+                    imgAfter.ImageUrl = image.AfterImagePath;
+                    imgCombined.ImageUrl = image.CombinedImagePath;
                     tbName.Text = image.Name;
                     tbDescription.Text = image.Description;
                 }
@@ -72,19 +72,19 @@ namespace Westgate.Web.Admin
             string beforeImagePath = SaveFile(fileBeforeImage);
             if (beforeImagePath != null)
             {
-                image.BeforeImagePath = beforeImagePath.Replace("~/","");
+                image.BeforeImagePath = beforeImagePath;
             }
             string afterImagePath = SaveFile(fileAfterImage);
             if (afterImagePath != null)
             {
-                image.AfterImagePath = afterImagePath.Replace("~/", "");
+                image.AfterImagePath = afterImagePath;
             }
             if (beforeImagePath != null && afterImagePath != null)
             {
                 string combinedFilePath = CreateCombinedImage(beforeImagePath, afterImagePath);
                 if (combinedFilePath != null)
                 {
-                    image.CombinedImagePath = combinedFilePath.Replace("~/", "");
+                    image.CombinedImagePath = combinedFilePath;
                 }
             }
         }
@@ -92,18 +92,18 @@ namespace Westgate.Web.Admin
         {
             try
             {
-                System.Drawing.Image beforeImage = System.Drawing.Image.FromFile(Server.MapPath("~/" + beforeImagePath));
-                System.Drawing.Image afterImage = System.Drawing.Image.FromFile(Server.MapPath("~/" + afterImagePath));
+                System.Drawing.Image beforeImage = System.Drawing.Image.FromFile(Server.MapPath(beforeImagePath));
+                System.Drawing.Image afterImage = System.Drawing.Image.FromFile(Server.MapPath(afterImagePath));
                 Bitmap combinedImage = new Bitmap(936,273);
                 Graphics graphic = Graphics.FromImage(combinedImage);
                 graphic.InterpolationMode = InterpolationMode.HighQualityBicubic;
                 graphic.DrawImage(beforeImage,0, 0, (float)468, (float)273);
                 graphic.DrawImage(afterImage, 468, 0, (float)468, (float)273);
                 graphic.Dispose();
-                string fileName = System.Guid.NewGuid().ToString();
+                string fileName = System.Guid.NewGuid().ToString() + ".png";
                 string path = Server.MapPath("~/UserImages") + @"\" + fileName;
                 combinedImage.Save(path);
-                return "UserImages/" + fileName;
+                return "~/UserImages/" + fileName ;
             }
             catch { }
             return null;
@@ -114,10 +114,10 @@ namespace Westgate.Web.Admin
             {
                 if (file.HasFile)
                 {
-                    string fileName = System.Guid.NewGuid().ToString();
+                    string fileName = System.Guid.NewGuid().ToString() + ".png";
                     string path = Server.MapPath("~/UserImages") + @"\" + fileName;
                     File.WriteAllBytes(path, file.FileBytes);
-                    return "UserImages/" + fileName;
+                    return "~/UserImages/" + fileName ;
                 }
             }
             catch { }

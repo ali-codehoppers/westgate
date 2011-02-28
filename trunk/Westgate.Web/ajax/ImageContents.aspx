@@ -18,10 +18,9 @@
             <asp:Repeater ID="rptImages" runat="server">
             <ItemTemplate>
                 <li>
-                    <img id='<%#"i" + Eval("ImageId")%>'  src='<%#"../" + Eval("AfterImagePath")%>' alt='<%#Eval("Name")%>' />                    
+                    <asp:Image ID="Image1" runat="server" ImageUrl='<%#Eval("AfterImagePath")%>' AlternateText='<%#Eval("Name")%>'></asp:Image>
 			        <div class="panel-content">
-                        <img id='<%#"c" + Eval("ImageId")%>' src='<%#"../" + Eval("CombinedImagePath")%>' alt='<%#Eval("Name")%>' />				        
-			        </div>
+                        <asp:Image ID="Image2" runat="server" ImageUrl='<%#Eval("CombinedImagePath")%>' AlternateText='<%#Eval("Name")%>'></asp:Image>			        </div>
                     <div class="panel-overlay">
                         <h3><%#Eval("Name")%></h3>                        
                     </div>

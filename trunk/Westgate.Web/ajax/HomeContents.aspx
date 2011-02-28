@@ -1,6 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master/Blank.Master" AutoEventWireup="true" CodeBehind="HomeContents.aspx.cs" Inherits="Westgate.Web.ajax.HomeContents" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-       <div class="grey_welcome" style="padding-top: 10px; height: 100px">
+       <div style="padding-top: 10px; height: 100px">
         <table width="100%" border="0" cellspacing="0" cellpadding="0">
             <tr>
                 <td height="37" colspan="2" align="left">
@@ -17,7 +17,7 @@
             </tr>
         </table>
     </div>
-    <div id="Searchresult" class="grey_welcome" style="height: 300px;">
+    <div id="Searchresult" style="height: 300px;">
     </div>
     <asp:Label ID="Label1" runat="server" Text="0" Visible="false"></asp:Label>
     <div id="hiddenresult" style="display: none;">
@@ -27,7 +27,7 @@
                     <%# Container.ItemIndex % 2 == 0?"<div class='result' style='float:left; padding-top:10px;width:90%'>":"" %>
                            <div style="float:left; width:40%;">
                                 <h2 style="padding-top:0px; margin-top:0px;" align="left">
-                                    <asp:HyperLink runat="server" ID="Link1" Text='<%#Eval("Name") %>' NavigateUrl='<%# "javascript:OnContentClick("+Eval("CategoryId")+")"%>' style="font: normal 14px 'Lucida Sans Unicode', 'Lucida Grande', sans-serif;
+                                    <asp:HyperLink runat="server" ID="Link1" Text='<%#Eval("Name") %>' NavigateUrl='<%# "javascript:OnCategoryClick("+Eval("CategoryId")+")"%>' style="font: normal 14px 'Lucida Sans Unicode', 'Lucida Grande', sans-serif;
 	color: #f99e1b;	padding:0px 0px 0px 0px;	margin: 0px 0px 0px 0px;	text-decoration:none	"></asp:HyperLink>
                                 </h2>
                         
@@ -36,7 +36,7 @@
                                     <ItemTemplate>
                                         <div style="padding:5px;clear:both">
                                             <img src="images/tick_icon.jpg" alt="" width="16" height="16" align="left" style="padding-right:10px;"/>
-                                            <asp:HyperLink runat="server" ID="Link2" Text='<%#Eval("Name") %>' style="float:left" NavigateUrl='<%# "javascript:OnSubcontentClick("+Eval("SubcategoryId")+")"%>'></asp:HyperLink>
+                                            <asp:HyperLink runat="server" ID="Link2" Text='<%#Eval("Name") %>' style="float:left" NavigateUrl='<%# "javascript:OnSubcategoryClick("+Eval("SubcategoryId")+")"%>' CssClass="black_link"></asp:HyperLink>
                                         </div>
                                     </ItemTemplate>
                                 </asp:Repeater>

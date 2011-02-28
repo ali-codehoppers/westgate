@@ -69,6 +69,7 @@
     <Content Include="ajax\HomeContents.aspx" />
     <Content Include="ajax\ImageContents.aspx" />
     <Content Include="ajax\Images.aspx" />
+    <Content Include="ajax\Loading.aspx" />
     <Content Include="ajax\StoryContents.aspx" />
     <Content Include="ajax\SubcategoryContents.aspx" />
     <Content Include="bin\Westgate.Data.dll" />
@@ -298,6 +299,13 @@
     </Compile>
     <Compile Include="ajax\Images.aspx.designer.cs">
       <DependentUpon>Images.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ajax\Loading.aspx.cs">
+      <DependentUpon>Loading.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ajax\Loading.aspx.designer.cs">
+      <DependentUpon>Loading.aspx</DependentUpon>
     </Compile>
     <Compile Include="ajax\StoryContents.aspx.cs">
       <DependentUpon>StoryContents.aspx</DependentUpon>

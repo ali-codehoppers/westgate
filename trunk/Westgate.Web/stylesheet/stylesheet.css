@@ -137,3 +137,12 @@ A.grey_top:hover {
 	height: 18px;
 	width:150px;
 }
+.black_link
+{
+    color: #605f5f;
+}
+.black_link:hover
+{
+    color: #f99e1b;
+    font-weight:bold;
+}
