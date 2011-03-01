@@ -145,10 +145,10 @@
           <Property Type="Int32" Name="StoryId" Nullable="false" />
           <Property Type="String" Name="Name" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="Description" MaxLength="1000" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Story" Relationship="Westgate.Data.Model.FK_Images_Stories" FromRole="Image" ToRole="Story" />
           <Property Type="String" Name="BeforeImagePath" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="AfterImagePath" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="CombinedImagePath" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Story" Relationship="Westgate.Data.Model.FK_Images_Stories" FromRole="Image" ToRole="Story" />
         </EntityType>
         <EntityType Name="Story">
           <Key>
@@ -280,21 +280,21 @@
     <!-- Diagram content (shape and connector positions) -->
     <Diagrams>
       <Diagram Name="WestgateDataModel">
-        <EntityTypeShape EntityType="Westgate.Data.Model.Category" Width="1.5" PointX="0.75" PointY="1.75" Height="1.7566536458333335" />
-        <EntityTypeShape EntityType="Westgate.Data.Model.Image" Width="1.5" PointX="7.5" PointY="1" Height="2.5571907552083331" />
-        <EntityTypeShape EntityType="Westgate.Data.Model.Story" Width="1.5" PointX="5.25" PointY="1.625" Height="1.9210009765624996" />
-        <EntityTypeShape EntityType="Westgate.Data.Model.Subcategory" Width="1.5" PointX="3" PointY="1.5" Height="2.0853483072916674" />
+        <EntityTypeShape EntityType="Westgate.Data.Model.Category" Width="1.5" PointX="0.75" PointY="1.125" Height="1.7566536458333335" />
+        <EntityTypeShape EntityType="Westgate.Data.Model.Image" Width="1.5" PointX="7.5" PointY="0.875" Height="2.2496956380208317" />
+        <EntityTypeShape EntityType="Westgate.Data.Model.Story" Width="1.5" PointX="5.25" PointY="1.125" Height="1.9210009765624996" />
+        <EntityTypeShape EntityType="Westgate.Data.Model.Subcategory" Width="1.5" PointX="3" PointY="1" Height="2.0853483072916674" />
         <AssociationConnector Association="Westgate.Data.Model.FK_Subcategories_Categories" >
-          <ConnectorPoint PointX="2.25" PointY="2.6283268229166667" />
-          <ConnectorPoint PointX="3" PointY="2.6283268229166667" />
+          <ConnectorPoint PointX="2.25" PointY="2.0033268229166667" />
+          <ConnectorPoint PointX="3" PointY="2.0033268229166667" />
         </AssociationConnector>
         <AssociationConnector Association="Westgate.Data.Model.FK_Images_Stories" >
-          <ConnectorPoint PointX="6.75" PointY="2.5910953776041667" />
-          <ConnectorPoint PointX="7.5" PointY="2.5910953776041667" />
+          <ConnectorPoint PointX="6.75" PointY="2.08550048828125" />
+          <ConnectorPoint PointX="7.5" PointY="2.08550048828125" />
         </AssociationConnector>
         <AssociationConnector Association="Westgate.Data.Model.FK_Stories_Subcategories" >
-          <ConnectorPoint PointX="4.5" PointY="2.58550048828125" />
-          <ConnectorPoint PointX="5.25" PointY="2.58550048828125" />
+          <ConnectorPoint PointX="4.5" PointY="2.08550048828125" />
+          <ConnectorPoint PointX="5.25" PointY="2.08550048828125" />
         </AssociationConnector>
       </Diagram>
     </Diagrams>

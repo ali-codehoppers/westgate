@@ -5,6 +5,8 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Westgate.Data;
+using Simplicity.Web.Utilities;
+using System.Net.Mail;
 
 namespace Westgate.Web.Master
 {
@@ -34,6 +36,18 @@ namespace Westgate.Web.Master
                rptHeader.DataSource = subcategoryItem;
                rptHeader.DataBind();    
             }
+        }
+
+        protected void submitButton_Click(object sender, ImageClickEventArgs e)
+        {
+            MailMessage message = new MailMessage();
+            message.To.Add(new MailAddress(EmailTextID.Text));
+            message.Body = "Company :" + CompanyTextID.Text + "<br/>Person :" + PersonTextID.Text + "<br/>Email :"+EmailTextID.Text+ "<br/>Post Code : "+PostTextID.Text+"<br/>Phone :"+PhoneTextID.Text+"<br/>Nature of Enquiry :"+EnquirySelectedId.SelectedItem.Text;
+            message.Subject = "Nature of Enquiry";
+            message.IsBodyHtml = true;
+            EmailUtility.SendEmail(message);
+            ErrorLabel.Visible = true;
+            ErrorLabel.Text = "Request Sent";
         }
 
     }

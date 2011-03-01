@@ -19,3 +19,5 @@ E:\MyProjects\Westgate\trunk\Westgate.Web\bin\Westgate.Data.pdb
 E:\MyProjects\Westgate\trunk\Westgate.Web\obj\Debug\ResolveAssemblyReference.cache
 E:\MyProjects\Westgate\trunk\Westgate.Web\obj\Debug\Westgate.Web.dll
 E:\MyProjects\Westgate\trunk\Westgate.Web\obj\Debug\Westgate.Web.pdb
+D:\Project\WestGate\Westgate.Web\bin\Simplicity.Data.dll
+D:\Project\WestGate\Westgate.Web\bin\Simplicity.Data.pdb

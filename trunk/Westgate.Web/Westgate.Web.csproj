@@ -33,6 +33,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Simplicity.Data">
+      <HintPath>..\..\..\Simplicity\trunk\Simplicity\Simplicity.Data\bin\Debug\Simplicity.Data.dll</HintPath>
+    </Reference>
     <Reference Include="System.Data.Entity" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
@@ -159,7 +162,9 @@
     <Content Include="script\tab\jquery-ui.min.js" />
     <Content Include="script\tab\jquery-ui.css" />
     <Content Include="stylesheet\stylesheet.css" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -356,9 +361,11 @@
     <Compile Include="Pages\AuthenticatedPage.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="Pages\EmailUtility.cs" />
     <Compile Include="Pages\GenericPage.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="Pages\WebConstants.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

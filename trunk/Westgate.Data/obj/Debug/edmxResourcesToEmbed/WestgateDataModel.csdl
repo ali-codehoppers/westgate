@@ -36,10 +36,10 @@
     <Property Type="Int32" Name="StoryId" Nullable="false" />
     <Property Type="String" Name="Name" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Type="String" Name="Description" MaxLength="1000" FixedLength="false" Unicode="false" />
-    <NavigationProperty Name="Story" Relationship="Westgate.Data.Model.FK_Images_Stories" FromRole="Image" ToRole="Story" />
     <Property Type="String" Name="BeforeImagePath" MaxLength="100" FixedLength="false" Unicode="false" />
     <Property Type="String" Name="AfterImagePath" MaxLength="100" FixedLength="false" Unicode="false" />
     <Property Type="String" Name="CombinedImagePath" MaxLength="100" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Story" Relationship="Westgate.Data.Model.FK_Images_Stories" FromRole="Image" ToRole="Story" />
   </EntityType>
   <EntityType Name="Story">
     <Key>

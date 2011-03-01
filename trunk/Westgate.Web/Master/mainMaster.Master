@@ -66,7 +66,6 @@
         }
     </style>
     <script type="text/javascript">
-
         function OnHomeClick() {
             $.post('ajax/homecontents.aspx', function (data) {
                 $('#contentsDiv').html(data);
@@ -221,7 +220,7 @@
                     </tr>
                     <tr>
                         <td>
-                            <iframe width="956" height="405" border="0" id="imagesFrame" style="border: 0px"
+                            <iframe width="956" height="405" id="imagesFrame" style="border:  0px none #FFFFFF;"
                                 src="ajax/Loading.aspx"></iframe>
                         </td>
                     </tr>
@@ -246,64 +245,91 @@
                                                 </td>
                                                 <td width="29%" valign="top" class="newsletter_bg">
                                                     <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                                        
                                                         <tr>
                                                             <td width="44%" height="88" align="left" valign="top">
                                                                 <img src="<%=this.ResolveClientUrl("~/images/news_icon.jpg")%>" alt="" width="87"
                                                                     height="76" />
                                                             </td>
                                                             <td width="56%" align="left">
-                                                                <h2>
-                                                                    Request for a</h2>
+                                                                <h2>Request for a</h2>
                                                                 <span class="txt_blue">Business Profile</span>
                                                             </td>
                                                         </tr>
+                                                        
+                                                        <tr>
+                                                            <td>
+                                                                <asp:Label ID="ErrorLabel" Visible="false" runat="server"></asp:Label>
+                                                            </td>
+                                                            </tr>
                                                         <tr>
                                                             <td align="left">
-                                                                Company Name
+                                                                <asp:Label runat="server" ID="CompanyLabelID" Text="Company Name"></asp:Label>
                                                             </td>
                                                             <td align="left">
-                                                                <input name="textfield2" type="text" class="newsletter_field" id="textfield2" />
+                                                                <asp:TextBox runat="server" ID="CompanyTextID" CssClass="newsletter_field"></asp:TextBox>
+                                                                <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="CompanyTextID"
+                                                                    ErrorMessage="*" Display="Dynamic" style="color:Red"> 
+                                                                    </asp:RequiredFieldValidator>
                                                             </td>
                                                         </tr>
                                                         <tr>
                                                             <td align="left">
-                                                                Person's Name
+                                                                <asp:Label runat="server" Text="Person's Name" ID="PersonLabelID"></asp:Label>
                                                             </td>
                                                             <td align="left">
-                                                                <input name="textfield3" type="text" class="newsletter_field" id="textfield3" />
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td align="left">
-                                                                Email Address
-                                                            </td>
-                                                            <td align="left">
-                                                                <input name="textfield4" type="text" class="newsletter_field" id="textfield4" />
+                                                                <asp:TextBox runat="server" ID="PersonTextID" CssClass="newsletter_field"></asp:TextBox>
+                                                                <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="PersonTextID"
+                                                                    ErrorMessage="*" Display="Dynamic" style="color:Red"> 
+                                                                    </asp:RequiredFieldValidator>
                                                             </td>
                                                         </tr>
                                                         <tr>
                                                             <td align="left">
-                                                                Post Code
+                                                                <asp:Label runat="server" ID="EmailLabelID" Text="Email Address"></asp:Label>
                                                             </td>
                                                             <td align="left">
-                                                                <input name="textfield5" type="text" class="newsletter_field" id="textfield5" />
+                                                                <asp:TextBox runat="server" ID="EmailTextID" CssClass="newsletter_field"></asp:TextBox>
+                                                                <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="EmailTextID"
+                                                                    ErrorMessage="*" Display="Dynamic" style="color:Red"> 
+                                                                </asp:RequiredFieldValidator>
+                                                                <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ControlToValidate="EmailTextID"
+                                                                    ErrorMessage="*" ValidationExpression="\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*"
+                                                                    Display="Dynamic" style="color:Red">
+                                                                </asp:RegularExpressionValidator>
+                                                                <asp:RegularExpressionValidator ID="RegularExpressionValidator9" runat="server" ControlToValidate="EmailTextID"
+                                                                    ErrorMessage="*" ValidationExpression=".{8,60}" Display="Dynamic" style="color:Red">
+                                                                </asp:RegularExpressionValidator>
                                                             </td>
                                                         </tr>
                                                         <tr>
                                                             <td align="left">
-                                                                Phone Number
+                                                                <asp:Label runat="server" ID="PostLabelID" Text="Post Code"></asp:Label>
                                                             </td>
                                                             <td align="left">
-                                                                <input name="textfield6" type="text" class="newsletter_field" id="textfield6" />
+                                                                <asp:TextBox runat="server" ID="PostTextID" CssClass="newsletter_field"></asp:TextBox>
                                                             </td>
                                                         </tr>
                                                         <tr>
                                                             <td align="left">
-                                                                Nature of Enquiry
+                                                                <asp:Label runat="server" ID="PhoneLabelID" Text="Phone Number"></asp:Label>
                                                             </td>
                                                             <td align="left">
-                                                                <select name="select" class="newsletter_field" id="select">
-                                                                </select>
+                                                                <asp:TextBox runat="server" ID="PhoneTextID" CssClass="newsletter_field"></asp:TextBox>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td align="left">
+                                                                <asp:Label runat="server" ID="EnquiryLabelID" Text="Nature of Enquiry"></asp:Label>
+                                                            </td>
+                                                            <td align="left">
+                                                                <asp:DropDownList runat="server" ID="EnquirySelectedId" CssClass="newsletter_field">
+                                                                    <asp:ListItem Text="1a" Value="1" Selected="True"></asp:ListItem>
+                                                                    <asp:ListItem Text="2b" Value="2"></asp:ListItem>
+                                                                    <asp:ListItem Text="3c" Value="3"></asp:ListItem>
+                                                                    <asp:ListItem Text="4d" Value="4"></asp:ListItem>
+                                                                </asp:DropDownList>
+
                                                             </td>
                                                         </tr>
                                                         <tr>
@@ -311,9 +337,8 @@
                                                                 &nbsp;
                                                             </td>
                                                             <td align="left">
-                                                                <a href="#">
-                                                                    <img src="<%=this.ResolveClientUrl("~/images/btn_submit.jpg")%>" alt="" width="98"
-                                                                        height="29" border="0" /></a>
+                                                                <asp:ImageButton runat="server" ID="submitButton" 
+                                                                    ImageUrl='~/images/btn_submit.jpg' onclick="submitButton_Click"/>      
                                                             </td>
                                                         </tr>
                                                     </table>

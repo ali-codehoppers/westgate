@@ -36,7 +36,10 @@
 #photos { visibility: hidden; }
 
 /* GALLERY CONTAINER */
-.gallery { }
+.gallery
+{
+	
+}
 
 /* LOADING BOX */
 .loader { background: url(loader.gif) center center no-repeat #ddd; }
