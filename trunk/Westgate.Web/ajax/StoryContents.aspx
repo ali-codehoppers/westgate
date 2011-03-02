@@ -23,7 +23,9 @@
     <div style="width:100%">
         <asp:label runat="server" text="Label" ID="StorycategoryDescription"  style="float:left"></asp:label>
     </div>
-        <script type="text/javascript">
+    <div style="clear:both">
+    </div>
+    <script type="text/javascript">
             $(function () {
                 $('#gallery a').lightBox();
             });

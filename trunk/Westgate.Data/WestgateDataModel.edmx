@@ -7,6 +7,7 @@
     <Schema Namespace="WestgateModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
         <EntityContainer Name="WestgateModelStoreContainer">
           <EntitySet Name="Categories" EntityType="WestgateModel.Store.Categories" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="EmailQueue" EntityType="WestgateModel.Store.EmailQueue" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Images" EntityType="WestgateModel.Store.Images" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Stories" EntityType="WestgateModel.Store.Stories" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Subcategories" EntityType="WestgateModel.Store.Subcategories" store:Type="Tables" Schema="dbo" />
@@ -31,6 +32,21 @@
           <Property Name="Name" Type="varchar" Nullable="false" MaxLength="50" />
           <Property Name="Description" Type="varchar" MaxLength="1000" />
           <Property Name="NumberOfSubcategories" Type="int" />
+        </EntityType>
+        <EntityType Name="EmailQueue">
+          <Key>
+            <PropertyRef Name="QueueID" />
+          </Key>
+          <Property Name="QueueID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="LogTime" Type="datetime" Nullable="false" />
+          <Property Name="NumOfTries" Type="tinyint" Nullable="false" />
+          <Property Name="FromName" Type="varchar" Nullable="false" MaxLength="200" />
+          <Property Name="FromAddress" Type="varchar" Nullable="false" MaxLength="200" />
+          <Property Name="ToNames" Type="varchar" Nullable="false" MaxLength="200" />
+          <Property Name="ToAddresses" Type="varchar" Nullable="false" MaxLength="200" />
+          <Property Name="Subject" Type="varchar" Nullable="false" MaxLength="200" />
+          <Property Name="Body" Type="varchar(max)" Nullable="false" />
+          <Property Name="SentTime" Type="datetime" />
         </EntityType>
         <EntityType Name="Images">
           <Key>
@@ -126,6 +142,7 @@
             <End Role="Subcategory" EntitySet="Subcategories" />
             <End Role="Story" EntitySet="Stories" />
           </AssociationSet>
+          <EntitySet Name="EmailQueues" EntityType="Westgate.Data.Model.EmailQueue" />
         </EntityContainer>
         <EntityType Name="Category">
           <Key>
@@ -209,6 +226,21 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="EmailQueue">
+          <Key>
+            <PropertyRef Name="QueueID" />
+          </Key>
+          <Property Type="Int32" Name="QueueID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="DateTime" Name="LogTime" Nullable="false" />
+          <Property Type="Byte" Name="NumOfTries" Nullable="false" />
+          <Property Type="String" Name="FromName" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="FromAddress" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="ToNames" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="ToAddresses" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Subject" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Body" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="SentTime" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -259,6 +291,22 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="EmailQueues">
+            <EntityTypeMapping TypeName="Westgate.Data.Model.EmailQueue">
+              <MappingFragment StoreEntitySet="EmailQueue">
+                <ScalarProperty Name="SentTime" ColumnName="SentTime" />
+                <ScalarProperty Name="Body" ColumnName="Body" />
+                <ScalarProperty Name="Subject" ColumnName="Subject" />
+                <ScalarProperty Name="ToAddresses" ColumnName="ToAddresses" />
+                <ScalarProperty Name="ToNames" ColumnName="ToNames" />
+                <ScalarProperty Name="FromAddress" ColumnName="FromAddress" />
+                <ScalarProperty Name="FromName" ColumnName="FromName" />
+                <ScalarProperty Name="NumOfTries" ColumnName="NumOfTries" />
+                <ScalarProperty Name="LogTime" ColumnName="LogTime" />
+                <ScalarProperty Name="QueueID" ColumnName="QueueID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -296,6 +344,7 @@
           <ConnectorPoint PointX="4.5" PointY="2.08550048828125" />
           <ConnectorPoint PointX="5.25" PointY="2.08550048828125" />
         </AssociationConnector>
+        <EntityTypeShape EntityType="Westgate.Data.Model.EmailQueue" Width="1.5" PointX="0.75" PointY="4.75" Height="2.5783902994791656" />
       </Diagram>
     </Diagrams>
   </Designer>

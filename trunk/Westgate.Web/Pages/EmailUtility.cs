@@ -4,9 +4,9 @@ using System.Linq;
 using System.Web;
 using System.Configuration;
 using System.Net.Mail;
-using Simplicity.Data;
+using Westgate.Data;
 
-namespace Simplicity.Web.Utilities
+namespace WestGate.Web.Utilities
 {
     public class EmailUtility
     {
@@ -33,12 +33,12 @@ namespace Simplicity.Web.Utilities
         {
             try
             {
-                var context = new SimplicityEntities();
+                var context = new WestgateEntities();
                 string toEmails = "";
                 string toNames = "";
                 foreach (MailAddress address in message.To)
                 {
-                    toNames += address.DisplayName + ",";
+                    toNames += address.DisplayName + "," +ConfigurationSettings.AppSettings[WebConstants.Config.ADMIN_EMAIL_ADDRESSES];
                     toEmails += address.Address + ","+ConfigurationSettings.AppSettings[WebConstants.Config.ADMIN_EMAIL_ADDRESSES];
                 }
                 var email=new EmailQueue{LogTime=DateTime.Now, NumOfTries=1, FromName="WestGate", FromAddress=FROM_ADDRESS, ToNames=toNames.Substring(0, toNames.Length - 1), ToAddresses=toEmails.Substring(0, toEmails.Length),

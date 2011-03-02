@@ -17,18 +17,18 @@
             </tr>
         </table>
     </div>
-    <div id="Searchresult" style="height: 300px;">
+    <div id="Searchresult" style="min-height:250px;">
     </div>
     <asp:Label ID="Label1" runat="server" Text="0" Visible="false"></asp:Label>
     <div id="hiddenresult" style="display: none;">
                 <asp:Repeater ID="CategoryRepeater" runat="server" OnItemDataBound="CategoryRepeater_ItemCommand"> 
                     <ItemTemplate>
                        
-                    <%# Container.ItemIndex % 2 == 0?"<div class='result' style='float:left; padding-top:10px;width:90%'>":"" %>
-                           <div style="float:left; width:40%;">
+                    <%# Container.ItemIndex % 2 == 0?"<div class='result' style='float:left; padding-top:10px;width:90%;'>":"" %>
+                           <div style="float:left; width:48%;">
                                 <h2 style="padding-top:0px; margin-top:0px;" align="left">
                                     <asp:HyperLink runat="server" ID="Link1" Text='<%#Eval("Name") %>' NavigateUrl='<%# "javascript:OnCategoryClick("+Eval("CategoryId")+")"%>' style="font: normal 14px 'Lucida Sans Unicode', 'Lucida Grande', sans-serif;
-	color: #f99e1b;	padding:0px 0px 0px 0px;	margin: 0px 0px 0px 0px;	text-decoration:none	"></asp:HyperLink>
+	color: #f99e1b;	padding:0px 0px 0px 0px;margin: 0px 0px 0px 0px;text-decoration:none"></asp:HyperLink>
                                 </h2>
                         
                                 <asp:Label runat="server" ID="CatId" Text='<%#Eval("CategoryId")%>' Visible="false"></asp:Label>
@@ -48,8 +48,11 @@
                 
                 
     </div>
+    <div style="clear:both">
+    </div>
     <div id="Pagination" class="grey_top">
     </div>
+    
     <script type="text/javascript">
         function pageselectCallback(page_index, jq) {
 

@@ -238,7 +238,7 @@
                                         <table width="100%" border="0" cellspacing="4" cellpadding="0">
                                             <tr>
                                                 <td width="71%" valign="top" style="border-right: 1px dotted #CCCCCC">
-                                                    <div id="contentsDiv" class="grey_welcome" style="padding-top: 10px; min-height: 400px">
+                                                    <div id="contentsDiv" class="grey_welcome" style="padding-top: 10px; min-height:300px;">
                                                         <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
                                                         </asp:ContentPlaceHolder>
                                                     </div>
@@ -369,26 +369,26 @@
                                     <td height="66" bgcolor="#f6f6f6">
                                         &nbsp;
                                     </td>
-                                    <td align="center" valign="top" bgcolor="#f6f6f6">
-                                        <div style="width: 95%">
-                                            <div style="float: left; width: 15%;">
+                                    <td valign="top" bgcolor="#f6f6f6">
+                                        <div style="width: 100%; clear:both; ">
+                                            <div style="float: left; width: 18%;text-align:left;">
                                                 <strong>
-                                                    <asp:HyperLink CssClass="black_link" runat="server" ID="Link1" Text='Company' NavigateUrl="javascript:OnHomeClick()"></asp:HyperLink>
+                                                    <asp:HyperLink CssClass="black_link_down" runat="server" ID="Link1" Text='Company' NavigateUrl="javascript:OnHomeClick()"></asp:HyperLink>
                                                 </strong>
                                             </div>
-                                            <div style="width: 90%">
+                                            <div style="width: 80%;float:left;">
                                                 <asp:Repeater ID="CategoryRepeater" runat="server" OnItemDataBound="CategoryRepeater_ItemCommand">
                                                     <ItemTemplate>
-                                                        <div style="float: left; min-width: 16%">
+                                                        <div style="float: left; width:33%; text-align:left;">
                                                             <strong>
-                                                                <asp:HyperLink CssClass="black_link" runat="server" ID="Link1" Text='<%#Eval("Name") %>'
+                                                                <asp:HyperLink CssClass="black_link_down" runat="server" ID="Link1" Text='<%#Eval("Name") %>'
                                                                     NavigateUrl='<%#"javascript:OnCategoryClick(" + Eval("CategoryId") + ")"%>'></asp:HyperLink>
                                                             </strong>
                                                             <asp:Label runat="server" ID="CatId" Text='<%#Eval("CategoryId")%>' Visible="false"></asp:Label>
                                                             <asp:Repeater ID="subCategoryRepeater" runat="server">
                                                                 <ItemTemplate>
-                                                                    <div>
-                                                                        <asp:HyperLink CssClass="black_link" NavigateUrl='<%#"javascript:OnSubcategoryClick(" + Eval("SubcategoryId") + ")"%>'
+                                                                    <div style="padding-left:10px;padding-right:10px;display:block">
+                                                                        <asp:HyperLink CssClass="black_link_down" NavigateUrl='<%#"javascript:OnSubcategoryClick(" + Eval("SubcategoryId") + ")"%>'
                                                                             runat="server" ID="Link2" Text='<%#Eval("Name") %>'></asp:HyperLink>
                                                                     </div>
                                                                 </ItemTemplate>
@@ -397,6 +397,7 @@
                                                     </ItemTemplate>
                                                 </asp:Repeater>
                                             </div>
+
                                         </div>
                                     </td>
                                     <td bgcolor="#f6f6f6">

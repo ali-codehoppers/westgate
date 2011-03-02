@@ -43,6 +43,8 @@
         </asp:repeater>
         </div>
     </div>
+    <div style="clear:both">
+    </div>
     <asp:entitydatasource runat="server" id="edsStories" connectionstring="name=WestgateEntities"
         defaultcontainername="WestgateEntities" enableflattening="False" entitysetname="Stories"
         autogeneratewhereclause="True" where="">
