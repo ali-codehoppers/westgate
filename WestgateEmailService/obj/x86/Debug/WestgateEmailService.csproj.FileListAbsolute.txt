@@ -1,0 +1,12 @@
+D:\Project\WestGate\WestgateEmailService\bin\Debug\WestgateEmailService.pdb
+D:\Project\WestGate\WestgateEmailService\bin\Debug\Westgate.Data.dll
+D:\Project\WestGate\WestgateEmailService\bin\Debug\Westgate.Data.pdb
+D:\Project\WestGate\WestgateEmailService\obj\x86\Debug\ResolveAssemblyReference.cache
+D:\Project\WestGate\WestgateEmailService\obj\x86\Debug\WestgateEmailService.ProjectInstaller.resources
+D:\Project\WestGate\WestgateEmailService\obj\x86\Debug\WestgateEmailService.WestgateEmailService.resources
+D:\Project\WestGate\WestgateEmailService\obj\x86\Debug\GenerateResource.read.1.tlog
+D:\Project\WestGate\WestgateEmailService\obj\x86\Debug\GenerateResource.write.1.tlog
+D:\Project\WestGate\WestgateEmailService\obj\x86\Debug\WestgateEmailService.pdb
+D:\Project\WestGate\WestgateEmailService\bin\Debug\WestgateEmailService.exe.config
+D:\Project\WestGate\WestgateEmailService\bin\Debug\WestgateEmailService.exe
+D:\Project\WestGate\WestgateEmailService\obj\x86\Debug\WestgateEmailService.exe

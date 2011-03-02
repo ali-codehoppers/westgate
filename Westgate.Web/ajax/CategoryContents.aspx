@@ -24,6 +24,8 @@
             </asp:repeater>
         </div>
     </div>
+    <div style="clear:both">
+    </div>
     <asp:entitydatasource runat="server" id="edsSubcategories" connectionstring="name=WestgateEntities"
         defaultcontainername="WestgateEntities" enableflattening="False" entitysetname="Subcategories"
         autogeneratewhereclause="True" entitytypefilter="" select="" where="">

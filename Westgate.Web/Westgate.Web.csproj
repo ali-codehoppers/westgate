@@ -33,9 +33,6 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="Simplicity.Data">
-      <HintPath>..\..\..\Simplicity\trunk\Simplicity\Simplicity.Data\bin\Debug\Simplicity.Data.dll</HintPath>
-    </Reference>
     <Reference Include="System.Data.Entity" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
@@ -52,6 +49,10 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Web.Services" />
     <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Westgate.Data, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Westgate.Data\bin\Debug\Westgate.Data.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Admin\AddCategory.aspx" />
@@ -367,12 +368,6 @@
     </Compile>
     <Compile Include="Pages\WebConstants.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Westgate.Data\Westgate.Data.csproj">
-      <Project>{DFC51855-D98E-4A18-9B92-01DF201F3760}</Project>
-      <Name>Westgate.Data</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Admin\Admin.Master" />
