@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Configuration;
 using System.Net.Mail;
-using Westgate.Data;
+using Simplicity.Data;
 
 namespace WestGate.Web.Utilities
 {
@@ -33,7 +33,7 @@ namespace WestGate.Web.Utilities
         {
             try
             {
-                var context = new WestgateEntities();
+                var context = new SimplicityEntities();
                 string toEmails = "";
                 string toNames = "";
                 foreach (MailAddress address in message.To)

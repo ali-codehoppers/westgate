@@ -45,21 +45,5 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="EmailQueues">
-      <EntityTypeMapping TypeName="Westgate.Data.Model.EmailQueue">
-        <MappingFragment StoreEntitySet="EmailQueue">
-          <ScalarProperty Name="SentTime" ColumnName="SentTime" />
-          <ScalarProperty Name="Body" ColumnName="Body" />
-          <ScalarProperty Name="Subject" ColumnName="Subject" />
-          <ScalarProperty Name="ToAddresses" ColumnName="ToAddresses" />
-          <ScalarProperty Name="ToNames" ColumnName="ToNames" />
-          <ScalarProperty Name="FromAddress" ColumnName="FromAddress" />
-          <ScalarProperty Name="FromName" ColumnName="FromName" />
-          <ScalarProperty Name="NumOfTries" ColumnName="NumOfTries" />
-          <ScalarProperty Name="LogTime" ColumnName="LogTime" />
-          <ScalarProperty Name="QueueID" ColumnName="QueueID" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

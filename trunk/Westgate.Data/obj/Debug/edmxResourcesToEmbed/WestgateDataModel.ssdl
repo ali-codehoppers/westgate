@@ -2,7 +2,6 @@
 <Schema Namespace="WestgateModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
   <EntityContainer Name="WestgateModelStoreContainer">
     <EntitySet Name="Categories" EntityType="WestgateModel.Store.Categories" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="EmailQueue" EntityType="WestgateModel.Store.EmailQueue" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Images" EntityType="WestgateModel.Store.Images" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Stories" EntityType="WestgateModel.Store.Stories" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Subcategories" EntityType="WestgateModel.Store.Subcategories" store:Type="Tables" Schema="dbo" />
@@ -27,21 +26,6 @@
     <Property Name="Name" Type="varchar" Nullable="false" MaxLength="50" />
     <Property Name="Description" Type="varchar" MaxLength="1000" />
     <Property Name="NumberOfSubcategories" Type="int" />
-  </EntityType>
-  <EntityType Name="EmailQueue">
-    <Key>
-      <PropertyRef Name="QueueID" />
-    </Key>
-    <Property Name="QueueID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-    <Property Name="LogTime" Type="datetime" Nullable="false" />
-    <Property Name="NumOfTries" Type="tinyint" Nullable="false" />
-    <Property Name="FromName" Type="varchar" Nullable="false" MaxLength="200" />
-    <Property Name="FromAddress" Type="varchar" Nullable="false" MaxLength="200" />
-    <Property Name="ToNames" Type="varchar" Nullable="false" MaxLength="200" />
-    <Property Name="ToAddresses" Type="varchar" Nullable="false" MaxLength="200" />
-    <Property Name="Subject" Type="varchar" Nullable="false" MaxLength="200" />
-    <Property Name="Body" Type="varchar(max)" Nullable="false" />
-    <Property Name="SentTime" Type="datetime" />
   </EntityType>
   <EntityType Name="Images">
     <Key>

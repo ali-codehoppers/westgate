@@ -2,6 +2,9 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <div style="width:100%;">
+    <asp:Label runat="server" ID="ErrorLabel" Visible="false" style="Color:Red" Text="Image size exceeded by 10MB Restriction."></asp:Label>
+    </div>
     <div><asp:Label ID="Label1" runat="server" Text="Category:" Width="200px"></asp:Label>
         <asp:DropDownList ID="ddlCategory" runat="server" AutoPostBack="True" 
             DataSourceID="edsCategory" DataTextField="Name" DataValueField="CategoryId">
