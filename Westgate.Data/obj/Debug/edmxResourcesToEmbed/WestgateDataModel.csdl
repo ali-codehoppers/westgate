@@ -17,7 +17,6 @@
       <End Role="Subcategory" EntitySet="Subcategories" />
       <End Role="Story" EntitySet="Stories" />
     </AssociationSet>
-    <EntitySet Name="EmailQueues" EntityType="Westgate.Data.Model.EmailQueue" />
   </EntityContainer>
   <EntityType Name="Category">
     <Key>
@@ -101,19 +100,4 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityType Name="EmailQueue">
-    <Key>
-      <PropertyRef Name="QueueID" />
-    </Key>
-    <Property Type="Int32" Name="QueueID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Type="DateTime" Name="LogTime" Nullable="false" />
-    <Property Type="Byte" Name="NumOfTries" Nullable="false" />
-    <Property Type="String" Name="FromName" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
-    <Property Type="String" Name="FromAddress" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
-    <Property Type="String" Name="ToNames" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
-    <Property Type="String" Name="ToAddresses" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
-    <Property Type="String" Name="Subject" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
-    <Property Type="String" Name="Body" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
-    <Property Type="DateTime" Name="SentTime" />
-  </EntityType>
 </Schema>

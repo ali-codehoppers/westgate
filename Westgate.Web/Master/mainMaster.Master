@@ -238,7 +238,7 @@
                                         <table width="100%" border="0" cellspacing="4" cellpadding="0">
                                             <tr>
                                                 <td width="71%" valign="top" style="border-right: 1px dotted #CCCCCC">
-                                                    <div id="contentsDiv" class="grey_welcome" style="padding-top: 10px; min-height:300px;">
+                                                    <div id="contentsDiv" class="grey_welcome" style="padding-top: 10px;padding-bottom: 10px; min-height:300px;">
                                                         <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
                                                         </asp:ContentPlaceHolder>
                                                     </div>
@@ -259,7 +259,7 @@
                                                         
                                                         <tr>
                                                             <td>
-                                                                <asp:Label ID="ErrorLabel" Visible="false" runat="server"></asp:Label>
+                                                                <asp:Label ID="ErrorLabel" Visible="false" runat="server" style="color:Red"></asp:Label>
                                                             </td>
                                                             </tr>
                                                         <tr>

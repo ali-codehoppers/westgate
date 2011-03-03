@@ -16,8 +16,13 @@ namespace Westgate.Web.Admin
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            
             if (IsPostBack == false)
             {
+                if (Request["action"] == "exception")
+                {
+                    ErrorLabel.Visible = true;
+                }
                 if (Request["imageId"] != null)
                 {
                     ddlCategory.Enabled = false;

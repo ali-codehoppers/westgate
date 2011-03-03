@@ -47,9 +47,7 @@ namespace Westgate.Web.Master
             message.IsBodyHtml = true;
             EmailUtility.SendEmail(message);
             ErrorLabel.Visible = true;
-            ErrorLabel.Text = "Request Sent";
-            
+            ErrorLabel.Text = "Request Sent";   
         }
-
     }
 }

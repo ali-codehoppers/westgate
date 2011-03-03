@@ -48,11 +48,12 @@
                 
                 
     </div>
-    <div style="clear:both">
+    <div style="clear:both;">
     </div>
     <div id="Pagination" class="grey_top">
     </div>
-    
+    <div style="clear:both">
+    </div>
     <script type="text/javascript">
         function pageselectCallback(page_index, jq) {
 
