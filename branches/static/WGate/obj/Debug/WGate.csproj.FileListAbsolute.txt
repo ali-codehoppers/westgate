@@ -1,0 +1,5 @@
+D:\West Gate\WGate\WGate\bin\WGate.dll
+D:\West Gate\WGate\WGate\bin\WGate.pdb
+D:\West Gate\WGate\WGate\obj\Debug\ResolveAssemblyReference.cache
+D:\West Gate\WGate\WGate\obj\Debug\WGate.dll
+D:\West Gate\WGate\WGate\obj\Debug\WGate.pdb
