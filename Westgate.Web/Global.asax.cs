@@ -26,7 +26,7 @@ namespace Westgate.Web
             
             HttpRuntimeSection runTime = (HttpRuntimeSection)WebConfigurationManager.GetSection("system.web/httpRuntime");
             //Approx 100 Kb(for page content) size has been deducted because the maxRequestLength proprty is the page size, not only the file upload size
-            int maxRequestLength = (runTime.MaxRequestLength - 100);
+            int maxRequestLength = (runTime.MaxRequestLength - 100)*1024;
             //This code is used to check the request length of the page and if the request length is greater than
             //MaxRequestLength then retrun to the same page with extra query string value action=exception
             HttpContext context = ((HttpApplication)sender).Context;

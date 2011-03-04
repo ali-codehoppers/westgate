@@ -71,6 +71,7 @@
                 $('#contentsDiv').html(data);
             });
             $("#imagesFrame").attr("src", "ajax/imagecontents.aspx?pageType=HOME");
+            $("#imagesFrame").attr("style", "display:block");
         }
         function OnCategoryClick(id) {
             $.post('ajax/CategoryContents.aspx?categoryId=' + id, function (data) {
@@ -80,6 +81,7 @@
                 $('#photos').html(data);
             });
             $("#imagesFrame").attr("src", "ajax/imagecontents.aspx?pageType=CATEGORY&categoryId=" + id);
+            $("#imagesFrame").attr("style", "display:block");
         }
         function OnSubcategoryClick(id) {
             $.post('ajax/SubcategoryContents.aspx?SubcategoryId=' + id, function (data) {
@@ -89,6 +91,7 @@
                 $('#photos').html(data);
             });
             $("#imagesFrame").attr("src", "ajax/imagecontents.aspx?pageType=SUBCATEGORY&subcategoryId=" + id);
+            $("#imagesFrame").attr("style", "display:block");
         }
         function OnStoryClick(id) {
             $.post('ajax/StoryContents.aspx?StoryId=' + id, function (data) {
@@ -98,6 +101,24 @@
                 $('#photos').html(data);
             });
             $("#imagesFrame").attr("src", "ajax/imagecontents.aspx?pageType=STORY&storyId=" + id);
+            $("#imagesFrame").attr("style", "display:block");
+        }
+        function OnSiteClick() {
+
+            $.post('ajax/SiteMapContents.aspx', function (data) {
+                $('#contentsDiv').html(data);
+            });
+            $("#imagesFrame").attr("style", "display:none");
+        }
+        function OnSearchClick() {
+            var search = document.getElementById("searchfield").value;
+            if (search == null) {
+                search = "";
+            }
+            $.post('ajax/SearchContents.aspx?search=' + search, function (data) {
+                $('#contentsDiv').html(data);
+            });
+            $("#imagesFrame").attr("style", "display:none");
         }
     </script>
 </head>
@@ -132,12 +153,13 @@
                                                                             </div>
                                                                         </td>
                                                                         <td width="160" align="right">
-                                                                            <input name="textfield" type="text" class="search_field" id="textfield" />
+                                                                            <input type="text" id="searchfield" name="searchfield" class="search_field" />
                                                                         </td>
                                                                         <td width="22" align="left">
-                                                                            <a href="#">
+                                                                            <a href="javascript:OnSearchClick()">
                                                                                 <img src="<%=this.ResolveClientUrl("~/images/search.jpg")%>" alt="" width="22" height="22"
-                                                                                    border="0" /></a>
+                                                                                    border="0" />
+                                                                                    </a>
                                                                         </td>
                                                                     </tr>
                                                                 </table>
@@ -157,7 +179,7 @@
                                                                             <a href="#" class="top">FAQ</a>
                                                                         </td>
                                                                         <td class="top_nav_partition">
-                                                                            <a href="#" class="top">Sitemap</a>
+                                                                            <a href="javascript:OnSiteClick()" class="top">Sitemap</a>
                                                                         </td>
                                                                         <td class="top_nav_partition">
                                                                             <a href="#" class="top">Contact Us</a>
@@ -220,8 +242,10 @@
                     </tr>
                     <tr>
                         <td>
-                            <iframe width="956" height="405" id="imagesFrame" style="border:  0px none #FFFFFF;"
+                            <div id="frame">
+                                <iframe width="956" height="405" id="imagesFrame" style="border:  0px none #FFFFFF;"
                                 src="ajax/Loading.aspx"></iframe>
+                            </div>
                         </td>
                     </tr>
                     <tr>
@@ -238,7 +262,7 @@
                                         <table width="100%" border="0" cellspacing="4" cellpadding="0">
                                             <tr>
                                                 <td width="71%" valign="top" style="border-right: 1px dotted #CCCCCC">
-                                                    <div id="contentsDiv" class="grey_welcome" style="padding-top: 10px;padding-bottom: 10px; min-height:300px;">
+                                                    <div id="contentsDiv" class="grey_welcome" style="padding-top: 10px;padding-bottom: 10px; min-height:350px; ">
                                                         <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
                                                         </asp:ContentPlaceHolder>
                                                     </div>
@@ -350,76 +374,7 @@
                             </table>
                         </td>
                     </tr>
-                    <tr>
-                        <td style="border-top: 1px dotted #CCCCCC">
-                            <table width="100%" border="0" cellspacing="0" cellpadding="0" style="margin-top: 10px">
-                                <tr>
-                                    <td width="1%">
-                                        <img src="<%=this.ResolveClientUrl("~/images/left_top.jpg")%>" alt="" width="7" height="5" />
-                                    </td>
-                                    <td width="98%" bgcolor="#f6f6f6">
-                                        <img src="<%=this.ResolveClientUrl("~/images/mid_top.jpg")%>" alt="" width="7" height="5" />
-                                    </td>
-                                    <td width="1%">
-                                        <img src="<%=this.ResolveClientUrl("~/images/right_top.jpg")%>" alt="" width="7"
-                                            height="5" />
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td height="66" bgcolor="#f6f6f6">
-                                        &nbsp;
-                                    </td>
-                                    <td valign="top" bgcolor="#f6f6f6">
-                                        <div style="width: 100%; clear:both; ">
-                                            <div style="float: left; width: 18%;text-align:left;">
-                                                <strong>
-                                                    <asp:HyperLink CssClass="black_link_down" runat="server" ID="Link1" Text='Company' NavigateUrl="javascript:OnHomeClick()"></asp:HyperLink>
-                                                </strong>
-                                            </div>
-                                            <div style="width: 80%;float:left;">
-                                                <asp:Repeater ID="CategoryRepeater" runat="server" OnItemDataBound="CategoryRepeater_ItemCommand">
-                                                    <ItemTemplate>
-                                                        <div style="float: left; width:33%; text-align:left;">
-                                                            <strong>
-                                                                <asp:HyperLink CssClass="black_link_down" runat="server" ID="Link1" Text='<%#Eval("Name") %>'
-                                                                    NavigateUrl='<%#"javascript:OnCategoryClick(" + Eval("CategoryId") + ")"%>'></asp:HyperLink>
-                                                            </strong>
-                                                            <asp:Label runat="server" ID="CatId" Text='<%#Eval("CategoryId")%>' Visible="false"></asp:Label>
-                                                            <asp:Repeater ID="subCategoryRepeater" runat="server">
-                                                                <ItemTemplate>
-                                                                    <div style="padding-left:10px;padding-right:10px;display:block">
-                                                                        <asp:HyperLink CssClass="black_link_down" NavigateUrl='<%#"javascript:OnSubcategoryClick(" + Eval("SubcategoryId") + ")"%>'
-                                                                            runat="server" ID="Link2" Text='<%#Eval("Name") %>'></asp:HyperLink>
-                                                                    </div>
-                                                                </ItemTemplate>
-                                                            </asp:Repeater>
-                                                        </div>
-                                                    </ItemTemplate>
-                                                </asp:Repeater>
-                                            </div>
 
-                                        </div>
-                                    </td>
-                                    <td bgcolor="#f6f6f6">
-                                        &nbsp;
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <img src="<%=this.ResolveClientUrl("~/images/left_bottom.jpg")%>" alt="" width="7"
-                                            height="5" />
-                                    </td>
-                                    <td bgcolor="#F6F6F6">
-                                        <img src="<%=this.ResolveClientUrl("~/images/mid_top.jpg")%>" alt="" width="7" height="5" />
-                                    </td>
-                                    <td>
-                                        <img src="<%=this.ResolveClientUrl("~/images/right_bottom.jpg")%>" alt="" width="7"
-                                            height="5" />
-                                    </td>
-                                </tr>
-                            </table>
-                        </td>
-                    </tr>
                     <tr>
                         <td>
                             &nbsp;
@@ -442,7 +397,7 @@
                                     <td width="91%" align="center" class="txt_pipe">
                                         Copyright©2011 West Gate Maintenance Limited. All Rights Reserved.<br />
                                         <a href="#" class="top">Privacy Policy</a> | <a href="#" class="top">Terms &amp; Conditions</a>
-                                        | <a href="#" class="top">Disclaimer</a> | <a href="#" class="top">Sitemap</a> |
+                                        | <a href="#" class="top">Disclaimer</a> | <a href="javascript:OnSiteClick()" class="top">Sitemap</a> |
                                         <a href="#" class="top">Help</a> |<a href="#" class="top"> Contact Us</a>
                                     </td>
                                 </tr>

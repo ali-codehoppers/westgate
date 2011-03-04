@@ -78,6 +78,8 @@
     <Content Include="ajax\ImageContents.aspx" />
     <Content Include="ajax\Images.aspx" />
     <Content Include="ajax\Loading.aspx" />
+    <Content Include="ajax\SearchContents.aspx" />
+    <Content Include="ajax\SiteMapContents.aspx" />
     <Content Include="ajax\StoryContents.aspx" />
     <Content Include="ajax\SubcategoryContents.aspx" />
     <Content Include="bin\Westgate.Data.dll" />
@@ -318,6 +320,20 @@
     </Compile>
     <Compile Include="ajax\Loading.aspx.designer.cs">
       <DependentUpon>Loading.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ajax\SearchContents.aspx.cs">
+      <DependentUpon>SearchContents.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ajax\SearchContents.aspx.designer.cs">
+      <DependentUpon>SearchContents.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ajax\SiteMapContents.aspx.cs">
+      <DependentUpon>SiteMapContents.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ajax\SiteMapContents.aspx.designer.cs">
+      <DependentUpon>SiteMapContents.aspx</DependentUpon>
     </Compile>
     <Compile Include="ajax\StoryContents.aspx.cs">
       <DependentUpon>StoryContents.aspx</DependentUpon>

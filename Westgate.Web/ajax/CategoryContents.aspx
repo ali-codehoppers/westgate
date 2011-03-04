@@ -2,7 +2,7 @@
     CodeBehind="CategoryContents.aspx.cs" Inherits="Westgate.Web.ajax.CategoryContents" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <div style="text-align: left">
+    <div style="text-align: left" >
         <div style="width: 100%">
             <h1 align="left">
                 <span style="color: #faa01d">
