@@ -512,7 +512,7 @@ var window_loaded = false;
 				'zIndex':'900',
 				'top':(filmstrip_orientation=='vertical' && slide_method=='strip'?-((f_frame_height+opts.frame_gap)*iterator):0)+'px',
 				//'left':(filmstrip_orientation=='horizontal' && slide_method=='strip'?-((f_frame_width+opts.frame_gap)*iterator):0)+'px',
-				'left':((gallery_width-wrapper_width)/2)+gallery_padding+'px',
+				'left':((gallery_width-wrapper_width)/2)+gallery_padding+10+'px',
                 'height':strip_height+'px'
 
 			});
@@ -684,7 +684,7 @@ var window_loaded = false;
 				});
 				navPrev.css({
 					'top':(opts.filmstrip_position=='top'?Math.max(gallery_padding,filmstrip_margin):opts.panel_height+filmstrip_margin+gallery_padding)+((f_frame_height-22)/2)+'px',
-					'left':((gallery_width+(gallery_padding*2))/2)-(wrapper_width/2)-opts.frame_gap-22-25+'px'
+					'left':((gallery_width+(gallery_padding*2))/2)-(wrapper_width/2)-opts.frame_gap-22-10+'px'
 				 });
 			} else {
 				navNext.css({					 
