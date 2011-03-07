@@ -26,16 +26,19 @@ h2 {
 	margin: 0px 0px 0px 0px;
 }
 
-.left_r {
-	background: url(../images/left_r.jpg) 0 0 repeat-y;
-	text-decoration: none;
-	width:8px;
+.left_r
+{
+	background: url('../images/left_r.jpg');
+	background-position: left top;
+	background-repeat: repeat-y;
 }
-.right_r {
-	background: url(../images/right_r.jpg) 0 0 repeat-y;
-	text-decoration: none;
-	width:8px;
+.right_r
+{
+	background: url('../images/right_r.jpg');
+	background-position: right top;
+	background-repeat: repeat-y;
 }
+
 .nav_r {
 	background: url(../images/nav_mid.jpg) 0 0 repeat-x;
 	text-decoration: none;
@@ -57,15 +60,16 @@ h2 {
 	padding: 0px 10px 0px 10px;
 	margin: 0px 0px 0px 0px;
 }
-.newsletter_bg {
-	font: normal 12px 'Lucida Sans Unicode', 'Lucida Grande', sans-serif;
+.newsletter_bg
+{
+	background-position: left top;
+	font: normal 12px 'Lucida Sans Unicode' , 'Lucida Grande' , sans-serif;
 	color: #999;
-	text-indent:5px;
-	background: url(../images/newsletter_bg.jpg) left top no-repeat;
+	text-indent: 5px;
+	background: url(../images/newsletter_bg.jpg);
 	text-decoration: none;
-	padding:0px 0px 0px 0px;
-	margin: 0px 0px 0px 0px;
-	line-height:25px;
+	line-height: 25px;
+	background-repeat: no-repeat;
 }
 .newsletter_field {
 	font: normal 12px 'Lucida Sans Unicode', 'Lucida Grande', sans-serif;

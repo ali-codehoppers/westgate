@@ -15,7 +15,9 @@ namespace Westgate.Web.Master
 
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            WestgateEntities DatabaseContext = new WestgateEntities();
+            Repeater1.DataSource = (from row in DatabaseContext.Categories select row).Take(7);
+            Repeater1.DataBind();
         }
 
 
