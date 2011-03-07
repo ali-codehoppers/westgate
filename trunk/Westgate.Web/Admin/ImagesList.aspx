@@ -22,7 +22,7 @@
 <asp:GridView ID="gvImages" runat="server" BackColor="White" BorderColor="#DEDFDE" 
         BorderStyle="None" BorderWidth="1px" CellPadding="4" DataSourceID="edsImages" 
         EmptyDataText="No Images for the Selected Story" ForeColor="Black" 
-        GridLines="Vertical" AutoGenerateColumns="False" DataKeyNames="ImageId">
+        GridLines="Vertical" AutoGenerateColumns="False" DataKeyNames="ImageId"  style="width:100%">
     <AlternatingRowStyle BackColor="White" />
     <Columns>
         <asp:TemplateField HeaderText="ImageId" SortExpression="ImageId">

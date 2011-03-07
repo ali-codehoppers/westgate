@@ -74,6 +74,7 @@
     <Content Include="Admin\subCategoryList.aspx" />
     <Content Include="ajax\CategoryContents.aspx" />
     <Content Include="ajax\CompanyContents.aspx" />
+    <Content Include="ajax\ContactContents.aspx" />
     <Content Include="ajax\HomeContents.aspx" />
     <Content Include="ajax\ImageContents.aspx" />
     <Content Include="ajax\Images.aspx" />
@@ -292,6 +293,13 @@
     </Compile>
     <Compile Include="ajax\CompanyContents.aspx.designer.cs">
       <DependentUpon>CompanyContents.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ajax\ContactContents.aspx.cs">
+      <DependentUpon>ContactContents.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ajax\ContactContents.aspx.designer.cs">
+      <DependentUpon>ContactContents.aspx</DependentUpon>
     </Compile>
     <Compile Include="ajax\HomeContents.aspx.cs">
       <DependentUpon>HomeContents.aspx</DependentUpon>

@@ -32,7 +32,7 @@
         <div style="width: 100%">
             <asp:label runat="server" text="Label" id="SubcategoryDescription" style="float: left"></asp:label>
         </div>
-        <div>
+        <div style="float:left;width:100%">
             <asp:repeater runat="server" id="rptStoryCategories" datasourceid="edsStories">
             <ItemTemplate>
                 <div style="padding:5px;clear:both">

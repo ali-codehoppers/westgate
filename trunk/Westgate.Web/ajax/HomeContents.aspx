@@ -48,8 +48,7 @@
                 
                 
     </div>
-    <div style="clear:both;">
-    </div>
+
     <div id="Pagination" class="grey_top">
     </div>
     <div style="clear:both">

@@ -2,7 +2,7 @@
     CodeBehind="SiteMapContents.aspx.cs" Inherits="Westgate.Web.ajax.SiteMapContents" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <div style="width: 100%;">
+    <div style="width: 100%;float:left">
         <div style="float: left; width: 18%; text-align: left;">
             <strong>
                 <asp:hyperlink cssclass="black_link_down" runat="server" id="Link1" text='Company'
@@ -12,7 +12,7 @@
         <div style="width: 81%; float: left; ">
             <asp:repeater id="CategoryRepeater" runat="server" onitemdatabound="CategoryRepeater_ItemCommand">
                  <ItemTemplate>
-                     <div style="float:left;width:45%; text-align:left;">
+                     <div style="float:left;width:33%; text-align:left;">
                            <strong>
                                <asp:HyperLink CssClass="black_link_down" runat="server" ID="Link1" Text='<%#Eval("Name") %>'
                                                                     NavigateUrl='<%#"javascript:OnCategoryClick(" + Eval("CategoryId") + ")"%>'></asp:HyperLink>
@@ -45,6 +45,5 @@
              </asp:repeater>
         </div>
     </div>
-    <div style="clear:both">
-    </div>
+
 </asp:Content>
