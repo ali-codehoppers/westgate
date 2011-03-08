@@ -29,5 +29,9 @@ namespace Westgate.Web.Pages
                 }
             }
         }
+        protected object GetThumbnailImagePath(object path)
+        {
+            return path.ToString().Replace(".png", "_thumb.png");
+        }
     }
 }
