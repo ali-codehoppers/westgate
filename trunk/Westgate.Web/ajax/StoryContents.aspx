@@ -5,9 +5,8 @@
             <asp:repeater runat="server" ID="rptCategories">
                 <ItemTemplate>
                     <li>
-                       <asp:HyperLink runat='server' ID='ImageLink1' NavigateUrl='<%# Eval("AfterImagePath").ToString().Replace("~/","")%>'>                        <asp:Image ID='Image2' runat='server' ImageUrl='<%# Eval("AfterImagePath").ToString().Replace("~/","")%>' AlternateText='<%# Eval("Name")%>'></asp:Image> 
-                       
-                        </asp:HyperLink> 
+                       <asp:HyperLink runat='server' ID='ImageLink1' NavigateUrl='<%# Eval("AfterImagePath").ToString().Replace("~/","")%>'>                            <asp:Image ID='Image2' runat='server' ImageUrl='<%# Eval("AfterImagePath").ToString().Replace("~/","")%>' AlternateText='<%# Eval("Name")%>'></asp:Image> 
+                       </asp:HyperLink> 
                     </li>
                 </ItemTemplate>            
             </asp:repeater>
@@ -21,13 +20,16 @@
         </h1>
     </div>
     <div style="width:100%">
-        <asp:label runat="server" text="Label" ID="StorycategoryDescription"  style="float:left"></asp:label>
+        <asp:label runat="server" text="Label" ID="StorycategoryDescription" style="float:left"></asp:label>
     </div>
     <div style="clear:both">
     </div>
     <script type="text/javascript">
-            $(function () {
-                $('#gallery a').lightBox();
+        $(function () {
+            $('#gallery a').lightBox({
+                maxHeight: 500,
+                maxWidth: 600
             });
+        });
     </script>
 </asp:Content>

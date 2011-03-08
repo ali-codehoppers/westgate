@@ -7,27 +7,33 @@
     </div>
     <div><asp:Label ID="Label1" runat="server" Text="Category:" Width="200px"></asp:Label>
         <asp:DropDownList ID="ddlCategory" runat="server" AutoPostBack="True" 
-            DataSourceID="edsCategory" DataTextField="Name" DataValueField="CategoryId">
+            DataSourceID="edsCategory" DataTextField="Name" DataValueField="CategoryId" OnDataBound="ddlCategories_DataBound">
         </asp:DropDownList>
     </div>
 <div><asp:Label ID="Label2" runat="server" Text="Subcategory:" Width="200px"></asp:Label>
     <asp:DropDownList ID="ddlSubcategories" runat="server" AutoPostBack="True" 
         DataSourceID="edsSubcategory" DataTextField="Name" 
-        DataValueField="SubcategoryId" ondatabound="ddlSubcategories_DataBound">
+        DataValueField="SubcategoryId" OnDataBound="ddlSubcategories_DataBound">
     </asp:DropDownList>
     </div>
 <div><asp:Label ID="Label3" runat="server" Text="Story:" Width="200px"></asp:Label>
     <asp:DropDownList ID="ddlStories" runat="server" DataSourceID="edsStory" 
-        DataTextField="Name" DataValueField="StoryId">
+        DataTextField="Name" DataValueField="StoryId" OnDataBound="ddlStories_DataBound">
     </asp:DropDownList>
 </div>
 <div>
     <asp:Label ID="Label6" runat="server" Text="Name:" Width="200px"></asp:Label>
     <asp:TextBox runat="server" ID="tbName"></asp:TextBox>
+    <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="tbName"
+          ErrorMessage="*" Display="Dynamic" Style="color: Red"> 
+    </asp:RequiredFieldValidator>
 </div>
 <div>
     <asp:Label ID="Label8" runat="server" Text="Description:" Width="200px"></asp:Label>
     <asp:TextBox runat="server" ID="tbDescription" TextMode="MultiLine" Rows="10"></asp:TextBox>
+    <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="tbDescription"
+          ErrorMessage="*" Display="Dynamic" Style="color: Red"> 
+    </asp:RequiredFieldValidator>
 </div>
 <div>
     <asp:Label ID="Label4" runat="server" Text="Before Image:" Width="200px"></asp:Label>

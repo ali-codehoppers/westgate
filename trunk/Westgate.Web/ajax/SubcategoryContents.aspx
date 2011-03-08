@@ -18,7 +18,11 @@
     </div>
     <script type="text/javascript">
         $(function () {
-            $('#gallery a').lightBox();
+            $('#gallery a').lightBox({
+                maxHeight: 500,
+                maxWidth: 600
+            });
+
         });
     </script>
     <div style="text-align: left">

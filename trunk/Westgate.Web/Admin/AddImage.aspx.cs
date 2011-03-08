@@ -14,6 +14,7 @@ namespace Westgate.Web.Admin
 {
     public partial class AddImage : AuthenticatedPage
     {
+        Westgate.Data.Image EditImage;
         protected void Page_Load(object sender, EventArgs e)
         {
             
@@ -35,11 +36,13 @@ namespace Westgate.Web.Admin
                     imgBefore.Visible = true;
 
                     Westgate.Data.Image image = GetImage();
+                    EditImage = image;
                     imgBefore.ImageUrl = image.BeforeImagePath;
                     imgAfter.ImageUrl = image.AfterImagePath;
                     imgCombined.ImageUrl = image.CombinedImagePath;
                     tbName.Text = image.Name;
                     tbDescription.Text = image.Description;
+                    
                 }
             }
         }
@@ -50,15 +53,48 @@ namespace Westgate.Web.Admin
                 if (Request["imageId"] != null)
                 {
                     int imageId = int.Parse(Request["imageId"]);
-                    return (from i in DatabaseContext.Images where i.ImageId == imageId select i).FirstOrDefault();
+                    Westgate.Data.Image image = (from i in DatabaseContext.Images where i.ImageId == imageId select i).FirstOrDefault();
+                    return image;
                 }
             }
             catch { }
             return null;
         }
+
+        protected void ddlCategories_DataBound(object sender, EventArgs e)
+        {
+            if (IsPostBack == false)
+            {
+                if (Request["imageId"] != null)
+                {
+                    ddlCategory.SelectedItem.Value = EditImage.Story.Subcategory.CategoryId.ToString();
+                    ddlCategory.SelectedItem.Text = EditImage.Story.Subcategory.Category.Name;
+                }
+            }
+            ddlSubcategories.DataBind();
+        }
         protected void ddlSubcategories_DataBound(object sender, EventArgs e)
         {
+            if (IsPostBack == false)
+            {
+                if (Request["imageId"] != null)
+                {
+                    ddlSubcategories.SelectedItem.Value = EditImage.Story.SubcategoryId.ToString();
+                    ddlSubcategories.SelectedItem.Text = EditImage.Story.Subcategory.Name;
+                }
+            }
             ddlStories.DataBind();
+        }
+        protected void ddlStories_DataBound(object sender, EventArgs e)
+        {
+            if (IsPostBack == false)
+            {
+                if (Request["imageId"] != null)
+                {
+                    ddlStories.SelectedItem.Value = EditImage.StoryId.ToString();
+                    ddlStories.SelectedItem.Text = EditImage.Story.Name;
+                }
+            }
         }
 
         protected void btnSave_Click(object sender, EventArgs e)
@@ -99,11 +135,11 @@ namespace Westgate.Web.Admin
             {
                 System.Drawing.Image beforeImage = System.Drawing.Image.FromFile(Server.MapPath(beforeImagePath));
                 System.Drawing.Image afterImage = System.Drawing.Image.FromFile(Server.MapPath(afterImagePath));
-                Bitmap combinedImage = new Bitmap(936,273);
+                Bitmap combinedImage = new Bitmap(936, 350);
                 Graphics graphic = Graphics.FromImage(combinedImage);
                 graphic.InterpolationMode = InterpolationMode.HighQualityBicubic;
-                graphic.DrawImage(beforeImage,0, 0, (float)468, (float)273);
-                graphic.DrawImage(afterImage, 468, 0, (float)468, (float)273);
+                graphic.DrawImage(beforeImage, 0, 0, (float)468, (float)350);
+                graphic.DrawImage(afterImage, 468, 0, (float)468, (float)350);
                 graphic.Dispose();
                 string fileName = System.Guid.NewGuid().ToString() + ".png";
                 string path = Server.MapPath("~/UserImages") + @"\" + fileName;
