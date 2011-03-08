@@ -225,8 +225,8 @@
                     </div>
                 </div>
                 <div>
-                    <div id="frame" style="width: 956px; margin: auto">
-                        <iframe width="956" height="475" id="imagesFrame" style="border: 0px none #FFFFFF;"
+                    <div id="frame" >
+                        <iframe width="963" height="475" id="imagesFrame" style="border: 0;" frameborder="0"
                             src="ajax/Loading.aspx"></iframe>
                     </div>
                 </div>
