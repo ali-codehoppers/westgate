@@ -1,3 +1,297 @@
+<<<<<<< .mine
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="WestgateModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="WestgateModelStoreContainer">
+          <EntitySet Name="Categories" EntityType="WestgateModel.Store.Categories" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Images" EntityType="WestgateModel.Store.Images" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Stories" EntityType="WestgateModel.Store.Stories" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Subcategories" EntityType="WestgateModel.Store.Subcategories" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_Images_Stories" Association="WestgateModel.Store.FK_Images_Stories">
+            <End Role="Stories" EntitySet="Stories" />
+            <End Role="Images" EntitySet="Images" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Stories_Subcategories" Association="WestgateModel.Store.FK_Stories_Subcategories">
+            <End Role="Subcategories" EntitySet="Subcategories" />
+            <End Role="Stories" EntitySet="Stories" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Subcategories_Categories" Association="WestgateModel.Store.FK_Subcategories_Categories">
+            <End Role="Categories" EntitySet="Categories" />
+            <End Role="Subcategories" EntitySet="Subcategories" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Categories">
+          <Key>
+            <PropertyRef Name="CategoryId" />
+          </Key>
+          <Property Name="CategoryId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="Description" Type="varchar" MaxLength="1000" />
+          <Property Name="NumberOfSubcategories" Type="int" />
+        </EntityType>
+        <EntityType Name="Images">
+          <Key>
+            <PropertyRef Name="ImageId" />
+          </Key>
+          <Property Name="ImageId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="StoryId" Type="int" Nullable="false" />
+          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="Description" Type="varchar" MaxLength="1000" />
+          <Property Name="BeforeImagePath" Type="varchar" MaxLength="100" />
+          <Property Name="AfterImagePath" Type="varchar" MaxLength="100" />
+          <Property Name="CombinedImagePath" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Stories">
+          <Key>
+            <PropertyRef Name="StoryId" />
+          </Key>
+          <Property Name="StoryId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="SubcategoryId" Type="int" Nullable="false" />
+          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="Description" Type="varchar" MaxLength="1000" />
+        </EntityType>
+        <EntityType Name="Subcategories">
+          <Key>
+            <PropertyRef Name="SubcategoryId" />
+          </Key>
+          <Property Name="SubcategoryId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="CategoryId" Type="int" Nullable="false" />
+          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="Description" Type="varchar" MaxLength="1000" />
+          <Property Name="DefaultStoryId" Type="int" />
+        </EntityType>
+        <Association Name="FK_Images_Stories">
+          <End Role="Stories" Type="WestgateModel.Store.Stories" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Images" Type="WestgateModel.Store.Images" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Stories">
+              <PropertyRef Name="StoryId" />
+            </Principal>
+            <Dependent Role="Images">
+              <PropertyRef Name="StoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Stories_Subcategories">
+          <End Role="Subcategories" Type="WestgateModel.Store.Subcategories" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Stories" Type="WestgateModel.Store.Stories" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Subcategories">
+              <PropertyRef Name="SubcategoryId" />
+            </Principal>
+            <Dependent Role="Stories">
+              <PropertyRef Name="SubcategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Subcategories_Categories">
+          <End Role="Categories" Type="WestgateModel.Store.Categories" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Subcategories" Type="WestgateModel.Store.Subcategories" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Categories">
+              <PropertyRef Name="CategoryId" />
+            </Principal>
+            <Dependent Role="Subcategories">
+              <PropertyRef Name="CategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="WestgateModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="WestgateEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Categories" EntityType="WestgateModel.Category" />
+          <EntitySet Name="Images" EntityType="WestgateModel.Image" />
+          <EntitySet Name="Stories" EntityType="WestgateModel.Story" />
+          <EntitySet Name="Subcategories" EntityType="WestgateModel.Subcategory" />
+          <AssociationSet Name="FK_Subcategories_Categories" Association="WestgateModel.FK_Subcategories_Categories">
+            <End Role="Categories" EntitySet="Categories" />
+            <End Role="Subcategories" EntitySet="Subcategories" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Images_Stories" Association="WestgateModel.FK_Images_Stories">
+            <End Role="Stories" EntitySet="Stories" />
+            <End Role="Images" EntitySet="Images" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Stories_Subcategories" Association="WestgateModel.FK_Stories_Subcategories">
+            <End Role="Subcategories" EntitySet="Subcategories" />
+            <End Role="Stories" EntitySet="Stories" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="CategoryId" />
+          </Key>
+          <Property Name="CategoryId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="Description" Type="String" MaxLength="1000" Unicode="false" FixedLength="false" />
+          <Property Name="NumberOfSubcategories" Type="Int32" />
+          <NavigationProperty Name="Subcategories" Relationship="WestgateModel.FK_Subcategories_Categories" FromRole="Categories" ToRole="Subcategories" />
+        </EntityType>
+        <EntityType Name="Image">
+          <Key>
+            <PropertyRef Name="ImageId" />
+          </Key>
+          <Property Name="ImageId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StoryId" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="Description" Type="String" MaxLength="1000" Unicode="false" FixedLength="false" />
+          <Property Name="BeforeImagePath" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="AfterImagePath" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="CombinedImagePath" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="Story" Relationship="WestgateModel.FK_Images_Stories" FromRole="Images" ToRole="Stories" />
+        </EntityType>
+        <EntityType Name="Story">
+          <Key>
+            <PropertyRef Name="StoryId" />
+          </Key>
+          <Property Name="StoryId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SubcategoryId" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="Description" Type="String" MaxLength="1000" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="Images" Relationship="WestgateModel.FK_Images_Stories" FromRole="Stories" ToRole="Images" />
+          <NavigationProperty Name="Subcategory" Relationship="WestgateModel.FK_Stories_Subcategories" FromRole="Stories" ToRole="Subcategories" />
+        </EntityType>
+        <EntityType Name="Subcategory">
+          <Key>
+            <PropertyRef Name="SubcategoryId" />
+          </Key>
+          <Property Name="SubcategoryId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CategoryId" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="Description" Type="String" MaxLength="1000" Unicode="false" FixedLength="false" />
+          <Property Name="DefaultStoryId" Type="Int32" />
+          <NavigationProperty Name="Category" Relationship="WestgateModel.FK_Subcategories_Categories" FromRole="Subcategories" ToRole="Categories" />
+          <NavigationProperty Name="Stories" Relationship="WestgateModel.FK_Stories_Subcategories" FromRole="Subcategories" ToRole="Stories" />
+        </EntityType>
+        <Association Name="FK_Subcategories_Categories">
+          <End Role="Categories" Type="WestgateModel.Category" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Subcategories" Type="WestgateModel.Subcategory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Categories">
+              <PropertyRef Name="CategoryId" />
+            </Principal>
+            <Dependent Role="Subcategories">
+              <PropertyRef Name="CategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Images_Stories">
+          <End Role="Stories" Type="WestgateModel.Story" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Images" Type="WestgateModel.Image" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Stories">
+              <PropertyRef Name="StoryId" />
+            </Principal>
+            <Dependent Role="Images">
+              <PropertyRef Name="StoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Stories_Subcategories">
+          <End Role="Subcategories" Type="WestgateModel.Subcategory" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Stories" Type="WestgateModel.Story" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Subcategories">
+              <PropertyRef Name="SubcategoryId" />
+            </Principal>
+            <Dependent Role="Stories">
+              <PropertyRef Name="SubcategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="WestgateModelStoreContainer" CdmEntityContainer="WestgateEntities">
+          <EntitySetMapping Name="Categories"><EntityTypeMapping TypeName="WestgateModel.Category"><MappingFragment StoreEntitySet="Categories">
+            <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+            <ScalarProperty Name="Name" ColumnName="Name" />
+            <ScalarProperty Name="Description" ColumnName="Description" />
+            <ScalarProperty Name="NumberOfSubcategories" ColumnName="NumberOfSubcategories" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="Images"><EntityTypeMapping TypeName="WestgateModel.Image"><MappingFragment StoreEntitySet="Images">
+            <ScalarProperty Name="ImageId" ColumnName="ImageId" />
+            <ScalarProperty Name="StoryId" ColumnName="StoryId" />
+            <ScalarProperty Name="Name" ColumnName="Name" />
+            <ScalarProperty Name="Description" ColumnName="Description" />
+            <ScalarProperty Name="BeforeImagePath" ColumnName="BeforeImagePath" />
+            <ScalarProperty Name="AfterImagePath" ColumnName="AfterImagePath" />
+            <ScalarProperty Name="CombinedImagePath" ColumnName="CombinedImagePath" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="Stories"><EntityTypeMapping TypeName="WestgateModel.Story"><MappingFragment StoreEntitySet="Stories">
+            <ScalarProperty Name="StoryId" ColumnName="StoryId" />
+            <ScalarProperty Name="SubcategoryId" ColumnName="SubcategoryId" />
+            <ScalarProperty Name="Name" ColumnName="Name" />
+            <ScalarProperty Name="Description" ColumnName="Description" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="Subcategories"><EntityTypeMapping TypeName="WestgateModel.Subcategory"><MappingFragment StoreEntitySet="Subcategories">
+            <ScalarProperty Name="SubcategoryId" ColumnName="SubcategoryId" />
+            <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+            <ScalarProperty Name="Name" ColumnName="Name" />
+            <ScalarProperty Name="Description" ColumnName="Description" />
+            <ScalarProperty Name="DefaultStoryId" ColumnName="DefaultStoryId" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram Name="WestgateDataModel">
+        <EntityTypeShape EntityType="WestgateModel.Category" Width="1.5" PointX="0.75" PointY="1.125" Height="1.7566536458333335" IsExpanded="true" />
+        <EntityTypeShape EntityType="WestgateModel.Image" Width="1.5" PointX="7.5" PointY="0.875" Height="2.2496956380208335" IsExpanded="true" />
+        <EntityTypeShape EntityType="WestgateModel.Story" Width="1.5" PointX="5.25" PointY="1.125" Height="1.9210009765624996" IsExpanded="true" />
+        <EntityTypeShape EntityType="WestgateModel.Subcategory" Width="1.5" PointX="3" PointY="1" Height="2.0853483072916656" IsExpanded="true" />
+        <AssociationConnector Association="WestgateModel.FK_Subcategories_Categories" ManuallyRouted="false">
+          <ConnectorPoint PointX="2.25" PointY="2.0033268229166667" />
+          <ConnectorPoint PointX="3" PointY="2.0033268229166667" />
+        </AssociationConnector>
+        <AssociationConnector Association="WestgateModel.FK_Images_Stories" ManuallyRouted="false">
+          <ConnectorPoint PointX="6.75" PointY="2.08550048828125" />
+          <ConnectorPoint PointX="7.5" PointY="2.08550048828125" />
+        </AssociationConnector>
+        <AssociationConnector Association="WestgateModel.FK_Stories_Subcategories" ManuallyRouted="false">
+          <ConnectorPoint PointX="4.5" PointY="2.08550048828125" />
+          <ConnectorPoint PointX="5.25" PointY="2.08550048828125" />
+        </AssociationConnector>
+      </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>=======
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
   <!-- EF Runtime content -->
@@ -299,4 +593,4 @@
       </Diagram>
     </Diagrams>
   </Designer>
-</edmx:Edmx>
+</edmx:Edmx>>>>>>>> .r20
