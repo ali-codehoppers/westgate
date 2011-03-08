@@ -221,10 +221,12 @@
                         <img src="<%=this.ResolveClientUrl("~/images/nav_right.jpg")%>" alt="" width="12"
                             height="38" />
                     </div>
+                    <div style="clear:both">
+                    </div>
                 </div>
                 <div>
                     <div id="frame" style="width: 956px; margin: auto">
-                        <iframe width="956" height="405" id="imagesFrame" style="border: 0px none #FFFFFF;"
+                        <iframe width="956" height="475" id="imagesFrame" style="border: 0px none #FFFFFF;"
                             src="ajax/Loading.aspx"></iframe>
                     </div>
                 </div>

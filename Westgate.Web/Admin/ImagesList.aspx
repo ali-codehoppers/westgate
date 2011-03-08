@@ -10,12 +10,12 @@
 <div><asp:Label ID="Label2" runat="server" Text="Subcategory:" Width="200px"></asp:Label>
     <asp:DropDownList ID="ddlSubcategories" runat="server" AutoPostBack="True" 
         DataSourceID="edsSubcategory" DataTextField="Name" 
-        DataValueField="SubcategoryId" ondatabound="ddlSubcategories_DataBound">
+        DataValueField="SubcategoryId" OnDataBound="ddlSubcategories_DataBound">
     </asp:DropDownList>
 </div>
 <div><asp:Label ID="Label3" runat="server" Text="Story" Width="200px"></asp:Label>
     <asp:DropDownList ID="ddlStories" runat="server" DataSourceID="edsStory" 
-        DataTextField="Name" DataValueField="StoryId" AutoPostBack="True">
+        DataTextField="Name" DataValueField="StoryId" AutoPostBack="True" OnDataBound="ddlStories_DataBound">
     </asp:DropDownList>
 </div>
 <div>

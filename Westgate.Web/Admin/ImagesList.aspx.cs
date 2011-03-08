@@ -14,10 +14,14 @@ namespace Westgate.Web.Admin
         {
 
         }
-
         protected void ddlSubcategories_DataBound(object sender, EventArgs e)
         {
             ddlStories.DataBind();
         }
+        protected void ddlStories_DataBound(object sender, EventArgs e)
+        {
+            gvImages.DataBind();
+        }
+
     }
 }

@@ -45,6 +45,8 @@
             keyToNext: 'n', 	// (string) (n = next) Letter to show the next image.
             // Don´t alter these variables in any way
             imageArray: [],
+            maxWidth: null,
+            maxHeight: null,
             activeImage: 0
         }, settings);
         // Caching the jQuery object with all elements matched
@@ -190,6 +192,7 @@
                 $('#lightbox-image').attr('src', settings.imageArray[settings.activeImage][0]);
                 // Perfomance an effect in the image container resizing it
                 _resize_container_image_box(objImagePreloader.width, objImagePreloader.height);
+                //_resize_container_image_box(500, 500);
                 //	clear onLoad, IE behaves irratically with animated gifs otherwise
                 objImagePreloader.onload = function () { };
             };
@@ -202,6 +205,21 @@
         * @param integer intImageHeight The image´s height that will be showed
         */
         function _resize_container_image_box(intImageWidth, intImageHeight) {
+            if ((settings.maxWidth != null && settings.maxHeight != null) && (intImageWidth > settings.maxWidth || intImageHeight > settings.maxHeight)) {
+                var isWider = intImageWidth > intImageHeight; //is the image wide or tall?
+                var scale = isWider ? settings.maxWidth / intImageWidth : settings.maxHeight / intImageHeight;
+                intImageWidth = intImageWidth * scale;
+                intImageHeight = intImageHeight * scale;
+            }
+            if ((settings.maxWidth != null && settings.maxHeight != null) && (intImageWidth < settings.maxWidth || intImageHeight < settings.maxHeight)) {
+                var isWider = intImageWidth > intImageHeight; //is the image wide or tall?
+                var scale = isWider ? settings.maxWidth / intImageWidth : settings.maxHeight / intImageHeight;
+                intImageWidth = intImageWidth * scale;
+                intImageHeight = intImageHeight * scale;
+            }
+            $('#lightbox-image').height(intImageHeight);
+            $('#lightbox-image').width(intImageWidth); 
+
             // Get current width and height
             var intCurrentWidth = $('#lightbox-container-image-box').width();
             var intCurrentHeight = $('#lightbox-container-image-box').height();

@@ -35,7 +35,7 @@
         $(document).ready(function () {
             $('#photos').galleryView({
                 panel_width: 936,
-                panel_height: 273,
+                panel_height: 350,
                 frame_width: 70,
                 frame_height: 70,
                 nav_theme: 'dark'
