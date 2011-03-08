@@ -23,5 +23,6 @@ namespace Westgate.Web.Admin
             gvImages.DataBind();
         }
 
+        
     }
 }

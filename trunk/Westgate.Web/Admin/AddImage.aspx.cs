@@ -144,6 +144,7 @@ namespace Westgate.Web.Admin
                 string fileName = System.Guid.NewGuid().ToString() + ".png";
                 string path = Server.MapPath("~/UserImages") + @"\" + fileName;
                 combinedImage.Save(path);
+                SaveThumbNail(path);
                 return "~/UserImages/" + fileName ;
             }
             catch { }
@@ -158,11 +159,23 @@ namespace Westgate.Web.Admin
                     string fileName = System.Guid.NewGuid().ToString() + ".png";
                     string path = Server.MapPath("~/UserImages") + @"\" + fileName;
                     File.WriteAllBytes(path, file.FileBytes);
+                    SaveThumbNail(path);
                     return "~/UserImages/" + fileName ;
                 }
             }
             catch { }
             return null;
+        }
+
+        private void SaveThumbNail(string path)
+        {
+            System.Drawing.Image actualImage = System.Drawing.Image.FromFile(path);
+            Bitmap thumbImage = new Bitmap(100, 100);
+            Graphics graphic = Graphics.FromImage(thumbImage);
+            graphic.InterpolationMode = InterpolationMode.HighQualityBicubic;
+            graphic.DrawImage(actualImage, 0, 0, (float)100, (float)100);
+            graphic.Dispose();
+            thumbImage.Save(path.Replace(".png","_thumb.png"));
         }
         protected void btnUpdate_Click(object sender, EventArgs e)
         {
