@@ -1,3 +1,113 @@
+<<<<<<< .mine
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="WestgateModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+  <EntityContainer Name="WestgateEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Categories" EntityType="WestgateModel.Category" />
+    <EntitySet Name="Images" EntityType="WestgateModel.Image" />
+    <EntitySet Name="Stories" EntityType="WestgateModel.Story" />
+    <EntitySet Name="Subcategories" EntityType="WestgateModel.Subcategory" />
+    <AssociationSet Name="FK_Subcategories_Categories" Association="WestgateModel.FK_Subcategories_Categories">
+      <End Role="Categories" EntitySet="Categories" />
+      <End Role="Subcategories" EntitySet="Subcategories" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Images_Stories" Association="WestgateModel.FK_Images_Stories">
+      <End Role="Stories" EntitySet="Stories" />
+      <End Role="Images" EntitySet="Images" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Stories_Subcategories" Association="WestgateModel.FK_Stories_Subcategories">
+      <End Role="Subcategories" EntitySet="Subcategories" />
+      <End Role="Stories" EntitySet="Stories" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Category">
+    <Key>
+      <PropertyRef Name="CategoryId" />
+    </Key>
+    <Property Name="CategoryId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="Description" Type="String" MaxLength="1000" Unicode="false" FixedLength="false" />
+    <Property Name="NumberOfSubcategories" Type="Int32" />
+    <NavigationProperty Name="Subcategories" Relationship="WestgateModel.FK_Subcategories_Categories" FromRole="Categories" ToRole="Subcategories" />
+  </EntityType>
+  <EntityType Name="Image">
+    <Key>
+      <PropertyRef Name="ImageId" />
+    </Key>
+    <Property Name="ImageId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="StoryId" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="Description" Type="String" MaxLength="1000" Unicode="false" FixedLength="false" />
+    <Property Name="BeforeImagePath" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+    <Property Name="AfterImagePath" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+    <Property Name="CombinedImagePath" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+    <NavigationProperty Name="Story" Relationship="WestgateModel.FK_Images_Stories" FromRole="Images" ToRole="Stories" />
+  </EntityType>
+  <EntityType Name="Story">
+    <Key>
+      <PropertyRef Name="StoryId" />
+    </Key>
+    <Property Name="StoryId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SubcategoryId" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="Description" Type="String" MaxLength="1000" Unicode="false" FixedLength="false" />
+    <NavigationProperty Name="Images" Relationship="WestgateModel.FK_Images_Stories" FromRole="Stories" ToRole="Images" />
+    <NavigationProperty Name="Subcategory" Relationship="WestgateModel.FK_Stories_Subcategories" FromRole="Stories" ToRole="Subcategories" />
+  </EntityType>
+  <EntityType Name="Subcategory">
+    <Key>
+      <PropertyRef Name="SubcategoryId" />
+    </Key>
+    <Property Name="SubcategoryId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CategoryId" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="Description" Type="String" MaxLength="1000" Unicode="false" FixedLength="false" />
+    <Property Name="DefaultStoryId" Type="Int32" />
+    <NavigationProperty Name="Category" Relationship="WestgateModel.FK_Subcategories_Categories" FromRole="Subcategories" ToRole="Categories" />
+    <NavigationProperty Name="Stories" Relationship="WestgateModel.FK_Stories_Subcategories" FromRole="Subcategories" ToRole="Stories" />
+  </EntityType>
+  <Association Name="FK_Subcategories_Categories">
+    <End Role="Categories" Type="WestgateModel.Category" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Subcategories" Type="WestgateModel.Subcategory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Categories">
+        <PropertyRef Name="CategoryId" />
+      </Principal>
+      <Dependent Role="Subcategories">
+        <PropertyRef Name="CategoryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Images_Stories">
+    <End Role="Stories" Type="WestgateModel.Story" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Images" Type="WestgateModel.Image" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Stories">
+        <PropertyRef Name="StoryId" />
+      </Principal>
+      <Dependent Role="Images">
+        <PropertyRef Name="StoryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Stories_Subcategories">
+    <End Role="Subcategories" Type="WestgateModel.Subcategory" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Stories" Type="WestgateModel.Story" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Subcategories">
+        <PropertyRef Name="SubcategoryId" />
+      </Principal>
+      <Dependent Role="Stories">
+        <PropertyRef Name="SubcategoryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>=======
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="Westgate.Data.Model" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
   <EntityContainer Name="WestgateEntities" annotation:LazyLoadingEnabled="true">
@@ -100,4 +210,4 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-</Schema>
+</Schema>>>>>>>> .r20
