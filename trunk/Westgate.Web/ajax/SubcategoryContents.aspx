@@ -8,7 +8,7 @@
             <asp:repeater runat="server" ID="rptImageCategories">
                 <ItemTemplate>
                     <li>
-                       <asp:HyperLink runat='server' ID='ImageLink1' NavigateUrl='<%# Eval("AfterImagePath").ToString().Replace("~/","")%>'>                       <asp:Image ID='Image2' runat='server' ImageUrl='<%# Eval("AfterImagePath").ToString().Replace("~/","")%>' AlternateText='<%# Eval("Name")%>'></asp:Image> 
+                       <asp:HyperLink runat='server' ID='ImageLink1' NavigateUrl='<%# Eval("AfterImagePath").ToString().Replace("~/","")%>'>                       <asp:Image ID='Image2' runat='server' ImageUrl='<%#GetThumbnailImagePath(Eval("AfterImagePath").ToString().Replace("~/",""))%>' AlternateText='<%# Eval("Name")%>'></asp:Image> 
                         
                        </asp:HyperLink> 
                     </li>
@@ -17,11 +17,11 @@
         </ul>
     </div>
     <script type="text/javascript">
-        $(function () {
-            $('#gallery a').lightBox({
-                maxHeight: 500,
-                maxWidth: 600
-            });
+        $(document).ready(function () {
+                $('#gallery a').lightBox({
+                    maxHeight: 500,
+                    maxWidth: 600
+                });
 
         });
     </script>

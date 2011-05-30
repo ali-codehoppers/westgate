@@ -67,10 +67,12 @@
     <Content Include="Admin\AddStory.aspx" />
     <Content Include="Admin\AddSubCategory.aspx" />
     <Content Include="Admin\CategoriesList.aspx" />
+    <Content Include="Admin\CombinedImage.aspx" />
     <Content Include="Admin\EditCategory.aspx" />
     <Content Include="Admin\EditStory.aspx" />
     <Content Include="Admin\EditSubCategory.aspx" />
     <Content Include="Admin\ImagesList.aspx" />
+    <Content Include="Admin\imageTransfer.aspx" />
     <Content Include="Admin\Login.aspx" />
     <Content Include="Admin\StoryList.aspx" />
     <Content Include="Admin\subCategoryList.aspx" />
@@ -162,7 +164,30 @@
     <Content Include="script\galleryview-2.1.1\themes\light\panel-nav-next.gif" />
     <Content Include="script\galleryview-2.1.1\themes\light\panel-nav-prev.gif" />
     <Content Include="script\galleryview-2.1.1\themes\light\prev.gif" />
+    <Content Include="script\gallery\ad_next.png" />
+    <Content Include="script\gallery\ad_prev.png" />
+    <Content Include="script\gallery\ad_scroll_back.png" />
+    <Content Include="script\gallery\ad_scroll_forward.png" />
+    <Content Include="script\gallery\blue_bar.png" />
+    <Content Include="script\gallery\jquery.ad-gallery.css" />
+    <Content Include="script\gallery\jquery.ad-gallery.js" />
+    <Content Include="script\gallery\loader.gif" />
+    <Content Include="script\gallery\next.png" />
+    <Content Include="script\gallery\opa75.png" />
+    <Content Include="script\gallery\prev.png" />
+    <Content Include="script\gallery\scrolling_pic_bg.jpg" />
     <Content Include="script\images\scrolling_pic_bg.jpg" />
+    <Content Include="script\imgarea\css\border-anim-h.gif" />
+    <Content Include="script\imgarea\css\border-anim-v.gif" />
+    <Content Include="script\imgarea\css\border-h.gif" />
+    <Content Include="script\imgarea\css\border-v.gif" />
+    <Content Include="script\imgarea\css\imgareaselect-animated.css" />
+    <Content Include="script\imgarea\css\imgareaselect-default.css" />
+    <Content Include="script\imgarea\css\imgareaselect-deprecated.css" />
+    <Content Include="script\imgarea\scripts\jquery.imgareaselect.js" />
+    <Content Include="script\imgarea\scripts\jquery.imgareaselect.min.js" />
+    <Content Include="script\imgarea\scripts\jquery.imgareaselect.pack.js" />
+    <Content Include="script\imgarea\scripts\jquery.min.js" />
     <Content Include="script\jquery-1.5.1.min.js" />
     <Content Include="script\jQuery.js" />
     <Content Include="script\lightbox\jquery.lightbox-0.5.css" />
@@ -233,6 +258,13 @@
     <Compile Include="Admin\CategoriesList.aspx.designer.cs">
       <DependentUpon>CategoriesList.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Admin\CombinedImage.aspx.cs">
+      <DependentUpon>CombinedImage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\CombinedImage.aspx.designer.cs">
+      <DependentUpon>CombinedImage.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Admin\EditCategory.aspx.cs">
       <DependentUpon>EditCategory.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -260,6 +292,13 @@
     </Compile>
     <Compile Include="Admin\ImagesList.aspx.designer.cs">
       <DependentUpon>ImagesList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\imageTransfer.aspx.cs">
+      <DependentUpon>imageTransfer.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\imageTransfer.aspx.designer.cs">
+      <DependentUpon>imageTransfer.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>

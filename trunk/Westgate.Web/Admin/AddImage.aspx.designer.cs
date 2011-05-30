@@ -13,6 +13,150 @@ namespace Westgate.Web.Admin {
     public partial class AddImage {
         
         /// <summary>
+        /// BeforeImageWidth control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField BeforeImageWidth;
+        
+        /// <summary>
+        /// BeforeImageHeight control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField BeforeImageHeight;
+        
+        /// <summary>
+        /// AfterImageWidth control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField AfterImageWidth;
+        
+        /// <summary>
+        /// AfterImageHeight control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField AfterImageHeight;
+        
+        /// <summary>
+        /// ActualBeforeImageWidth control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField ActualBeforeImageWidth;
+        
+        /// <summary>
+        /// ActualBeforeImageHeight control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField ActualBeforeImageHeight;
+        
+        /// <summary>
+        /// ActualAfterImageWidth control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField ActualAfterImageWidth;
+        
+        /// <summary>
+        /// ActualAfterImageHeight control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField ActualAfterImageHeight;
+        
+        /// <summary>
+        /// BeforeImageX1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField BeforeImageX1;
+        
+        /// <summary>
+        /// BeforeImageX2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField BeforeImageX2;
+        
+        /// <summary>
+        /// BeforeImageY1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField BeforeImageY1;
+        
+        /// <summary>
+        /// BeforeImageY2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField BeforeImageY2;
+        
+        /// <summary>
+        /// AfterImageX1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField AfterImageX1;
+        
+        /// <summary>
+        /// AfterImageX2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField AfterImageX2;
+        
+        /// <summary>
+        /// AfterImageY1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField AfterImageY1;
+        
+        /// <summary>
+        /// AfterImageY2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField AfterImageY2;
+        
+        /// <summary>
         /// ErrorLabel control.
         /// </summary>
         /// <remarks>
@@ -166,6 +310,15 @@ namespace Westgate.Web.Admin {
         protected global::System.Web.UI.WebControls.FileUpload fileAfterImage;
         
         /// <summary>
+        /// BeforeAcutalImage control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField BeforeAcutalImage;
+        
+        /// <summary>
         /// imgBefore control.
         /// </summary>
         /// <remarks>
@@ -175,6 +328,15 @@ namespace Westgate.Web.Admin {
         protected global::System.Web.UI.WebControls.Image imgBefore;
         
         /// <summary>
+        /// AfterActualImage control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField AfterActualImage;
+        
+        /// <summary>
         /// imgAfter control.
         /// </summary>
         /// <remarks>
@@ -182,15 +344,6 @@ namespace Westgate.Web.Admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Image imgAfter;
-        
-        /// <summary>
-        /// imgCombined control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Image imgCombined;
         
         /// <summary>
         /// btnSave control.
@@ -209,6 +362,24 @@ namespace Westgate.Web.Admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnUpdate;
+        
+        /// <summary>
+        /// btnDelete control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnDelete;
+        
+        /// <summary>
+        /// imgCombined control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Image imgCombined;
         
         /// <summary>
         /// edsCategory control.
