@@ -5,6 +5,21 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title></title>
+    <link href="../script/imgarea/css/imgareaselect-default.css" rel="stylesheet" type="text/css" />
+    <script src="../script/imgarea/scripts/jquery.min.js" type="text/javascript"></script>
+    <script src="../script/imgarea/scripts/jquery.imgareaselect.pack.js" type="text/javascript"></script>
+        <!--[if lte IE 6]>
+    <link rel="stylesheet" type="text/css" media="screen"
+      href="/css/msie/ie6.css" />
+    <noscript>
+    <link rel="stylesheet" type="text/css" media="screen"
+      href="/css/msie/ie6-nojs.css" />
+    </noscript>
+    <script type="text/javascript" src="/js/DD_belatedPNG_0.0.8a.js"></script>
+    <![endif]-->
+    <!--[if IE 7]>
+    <link rel="stylesheet" type="text/css" media="screen" href="/css/msie/ie7.css" />
+    <![endif]-->
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 </head>
@@ -22,7 +37,6 @@
                 <div style="padding:10px"><asp:HyperLink ID="HyperLink6" NavigateUrl="~/Admin/AddStory.aspx" runat="server">Add a new Story</asp:HyperLink></div>
                 <div style="padding:10px"><asp:HyperLink ID="HyperLink7" NavigateUrl="~/Admin/ImagesList.aspx" runat="server">View all Images</asp:HyperLink></div>
                 <div style="padding:10px"><asp:HyperLink ID="HyperLink8" NavigateUrl="~/Admin/AddImage.aspx" runat="server">Add a new Image</asp:HyperLink></div>
-
             </div>
             
             <div style="float:left;width:75%;">

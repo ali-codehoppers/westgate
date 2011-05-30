@@ -17,7 +17,7 @@ namespace Westgate.Web.ajax
             string pageType = Request["pageType"].ToUpper();
             if (pageType.Equals("HOME"))
             {
-                rptImages.DataSource = (from i in DatabaseContext.Images orderby i.ImageId descending select i).Take(5);
+                rptImages.DataSource = (from i in DatabaseContext.Images orderby i.ImageId descending select i);
             }
             else if (pageType.Equals("CATEGORY"))
             {

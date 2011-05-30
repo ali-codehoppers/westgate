@@ -445,13 +445,15 @@ var window_loaded = false;
 				'position':'absolute',
 				'zIndex':'999',
 				'width':(opts.panel_width-extraWidth($('.panel-overlay',j_panels)))+'px',
+                'height':'35px',
 				'left':'0'
 			});
 			$('.overlay-background',j_panels).css({
 				'position':'absolute',
 				'zIndex':'998',
 				'width':opts.panel_width+'px',
-				'left':'0',
+				'height':'30px',
+                'left':'0',
 				'opacity':opts.overlay_opacity
 			});
 			if(opts.overlay_position=='top') {
