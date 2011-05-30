@@ -4,3 +4,9 @@ D:\Project\WestGate\Westgate.Data\bin\Debug\Westgate.Data.pdb
 D:\Project\WestGate\Westgate.Data\obj\Debug\ResolveAssemblyReference.cache
 D:\Project\WestGate\Westgate.Data\obj\Debug\Westgate.Data.dll
 D:\Project\WestGate\Westgate.Data\obj\Debug\Westgate.Data.pdb
+D:\West Gate\Latest\Westgate\Westgate.Data\bin\Debug\Westgate.Data.dll.config
+D:\West Gate\Latest\Westgate\Westgate.Data\bin\Debug\Westgate.Data.dll
+D:\West Gate\Latest\Westgate\Westgate.Data\bin\Debug\Westgate.Data.pdb
+D:\West Gate\Latest\Westgate\Westgate.Data\obj\Debug\ResolveAssemblyReference.cache
+D:\West Gate\Latest\Westgate\Westgate.Data\obj\Debug\Westgate.Data.dll
+D:\West Gate\Latest\Westgate\Westgate.Data\obj\Debug\Westgate.Data.pdb
