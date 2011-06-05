@@ -5,8 +5,14 @@
         
             <asp:repeater runat="server" ID="rptCategories">
                 <ItemTemplate>
-                   <li>
-                       <asp:HyperLink runat='server' ID='ImageLink1' NavigateUrl='<%# Eval("AfterImagePath").ToString().Replace("~/","")%>'>                            <asp:Image ID='Image2' runat='server' ImageUrl='<%#GetThumbnailImagePath(Eval("AfterImagePath").ToString().Replace("~/",""))%>' AlternateText='<%# Eval("Name")%>'></asp:Image>
+                     <li>
+                       <asp:HyperLink runat='server' ID='ImageLink1' Title='<%# Eval("Name")%>' NavigateUrl='<%# Eval("BeforeImagePath").ToString().Replace("~/","")%>'>
+                            <asp:Image ID='Image2' runat='server' ImageUrl='<%#GetThumbnailImagePath(Eval("AfterImagePath").ToString().Replace("~/",""))%>' AlternateText='<%# Eval("Name")%>'></asp:Image> 
+                       </asp:HyperLink> 
+                    </li>
+                    <li style="display:none">
+                       <asp:HyperLink runat='server' ID='ImageLink2' Title='<%# Eval("Name")%>' NavigateUrl='<%# Eval("AfterImagePath").ToString().Replace("~/","")%>'>
+                            <asp:Image ID='Image3' runat='server' ImageUrl='<%#GetThumbnailImagePath(Eval("BeforeImagePath").ToString().Replace("~/",""))%>' AlternateText='<%# Eval("Name")%>'></asp:Image>
                        </asp:HyperLink> 
                    </li>
                 </ItemTemplate>            
@@ -14,7 +20,16 @@
       
         </ul>
     </div>
-    <div style="width:100%; padding-top:10px;">        
+    <div style="width:100%; padding-top:10px;">
+        <div style="width: 100%">
+            <a href="javascript:OnHomeClick();">Home</a>
+            <span> > </span>
+            <asp:HyperLink runat="server" id="categoryLink"></asp:HyperLink>
+            <span> > </span>
+            <asp:HyperLink runat="server" id="subcategoryLink"></asp:HyperLink>
+            <span> > </span>
+            <asp:HyperLink runat="server" id="storyLink"></asp:HyperLink>
+        </div>        
         <h1 align="left">
             <span style="color: #faa01d">
                 <asp:label runat="server" text="Label" ID="StorycategoryName"></asp:label>

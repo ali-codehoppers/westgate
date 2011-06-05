@@ -38,7 +38,11 @@ namespace WestGate.Web.Utilities
                 string toNames = "";
                 foreach (MailAddress address in message.To)
                 {
-                    toNames += address.DisplayName + "," +ConfigurationSettings.AppSettings[WebConstants.Config.ADMIN_EMAIL_ADDRESSES];
+                    toNames += address.DisplayName + ",";
+                    String[] toNameArray = ConfigurationSettings.AppSettings[WebConstants.Config.ADMIN_EMAIL_ADDRESSES].Split(',');
+                    foreach(String k in toNameArray){
+                        toNames += k.Substring(0, k.IndexOf('@') ) + ",";
+                    }
                     toEmails += address.Address + ","+ConfigurationSettings.AppSettings[WebConstants.Config.ADMIN_EMAIL_ADDRESSES];
                 }
                 var email=new EmailQueue{LogTime=DateTime.Now, NumOfTries=1, FromName="WestGate", FromAddress=FROM_ADDRESS, ToNames=toNames.Substring(0, toNames.Length - 1), ToAddresses=toEmails.Substring(0, toEmails.Length),

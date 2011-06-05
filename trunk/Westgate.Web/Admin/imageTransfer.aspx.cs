@@ -17,10 +17,10 @@ namespace Westgate.Web.Admin
         {
             var image = (from c in DatabaseContext.Images select c).AsEnumerable();
             foreach(var n in image){
-                if (!(n.CombinedImagePath.Contains(".jpg"))) {
+                //if (!(n.CombinedImagePath.Contains(".jpg"))) {
                     SetImage(n);
 
-                }
+                //}
             }
             DatabaseContext.SaveChanges();
         }
@@ -104,8 +104,8 @@ namespace Westgate.Web.Admin
                 Graphics graphic = Graphics.FromImage(combinedImage);
                 graphic.Clear(Color.White);
                 graphic.InterpolationMode = InterpolationMode.HighQualityBicubic;
-                graphic.DrawImage(beforeImage, x0, y0 / 2, (float)beforeWidth, (float)beforeHeight);
-                graphic.DrawImage(afterImage, 468, ay0 / 2, (float)afterWidth, (float)afterHeight);
+                graphic.DrawImage(beforeImage, x0 / 2, y0 / 2, (float)beforeWidth, (float)beforeHeight);
+                graphic.DrawImage(afterImage, (468 + (ax0 / 2)), ay0 / 2, (float)afterWidth, (float)afterHeight);
                 graphic.Dispose();
                 string fileName = System.Guid.NewGuid().ToString() + ".png";
                 string path = Server.MapPath("~/UserImages") + @"\" + fileName;

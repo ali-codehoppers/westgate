@@ -13,6 +13,15 @@ namespace Westgate.Web.ajax {
     public partial class CategoryContents {
         
         /// <summary>
+        /// categoryLink control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink categoryLink;
+        
+        /// <summary>
         /// categoryName control.
         /// </summary>
         /// <remarks>
