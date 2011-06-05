@@ -19,6 +19,8 @@ namespace Westgate.Web.ajax
                 Category category = (from c in DatabaseContext.Categories where c.CategoryId == categoryId select c).FirstOrDefault();
                 if (category != null)
                 {
+                    categoryLink.NavigateUrl = "javascript:OnCategoryClick(" + Request["categoryId"] + ")";
+                    categoryLink.Text = category.Name.ToString();
                     Label1.Text = category.Subcategories.Count().ToString();
                     categoryName.Text = category.Name;
                     categoryDescription.Text = category.Description;

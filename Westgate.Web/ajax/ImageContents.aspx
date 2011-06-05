@@ -17,12 +17,12 @@
     <script type="text/javascript">
         $(function () {
             var galleries = $('.ad-gallery').adGallery({
-                width: 936, // Width of the image, set to false and it will read the CSS width
-                height: 350, slideshow: {
+                width: 945, // Width of the image, set to false and it will read the CSS width
+                height: 355, slideshow: {
                 
                     enable: true,
                     autostart: true,
-                    speed: 2300,
+                    speed: 3500,
                     start_label: 'Start',
                     stop_label: 'Stop',
                     countdown_prefix: '(', // Wrap around the countdown
@@ -51,7 +51,7 @@
 </head>
 <body>
     <form id="form1" runat="server">
-    <div id="container">
+    <div id="container" style="padding-left:10px">
         <div id="gallery" class="ad-gallery">
             <div class="ad-image-wrapper">
             </div>

@@ -34,7 +34,8 @@
                                 <asp:Label runat="server" ID="CatId" Text='<%#Eval("CategoryId")%>' Visible="false"></asp:Label>
                                 <asp:Repeater ID="subCategoryRepeater" runat="server">
                                     <ItemTemplate>
-                                        <div style="padding:5px;clear:both">
+                                    <%# Container.ItemIndex == 8 ? "<div style='padding-left:32px;clear:both;'><a class='black_link' href='" + "javascript:OnCategoryClick(" + Eval("CategoryId") + ")" + "'>more...</a></div>" : ""%>
+                                        <div style='padding:5px;clear:both;<%# Container.ItemIndex >= 8 ? "display:none" :""%>'>
                                             <img src="images/tick_icon.jpg" alt="" width="16" height="16" align="left" style="padding-right:10px;"/>
                                             <asp:HyperLink runat="server" ID="Link2" Text='<%#Eval("Name") %>' style="float:left" NavigateUrl='<%# "javascript:OnSubcategoryClick("+Eval("SubcategoryId")+")"%>' CssClass="black_link"></asp:HyperLink>
                                         </div>

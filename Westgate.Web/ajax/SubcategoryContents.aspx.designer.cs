@@ -22,6 +22,24 @@ namespace Westgate.Web.ajax {
         protected global::System.Web.UI.WebControls.Repeater rptImageCategories;
         
         /// <summary>
+        /// categoryLink control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink categoryLink;
+        
+        /// <summary>
+        /// subcategoryLink control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink subcategoryLink;
+        
+        /// <summary>
         /// SubcategoryName control.
         /// </summary>
         /// <remarks>

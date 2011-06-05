@@ -19,6 +19,13 @@ namespace Westgate.Web.ajax
                 Story Storycategory = (from c in DatabaseContext.Stories where c.StoryId == StoryId select c).FirstOrDefault();
                 if (Storycategory != null)
                 {
+                    categoryLink.NavigateUrl = "javascript:OnCategoryClick(" + Storycategory.Subcategory.CategoryId + ")";
+                    categoryLink.Text = Storycategory.Subcategory.Category.Name.ToString();
+                    subcategoryLink.NavigateUrl = "javascript:OnSubcategoryClick(" + Storycategory.SubcategoryId + ")";
+                    subcategoryLink.Text = Storycategory.Subcategory.Name.ToString();
+                    storyLink.NavigateUrl = "javascript:OnStoryClick(" + Request["StoryId"] + ")";
+                    storyLink.Text = Storycategory.Name.ToString();
+
                     StorycategoryName.Text = Storycategory.Name;
                     StorycategoryDescription.Text = Storycategory.Description;
                     rptCategories.DataSource = (from row in DatabaseContext.Images where row.StoryId == StoryId orderby row.ImageId descending select row).Take(4);

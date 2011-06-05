@@ -229,7 +229,7 @@
                 </div>
                 <div>
                     <div id="frame" >
-                        <iframe width="963" height="484" id="imagesFrame" style="border: 0;" frameborder="0"
+                        <iframe width="963" height="484" scrolling="no" id="imagesFrame" style="border: 0;" frameborder="0"
                             src="ajax/Loading.aspx"></iframe>
                     </div>
                 </div>
