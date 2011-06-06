@@ -8,11 +8,15 @@ using Westgate.Web.Pages;
 
 namespace Westgate.Web.Admin
 {
-    public partial class EditStory : AuthenticatedPage
+    public partial class EditStory : GenericPage
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            int id = id = int.Parse(Request["StoryId"]);
+            var StoryImageItem = (from row in DatabaseContext.Images where row.StoryId == id select row);
+            gvImages.DataSource = StoryImageItem;
+            gvImages.DataBind();
+            
         }
     }
 }

@@ -67,6 +67,9 @@ namespace Westgate.Web.Admin
                 }
             else if (Url.Contains("EditCategory.aspx") || Url.Contains("EditSubCategory.aspx") || Url.Contains("EditStory.aspx"))
                 {
+                    CategoryList.Enabled = false;
+                    SubCategoryList.Enabled = false;
+
                     AddButton.Visible = false;
                     EditButton.Visible = true;
                     if (Request["categoryId"] == null && Request["SubcategoryId"] == null && Request["StoryId"] == null)
@@ -163,7 +166,7 @@ namespace Westgate.Web.Admin
                 StoryItem = new Story { Name = NameText.Text, Description = DescriptionText.Text, SubcategoryId = SelectedId };
                 Context.AddToStories(StoryItem);
                 Context.SaveChanges();
-                Response.Redirect("~/Admin/StoryList.aspx", false);
+                Response.Redirect("~/Admin/EditStory.aspx?StoryId=" + StoryItem.StoryId, false);
             }
         }
 
