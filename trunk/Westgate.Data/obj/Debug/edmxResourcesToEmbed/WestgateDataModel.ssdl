@@ -5,6 +5,7 @@
     <EntitySet Name="Images" EntityType="WestgateModel.Store.Images" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Stories" EntityType="WestgateModel.Store.Stories" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Subcategories" EntityType="WestgateModel.Store.Subcategories" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="UserEnquiry" EntityType="WestgateModel.Store.UserEnquiry" store:Type="Tables" Schema="dbo" />
     <AssociationSet Name="FK_Images_Stories" Association="WestgateModel.Store.FK_Images_Stories">
       <End Role="Stories" EntitySet="Stories" />
       <End Role="Images" EntitySet="Images" />
@@ -57,6 +58,18 @@
     <Property Name="Name" Type="varchar" Nullable="false" MaxLength="50" />
     <Property Name="Description" Type="varchar" MaxLength="1000" />
     <Property Name="DefaultStoryId" Type="int" />
+  </EntityType>
+  <EntityType Name="UserEnquiry">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="companyName" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="personName" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="email" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="postCode" Type="varchar" MaxLength="50" />
+    <Property Name="phoneNumber" Type="varchar" MaxLength="50" />
+    <Property Name="enquiry" Type="varchar" MaxLength="50" />
   </EntityType>
   <Association Name="FK_Images_Stories">
     <End Role="Stories" Type="WestgateModel.Store.Stories" Multiplicity="1">

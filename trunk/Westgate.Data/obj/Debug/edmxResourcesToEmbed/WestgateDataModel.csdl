@@ -5,6 +5,7 @@
     <EntitySet Name="Images" EntityType="WestgateModel.Image" />
     <EntitySet Name="Stories" EntityType="WestgateModel.Story" />
     <EntitySet Name="Subcategories" EntityType="WestgateModel.Subcategory" />
+    <EntitySet Name="UserEnquiries" EntityType="WestgateModel.UserEnquiry" />
     <AssociationSet Name="FK_Subcategories_Categories" Association="WestgateModel.FK_Subcategories_Categories">
       <End Role="Categories" EntitySet="Categories" />
       <End Role="Subcategories" EntitySet="Subcategories" />
@@ -63,6 +64,18 @@
     <Property Name="DefaultStoryId" Type="Int32" />
     <NavigationProperty Name="Category" Relationship="WestgateModel.FK_Subcategories_Categories" FromRole="Subcategories" ToRole="Categories" />
     <NavigationProperty Name="Stories" Relationship="WestgateModel.FK_Stories_Subcategories" FromRole="Subcategories" ToRole="Stories" />
+  </EntityType>
+  <EntityType Name="UserEnquiry">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="companyName" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="personName" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="email" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="postCode" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="phoneNumber" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="enquiry" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
   </EntityType>
   <Association Name="FK_Subcategories_Categories">
     <End Role="Categories" Type="WestgateModel.Category" Multiplicity="1">

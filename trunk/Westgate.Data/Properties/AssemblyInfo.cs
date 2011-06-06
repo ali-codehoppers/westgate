@@ -8,9 +8,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("Westgate.Data")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("c")]
+[assembly: AssemblyCompany("Microsoft")]
 [assembly: AssemblyProduct("Westgate.Data")]
-[assembly: AssemblyCopyright("Copyright © c 2011")]
+[assembly: AssemblyCopyright("Copyright © Microsoft 2011")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("2cb4ac0f-7ca3-4ba7-993a-61065d68c802")]
+[assembly: Guid("07586023-063e-42ab-9d7c-2faea48bf1c2")]
 
 // Version information for an assembly consists of the following four values:
 //

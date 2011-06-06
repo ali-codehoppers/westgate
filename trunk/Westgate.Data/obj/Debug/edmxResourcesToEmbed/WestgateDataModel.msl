@@ -45,5 +45,18 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="UserEnquiries">
+      <EntityTypeMapping TypeName="WestgateModel.UserEnquiry">
+        <MappingFragment StoreEntitySet="UserEnquiry">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="companyName" ColumnName="companyName" />
+          <ScalarProperty Name="personName" ColumnName="personName" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="postCode" ColumnName="postCode" />
+          <ScalarProperty Name="phoneNumber" ColumnName="phoneNumber" />
+          <ScalarProperty Name="enquiry" ColumnName="enquiry" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>
