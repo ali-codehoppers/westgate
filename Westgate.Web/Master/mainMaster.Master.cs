@@ -24,6 +24,17 @@ namespace Westgate.Web.Master
 
         protected void submitButton_Click(object sender, ImageClickEventArgs e)
         {
+            WestgateEntities DatabaseContext = new WestgateEntities();
+            UserEnquiry enquiry = new UserEnquiry {     
+                                                        companyName = CompanyTextID.Text, 
+                                                        personName = PersonTextID.Text,
+                                                        email=EmailTextID.Text,
+                                                        postCode=PostTextID.Text,
+                                                        phoneNumber=PhoneTextID.Text,
+                                                        enquiry = EnquirySelectedId.SelectedItem.Text
+                                                };
+            DatabaseContext.AddToUserEnquiries(enquiry);
+            DatabaseContext.SaveChanges();
             MailMessage message = new MailMessage();
             message.To.Add(new MailAddress(EmailTextID.Text, PersonTextID.Text));
             message.Body = "Company :" + CompanyTextID.Text + "<br/>Person :" + PersonTextID.Text + "<br/>Email :"+EmailTextID.Text+ "<br/>Post Code : "+PostTextID.Text+"<br/>Phone :"+PhoneTextID.Text+"<br/>Nature of Enquiry :"+EnquirySelectedId.SelectedItem.Text;

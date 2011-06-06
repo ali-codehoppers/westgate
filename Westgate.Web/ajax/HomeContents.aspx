@@ -1,6 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master/Blank.Master" AutoEventWireup="true" CodeBehind="HomeContents.aspx.cs" Inherits="Westgate.Web.ajax.HomeContents" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-       <div style="padding-top: 10px; height: 100px">
+       <div style="height: 100px">
         <table width="100%" border="0" cellspacing="0" cellpadding="0">
             <tr>
                 <td height="37" colspan="2" align="left">
@@ -17,7 +17,7 @@
             </tr>
         </table>
     </div>
-    <div id="Searchresult" style="min-height:250px;">
+    <div id="Searchresult" style="min-height:237px;">
     </div>
     <asp:Label ID="Label1" runat="server" Text="0" Visible="false"></asp:Label>
     <div id="hiddenresult" style="display: none;">
@@ -34,8 +34,8 @@
                                 <asp:Label runat="server" ID="CatId" Text='<%#Eval("CategoryId")%>' Visible="false"></asp:Label>
                                 <asp:Repeater ID="subCategoryRepeater" runat="server">
                                     <ItemTemplate>
-                                    <%# Container.ItemIndex == 8 ? "<div style='padding-left:32px;clear:both;'><a class='black_link' href='" + "javascript:OnCategoryClick(" + Eval("CategoryId") + ")" + "'>more...</a></div>" : ""%>
-                                        <div style='padding:5px;clear:both;<%# Container.ItemIndex >= 8 ? "display:none" :""%>'>
+                                    <%# Container.ItemIndex == 7 ? "<div style='padding-left:32px;clear:both;'><a class='black_link' href='" + "javascript:OnCategoryClick(" + Eval("CategoryId") + ")" + "'>more...</a></div>" : ""%>
+                                        <div style='padding:5px;clear:both;<%# Container.ItemIndex >= 7 ? "display:none" :""%>'>
                                             <img src="images/tick_icon.jpg" alt="" width="16" height="16" align="left" style="padding-right:10px;"/>
                                             <asp:HyperLink runat="server" ID="Link2" Text='<%#Eval("Name") %>' style="float:left" NavigateUrl='<%# "javascript:OnSubcategoryClick("+Eval("SubcategoryId")+")"%>' CssClass="black_link"></asp:HyperLink>
                                         </div>
@@ -52,8 +52,7 @@
 
     <div id="Pagination" class="grey_top">
     </div>
-    <div style="clear:both">
-    </div>
+
     <script type="text/javascript">
         function pageselectCallback(page_index, jq) {
 
