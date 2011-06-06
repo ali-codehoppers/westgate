@@ -4,12 +4,13 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="WestgateModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+      <Schema Namespace="WestgateModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
         <EntityContainer Name="WestgateModelStoreContainer">
           <EntitySet Name="Categories" EntityType="WestgateModel.Store.Categories" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Images" EntityType="WestgateModel.Store.Images" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Stories" EntityType="WestgateModel.Store.Stories" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Subcategories" EntityType="WestgateModel.Store.Subcategories" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="UserEnquiry" EntityType="WestgateModel.Store.UserEnquiry" store:Type="Tables" Schema="dbo" />
           <AssociationSet Name="FK_Images_Stories" Association="WestgateModel.Store.FK_Images_Stories">
             <End Role="Stories" EntitySet="Stories" />
             <End Role="Images" EntitySet="Images" />
@@ -63,6 +64,18 @@
           <Property Name="Description" Type="varchar" MaxLength="1000" />
           <Property Name="DefaultStoryId" Type="int" />
         </EntityType>
+        <EntityType Name="UserEnquiry">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="companyName" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="personName" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="email" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="postCode" Type="varchar" MaxLength="50" />
+          <Property Name="phoneNumber" Type="varchar" MaxLength="50" />
+          <Property Name="enquiry" Type="varchar" MaxLength="50" />
+        </EntityType>
         <Association Name="FK_Images_Stories">
           <End Role="Stories" Type="WestgateModel.Store.Stories" Multiplicity="1">
             <OnDelete Action="Cascade" />
@@ -105,7 +118,8 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="WestgateModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
@@ -114,6 +128,7 @@
           <EntitySet Name="Images" EntityType="WestgateModel.Image" />
           <EntitySet Name="Stories" EntityType="WestgateModel.Story" />
           <EntitySet Name="Subcategories" EntityType="WestgateModel.Subcategory" />
+          <EntitySet Name="UserEnquiries" EntityType="WestgateModel.UserEnquiry" />
           <AssociationSet Name="FK_Subcategories_Categories" Association="WestgateModel.FK_Subcategories_Categories">
             <End Role="Categories" EntitySet="Categories" />
             <End Role="Subcategories" EntitySet="Subcategories" />
@@ -172,6 +187,18 @@
           <Property Name="DefaultStoryId" Type="Int32" />
           <NavigationProperty Name="Category" Relationship="WestgateModel.FK_Subcategories_Categories" FromRole="Subcategories" ToRole="Categories" />
           <NavigationProperty Name="Stories" Relationship="WestgateModel.FK_Stories_Subcategories" FromRole="Subcategories" ToRole="Stories" />
+        </EntityType>
+        <EntityType Name="UserEnquiry">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="companyName" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="personName" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="email" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="postCode" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="phoneNumber" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="enquiry" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
         </EntityType>
         <Association Name="FK_Subcategories_Categories">
           <End Role="Categories" Type="WestgateModel.Category" Multiplicity="1">
@@ -249,6 +276,15 @@
             <ScalarProperty Name="Description" ColumnName="Description" />
             <ScalarProperty Name="DefaultStoryId" ColumnName="DefaultStoryId" />
           </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="UserEnquiries"><EntityTypeMapping TypeName="WestgateModel.UserEnquiry"><MappingFragment StoreEntitySet="UserEnquiry">
+            <ScalarProperty Name="id" ColumnName="id" />
+            <ScalarProperty Name="companyName" ColumnName="companyName" />
+            <ScalarProperty Name="personName" ColumnName="personName" />
+            <ScalarProperty Name="email" ColumnName="email" />
+            <ScalarProperty Name="postCode" ColumnName="postCode" />
+            <ScalarProperty Name="phoneNumber" ColumnName="phoneNumber" />
+            <ScalarProperty Name="enquiry" ColumnName="enquiry" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -270,21 +306,22 @@
     <!-- Diagram content (shape and connector positions) -->
     <Diagrams>
       <Diagram Name="WestgateDataModel">
-        <EntityTypeShape EntityType="WestgateModel.Category" Width="1.5" PointX="0.75" PointY="1.125" Height="1.7566536458333335" IsExpanded="true" />
-        <EntityTypeShape EntityType="WestgateModel.Image" Width="1.5" PointX="7.5" PointY="0.875" Height="2.2496956380208335" IsExpanded="true" />
-        <EntityTypeShape EntityType="WestgateModel.Story" Width="1.5" PointX="5.25" PointY="1.125" Height="1.9210009765624996" IsExpanded="true" />
-        <EntityTypeShape EntityType="WestgateModel.Subcategory" Width="1.5" PointX="3" PointY="1" Height="2.0853483072916656" IsExpanded="true" />
+        <EntityTypeShape EntityType="WestgateModel.Category" Width="1.5" PointX="0.75" PointY="1.25" Height="1.9802864583333335" IsExpanded="true" />
+        <EntityTypeShape EntityType="WestgateModel.Image" Width="1.5" PointX="7.5" PointY="1" Height="2.5571907552083326" IsExpanded="true" />
+        <EntityTypeShape EntityType="WestgateModel.Story" Width="1.5" PointX="5.25" PointY="1.125" Height="2.1725878906249996" IsExpanded="true" />
+        <EntityTypeShape EntityType="WestgateModel.Subcategory" Width="1.5" PointX="3" PointY="1" Height="2.3648893229166656" IsExpanded="true" />
+        <EntityTypeShape EntityType="WestgateModel.UserEnquiry" Width="1.5" PointX="0.75" PointY="4.75" Height="2.3648893229166656" IsExpanded="true" />
         <AssociationConnector Association="WestgateModel.FK_Subcategories_Categories" ManuallyRouted="false">
-          <ConnectorPoint PointX="2.25" PointY="2.0033268229166667" />
-          <ConnectorPoint PointX="3" PointY="2.0033268229166667" />
+          <ConnectorPoint PointX="2.25" PointY="2.2401432291666667" />
+          <ConnectorPoint PointX="3" PointY="2.2401432291666667" />
         </AssociationConnector>
         <AssociationConnector Association="WestgateModel.FK_Images_Stories" ManuallyRouted="false">
-          <ConnectorPoint PointX="6.75" PointY="2.08550048828125" />
-          <ConnectorPoint PointX="7.5" PointY="2.08550048828125" />
+          <ConnectorPoint PointX="6.75" PointY="2.2112939453125" />
+          <ConnectorPoint PointX="7.5" PointY="2.2112939453125" />
         </AssociationConnector>
         <AssociationConnector Association="WestgateModel.FK_Stories_Subcategories" ManuallyRouted="false">
-          <ConnectorPoint PointX="4.5" PointY="2.08550048828125" />
-          <ConnectorPoint PointX="5.25" PointY="2.08550048828125" />
+          <ConnectorPoint PointX="4.5" PointY="2.2112939453125" />
+          <ConnectorPoint PointX="5.25" PointY="2.2112939453125" />
         </AssociationConnector>
       </Diagram>
     </Diagrams>

@@ -135,6 +135,22 @@ namespace Westgate.Data
             }
         }
         private ObjectSet<Subcategory> _Subcategories;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<UserEnquiry> UserEnquiries
+        {
+            get
+            {
+                if ((_UserEnquiries == null))
+                {
+                    _UserEnquiries = base.CreateObjectSet<UserEnquiry>("UserEnquiries");
+                }
+                return _UserEnquiries;
+            }
+        }
+        private ObjectSet<UserEnquiry> _UserEnquiries;
 
         #endregion
         #region AddTo Methods
@@ -169,6 +185,14 @@ namespace Westgate.Data
         public void AddToSubcategories(Subcategory subcategory)
         {
             base.AddObject("Subcategories", subcategory);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the UserEnquiries EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToUserEnquiries(UserEnquiry userEnquiry)
+        {
+            base.AddObject("UserEnquiries", userEnquiry);
         }
 
         #endregion
@@ -987,6 +1011,211 @@ namespace Westgate.Data
         }
 
         #endregion
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="WestgateModel", Name="UserEnquiry")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class UserEnquiry : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new UserEnquiry object.
+        /// </summary>
+        /// <param name="id">Initial value of the id property.</param>
+        /// <param name="companyName">Initial value of the companyName property.</param>
+        /// <param name="personName">Initial value of the personName property.</param>
+        /// <param name="email">Initial value of the email property.</param>
+        public static UserEnquiry CreateUserEnquiry(global::System.Int32 id, global::System.String companyName, global::System.String personName, global::System.String email)
+        {
+            UserEnquiry userEnquiry = new UserEnquiry();
+            userEnquiry.id = id;
+            userEnquiry.companyName = companyName;
+            userEnquiry.personName = personName;
+            userEnquiry.email = email;
+            return userEnquiry;
+        }
+
+        #endregion
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 id
+        {
+            get
+            {
+                return _id;
+            }
+            set
+            {
+                if (_id != value)
+                {
+                    OnidChanging(value);
+                    ReportPropertyChanging("id");
+                    _id = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("id");
+                    OnidChanged();
+                }
+            }
+        }
+        private global::System.Int32 _id;
+        partial void OnidChanging(global::System.Int32 value);
+        partial void OnidChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String companyName
+        {
+            get
+            {
+                return _companyName;
+            }
+            set
+            {
+                OncompanyNameChanging(value);
+                ReportPropertyChanging("companyName");
+                _companyName = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("companyName");
+                OncompanyNameChanged();
+            }
+        }
+        private global::System.String _companyName;
+        partial void OncompanyNameChanging(global::System.String value);
+        partial void OncompanyNameChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String personName
+        {
+            get
+            {
+                return _personName;
+            }
+            set
+            {
+                OnpersonNameChanging(value);
+                ReportPropertyChanging("personName");
+                _personName = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("personName");
+                OnpersonNameChanged();
+            }
+        }
+        private global::System.String _personName;
+        partial void OnpersonNameChanging(global::System.String value);
+        partial void OnpersonNameChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String email
+        {
+            get
+            {
+                return _email;
+            }
+            set
+            {
+                OnemailChanging(value);
+                ReportPropertyChanging("email");
+                _email = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("email");
+                OnemailChanged();
+            }
+        }
+        private global::System.String _email;
+        partial void OnemailChanging(global::System.String value);
+        partial void OnemailChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String postCode
+        {
+            get
+            {
+                return _postCode;
+            }
+            set
+            {
+                OnpostCodeChanging(value);
+                ReportPropertyChanging("postCode");
+                _postCode = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("postCode");
+                OnpostCodeChanged();
+            }
+        }
+        private global::System.String _postCode;
+        partial void OnpostCodeChanging(global::System.String value);
+        partial void OnpostCodeChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String phoneNumber
+        {
+            get
+            {
+                return _phoneNumber;
+            }
+            set
+            {
+                OnphoneNumberChanging(value);
+                ReportPropertyChanging("phoneNumber");
+                _phoneNumber = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("phoneNumber");
+                OnphoneNumberChanged();
+            }
+        }
+        private global::System.String _phoneNumber;
+        partial void OnphoneNumberChanging(global::System.String value);
+        partial void OnphoneNumberChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String enquiry
+        {
+            get
+            {
+                return _enquiry;
+            }
+            set
+            {
+                OnenquiryChanging(value);
+                ReportPropertyChanging("enquiry");
+                _enquiry = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("enquiry");
+                OnenquiryChanged();
+            }
+        }
+        private global::System.String _enquiry;
+        partial void OnenquiryChanging(global::System.String value);
+        partial void OnenquiryChanged();
+
+        #endregion
+    
     }
 
     #endregion
