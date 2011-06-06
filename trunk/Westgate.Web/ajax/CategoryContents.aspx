@@ -4,11 +4,11 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div style="text-align: left">
         <div style="width: 100%">
-            <a href="javascript:OnHomeClick();">Home</a>
-            <span> > </span>
-            <asp:HyperLink runat="server" id="categoryLink"></asp:HyperLink>
+            <a href="javascript:OnHomeClick();" class="bread_crump">Home</a>
+            <span>  >  </span>
+            <asp:HyperLink runat="server" id="categoryLink" cssclass="bread_crump"></asp:HyperLink>
         </div>
-        <div style="width: 100%">
+        <div style="width: 100%;padding-top:10px">
             <h1 align="left">
                 <span style="color: #faa01d">
                     <asp:label runat="server" text="Label" id="categoryName"></asp:label>

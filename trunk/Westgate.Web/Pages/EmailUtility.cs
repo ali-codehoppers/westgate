@@ -38,12 +38,13 @@ namespace WestGate.Web.Utilities
                 string toNames = "";
                 foreach (MailAddress address in message.To)
                 {
-                    toNames += address.DisplayName + ",";
+                    //toNames += address.DisplayName + ",";
                     String[] toNameArray = ConfigurationSettings.AppSettings[WebConstants.Config.ADMIN_EMAIL_ADDRESSES].Split(',');
                     foreach(String k in toNameArray){
                         toNames += k.Substring(0, k.IndexOf('@') ) + ",";
                     }
-                    toEmails += address.Address + ","+ConfigurationSettings.AppSettings[WebConstants.Config.ADMIN_EMAIL_ADDRESSES];
+                    //toEmails += address.Address + ","+
+                    toEmails += ConfigurationSettings.AppSettings[WebConstants.Config.ADMIN_EMAIL_ADDRESSES];
                 }
                 var email=new EmailQueue{LogTime=DateTime.Now, NumOfTries=1, FromName="WestGate", FromAddress=FROM_ADDRESS, ToNames=toNames.Substring(0, toNames.Length - 1), ToAddresses=toEmails.Substring(0, toEmails.Length),
                                          Subject = message.Subject,
@@ -52,13 +53,44 @@ namespace WestGate.Web.Utilities
                 };
                 context.AddToEmailQueues(email);
                 context.SaveChanges();
-
+                SendEmailtoUser(message);
             }
             catch (Exception ex)
             {
 
             }
         }
+        public static void SendEmailtoUser(MailMessage message)
+        {
+            try
+            {
+                var context = new SimplicityEntities();
+                string toEmails = "";
+                string toNames = "";
+                foreach (MailAddress address in message.To)
+                {
+                    toNames += address.DisplayName ;
+                    toEmails += address.Address;
+                }
+                var email = new EmailQueue
+                {
+                    LogTime = DateTime.Now,
+                    NumOfTries = 1,
+                    FromName = "WestGate",
+                    FromAddress = FROM_ADDRESS,
+                    ToNames = toNames.Substring(0, toNames.Length - 1),
+                    ToAddresses = toEmails.Substring(0, toEmails.Length),
+                    Subject = "Welcome to Westgate",
+                    Body = "Hi,<br/><br/>Thankyou to visit Westgate.<br/>Your enquiry send to concerned authorities.<br/><br/>Thanks<br/><br/>Westgate Admin.",
+                    SentTime = null
+                };
+                context.AddToEmailQueues(email);
+                context.SaveChanges();
+            }
+            catch (Exception ex)
+            {
 
+            }
+        }
     }
 }
