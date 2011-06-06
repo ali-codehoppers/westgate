@@ -619,7 +619,7 @@ var window_loaded = false;
 				 'width':'73px',
 				 'height':'13px',
 				 'fontSize':'0px',
-				 'lineHeight':'0%',
+				 'lineHeight':'0%'
 				 //'borderTopWidth':pointer_height+'px',
 				 //'borderRightWidth':(pointer_width/2)+'px',
 				 //'borderBottomWidth':pointer_height+'px',

@@ -60,6 +60,7 @@
     <Content Include="Admin\AddCategory.aspx" />
     <Content Include="Admin\addEdit.ascx" />
     <Content Include="Admin\AddImage.aspx" />
+    <Content Include="Admin\addNewImage.aspx" />
     <Content Include="Admin\AddStory.aspx" />
     <Content Include="Admin\AddSubCategory.aspx" />
     <Content Include="Admin\CategoriesList.aspx" />
@@ -97,6 +98,8 @@
     <Content Include="images\btn_partition.jpg" />
     <Content Include="images\btn_submit.jpg" />
     <Content Include="images\double_dotted.jpg" />
+    <Content Include="images\edit.png" />
+    <Content Include="images\icon_cancel.png" />
     <Content Include="images\image1.jpg" />
     <Content Include="images\image1before.jpg" />
     <Content Include="images\image2.jpg" />
@@ -121,6 +124,8 @@
     <Content Include="images\lightbox-btn-next.gif" />
     <Content Include="images\lightbox-btn-prev.gif" />
     <Content Include="images\lightbox-ico-loading.gif" />
+    <Content Include="images\login-box-backg.png" />
+    <Content Include="images\login-btn.png" />
     <Content Include="images\logo.jpg" />
     <Content Include="images\logo_footer.jpg" />
     <Content Include="images\logo_txt.jpg" />
@@ -193,6 +198,7 @@
     <Content Include="script\pagination\pagination.css" />
     <Content Include="script\tab\jquery-ui.min.js" />
     <Content Include="script\tab\jquery-ui.css" />
+    <Content Include="stylesheet\login-box.css" />
     <Content Include="stylesheet\stylesheet.css" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -225,6 +231,13 @@
     </Compile>
     <Compile Include="Admin\AddImage.aspx.designer.cs">
       <DependentUpon>AddImage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\addNewImage.aspx.cs">
+      <DependentUpon>addNewImage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\addNewImage.aspx.designer.cs">
+      <DependentUpon>addNewImage.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\AddStory.aspx.cs">
       <DependentUpon>AddStory.aspx</DependentUpon>
