@@ -76,7 +76,7 @@
             $("#imagesFrame").attr("src", "ajax/imagecontents.aspx?pageType=HOME");
             $("#imagesFrame").attr("style", "display:block");
             $("#profileSection").attr("style", "display:block");
-            $("#profilemain").attr("style", "width: 27%; float: right; min-height: 390px;");
+            $("#profilemain").attr("style", "width: 27%; float: right; min-height: 375px;");
             $("#contentsDiv").attr("style", "padding-top: 10px; min-height: 363px; width: 70%; border-right: 1px dotted #CCCCCC;");
         }
         function OnCategoryClick(id) {
@@ -89,7 +89,7 @@
             $("#imagesFrame").attr("src", "ajax/imagecontents.aspx?pageType=CATEGORY&categoryId=" + id);
             $("#imagesFrame").attr("style", "display:block");
             $("#profileSection").attr("style", "display:block");
-            $("#profilemain").attr("style", "width: 27%; float: right; min-height: 390px;");
+            $("#profilemain").attr("style", "width: 27%; float: right; min-height: 375px;");
             $("#contentsDiv").attr("style", "padding-top: 10px; min-height: 363px; width: 70%; border-right: 1px dotted #CCCCCC;");
         }
         function OnSubcategoryClick(id) {
@@ -102,7 +102,7 @@
             $("#imagesFrame").attr("src", "ajax/imagecontents.aspx?pageType=SUBCATEGORY&subcategoryId=" + id);
             $("#imagesFrame").attr("style", "display:block");
             $("#profileSection").attr("style", "display:block");
-            $("#profilemain").attr("style", "width: 27%; float: right; min-height: 390px;");
+            $("#profilemain").attr("style", "width: 27%; float: right; min-height: 375px;");
             $("#contentsDiv").attr("style", "padding-top: 10px; min-height: 363px; width: 70%; border-right: 1px dotted #CCCCCC;");
         }
         function OnStoryClick(id) {
@@ -115,7 +115,7 @@
             $("#imagesFrame").attr("src", "ajax/imagecontents.aspx?pageType=STORY&storyId=" + id);
             $("#imagesFrame").attr("style", "display:block");
             $("#profileSection").attr("style", "display:block");
-            $("#profilemain").attr("style", "width: 27%; float: right; min-height: 390px;");
+            $("#profilemain").attr("style", "width: 27%; float: right; min-height: 375px;");
             $("#contentsDiv").attr("style", "padding-top: 10px; min-height: 363px; width: 70%; border-right: 1px dotted #CCCCCC;");
         }
         function OnContactClick() {
@@ -125,7 +125,7 @@
             $("#imagesFrame").attr("src", "ajax/imagecontents.aspx?pageType=HOME");
             $("#imagesFrame").attr("style", "display:block");
             $("#profileSection").attr("style", "display:block");
-            $("#profilemain").attr("style", "width: 27%; float: right; min-height: 390px;");
+            $("#profilemain").attr("style", "width: 27%; float: right; min-height: 375px;");
             $("#contentsDiv").attr("style", "padding-top: 10px; min-height: 363px; width: 70%; border-right: 1px dotted #CCCCCC;");
         }
         function OnSiteClick() {
@@ -135,7 +135,7 @@
             });
             $("#imagesFrame").attr("style", "display:none");
             $("#profileSection").attr("style", "display:none");
-            $("#profilemain").attr("style", "width: 0%; float: right; min-height: 390px;");
+            $("#profilemain").attr("style", "width: 0%; float: right; min-height: 375px;");
             $("#contentsDiv").attr("style", "padding-top: 10px; min-height: 363px; width: 98%;float:left; ");
         }
         function OnSearchClick() {
@@ -148,7 +148,7 @@
             });
             $("#imagesFrame").attr("style", "display:none");
             $("#profileSection").attr("style", "display:none");
-            $("#profilemain").attr("style", "width: 0%; float: right; min-height: 390px;");
+            $("#profilemain").attr("style", "width: 0%; float: right; min-height: 375px;");
             $("#contentsDiv").attr("style", "padding-top: 10px; min-height: 363px; width: 98%;float:left; ");
         }
     </script>
@@ -233,9 +233,10 @@
                             src="ajax/Loading.aspx"></iframe>
                     </div>
                 </div>
-                <div class="double_dotted">
-                    <img src="<%=this.ResolveClientUrl("~/images/double_dotted.jpg")%>" alt="" width="4"
-                        height="4" />
+                <div style="clear:both">
+                </div>
+                <div class="double_dotted" style="height:4px">
+
                 </div>
                 <div style="width: 100%;">
                     <div id="profilemain" class="newsletter_bg" style="width: 27%; float: right; min-height: 375px;">
@@ -315,7 +316,7 @@
                                     <asp:Label runat="server" ID="EnquiryLabelID" Text="Nature of Enquiry"></asp:Label>
                                 </div>
                                 <div class="col">
-                                    <asp:DropDownList runat="server" ID="EnquirySelectedId" CssClass="newsletter_field">
+                                    <asp:DropDownList runat="server" ID="EnquirySelectedId" CssClass="newsletter_field" style="height:23px">
                                         <asp:ListItem Text="1a" Value="1" Selected="True"></asp:ListItem>
                                         <asp:ListItem Text="2b" Value="2"></asp:ListItem>
                                         <asp:ListItem Text="3c" Value="3"></asp:ListItem>
@@ -342,9 +343,7 @@
                     <div style="clear: both">
                     </div>
                 </div>
-                <div class="double_dotted">
-                    <img src="<%=this.ResolveClientUrl("~/images/double_dotted.jpg")%>" alt="" width="4"
-                        height="4" />
+                <div class="double_dotted" style="height:4px">
                 </div>
                 <div>
                     <div style="padding-top: 15px">
@@ -352,7 +351,7 @@
                             <img src="<%=this.ResolveClientUrl("~/images/logo_footer.jpg")%>" alt="" width="86"
                                 height="61" />
                         </div>
-                        <div style="width: 91%" class="txt_pipe">
+                        <div style="width: 87%" class="txt_pipe">
                             <div style="text-align: center; width: 100%">
                                 Copyright©2011 West Gate Maintenance Limited. All Rights Reserved.</div>
                             <div style="text-align: center; width: 100%">

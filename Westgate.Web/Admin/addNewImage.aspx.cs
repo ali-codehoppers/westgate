@@ -29,12 +29,9 @@ namespace Westgate.Web.Admin
                 }
                 if (Request["imageId"] != null)
                 {
-                    ddlCategory.Enabled = false;
-                    ddlStories.Enabled = false;
-                    ddlSubcategories.Enabled = false;
                     btnSave.Visible = false;
                     btnUpdate.Visible = true;
-                    btnDelete.Visible = true;
+                    btnDelete.Visible = false;
                     imgAfter.Visible = true;
                     imgCombined.Visible = true;
                     imgBefore.Visible = true;
@@ -120,42 +117,6 @@ namespace Westgate.Web.Admin
             return null;
         }
 
-        protected void ddlCategories_DataBound(object sender, EventArgs e)
-        {
-            if (IsPostBack == false)
-            {
-                if (Request["imageId"] != null)
-                {
-                    ddlCategory.SelectedItem.Value = EditImage.Story.Subcategory.CategoryId.ToString();
-                    ddlCategory.SelectedItem.Text = EditImage.Story.Subcategory.Category.Name;
-                }
-            }
-            ddlSubcategories.DataBind();
-        }
-        protected void ddlSubcategories_DataBound(object sender, EventArgs e)
-        {
-            if (IsPostBack == false)
-            {
-                if (Request["imageId"] != null)
-                {
-                    ddlSubcategories.SelectedItem.Value = EditImage.Story.SubcategoryId.ToString();
-                    ddlSubcategories.SelectedItem.Text = EditImage.Story.Subcategory.Name;
-                }
-            }
-            ddlStories.DataBind();
-        }
-        protected void ddlStories_DataBound(object sender, EventArgs e)
-        {
-            if (IsPostBack == false)
-            {
-                if (Request["imageId"] != null)
-                {
-                    ddlStories.SelectedItem.Value = EditImage.StoryId.ToString();
-                    ddlStories.SelectedItem.Text = EditImage.Story.Name;
-                }
-            }
-        }
-
         protected void btnSave_Click(object sender, EventArgs e)
         {
             Westgate.Data.Image image = new Data.Image();
@@ -163,11 +124,16 @@ namespace Westgate.Web.Admin
 
             DatabaseContext.AddToImages(image);
             DatabaseContext.SaveChanges();
-            Response.Redirect("~/Admin/AddImage.aspx?imageId=" + image.ImageId);
+            Response.Redirect("~/Admin/addNewImage.aspx?imageId=" + image.ImageId);
         }
         private void SetImage(Westgate.Data.Image image)
         {
-            image.StoryId = int.Parse(ddlStories.SelectedValue);
+            if (Request["StoryId"] != null)
+            {
+                image.StoryId = int.Parse(Request["StoryId"]);
+            }else{
+
+            }
             image.Name = tbName.Text;
             image.Description = tbDescription.Text;
             string beforeImagePath = SaveFile(fileBeforeImage);
@@ -218,46 +184,7 @@ namespace Westgate.Web.Admin
                     imgCombined.ImageUrl = path;
                 }
             }
-            /*
-            if (BeforeX1 != null && BeforeX1 != "" &&   AfterX1!=null && AfterX1!="") {
 
-                //beforeImage = System.Drawing.Image.FromFile(Server.MapPath(image.BeforeImagePath));
-                //afterImage = System.Drawing.Image.FromFile(Server.MapPath(image.AfterImagePath));
-                //double beforeActualHeight = (double)beforeImage.PhysicalDimension.Height / (double)Convert.ToInt32(BeforeImageHeight.Value);
-                //double beforeActualWidth = (double)beforeImage.PhysicalDimension.Width / (double)Convert.ToInt32(BeforeImageWidth.Value);
-                //double afterActualHeight = (double)afterImage.PhysicalDimension.Height / (double)Convert.ToInt32(AfterImageHeight.Value);
-                //double afterActualWidth = (double)afterImage.PhysicalDimension.Width / (double)Convert.ToInt32(AfterImageWidth.Value);
-
-                //int beforeX = (int)((double)Convert.ToDouble(BeforeX1) * beforeActualWidth);
-                //int beforeY = (int)((double)Convert.ToDouble(BeforeY1) * beforeActualHeight);
-                //int beforeWidth = (int)((double)(Convert.ToDouble(BeforeX2) - Convert.ToDouble(BeforeX1)) * beforeActualWidth);
-                //int beforeHeight = (int)((double)(Convert.ToDouble(BeforeY2) - Convert.ToDouble(BeforeY1)) * beforeActualHeight);
-                //int afterX = (int)((double)Convert.ToDouble(AfterX1) * afterActualWidth);
-                //int afterY = (int)((double)Convert.ToDouble(AfterY1) * afterActualHeight);
-                //int afterWidth = (int)((double)(Convert.ToDouble(AfterX2) - Convert.ToDouble(AfterX1))*afterActualWidth);
-                //int afterHeight = (int)((double)(Convert.ToDouble(AfterY2) - Convert.ToDouble(AfterY1))*afterActualHeight);
-
-                Bitmap beforeCropImage = new Bitmap(936, 350);
-                Graphics graphic = Graphics.FromImage(beforeCropImage);
-                graphic.InterpolationMode = InterpolationMode.HighQualityBicubic;
-
-                //Rectangle beforeCropArea = new Rectangle(beforeX, beforeY, beforeWidth, beforeHeight);
-                //Rectangle afterCropArea = new Rectangle(afterX, afterY, afterWidth, afterHeight);
-                Rectangle cropArea1 = new Rectangle(0, 0, 468, 350);
-                Rectangle cropArea2 = new Rectangle(468, 0, 468, 350);
-                graphic.DrawImage(beforeImage, cropArea1, beforeCropArea, GraphicsUnit.Pixel);
-                graphic.DrawImage(afterImage, cropArea2, afterCropArea, GraphicsUnit.Pixel);
-                graphic.Dispose();
-
-                string fileName = System.Guid.NewGuid().ToString() + ".png";
-                string path = Server.MapPath("~/UserImages") + @"\" + fileName;
-                beforeCropImage.Save(path);
-
-                image.CombinedImagePath = "~/UserImages/" + fileName;
-                imgCombined.ImageUrl = image.CombinedImagePath;
-                
-            }
-            */
         }
 
         private string CreateCombinedImage(string beforeImagePath, string afterImagePath)
@@ -337,13 +264,14 @@ namespace Westgate.Web.Admin
             afterImage = System.Drawing.Image.FromFile(Server.MapPath(image.AfterImagePath));
             imgAfter.ImageUrl = viewImage(afterImage, "After");
             imgCombined.ImageUrl = image.CombinedImagePath;
+
         }
         protected void btnDelete_Click(object sender, EventArgs e)
         {
             Westgate.Data.Image image = GetImage();
             DatabaseContext.DeleteObject(image);
             DatabaseContext.SaveChanges();
-            Response.Redirect("~/Admin/ImagesList.aspx");
+            Response.Redirect("~/Admin/addNewImage.aspx");
         }
     }
 }

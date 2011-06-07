@@ -8,7 +8,7 @@ using Westgate.Web.Pages;
 
 namespace Westgate.Web.Admin
 {
-    public partial class EditStory : GenericPage
+    public partial class EditStory : AuthenticatedPage
     {
         protected void Page_Load(object sender, EventArgs e)
         {

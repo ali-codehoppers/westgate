@@ -1,5 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin/Admin.Master" AutoEventWireup="true"
-    CodeBehind="EditStory.aspx.cs" Inherits="Westgate.Web.Admin.EditStory" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin/Admin.Master" AutoEventWireup="true" CodeBehind="EditStory.aspx.cs" Inherits="Westgate.Web.Admin.EditStory" %>
 
 <%@ Register Src="addEdit.ascx" TagName="addEdit" TagPrefix="uc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
@@ -7,19 +6,23 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <uc1:addEdit ID="addEdit1" runat="server" />
     <script type="text/javascript">
-        function addImage() {
-            $("#imgframe").attr("src", "addNewImage.aspx");
+        function addImage(id) {
+            $("#imgframe").attr("src", "addNewImage.aspx?StoryId="+id);
             $("#dialog").dialog("open");
-
+        }
+        function editImage(id) {
+            $("#imgframe").attr("src", "addNewImage.aspx?imageId=" + id);
+            $("#dialog").dialog("open");
         }
     </script>
     <div id="dialog">
-        <iframe id="imgframe" width="900" height="900"></iframe>
+        <iframe id="imgframe" width="970" height="900"></iframe>
     </div>
-    <div>
-        <input onclick="javascript:addImage()" value="Add Image" type="button"/>
+    <div style="padding-top:5px;padding-down:5px">
+        <input onclick="javascript:addImage('<%=Request["StoryId"]%>')" value="Add Image" type="button"/>
     </div>
-    <asp:GridView ID="gvImages" runat="server" BackColor="White" BorderColor="#DEDFDE"
+    <div style="padding-top:5px; padding-down:10px">
+    <asp:GridView ID="gvImages" runat="server" BackColor="White" BorderColor="#DEDFDE"  AllowPaging="True"
         BorderStyle="None" BorderWidth="1px" CellPadding="4" 
         EmptyDataText="No Images for the Selected Story" ForeColor="Black" GridLines="Vertical"
         AutoGenerateColumns="False" Style="width: 100%" >
@@ -67,12 +70,12 @@
                 <ItemTemplate>
                      <div style="width:80px;">
                         <div style="float:left;padding-left:10px">
-                            <asp:ImageButton ID="HyperLink1" runat="server" PostBackUrl='<%#"~/Admin/AddImage.aspx?imageId=" + Eval("ImageId") %>' ImageUrl="~/images/edit.png" AlternateText="Edit"/>
+                            <a href="javascript:editImage('<%# Eval("ImageId")%>')" style="text-decoration:none"><img src="../images/edit.png" style="border:0px;"/></a>
                         </div>
                         <div style="float:left;padding-left:10px">
                             <asp:ImageButton ID="ImageButton1" runat="server" OnClientClick="return confirm('Are you sure you want to delete this record?');" ImageUrl="~/images/icon_cancel.png"
                                 CommandName="Delete" AlternateText="Delete"/>
-                        </div>
+                        </div> 
                     </div>
                 </ItemTemplate>
             </asp:TemplateField>
@@ -87,11 +90,11 @@
         <SortedDescendingCellStyle BackColor="#EAEAD3" />
         <SortedDescendingHeaderStyle BackColor="#575357" />
     </asp:GridView>
+    </div>
     <script type="text/javascript">
 	$(function() {
-	
 		$( "#dialog" ).dialog({
-		    bgiframe: true, autoOpen: false, height: 'auto', width: 900, modal: true, resizable: false
+		    bgiframe: true, autoOpen: false, height: 'auto', width: 1000, modal: true, resizable: false, closeText: 'show', close: function (ev, ui) { window.location.reload() }
 		});
 	});
 	</script>

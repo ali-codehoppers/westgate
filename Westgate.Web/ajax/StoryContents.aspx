@@ -30,7 +30,7 @@
             <span> > </span>
             <asp:HyperLink runat="server" id="storyLink" cssclass="bread_crump"></asp:HyperLink>
         </div>
-        <div style="padding-top:10px">       
+        <div style="padding-top:5px;width:100%;display:table;">       
             <h1 align="left">
                 <span style="color: #faa01d">
                     <asp:label runat="server" text="Label" ID="StorycategoryName"></asp:label>

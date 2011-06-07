@@ -26,7 +26,7 @@
                 <ItemTemplate>
                 <%# Container.ItemIndex % 16 == 0 && Container.ItemIndex % 8 == 0 ? "<div class='result' style='float:left; padding-top:10px;width:100%;'>" :""%>
                  <%# (Container.ItemIndex % 16 == 0 || Container.ItemIndex % 8 == 0)?"<div style='float:left; width:40%'>":"" %>   
-                    <div style="padding:5px;clear:both">
+                    <div style="padding-top:5px;width:100%;display:table;">
                          <img src="images/tick_icon.jpg" alt="" width="16" height="16" align="left" style="padding-right:10px;"/>
                          <asp:HyperLink runat="server" ID="Link2" Text='<%#Eval("Name") %>' style="float:left" NavigateUrl='<%# "javascript:OnSubcategoryClick("+Eval("SubcategoryId")+")"%>' CssClass="black_link"></asp:HyperLink>
                     </div>
