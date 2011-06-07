@@ -24,7 +24,7 @@
                 <asp:Repeater ID="CategoryRepeater" runat="server" OnItemDataBound="CategoryRepeater_ItemCommand"> 
                     <ItemTemplate>
                        
-                    <%# Container.ItemIndex % 2 == 0?"<div class='result' style='float:left; padding-top:10px;width:90%;'>":"" %>
+                    <%# Container.ItemIndex % 2 == 0?"<div class='result' style='float:left; padding-top:5px;width:90%;'>":"" %>
                            <div style="float:left; width:48%;">
                                 <h2 style="padding-top:0px; margin-top:0px;" align="left">
                                     <asp:HyperLink runat="server" ID="Link1" Text='<%#Eval("Name") %>' NavigateUrl='<%# "javascript:OnCategoryClick("+Eval("CategoryId")+")"%>' style="font: normal 14px 'Lucida Sans Unicode', 'Lucida Grande', sans-serif;
@@ -35,7 +35,7 @@
                                 <asp:Repeater ID="subCategoryRepeater" runat="server">
                                     <ItemTemplate>
                                     <%# Container.ItemIndex == 7 ? "<div style='padding-left:32px;clear:both;'><a class='black_link' href='" + "javascript:OnCategoryClick(" + Eval("CategoryId") + ")" + "'>more...</a></div>" : ""%>
-                                        <div style='padding:5px;clear:both;<%# Container.ItemIndex >= 7 ? "display:none" :""%>'>
+                                        <div style='padding-top:5px;width:100%;display:table;<%# Container.ItemIndex >= 7 ? "display:none" :""%>'>
                                             <img src="images/tick_icon.jpg" alt="" width="16" height="16" align="left" style="padding-right:10px;"/>
                                             <asp:HyperLink runat="server" ID="Link2" Text='<%#Eval("Name") %>' style="float:left" NavigateUrl='<%# "javascript:OnSubcategoryClick("+Eval("SubcategoryId")+")"%>' CssClass="black_link"></asp:HyperLink>
                                         </div>

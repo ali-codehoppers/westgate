@@ -54,7 +54,7 @@
         <div style="float:left;width:100%">
             <asp:repeater runat="server" id="rptStoryCategories" datasourceid="edsStories">
             <ItemTemplate>
-                <div style="padding:5px;clear:both">
+                <div style="padding-top:5px;width:100%;display:table;">
                     <img src="images/tick_icon.jpg" alt="" width="16" height="16" align="left" style="padding-right:10px;"/>
                     <asp:HyperLink runat="server" ID="Link2" Text='<%#Eval("Name") %>' NavigateUrl='<%# "javascript:OnStoryClick("+Eval("StoryId")+")"%>' CssClass="black_link"></asp:HyperLink>
                 </div>
