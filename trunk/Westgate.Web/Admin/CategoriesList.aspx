@@ -2,11 +2,19 @@
     CodeBehind="CategoriesList.aspx.cs" Inherits="Westgate.Web.Admin.CategoriesList" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <script type="text/javascript">
+        function addCategory() {
+            $("#catFrame").attr("src", "AddCategory.aspx");
+            $("#dialog").dialog("open");
+        }
+    </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+<div id="dialog">
+    <iframe id="catFrame" width="970" height="900"></iframe>
+</div>
 <div style="padding-top:10px;padding-bottom:10px">
-    <asp:Button ID="AddCategoryLink" runat="server"  Text="Add Category" 
-         PostBackUrl="~/Admin/AddCategory.aspx"/>
+    <a class="button" href="javascript:addCategory()">Add Category</a>    
 </div>
     <asp:GridView ID="GridView1" runat="server" AllowPaging="True" AllowSorting="True"
         AutoGenerateColumns="False" BackColor="White" BorderColor="#DEDFDE" BorderStyle="None"
@@ -49,4 +57,11 @@
         DefaultContainerName="WestgateEntities" EnableFlattening="False" EntitySetName="Categories"
         EnableDelete="True">
     </asp:EntityDataSource>
+    <script type="text/javascript">
+        $(function () {
+            $("#dialog").dialog({
+                bgiframe: true, autoOpen: false, height: 400, width: 600, modal: true, resizable: false, closeText: 'show', close: function (ev, ui) { window.location.reload() }
+            });
+        });
+	</script>
 </asp:Content>
