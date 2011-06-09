@@ -168,3 +168,25 @@ A.grey_top:hover {
     font-family: 'Arial Black';
     color: #FF9900;
 }
+.button
+{
+    border-style: none;
+    border-width: 0px;
+    background-image: url('../images/bg_button.png');
+    background-repeat: no-repeat;
+    background-position: center center;
+    font-size: 14pt;
+    font-weight: bold;
+    color: #FFF;
+    height: 60px;
+    width: 154px;
+    background-color: #FFFFFF;
+    display:block;
+    padding-left:30px;
+    padding-top:30px;
+}
+.button:hover
+{
+    text-decoration: underline;
+    cursor:pointer;
+}   
