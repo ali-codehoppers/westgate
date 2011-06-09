@@ -316,11 +316,10 @@
                                     <asp:Label runat="server" ID="EnquiryLabelID" Text="Nature of Enquiry"></asp:Label>
                                 </div>
                                 <div class="col">
-                                    <asp:DropDownList runat="server" ID="EnquirySelectedId" CssClass="newsletter_field" style="height:23px">
-                                        <asp:ListItem Text="1a" Value="1" Selected="True"></asp:ListItem>
-                                        <asp:ListItem Text="2b" Value="2"></asp:ListItem>
-                                        <asp:ListItem Text="3c" Value="3"></asp:ListItem>
-                                        <asp:ListItem Text="4d" Value="4"></asp:ListItem>
+                                    <asp:DropDownList runat="server" ID="EnquirySelectedId" CssClass="newsletter_field">
+                                        <asp:ListItem Text="Building Works" Value="1" Selected="True"></asp:ListItem>
+                                        <asp:ListItem Text="Surveying" Value="2"></asp:ListItem>
+                                        <asp:ListItem Text="General Enquiry" Value="3"></asp:ListItem>
                                     </asp:DropDownList>
                                 </div>
                             </div>
