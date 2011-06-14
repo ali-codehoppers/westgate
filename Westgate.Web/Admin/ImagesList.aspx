@@ -110,7 +110,7 @@
         EnableDelete="True">
         <WhereParameters>
             <asp:ControlParameter ControlID="ddlStories" DefaultValue="0" Name="StoryId" 
-                PropertyName="SelectedValue" DbType="Int32" />
+                PropertyName="SelectedValue" DbType="Int32"  />
         </WhereParameters>
     </asp:EntityDataSource>
 </div>

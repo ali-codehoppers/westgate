@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin/Admin.Master" AutoEventWireup="true"
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin/Admin.Master" AutoEventWireup="true" EnableEventValidation="true"
     CodeBehind="CategoriesList.aspx.cs" Inherits="Westgate.Web.Admin.CategoriesList" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
@@ -7,18 +7,25 @@
             $("#catFrame").attr("src", "AddCategory.aspx");
             $("#dialog").dialog("open");
         }
+        function editCategory(id) {
+            $("#catFrame").attr("src", "EditCategory.aspx?categoryId="+id);
+            $("#dialog").dialog("open");
+        }
+        function deleteCategory(id) {
+            window.location.href = "CategoriesList.aspx?deleteId="+id;
+        }
     </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 <div id="dialog">
-    <iframe id="catFrame" width="970" height="900"></iframe>
+    <iframe id="catFrame" width="650" height="430"></iframe>
 </div>
 <div style="padding-top:10px;padding-bottom:10px">
     <a class="button" href="javascript:addCategory()">Add Category</a>    
 </div>
     <asp:GridView ID="GridView1" runat="server" AllowPaging="True" AllowSorting="True"
         AutoGenerateColumns="False" BackColor="White" BorderColor="#DEDFDE" BorderStyle="None"
-        BorderWidth="1px" CellPadding="4" DataKeyNames="CategoryId" DataSourceID="EntityDataSource1"
+        BorderWidth="1px" CellPadding="4" DataKeyNames="CategoryId"
         EmptyDataText="No Categories Defined" ForeColor="Black" GridLines="Vertical"
         Width="100%">
         <AlternatingRowStyle BackColor="White" />
@@ -33,11 +40,10 @@
                 <ItemTemplate>
                     <div style="width:80px;">
                         <div style="float:left;padding-left:10px">
-                            <asp:ImageButton ID="HyperLink1" runat="server" PostBackUrl='<%#"~/Admin/EditCategory.aspx?categoryId=" + Eval("CategoryId") %>' ImageUrl="~/images/edit.png" AlternateText="Edit"/>
+                            <a href="javascript:editCategory('<%# Eval("CategoryId")%>')" style="text-decoration:none"><img src="../images/edit.png" style="border:0px;"/></a>
                         </div>
                         <div style="float:left;padding-left:10px">
-                            <asp:ImageButton ID="LinkButton1" runat="server" OnClientClick="return confirm('Are you sure you want to delete this record?');" ImageUrl="~/images/icon_cancel.png"
-                                CommandName="Delete" AlternateText="Delete"/>
+                            <a href="javascript:deleteCategory('<%# Eval("CategoryId")%>')" style="text-decoration:none" onclick="return confirm('Are you sure you want to delete this record?');"><img src="../images/icon_cancel.png" style="border:0px;"/></a>
                         </div>
                     </div>
                 </ItemTemplate>
@@ -53,14 +59,10 @@
         <SortedDescendingCellStyle BackColor="#EAEAD3" />
         <SortedDescendingHeaderStyle BackColor="#575357" />
     </asp:GridView>
-    <asp:EntityDataSource ID="EntityDataSource1" runat="server" ConnectionString="name=WestgateEntities"
-        DefaultContainerName="WestgateEntities" EnableFlattening="False" EntitySetName="Categories"
-        EnableDelete="True">
-    </asp:EntityDataSource>
     <script type="text/javascript">
         $(function () {
             $("#dialog").dialog({
-                bgiframe: true, autoOpen: false, height: 400, width: 600, modal: true, resizable: false, closeText: 'show', close: function (ev, ui) { window.location.reload() }
+                bgiframe: true, autoOpen: false, height: 500, width: 700, modal: true, resizable: false, closeText: 'show', close: function (ev, ui) { document.forms[0].submit(); }
             });
         });
 	</script>

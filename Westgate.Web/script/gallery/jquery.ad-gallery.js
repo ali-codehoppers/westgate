@@ -540,6 +540,7 @@
         * it in the middle anyway
         */
         _centerImage: function (img_container, image_width, image_height) {
+
             img_container.css('top', '0px');
             if (image_height < this.image_wrapper_height) {
                 var dif = this.image_wrapper_height - image_height;
@@ -769,7 +770,12 @@
                 pointer.addClass('addpointer');
             };
             var left = thumb[0].parentNode.offsetLeft;
-            left -= (this.nav_display_width / 2) - (thumb[0].offsetWidth / 2);
+            if (window.navigator.appVersion.indexOf("IE 7.0") != -1) {
+                left -= (this.nav_display_width / 5) - (thumb[0].offsetWidth / 2);
+            }
+            else {
+                left -= (this.nav_display_width / 2) - (thumb[0].offsetWidth / 2);
+            }
             this.thumbs_wrapper.animate({ scrollLeft: left + 'px' });
         },
         fireCallback: function (fn) {

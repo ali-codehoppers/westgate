@@ -18,6 +18,9 @@ namespace Westgate.Web.Admin
         
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Request["Save"] == "true") {
+                ShowMessage.Visible = true;
+            }
             String Url = Request.Url.ToString();
             if (Url.Contains("AddCategory.aspx") || Url.Contains("AddSubCategory.aspx") || Url.Contains("AddStory.aspx"))
                 {
@@ -39,10 +42,17 @@ namespace Westgate.Web.Admin
                                 {
                                     Category.Visible = true;
                                     CategoryList.Visible = true;
+                                    CategoryList.Enabled = false;
                                     CategoryList.DataSource = AllCategoryItem;
                                     CategoryList.DataValueField = "CategoryId";
                                     CategoryList.DataTextField = "Name";
                                     CategoryList.DataBind();
+                                    if (Request["CatId"] != null)
+                                    {
+                                        int Selection=Int32.Parse(Request["CatId"]);
+                                        CategoryList.SelectedIndex = Selection;
+                                    }
+                    
                                 }
                             }
                             else if (Url.Contains("AddStory.aspx"))
@@ -85,6 +95,7 @@ namespace Westgate.Web.Admin
                             NameText.Text = CategoryItem.Name;
                             DescriptionText.Text = CategoryItem.Description;
                         }
+                       //Response.Redirect("~/Admin/EditCategory.aspx?categoryId="+Request["categoryId"], false);
                     }
                     if (Request["SubcategoryId"] == null && Request["categoryId"] == null && Request["StoryId"] == null)
                     {
@@ -144,7 +155,7 @@ namespace Westgate.Web.Admin
                 CategoryItem = new Category {Name=NameText.Text,Description=DescriptionText.Text};
                 Context.AddToCategories(CategoryItem);
                 Context.SaveChanges();
-                Response.Redirect("~/Admin/CategoriesList.aspx", false);
+                Response.Redirect("~/Admin/EditCategory.aspx?categoryId="+CategoryItem.CategoryId+"&Save=true", false);
             }
             else if (Url.Contains("AddSubCategory.aspx")) {
                 int SelectedId=int.Parse(CategoryList.SelectedItem.Value);
@@ -157,7 +168,7 @@ namespace Westgate.Web.Admin
                 CategoryItem.NumberOfSubcategories = CategoryItem.NumberOfSubcategories+1;
                 Context.AddToSubcategories(subCategoryItem);
                 Context.SaveChanges();
-                Response.Redirect("~/Admin/subCategoryList.aspx", false);
+                Response.Redirect("~/Admin/EditSubCategory.aspx?SubcategoryId=" + subCategoryItem.SubcategoryId + "&Save=true", false);
             }
             else if (Url.Contains("AddStory.aspx"))
             {
@@ -180,7 +191,7 @@ namespace Westgate.Web.Admin
                 CategoryItem.Name = NameText.Text;
                 CategoryItem.Description = DescriptionText.Text;
                 Context.SaveChanges();
-                Response.Redirect("~/Admin/CategoriesList.aspx", false);
+                Response.Redirect("~/Admin/EditCategory.aspx?categoryId=" + id + "&Save=true", false);
             }
             else if (Url.Contains("EditSubCategory.aspx"))
             {
@@ -198,7 +209,7 @@ namespace Westgate.Web.Admin
                 CategoryItem.NumberOfSubcategories = CategoryItem.NumberOfSubcategories + 1;
                 //Context.AddToSubcategories(subCategoryItem);
                 Context.SaveChanges();
-                Response.Redirect("~/Admin/subCategoryList.aspx", false);
+                Response.Redirect("~/Admin/EditSubCategory.aspx?SubcategoryId=" + subCategoryItem.SubcategoryId + "&Save=true", false);
             }
             else if (Url.Contains("EditStory.aspx"))
             {
