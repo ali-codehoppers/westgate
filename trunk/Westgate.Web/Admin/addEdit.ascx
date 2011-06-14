@@ -1,4 +1,6 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="addEdit.ascx.cs" Inherits="Westgate.Web.Admin.addEdit" %>
+<asp:Label ID="ShowMessage" Visible="false" runat="server" Text="Changes Saved" style="color:red"></asp:Label>
+<br />
 <asp:Label ID="Category" runat="server" Text="Category List" Visible="false"></asp:Label>
 <br />
 <asp:DropDownList ID="CategoryList" runat="server" Visible="false"></asp:DropDownList>

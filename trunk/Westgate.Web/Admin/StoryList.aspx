@@ -5,7 +5,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div style="padding-top:10px;padding-bottom:10px">
-        <asp:Button ID="HyperLink1" runat="server" PostBackUrl="~/Admin/AddStory.aspx" Text="Add Story" />
+        <asp:LinkButton class="button" ID="HyperLink1" runat="server" PostBackUrl="~/Admin/AddStory.aspx" Text="Add Story" ></asp:LinkButton>
     </div>
     <div style="padding-bottom:10px">
         <asp:Label ID="Label1" runat="server" Text="Category:" Width="200px"></asp:Label>

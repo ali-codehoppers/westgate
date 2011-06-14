@@ -132,8 +132,9 @@
 {
     cursor: pointer;
     left: 235px;
+    
     width: 37px;
-margin-top:20px;
+    margin-top:20px;
     display: block;
     background: url(prev.png) 0px 22px no-repeat;
 }
@@ -147,14 +148,14 @@ margin-top:20px;
     }
     .ad-gallery .ad-nav .ad-thumbs 
     {
- padding-top:5px;
-        margin:auto;
+      padding-top:5px;
+      margin:auto;
       overflow: hidden;
-      width: 385px;
+width:385px;
     }
       .ad-gallery .ad-thumbs .ad-thumb-list 
       {
-
+      overflow: hidden;
         float: left;
         width: 9000px;
         list-style: none;

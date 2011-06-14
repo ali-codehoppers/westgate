@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin/Admin.Master" AutoEventWireup="true" CodeBehind="EditStory.aspx.cs" Inherits="Westgate.Web.Admin.EditStory" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin/Admin.Master" AutoEventWireup="true" CodeBehind="EditStory.aspx.cs" Inherits="Westgate.Web.Admin.EditStory" EnableEventValidation="true"%>
 
 <%@ Register Src="addEdit.ascx" TagName="addEdit" TagPrefix="uc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
@@ -14,20 +14,24 @@
             $("#imgframe").attr("src", "addNewImage.aspx?imageId=" + id);
             $("#dialog").dialog("open");
         }
+        function deleteImage(id,storyId) {
+            window.location.href = "EditStory.aspx?StoryId=" + storyId + "&deleteId=" + id;
+        }
     </script>
     <div id="dialog">
         <iframe id="imgframe" width="970" height="900"></iframe>
     </div>
-    <div style="padding-top:5px;padding-down:5px">
+    <div style="padding-top:5px;padding-bottom:5px">
         <input onclick="javascript:addImage('<%=Request["StoryId"]%>')" value="Add Image" type="button"/>
     </div>
-    <div style="padding-top:5px; padding-down:10px">
+    <div style="padding-top:5px; padding-bottom:10px">
     <asp:GridView ID="gvImages" runat="server" BackColor="White" BorderColor="#DEDFDE"  AllowPaging="True"
-        BorderStyle="None" BorderWidth="1px" CellPadding="4" 
+        BorderStyle="None" BorderWidth="1px" CellPadding="4"  
         EmptyDataText="No Images for the Selected Story" ForeColor="Black" GridLines="Vertical"
-        AutoGenerateColumns="False" Style="width: 100%" >
+        AutoGenerateColumns="False" Style="width: 100%"  >
         <AlternatingRowStyle BackColor="White" />
         <Columns>
+            <asp:BoundField DataField="ImageId" HeaderText="ImageId" SortExpression="ImageId"/>
             <asp:BoundField DataField="Name" HeaderText="Name" SortExpression="Name" />
             <asp:BoundField DataField="Description" HeaderText="Description" SortExpression="Description" />
             <asp:TemplateField HeaderText="Before Image" SortExpression="BeforeImagePath">
@@ -73,8 +77,7 @@
                             <a href="javascript:editImage('<%# Eval("ImageId")%>')" style="text-decoration:none"><img src="../images/edit.png" style="border:0px;"/></a>
                         </div>
                         <div style="float:left;padding-left:10px">
-                            <asp:ImageButton ID="ImageButton1" runat="server" OnClientClick="return confirm('Are you sure you want to delete this record?');" ImageUrl="~/images/icon_cancel.png"
-                                CommandName="Delete" AlternateText="Delete"/>
+                            <a href="javascript:deleteImage('<%# Eval("ImageId")%>','<%=Request["StoryId"] %>')" style="text-decoration:none" onclick="return confirm('Are you sure you want to delete this record?');"><img src="../images/icon_cancel.png" style="border:0px;"/></a>
                         </div> 
                     </div>
                 </ItemTemplate>
@@ -90,13 +93,14 @@
         <SortedDescendingCellStyle BackColor="#EAEAD3" />
         <SortedDescendingHeaderStyle BackColor="#575357" />
     </asp:GridView>
+
     </div>
     <script type="text/javascript">
-	$(function() {
-		$( "#dialog" ).dialog({
-		    bgiframe: true, autoOpen: false, height: 'auto', width: 1000, modal: true, resizable: false, closeText: 'show', close: function (ev, ui) { window.location.reload() }
-		});
-	});
+        $(function () {
+            $("#dialog").dialog({
+                bgiframe: true, autoOpen: false, height: 'auto', width: 1000, modal: true, resizable: false, closeText: 'show', close: function (ev, ui) { document.forms[0].submit(); }
+            });
+        });
 	</script>
     
 </asp:Content>
