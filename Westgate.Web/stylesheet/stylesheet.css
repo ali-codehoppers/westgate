@@ -175,14 +175,14 @@ A.grey_top:hover {
     background-image: url('../images/bg_button.png');
     background-repeat: no-repeat;
     background-position: center center;
-    font-size: 14pt;
+    font-size: 11pt;
     font-weight: bold;
+    text-align:center;
     color: #FFF;
     height: 60px;
     width: 154px;
     background-color: #FFFFFF;
     display:block;
-    padding-left:30px;
     padding-top:30px;
 }
 .button:hover

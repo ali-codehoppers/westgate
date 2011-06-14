@@ -3,7 +3,7 @@
 <br />
 <asp:Label ID="Category" runat="server" Text="Category List" Visible="false"></asp:Label>
 <br />
-<asp:DropDownList ID="CategoryList" runat="server" Visible="false"></asp:DropDownList>
+<asp:DropDownList ID="CategoryList" runat="server" Visible="false" AutoPostBack="true" OnSelectedIndexChanged="DropDownList1_SelectedIndexChanged"></asp:DropDownList>
 <br />
 <asp:Label ID="SubCategory" runat="server" Text="Subcategory List" Visible="false"></asp:Label>
 <br />
