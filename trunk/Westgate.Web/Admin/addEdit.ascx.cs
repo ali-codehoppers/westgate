@@ -63,8 +63,17 @@ namespace Westgate.Web.Admin
                                 }
                                 else
                                 {
+                                    Category.Visible = true;
+                                    CategoryList.Visible = true;
+                                    CategoryList.Enabled = true;
+                                    CategoryList.DataSource = AllCategoryItem;
+                                    CategoryList.DataValueField = "CategoryId";
+                                    CategoryList.DataTextField = "Name";
+                                    CategoryList.DataBind();
                                     SubCategory.Visible = true;
                                     SubCategoryList.Visible = true;
+                                    int catId = Int32.Parse(CategoryList.SelectedItem.Value);
+                                    AllSubCategoryItem = (from row in Context.Subcategories where row.CategoryId == catId select row);
                                     SubCategoryList.DataSource = AllSubCategoryItem;
                                     SubCategoryList.DataValueField = "SubcategoryId";
                                     SubCategoryList.DataTextField = "Name";
@@ -222,6 +231,16 @@ namespace Westgate.Web.Admin
                 Response.Redirect("~/Admin/StoryList.aspx", false);
             }
 
+        }
+        protected void DropDownList1_SelectedIndexChanged(object sender, EventArgs e){
+            SubCategory.Visible = true;
+            SubCategoryList.Visible = true;
+            int catId = Int32.Parse(CategoryList.SelectedItem.Value);
+            var AllSubCategoryItem = (from row in Context.Subcategories where row.CategoryId == catId select row);
+            SubCategoryList.DataSource = AllSubCategoryItem;
+            SubCategoryList.DataValueField = "SubcategoryId";
+            SubCategoryList.DataTextField = "Name";
+            SubCategoryList.DataBind();
         }
     }
 }

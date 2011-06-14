@@ -9,11 +9,7 @@
     <script src="<%=this.ResolveClientUrl("~/script/jquery-1.5.1.min.js")%>" type="text/javascript"></script>
     <script src="<%=this.ResolveClientUrl("~/script/gallery/jquery.ad-gallery.js")%>"
         type="text/javascript"></script>
-    <!--
-    <link href="<%=this.ResolveClientUrl("~/script/galleryview-2.1.1/galleryview.css")%>" rel="stylesheet" type="text/css" />
-    <script src="<%=this.ResolveClientUrl("~/script/galleryview-2.1.1/jquery.easing.1.3.js")%>" type="text/javascript"></script>
-    <script src="<%=this.ResolveClientUrl("~/script/galleryview-2.1.1/jquery.galleryview-2.1.1.js")%>" type="text/javascript"></script>
-    <script src="<%=this.ResolveClientUrl("~/script/galleryview-2.1.1/jquery.timers-1.2.js")%>" type="text/javascript"></script>-->
+
     <script type="text/javascript">
         $(function () {
             var galleries = $('.ad-gallery').adGallery({
@@ -78,16 +74,5 @@
         </div>
     </div>
     </form>
-    <script type="text/javascript">
-        /*  $(document).ready(function () {
-        $('#photos').galleryView({
-        panel_width: 936,
-        panel_height: 350,
-        frame_width: 70,
-        frame_height: 70,
-        nav_theme: 'dark'
-        });
-        });*/
-    </script>
 </body>
 </html>
