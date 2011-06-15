@@ -1,0 +1,192 @@
+body {
+	font: normal 13px Arial, Verdana, Helvetica, sans-serif;
+	color: #333;
+	text-decoration: none;
+	padding:0px 0px 0px 0px;
+	margin: 0px 0px 0px 0px;
+	line-height:20px;
+}
+h1 {
+	font: normal 19px 'Lucida Sans Unicode', 'Lucida Grande', sans-serif;
+	color: #afaca9;
+	padding:0px 0px 0px 0px;
+	margin: 0px 0px 0px 0px;
+}
+h2 {
+	font: normal 14px 'Lucida Sans Unicode', 'Lucida Grande', sans-serif;
+	color: #f99e1b;
+	padding:0px 0px 0px 0px;
+	margin: 0px 0px 0px 0px;
+}
+
+.txt_blue {
+	font: normal 18px 'Lucida Sans Unicode', 'Lucida Grande', sans-serif;
+	color: #1d5c9d;
+	padding:0px 0px 0px 0px;
+	margin: 0px 0px 0px 0px;
+}
+
+.left_r
+{
+	background: url('../images/left_r.jpg');
+	background-position: left top;
+	background-repeat: repeat-y;
+}
+.right_r
+{
+	background: url('../images/right_r.jpg');
+	background-position: right top;
+	background-repeat: repeat-y;
+}
+
+.nav_r {
+	background: url(../images/nav_mid.jpg) 0 0 repeat-x;
+	text-decoration: none;
+}
+.double_dotted {
+	background: url(../images/double_dotted.jpg) 0 0 repeat-x;
+	text-decoration: none;
+}
+.top_grey_nav_partition {
+	background: url(../images/btn_partition.jpg) right top no-repeat;
+	text-decoration: none;
+	padding:0px 10px 0px 10px;
+	margin: 0px 0px 0px 0px;
+}
+.grey_welcome
+{
+	background: url(../images/bg_in.jpg) repeat left top;
+	text-decoration: none;
+	padding: 0px 10px 0px 10px;
+	margin: 0px 0px 0px 0px;
+}
+.newsletter_bg
+{
+	background-position: left top;
+	font: normal 12px 'Lucida Sans Unicode' , 'Lucida Grande' , sans-serif;
+	color: #999;
+	text-indent: 5px;
+	background: url(../images/newsletter_bg.jpg);
+	text-decoration: none;
+	line-height: 25px;
+	background-repeat: no-repeat;
+}
+.newsletter_field {
+	font: normal 12px 'Lucida Sans Unicode', 'Lucida Grande', sans-serif;
+	color: #888;
+	border:1px solid #edecea;
+	height: 18px;
+	width:120px;
+}
+.scrolling_bg {
+	background: url(../images/scrolling_pic_bg.jpg) right top no-repeat;
+	text-decoration: none;
+	height:107px;
+}
+.subImages
+{
+	list-style-type: none;
+}
+.subImages li
+{
+	float:left;
+	padding-right:10px;
+}
+.top_nav_partition {
+	background: url(../images/nav_partition.jpg) right top no-repeat;
+	text-decoration: none;
+	padding:0px 10px 0px 10px;
+	margin: 0px 0px 0px 0px;
+}
+A.top:active,  A.top:link, A.top:visited, .txt_pipe {
+	font: normal 12px "Trebuchet MS",Arial, Verdana, Helvetica, sans-serif;
+	color: #605f5f;
+	text-decoration: none;
+}
+A.top:hover {
+	color: #000000;
+	text-decoration: none;
+}
+A.grey_top:active,  A.grey_top:link, A.grey_top:visited {
+	font: normal 13px 'Lucida Sans Unicode', 'Lucida Grande', sans-serif;
+	color: #605f5f;
+	text-decoration: none;
+}
+A.grey_top:hover {
+	color: #000000;
+	text-decoration: none;
+}
+#login{
+    font: bold 11px "Trebuchet MS",Arial, Verdana, Helvetica, sans-serif;
+	color: #ffffff;
+	text-decoration: none;
+	padding:0px 0px 0px 0px;
+	margin: 0px 0px 0px 0px;
+	height: 17px;
+	width: 54px;
+	overflow: hidden;
+	background: url(../images/signin_btn.jpg) top left no-repeat;
+	display: block;
+	vertical-align: middle;
+	text-align: left;
+	text-indent:54px;	
+}
+
+#login:hover{
+	background-position: bottom left;
+}
+.search_field {
+	font: normal 12px 'Lucida Sans Unicode', 'Lucida Grande', sans-serif;
+	color: #555555;
+	border:1px solid #edecea;
+	height: 18px;
+	width:150px;
+}
+.black_link
+{
+    color: #605f5f;
+}
+.black_link:hover
+{
+    color: #f99e1b;
+    font-weight:bold;
+}
+.black_link_down
+{
+	color: #605f5f;
+	text-decoration: none;
+	font-size: 12px;
+}
+.black_link_down:hover
+{
+    color: #f99e1b;
+    text-decoration: none;
+    font-size: 12px;
+}
+.bread_crump
+{
+    font-family: 'Arial Black';
+    color: #FF9900;
+}
+.button
+{
+    border-style: none;
+    border-width: 0px;
+    background-image: url('../images/bg_button.png');
+    background-repeat: no-repeat;
+    background-position: center center;
+    font-size: 11pt;
+    font-weight: bold;
+    text-align:center;
+    color: #FFF;
+    height: 60px;
+    width: 154px;
+    background-color: #FFFFFF;
+    display:block;
+    padding-top:30px;
+}
+.button:hover
+{
+    text-decoration: underline;
+    cursor:pointer;
+}   
