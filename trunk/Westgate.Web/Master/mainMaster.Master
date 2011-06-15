@@ -146,10 +146,24 @@
             $.post('ajax/SearchContents.aspx?search=' + search, function (data) {
                 $('#contentsDiv').html(data);
             });
-            $("#imagesFrame").attr("style", "display:none");
-            $("#profileSection").attr("style", "display:none");
+            $("#imagesFrame").hide();
+            $("#profileSection").hide();
             $("#profilemain").attr("style", "width: 0%; float: right; min-height: 375px;");
             $("#contentsDiv").attr("style", "padding-top: 10px; min-height: 363px; width: 98%;float:left; ");
+        }
+        function detectKey(e, t) {
+            var keynum;
+            if (window.event) // IE
+            {
+                keynum = e.keyCode;
+            }
+            else if (e.which) // Netscape/Firefox/Opera
+            {
+                keynum = e.which;
+            }
+            if (keynum == 13) {
+                t.blur();
+            }
         }
     </script>
 </head>
@@ -166,10 +180,10 @@
                         <div style="width: 100%;padding-top:10px;">
                             <div style="float: right;">
                                 <div style="float: left; padding-right: 10px;">
-                                    <a href="#" id="login"></a>
+                                    <a href="admin/login.aspx" id="login"></a>
                                 </div>
                                 <div style="float: left">
-                                    <input type="text" id="searchfield" name="searchfield" class="search_field" /></div>
+                                     <input type="text" id="searchfield" name="searchfield" class="search_field" onkeyup="detectKey(event,this)" onblur="OnSearchClick()"/></div>
                                 <div style="float: left">
                                     <a href="javascript:OnSearchClick()">
                                         <img src="<%=this.ResolveClientUrl("~/images/search.jpg")%>" alt="" width="22" height="22"
@@ -179,7 +193,7 @@
                                 <div class="top_nav_partition" style="float: left; display:none">
                                     <a href="#" class="top">Careers</a></div>
                                 <div class="top_nav_partition" style="float: left">
-                                    <a href="#" class="top">Downloads</a></div>
+                                    <a href="#" class="top" style="display:none">Downloads</a></div>
                                 <div class="top_nav_partition" style="float: left">
                                     <a href="javascript:OnSiteClick()" class="top">Sitemap</a></div>
                                 <div class="top_nav_partition" style="float: left">

@@ -165,8 +165,11 @@ A.grey_top:hover {
 }
 .bread_crump
 {
-    font-family: 'Arial Black';
-    color: #FF9900;
+    font-family: Arial, Helvetica, sans-serif;
+    color: Gray;
+    font-weight: normal;
+    text-decoration: none;
+    font-size: small;
 }
 .button
 {

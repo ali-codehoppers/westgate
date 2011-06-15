@@ -81,7 +81,7 @@
         background-color:#222;
         color: White;
         opacity:0.8;
-        	    -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=80)";
+         -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=80)";
 	    filter: alpha(opacity=80);
       }
             .ad-gallery .ad-image-wrapper .ad-image .ad-image-description span 
