@@ -80,11 +80,23 @@
         z-index: 2;
         background-color:#222;
         color: White;
+        opacity:0.8;
+        	    -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=80)";
+	    filter: alpha(opacity=80);
       }
+            .ad-gallery .ad-image-wrapper .ad-image .ad-image-description span 
+            {
+                color:White;
+                font:normal 13px Arial, Verdana, Helvetica, sans-serif
+            }
       * html .ad-gallery .ad-image-wrapper .ad-image .ad-image-description {
         background-color:#222;
         color:White;
-        filter:progid:DXImageTransform.Microsoft.AlphaImageLoader (enabled=true, sizingMethod=scale, src='opa75.png');
+
+      }
+      * html .ad-gallery .ad-image-wrapper .ad-image .ad-image-description span{
+                color:White;
+                font:normal 13px Arial, Verdana, Helvetica, sans-serif
       }
         .ad-gallery .ad-image-wrapper .ad-image .ad-image-description .ad-description-title {
           display: block;
