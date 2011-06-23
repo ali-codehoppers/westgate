@@ -2,33 +2,49 @@
 
 <%@ Register Src="addEdit.ascx" TagName="addEdit" TagPrefix="uc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-</asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <uc1:addEdit ID="addEdit1" runat="server" />
-    <script type="text/javascript">
-        function addImage(id) {
-            $("#imgframe").attr("src", "addNewImage.aspx?StoryId="+id);
-            $("#dialog").dialog("open");
-        }
-        function editImage(id) {
-            $("#imgframe").attr("src", "addNewImage.aspx?imageId=" + id);
-            $("#dialog").dialog("open");
-        }
-        function deleteImage(id,storyId) {
-            window.location.href = "EditStory.aspx?StoryId=" + storyId + "&deleteId=" + id;
-        }
+<script type="text/javascript">
+    function addImage(id) {
+        $("#imgframe").attr("src", "addNewImage.aspx?StoryId=" + id);
+        $("#dialog").dialog("open");
+    }
+    function editImage(id) {
+        $("#imgframe").attr("src", "addNewImage.aspx?imageId=" + id);
+        $("#dialog").dialog("open");
+    }
+    function deleteImage(id, storyId) {
+        window.location.href = "EditStory.aspx?StoryId=" + storyId + "&deleteId=" + id;
+    }
     </script>
+</asp:Content>
+<asp:Content ID="Content3" ContentPlaceHolderID="HeadingPlaceHolder" runat="server">
+Edit Story
+</asp:Content>
+
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div id="dialog">
         <iframe id="imgframe" width="970" height="900"></iframe>
     </div>
-    <div style="padding-top:5px;padding-bottom:5px">
-        <input onclick="javascript:addImage('<%=Request["StoryId"]%>')" value="Add Image" type="button"/>
+    <div>
+        <uc1:addEdit ID="addEdit1" runat="server" />
     </div>
-    <div style="padding-top:5px; padding-bottom:10px">
+    <div style="width:97%">
+        <hr />
+    </div>
+    <div style="height:50px">
+        <div class="labelStyle" style="float:left;width:445px;text-align:left;padding-top:5px;font-size:14pt;">
+            List of Images
+        </div>
+        <div style="float:left;">
+            <div class="linkButtonStyle">
+                <a href="javascript:addImage('<%=Request["StoryId"]%>')">Add Image</a>
+            </div>            
+        </div>
+    </div>
+    <div>
     <asp:GridView ID="gvImages" runat="server" BackColor="White" BorderColor="#DEDFDE"  AllowPaging="True"
         BorderStyle="None" BorderWidth="1px" CellPadding="4"  
         EmptyDataText="No Images for the Selected Story" ForeColor="Black" GridLines="Vertical"
-        AutoGenerateColumns="False" Style="width: 100%"  >
+        AutoGenerateColumns="False" Style="width: 97%"  >
         <AlternatingRowStyle BackColor="White" />
         <Columns>
             <asp:BoundField DataField="ImageId" HeaderText="ImageId" SortExpression="ImageId"/>
@@ -84,9 +100,9 @@
             </asp:TemplateField>
         </Columns>
         <FooterStyle BackColor="#CCCC99" />
-        <HeaderStyle BackColor="#6B696B" Font-Bold="True" ForeColor="White" />
+        <HeaderStyle BackColor="#666666" Font-Bold="True" ForeColor="White" />
         <PagerStyle BackColor="#F7F7DE" ForeColor="Black" HorizontalAlign="Right" />
-        <RowStyle BackColor="#F7F7DE" />
+        <RowStyle BackColor="#CCCCCC" />
         <SelectedRowStyle BackColor="#CE5D5A" Font-Bold="True" ForeColor="White" />
         <SortedAscendingCellStyle BackColor="#FBFBF2" />
         <SortedAscendingHeaderStyle BackColor="#848384" />
