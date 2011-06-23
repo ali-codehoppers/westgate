@@ -1,23 +1,34 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="addEdit.ascx.cs" Inherits="Westgate.Web.Admin.addEdit" %>
-<asp:Label ID="ShowMessage" Visible="false" runat="server" Text="Changes Saved" style="color:red"></asp:Label>
-<br />
-<asp:Label ID="Category" runat="server" Text="Category List" Visible="false"></asp:Label>
-<br />
+<div class="labelStyle">
+<asp:Label ID="ShowMessage" Visible="false" runat="server" Text="Changes Saved" style="color:red"  ></asp:Label>
+</div>
+<div class="labelStyle">
+<asp:Label  ID="Category" runat="server" Text="Category List" Visible="false"  ></asp:Label>
+</div>
+<div>
 <asp:DropDownList ID="CategoryList" runat="server" Visible="false" AutoPostBack="true" OnSelectedIndexChanged="DropDownList1_SelectedIndexChanged"></asp:DropDownList>
-<br />
-<asp:Label ID="SubCategory" runat="server" Text="Subcategory List" Visible="false"></asp:Label>
-<br />
+</div>
+<div class="labelStyle">
+<asp:Label  ID="SubCategory" runat="server" Text="Subcategory List" Visible="false" ></asp:Label>
+</div>
+<div>
 <asp:DropDownList ID="SubCategoryList" runat="server" Visible="false"></asp:DropDownList>
-<br />
-<asp:Label ID="Name" runat="server" Text="Name"></asp:Label>
-<br />
+</div>
+<div class="labelStyle">
+<asp:Label  ID="Name" runat="server" Text="Name"  ></asp:Label>
+</div>
+<div>
 <asp:TextBox ID="NameText" runat="server" TextMode="SingleLine" Height="23px" Width="213px" ></asp:TextBox>
-<br />
-<asp:Label ID="Description" runat="server" Text="Description"></asp:Label>
-<br />
-<asp:TextBox ID="DescriptionText" runat="server" TextMode="MultiLine" Height="205px" Width="627px"></asp:TextBox>
-<br />
-<asp:Button ID="AddButton" runat="server" Text="Add" 
-    onclick="AddButton_Click" />
-<asp:Button ID="EditButton" runat="server" Text="Edit" 
-    onclick="EditButton_Click" />
+</div>
+<div class="labelStyle">
+<asp:Label  ID="Description" runat="server" Text="Description"  ></asp:Label>
+</div>
+<div>
+<asp:TextBox ID="DescriptionText" runat="server" TextMode="MultiLine" Height="205px" Width="97%"></asp:TextBox>
+</div>
+<div>
+<asp:Button ID="AddButton" runat="server" Text="Add Record" 
+    onclick="AddButton_Click" CssClass="buttonStyle"/>
+<asp:Button ID="EditButton" runat="server" Text="Save Changes" 
+    onclick="EditButton_Click" CssClass="buttonStyle"/>
+</div>

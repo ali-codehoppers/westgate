@@ -78,7 +78,7 @@
         text-align: left;
         width: 100%;
         z-index: 2;
-        background-color:#222;
+        background-color:#DDD;
         color: White;
         opacity:0.8;
          -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=80)";
@@ -86,7 +86,7 @@
       }
             .ad-gallery .ad-image-wrapper .ad-image .ad-image-description span 
             {
-                color:White;
+                color:#4f5456;
                 font:normal 13px Arial, Verdana, Helvetica, sans-serif
             }
       * html .ad-gallery .ad-image-wrapper .ad-image .ad-image-description {
