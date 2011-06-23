@@ -12,7 +12,7 @@
                        <asp:HyperLink runat='server' ID='ImageLink1' Title='<%# Eval("Name")+"\r\n"+Eval("Description")%>' NavigateUrl='<%# Eval("BeforeImagePath").ToString().Replace("~/","")%>'>
                             <asp:Image ID='Image2' runat='server' ImageUrl='<%#GetThumbnailImagePath(Eval("AfterImagePath").ToString().Replace("~/",""))%>' AlternateText='<%# Eval("Name")%>'></asp:Image> 
                        </asp:HyperLink> 
-                    </li>
+                    </li>   
                     <li style="display:none">
                        <asp:HyperLink runat='server' ID='ImageLink2' Title='<%# Eval("Name")+"\r\n"+Eval("Description")%>' NavigateUrl='<%# Eval("AfterImagePath").ToString().Replace("~/","")%>'>
                             <asp:Image ID='Image3' runat='server' ImageUrl='<%#GetThumbnailImagePath(Eval("BeforeImagePath").ToString().Replace("~/",""))%>' AlternateText='<%# Eval("Name")%>'></asp:Image>
@@ -51,14 +51,20 @@
         <div style="width: 100%">
             <asp:label runat="server" text="Label" id="SubcategoryDescription" style="float: left"></asp:label>
         </div>
-        <div style="float:left;width:100%">
+        <div style="float:left;width:100%">            
             <asp:repeater runat="server" id="rptStoryCategories" datasourceid="edsStories">
+            <HeaderTemplate>
+                <table border="0" width="100%" cellpadding="0" cellspacing="0" style="margin-top:10px">
+            </HeaderTemplate>
             <ItemTemplate>
-                <div style="padding-top:5px;width:100%;display:table;">
-                    <img src="images/tick_icon.jpg" alt="" width="16" height="16" align="left" style="padding-right:10px;"/>
-                    <asp:HyperLink runat="server" ID="Link2" Text='<%#Eval("Name") %>' NavigateUrl='<%# "javascript:OnStoryClick("+Eval("StoryId")+")"%>' CssClass="black_link"></asp:HyperLink>
-                </div>
-            </ItemTemplate>            
+                <tr>
+                    <td valign="top" align="center" width="36px"><img src="images/tick_icon.jpg" alt="" /></td>
+                    <td><span style="font-weight:bold"><%#Eval("Name") %>:</span>&nbsp;<%#Eval("Description") %></td>
+                </tr>                
+            </ItemTemplate>   
+            <FooterTemplate>
+                </table>
+            </FooterTemplate>         
         </asp:repeater>
         </div>
     </div>

@@ -193,3 +193,30 @@ A.grey_top:hover {
     text-decoration: underline;
     cursor:pointer;
 }   
+.buttonStyle
+{
+    background-color: #CCC;
+    border: 2px solid #000000;
+    font-weight: bold;
+    height: 50px;
+    width: 200px;
+    margin-top:10px;
+}
+.labelStyle
+{
+    margin-top:5px;
+    font-weight:bold;
+}
+.linkButtonStyle
+{
+    padding-top:10px;padding-bottom:10px;border:2px solid #444;width:150px;background-color:#CCC;height:20px;
+    text-align:center;
+}
+.linkButtonStyle a
+{
+    color:#000;
+}
+.linkButtonStyle a:hover
+{
+    color:#FFF;
+}

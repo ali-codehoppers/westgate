@@ -47,6 +47,7 @@ namespace Westgate.Web.Admin
                                     CategoryList.DataValueField = "CategoryId";
                                     CategoryList.DataTextField = "Name";
                                     CategoryList.DataBind();
+                                    
                                     if (Request["CatId"] != null)
                                     {
                                         int Selection=Int32.Parse(Request["CatId"]);

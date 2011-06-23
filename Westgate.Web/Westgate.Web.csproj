@@ -65,6 +65,11 @@
     <Content Include="Admin\AddSubCategory.aspx" />
     <Content Include="Admin\CategoriesList.aspx" />
     <Content Include="Admin\CombinedImage.aspx" />
+    <Content Include="Admin\design\admin.css" />
+    <Content Include="Admin\design\menu_bl.png" />
+    <Content Include="Admin\design\menu_br.png" />
+    <Content Include="Admin\design\menu_tl.png" />
+    <Content Include="Admin\design\menu_tr.png" />
     <Content Include="Admin\EditCategory.aspx" />
     <Content Include="Admin\EditStory.aspx" />
     <Content Include="Admin\EditSubCategory.aspx" />
