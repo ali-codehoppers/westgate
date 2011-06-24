@@ -48,6 +48,7 @@
                 maxHeight: 500,
                 maxWidth: 600
             });
-    });
+        });
+
     </script>
 </asp:Content>

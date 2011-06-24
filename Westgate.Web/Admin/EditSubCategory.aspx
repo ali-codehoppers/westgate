@@ -1,24 +1,35 @@
 ﻿<%@ Page Title="" Language="C#" AutoEventWireup="true" MasterPageFile="~/Admin/Admin.Master"  CodeBehind="EditSubCategory.aspx.cs" Inherits="Westgate.Web.Admin.EditSubCategory" %>
-<%@ Register src="addEdit.ascx" tagname="addEdit" tagprefix="uc1" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    <script type="text/javascript">
-    function addStory() {
-        $("#dFrame").attr("src", 'AddStory.aspx?subcategoryId=<%=Request["subcategoryId"]%>');
-        $("#dialog").dialog("open");
-    }
-    </script>
+
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="HeadingPlaceHolder" runat="server">
-Edit Subcategory
+    <asp:Label ID="EditSubcategoryLabel" runat="server">Edit Subcategory</asp:Label>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div id="dialog" title="Add Story">
         <iframe id="dFrame" width="480" height="300" frameborder="0"></iframe>
     </div>    
+
+       <asp:Panel runat="server" ID="message" Visible="false">
+            <asp:Label CssClass="successStyle" ID="successMessage" runat="server" Text="Subcategory Saved."></asp:Label>
+        </asp:Panel>
     <div>
-        <uc1:addEdit ID="addEdit1" runat="server" />    
+        <div class="labelStyle">
+            <asp:Label ID="Name" runat="server" Text="Name" Width="100px"></asp:Label>
+            <asp:TextBox ID="NameText" runat="server" TextMode="SingleLine" Height="23px" Width="213px"></asp:TextBox>
+        </div>
+        <div class="labelStyle">
+            <asp:Label ID="Description" runat="server" Text="Description"></asp:Label>
+        </div>
+        <div>
+            <asp:TextBox ID="DescriptionText" runat="server" TextMode="MultiLine" Height="100px"
+                Width="97%"></asp:TextBox>
+        </div>
+        <asp:Button ID="EditButton" runat="server" Text="Save Changes" OnClick="EditButton_Click"
+            CssClass="buttonStyle" />
     </div>
+
     <div style="width:97%">
         <hr />
     </div>
@@ -28,13 +39,13 @@ Edit Subcategory
         </div>
         <div style="float:left;">
             <div class="linkButtonStyle">
-                <a href='javascript:addStory();'>Add Story</a>
+                <a href="javascript:addStory('<%=Request["subcategoryId"]%>');">Add Story</a>
             </div>            
         </div>
         <div style="clear:both"></div>
     </div>
     <div>
-        <asp:GridView ID="GridView1" runat="server" AllowPaging="True" AllowSorting="True"
+        <asp:GridView ID="GridView1" runat="server" AllowPaging="false" AllowSorting="false"
             AutoGenerateColumns="False" BackColor="White" BorderColor="#DEDFDE" BorderStyle="None"
             BorderWidth="1px" CellPadding="4" DataKeyNames="StoryId" DataSourceID="edsStories"
             EmptyDataText="No Categories Defined" ForeColor="Black" GridLines="Vertical"
@@ -54,8 +65,7 @@ Edit Subcategory
                             <asp:ImageButton ID="ImageButton1" runat="server" PostBackUrl='<%#"~/Admin/EditStory.aspx?StoryId=" + Eval("StoryId") %>' ImageUrl="~/images/edit.png" AlternateText="Edit"/>
                         </div>
                         <div style="float:left;padding-left:10px">
-                            <asp:ImageButton ID="ImageButton2" runat="server" OnClientClick="return confirm('Are you sure you want to delete this record?');" ImageUrl="~/images/icon_cancel.png"
-                                CommandName="Delete" AlternateText="Delete"/>
+                            <a href="javascript:deleteStory('<%# Eval("StoryId")%>','<%# Eval("SubCategoryId")%>')" onclick="return confirm('Are you sure you want to delete this record?');"><img src="../images/icon_cancel.png" style="border:0px;"/></a>
                         </div>
                     </div>
                     </ItemTemplate>
@@ -74,7 +84,7 @@ Edit Subcategory
     </div>
     <asp:EntityDataSource ID="edsStories" runat="server" ConnectionString="name=WestgateEntities"
         DefaultContainerName="WestgateEntities" EnableFlattening="False" EntitySetName="Stories"
-        EnableDelete="True" AutoGenerateWhereClause="True"
+        AutoGenerateWhereClause="True"
         Where="">
         <WhereParameters>
             <asp:QueryStringParameter DbType="Int32" DefaultValue="0" Name="SubcategoryId" 
@@ -84,7 +94,17 @@ Edit Subcategory
     <script type="text/javascript">
         $(function () {
             $("#dialog").dialog({
-                bgiframe: true, autoOpen: false, height: 350, width: 520, modal: true, resizable: false, closeText: 'show', close: function (ev, ui) { document.forms[0].submit(); }
+                bgiframe: true,
+                autoOpen: false,
+                height: 350,
+                width: 520,
+                modal: true,
+                resizable: false,
+                closeText: 'show',
+                close: function (ev, ui) {
+                   // document.forms[0].submit(); 
+                    window.location.href = 'EditSubCategory.aspx?SubcategoryId=<%=Request["subcategoryId"]%>';
+                }
             });
         });
 	</script>

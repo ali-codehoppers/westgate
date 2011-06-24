@@ -18,12 +18,17 @@
         }
     </script>
 </asp:Content>
+<asp:Content ID="Content3" ContentPlaceHolderID="HeadingPlaceHolder" runat="server">
+        <asp:Label ID="SubcategoryLabel" runat="server">Subcategories List</asp:Label>
+</asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div id="dialog">
         <iframe id="catFrame" width="650" height="430"></iframe>
     </div>
-    <div style="padding-top:10px;padding-bottom:10px">
-        <a class="button" href="javascript:addSubCategory('<%= ddlCategory.ClientID%>')">Add Subcategory</a>    
+    <div style="padding-left: 445px; margin-bottom: 10px;">
+        <div class="linkButtonStyle">
+            <a href="javascript:addSubCategory('<%= ddlCategory.ClientID%>')">Add Subcategory</a>
+        </div>
     </div>
     <div style="padding-bottom:10px">
         <asp:Label ID="Label1" runat="server" Text="Category:" Width="200px"></asp:Label>
@@ -32,11 +37,10 @@
         </asp:DropDownList>
     </div>
     <div>
-        <asp:GridView ID="GridView1" runat="server" AllowPaging="false" AllowSorting="True"
+        <asp:GridView ID="GridView1" runat="server" AllowPaging="false" AllowSorting="false"
             AutoGenerateColumns="False" BackColor="White" BorderColor="#DEDFDE" BorderStyle="None"
             BorderWidth="1px" CellPadding="4" DataKeyNames="SubcategoryId" 
-            EmptyDataText="No Subcategories Defined" ForeColor="Black" GridLines="Vertical"
-            Width="100%">
+            EmptyDataText="No Subcategories Defined" ForeColor="Black" GridLines="Vertical" Width="97%">
             <AlternatingRowStyle BackColor="White" />
             <Columns>
                 <asp:BoundField DataField="SubcategoryId" HeaderText="SubcategoryId" Visible="false"
@@ -60,9 +64,9 @@
                 </asp:TemplateField>
             </Columns>
             <FooterStyle BackColor="#CCCC99" />
-            <HeaderStyle BackColor="#6B696B" Font-Bold="True" ForeColor="White" />
+            <HeaderStyle BackColor="#666666" Font-Bold="True" ForeColor="#FFFFFF" />
             <PagerStyle BackColor="#F7F7DE" ForeColor="Black" HorizontalAlign="Right" />
-            <RowStyle BackColor="#F7F7DE" />
+            <RowStyle BackColor="#CCCCCC" />
             <SelectedRowStyle BackColor="#CE5D5A" Font-Bold="True" ForeColor="White" />
             <SortedAscendingCellStyle BackColor="#FBFBF2" />
             <SortedAscendingHeaderStyle BackColor="#848384" />

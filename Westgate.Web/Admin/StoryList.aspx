@@ -3,6 +3,9 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
+<asp:Content ID="Content3" ContentPlaceHolderID="HeadingPlaceHolder" runat="server">
+        <asp:Label ID="StoryLabel" runat="server">Story List</asp:Label>
+</asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div style="padding-top:10px;padding-bottom:10px">
         <asp:LinkButton class="button" ID="HyperLink1" runat="server" PostBackUrl="~/Admin/AddStory.aspx" Text="Add Story" ></asp:LinkButton>
@@ -20,11 +23,11 @@
         </asp:DropDownList>
     </div>
     <div>
-        <asp:GridView ID="GridView1" runat="server" AllowPaging="True" AllowSorting="True"
+        <asp:GridView ID="GridView1" runat="server" AllowPaging="True" AllowSorting="false"
             AutoGenerateColumns="False" BackColor="White" BorderColor="#DEDFDE" BorderStyle="None"
             BorderWidth="1px" CellPadding="4" DataKeyNames="StoryId" DataSourceID="EntityDataSource1"
             EmptyDataText="No Categories Defined" ForeColor="Black" GridLines="Vertical"
-            Width="100%">
+            Width="97%">
             <AlternatingRowStyle BackColor="White" />
             <Columns>
                 <asp:BoundField DataField="StoryId" HeaderText="StoryId" Visible="false" SortExpression="StoryId"
@@ -48,9 +51,9 @@
                 </asp:TemplateField>
             </Columns>
             <FooterStyle BackColor="#CCCC99" />
-            <HeaderStyle BackColor="#6B696B" Font-Bold="True" ForeColor="White" />
+            <HeaderStyle BackColor="#666666" Font-Bold="True" ForeColor="#FFFFFF" />
             <PagerStyle BackColor="#F7F7DE" ForeColor="Black" HorizontalAlign="Right" />
-            <RowStyle BackColor="#F7F7DE" />
+            <RowStyle BackColor="#CCCCCC" />
             <SelectedRowStyle BackColor="#CE5D5A" Font-Bold="True" ForeColor="White" />
             <SortedAscendingCellStyle BackColor="#FBFBF2" />
             <SortedAscendingHeaderStyle BackColor="#848384" />

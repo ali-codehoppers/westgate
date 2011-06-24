@@ -148,8 +148,10 @@
             });
             $("#imagesFrame").hide();
             $("#profileSection").hide();
+            var width = $("#mainDiv").width();
             $("#profilemain").attr("style", "width: 0%; float: right; min-height: 375px;");
-            $("#contentsDiv").attr("style", "padding-top: 10px; min-height: 363px; width: 98%;float:left; ");
+            $("#contentsDiv").attr("style", "padding-top: 10px; min-height: 363px; float:left;");
+            $("#contentsDiv").width(width-30);
         }
         function detectKey(e, t) {
             var keynum;
@@ -252,7 +254,7 @@
                 <div class="double_dotted" style="height:4px">
 
                 </div>
-                <div style="width: 100%;">
+                <div style="width: 100%;" id="mainDiv">
                     <div id="profilemain" class="newsletter_bg" style="width: 27%; float: right; min-height: 375px;">
                         <div id="profileSection" style="float: left">
                             <div class="row" style="width: 100%; clear: both">

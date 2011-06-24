@@ -9,7 +9,9 @@
 </head>
 <body>
     <form id="form1" runat="server">
-
+           <asp:Panel runat="server" ID="message" Visible="false">
+            <asp:Label CssClass="successStyle" ID="successMessage" runat="server" Text="Story Saved."></asp:Label>
+        </asp:Panel>
     <div class="labelStyle">
         <asp:Label runat="server" ID="Label2" Text="Category:" Width="100px" ></asp:Label>
         <asp:Label runat="server" ID="lblCategory" Font-Bold="false"></asp:Label>
