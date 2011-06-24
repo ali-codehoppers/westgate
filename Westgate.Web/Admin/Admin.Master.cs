@@ -41,7 +41,7 @@ namespace Westgate.Web.Admin
                 }
                 
                 tvStructure.Nodes.Add(categoriesNode);
-                tvStructure.Nodes.Add(new TreeNode("Manage Home Page","Manage Home Page","","",""));
+                tvStructure.Nodes.Add(new TreeNode("Manage Home Page", "Manage Home Page", "", "~/Admin/HomeImages.aspx", ""));
             }
             string subcategoryId = Request["subcategoryId"];
             string storyId = Request["storyId"];
