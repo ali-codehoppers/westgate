@@ -34,3 +34,7 @@ function editImage(id) {
 function deleteImage(id, storyId) {
     window.location.href = "EditStory.aspx?StoryId=" + storyId + "&deleteId=" + id;
 }
+function addHomeImages() {
+    $("#catFrame").attr("src", "addHomeImages.aspx");
+    $("#dialog").dialog("open");
+}
