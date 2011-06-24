@@ -14,6 +14,10 @@ namespace Westgate.Web.Admin
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Request["Save"] != null)
+            {
+                message.Visible = true;
+            }
             Category category = GetCategory();
             if(category != null)
             {
@@ -34,7 +38,7 @@ namespace Westgate.Web.Admin
                 category.NumberOfSubcategories = category.NumberOfSubcategories + 1;
                 DatabaseContext.AddToSubcategories(subcategory);
                 DatabaseContext.SaveChanges();
-                Response.Redirect("~/Admin/EditSubCategory.aspx?subcategoryId=" + subcategory.SubcategoryId + "&Save=true", false);
+                Response.Redirect("~/Admin/AddSubCategory.aspx?categoryId=" + Request["categoryId"] + "&Save=true", false);
             }
         }
         private Category GetCategory()

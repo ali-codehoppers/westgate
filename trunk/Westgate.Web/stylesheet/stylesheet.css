@@ -220,3 +220,8 @@ A.grey_top:hover {
 {
     color:#FFF;
 }
+.successStyle
+{
+    color: #006600;
+    font-weight: bold;
+}

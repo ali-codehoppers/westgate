@@ -13,6 +13,10 @@ namespace Westgate.Web.Admin
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Request["Save"] != null)
+            {
+                message.Visible = true;
+            }
             Subcategory subcategory = GetSubcategory();
             if (subcategory != null)
             {
@@ -22,9 +26,13 @@ namespace Westgate.Web.Admin
         }
         private Subcategory GetSubcategory()
         {
-            int subcategoryId = int.Parse(Request["subcategoryId"]);
-            return (from s in DatabaseContext.Subcategories where s.SubcategoryId == subcategoryId select s).FirstOrDefault();
-        }
+            if (Request["subcategoryId"] != null)
+            {
+                int subcategoryId = int.Parse(Request["subcategoryId"]);
+                return (from s in DatabaseContext.Subcategories where s.SubcategoryId == subcategoryId select s).FirstOrDefault();
+            }
+            return null;
+       }
 
         protected void AddButton_Click(object sender, EventArgs e)
         {
@@ -34,7 +42,7 @@ namespace Westgate.Web.Admin
                 Story story = new Story { Name = tbName.Text, Description = tbDescription.Text, SubcategoryId = subcategory.SubcategoryId };
                 DatabaseContext.AddToStories(story);
                 DatabaseContext.SaveChanges();
-                Response.Redirect("~/Admin/EditStory.aspx?StoSave=true&storyId=" + story.StoryId, false);
+                Response.Redirect("~/Admin/AddStory.aspx?Save=true&subcategoryId=" + Request["subcategoryId"], false);
             }
         }
     }

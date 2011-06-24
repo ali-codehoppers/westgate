@@ -12,17 +12,20 @@ namespace Westgate.Web.Admin
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Request["deleteId"] != null) {
-                int id=Int32.Parse(Request["deleteId"]);
+            if (Request["deleteID"] != null)
+            {
+                int id = Int32.Parse(Request["deleteID"]);
                 var item = (from c in DatabaseContext.Categories where c.CategoryId == id select c).FirstOrDefault();
                 if (item != null) {
                     DatabaseContext.Categories.DeleteObject(item);
                     DatabaseContext.SaveChanges();
                 }
+                Response.Redirect("~/Admin/CategoriesList.aspx");
             }
             var source = from c in DatabaseContext.Categories select c;
             GridView1.DataSource = source;
             GridView1.DataBind();
+            
         }
       
     }

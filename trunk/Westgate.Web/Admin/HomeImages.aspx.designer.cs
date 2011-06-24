@@ -10,16 +10,7 @@
 namespace Westgate.Web.Admin {
     
     
-    public partial class CategoriesList {
-        
-        /// <summary>
-        /// CategoryLabel control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label CategoryLabel;
+    public partial class HomeImages {
         
         /// <summary>
         /// GridView1 control.

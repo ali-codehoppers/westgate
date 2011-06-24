@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Westgate.Web.Pages;
+using Westgate.Data;
 
 namespace Westgate.Web.Admin
 {
@@ -22,20 +23,27 @@ namespace Westgate.Web.Admin
                     DatabaseContext.Images.DeleteObject(StoryImageItem);
                     DatabaseContext.SaveChanges();
                 }
-                
+                if (Request["StoryId"] != null)
+                {
+                    int id = int.Parse(Request["StoryId"]);
+                    Story StoryItem = (from row in DatabaseContext.Stories where row.StoryId == id select row).First();
+                    NameText.Text = StoryItem.Name;
+                    DescriptionText.Text = StoryItem.Description;
+                    var StoryImageItem = (from row in DatabaseContext.Images where row.StoryId == id select row);
+                    gvImages.DataSource = StoryImageItem;
+                    gvImages.DataBind();
+                }
             }
-            if (Request["StoryId"] != null)
-            {
-                int id = int.Parse(Request["StoryId"]);
-                var StoryImageItem = (from row in DatabaseContext.Images where row.StoryId == id select row);
-                gvImages.DataSource = StoryImageItem;
-                gvImages.DataBind();
-            }
+
         }
-        /*protected void gvImages_rowDeleted(object sender, GridViewDeletedEventArgs e)
+        protected void EditButton_Click(object sender, EventArgs e)
         {
-            gvImages.DeleteRow(e.AffectedRows);
-            
-        }*/
+            int id = int.Parse(Request["StoryId"]);
+            Story StoryItem = (from row in DatabaseContext.Stories where row.StoryId == id select row).First();
+            StoryItem.Name = NameText.Text;
+            StoryItem.Description = DescriptionText.Text;
+            DatabaseContext.SaveChanges();
+            Response.Redirect("EditStory.aspx?save=true&StoryId=" + Request["StoryId"]);
+        }
     }
 }

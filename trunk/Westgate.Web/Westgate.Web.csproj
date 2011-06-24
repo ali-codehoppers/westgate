@@ -59,6 +59,7 @@
   <ItemGroup>
     <Content Include="Admin\AddCategory.aspx" />
     <Content Include="Admin\addEdit.ascx" />
+    <Content Include="Admin\addHomeImages.aspx" />
     <Content Include="Admin\AddImage.aspx" />
     <Content Include="Admin\addNewImage.aspx" />
     <Content Include="Admin\AddStory.aspx" />
@@ -73,9 +74,11 @@
     <Content Include="Admin\EditCategory.aspx" />
     <Content Include="Admin\EditStory.aspx" />
     <Content Include="Admin\EditSubCategory.aspx" />
+    <Content Include="Admin\HomeImages.aspx" />
     <Content Include="Admin\ImagesList.aspx" />
     <Content Include="Admin\imageTransfer.aspx" />
     <Content Include="Admin\Login.aspx" />
+    <Content Include="Admin\script\admin.js" />
     <Content Include="Admin\StoryList.aspx" />
     <Content Include="Admin\subCategoryList.aspx" />
     <Content Include="ajax\CategoryContents.aspx" />
@@ -104,6 +107,7 @@
     <Content Include="images\btn_partition.jpg" />
     <Content Include="images\btn_submit.jpg" />
     <Content Include="images\double_dotted.jpg" />
+    <Content Include="images\down_arrow.png" />
     <Content Include="images\edit.png" />
     <Content Include="images\icon_cancel.png" />
     <Content Include="images\image1.jpg" />
@@ -149,6 +153,7 @@
     <Content Include="images\search.jpg" />
     <Content Include="images\signin_btn.jpg" />
     <Content Include="images\tick_icon.jpg" />
+    <Content Include="images\top_arrow.png" />
     <Content Include="obj\Debug\Westgate.Web.csproj.FileListAbsolute.txt" />
     <Content Include="obj\Debug\Westgate.Web.dll" />
     <Content Include="obj\Debug\Westgate.Web.pdb" />
@@ -639,6 +644,13 @@
     <Compile Include="Admin\addEdit.ascx.designer.cs">
       <DependentUpon>addEdit.ascx</DependentUpon>
     </Compile>
+    <Compile Include="Admin\addHomeImages.aspx.cs">
+      <DependentUpon>addHomeImages.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\addHomeImages.aspx.designer.cs">
+      <DependentUpon>addHomeImages.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Admin\AddImage.aspx.cs">
       <DependentUpon>AddImage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -708,6 +720,13 @@
     </Compile>
     <Compile Include="Admin\EditSubCategory.aspx.designer.cs">
       <DependentUpon>EditSubCategory.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\HomeImages.aspx.cs">
+      <DependentUpon>HomeImages.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\HomeImages.aspx.designer.cs">
+      <DependentUpon>HomeImages.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\ImagesList.aspx.cs">
       <DependentUpon>ImagesList.aspx</DependentUpon>
