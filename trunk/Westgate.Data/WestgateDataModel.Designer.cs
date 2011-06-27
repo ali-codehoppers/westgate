@@ -18,9 +18,9 @@ using System.Runtime.Serialization;
 [assembly: EdmSchemaAttribute()]
 #region EDM Relationship Metadata
 
-[assembly: EdmRelationshipAttribute("WestgateModel", "FK_Subcategories_Categories", "Categories", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Westgate.Data.Category), "Subcategories", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Westgate.Data.Subcategory), true)]
-[assembly: EdmRelationshipAttribute("WestgateModel", "FK_Images_Stories", "Stories", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Westgate.Data.Story), "Images", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Westgate.Data.Image), true)]
-[assembly: EdmRelationshipAttribute("WestgateModel", "FK_Stories_Subcategories", "Subcategories", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Westgate.Data.Subcategory), "Stories", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Westgate.Data.Story), true)]
+[assembly: EdmRelationshipAttribute("WestgateModel", "FK_Subcategories_Categories", "Category", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Westgate.Data.Category), "Subcategory", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Westgate.Data.Subcategory), true)]
+[assembly: EdmRelationshipAttribute("WestgateModel", "FK_Images_Stories", "Story", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Westgate.Data.Story), "Image", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Westgate.Data.Image), true)]
+[assembly: EdmRelationshipAttribute("WestgateModel", "FK_Stories_Subcategories", "Subcategory", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Westgate.Data.Subcategory), "Story", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Westgate.Data.Story), true)]
 
 #endregion
 
@@ -338,18 +338,18 @@ namespace Westgate.Data
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("WestgateModel", "FK_Subcategories_Categories", "Subcategories")]
+        [EdmRelationshipNavigationPropertyAttribute("WestgateModel", "FK_Subcategories_Categories", "Subcategory")]
         public EntityCollection<Subcategory> Subcategories
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Subcategory>("WestgateModel.FK_Subcategories_Categories", "Subcategories");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Subcategory>("WestgateModel.FK_Subcategories_Categories", "Subcategory");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Subcategory>("WestgateModel.FK_Subcategories_Categories", "Subcategories", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Subcategory>("WestgateModel.FK_Subcategories_Categories", "Subcategory", value);
                 }
             }
         }
@@ -555,6 +555,30 @@ namespace Westgate.Data
         private global::System.String _CombinedImagePath;
         partial void OnCombinedImagePathChanging(global::System.String value);
         partial void OnCombinedImagePathChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> OrderImage
+        {
+            get
+            {
+                return _OrderImage;
+            }
+            set
+            {
+                OnOrderImageChanging(value);
+                ReportPropertyChanging("OrderImage");
+                _OrderImage = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("OrderImage");
+                OnOrderImageChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _OrderImage;
+        partial void OnOrderImageChanging(Nullable<global::System.Int32> value);
+        partial void OnOrderImageChanged();
 
         #endregion
     
@@ -566,16 +590,16 @@ namespace Westgate.Data
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("WestgateModel", "FK_Images_Stories", "Stories")]
+        [EdmRelationshipNavigationPropertyAttribute("WestgateModel", "FK_Images_Stories", "Story")]
         public Story Story
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Story>("WestgateModel.FK_Images_Stories", "Stories").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Story>("WestgateModel.FK_Images_Stories", "Story").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Story>("WestgateModel.FK_Images_Stories", "Stories").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Story>("WestgateModel.FK_Images_Stories", "Story").Value = value;
             }
         }
         /// <summary>
@@ -587,13 +611,13 @@ namespace Westgate.Data
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Story>("WestgateModel.FK_Images_Stories", "Stories");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Story>("WestgateModel.FK_Images_Stories", "Story");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Story>("WestgateModel.FK_Images_Stories", "Stories", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Story>("WestgateModel.FK_Images_Stories", "Story", value);
                 }
             }
         }
@@ -738,18 +762,18 @@ namespace Westgate.Data
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("WestgateModel", "FK_Images_Stories", "Images")]
+        [EdmRelationshipNavigationPropertyAttribute("WestgateModel", "FK_Images_Stories", "Image")]
         public EntityCollection<Image> Images
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Image>("WestgateModel.FK_Images_Stories", "Images");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Image>("WestgateModel.FK_Images_Stories", "Image");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Image>("WestgateModel.FK_Images_Stories", "Images", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Image>("WestgateModel.FK_Images_Stories", "Image", value);
                 }
             }
         }
@@ -760,16 +784,16 @@ namespace Westgate.Data
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("WestgateModel", "FK_Stories_Subcategories", "Subcategories")]
+        [EdmRelationshipNavigationPropertyAttribute("WestgateModel", "FK_Stories_Subcategories", "Subcategory")]
         public Subcategory Subcategory
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Subcategory>("WestgateModel.FK_Stories_Subcategories", "Subcategories").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Subcategory>("WestgateModel.FK_Stories_Subcategories", "Subcategory").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Subcategory>("WestgateModel.FK_Stories_Subcategories", "Subcategories").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Subcategory>("WestgateModel.FK_Stories_Subcategories", "Subcategory").Value = value;
             }
         }
         /// <summary>
@@ -781,13 +805,13 @@ namespace Westgate.Data
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Subcategory>("WestgateModel.FK_Stories_Subcategories", "Subcategories");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Subcategory>("WestgateModel.FK_Stories_Subcategories", "Subcategory");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Subcategory>("WestgateModel.FK_Stories_Subcategories", "Subcategories", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Subcategory>("WestgateModel.FK_Stories_Subcategories", "Subcategory", value);
                 }
             }
         }
@@ -956,16 +980,16 @@ namespace Westgate.Data
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("WestgateModel", "FK_Subcategories_Categories", "Categories")]
+        [EdmRelationshipNavigationPropertyAttribute("WestgateModel", "FK_Subcategories_Categories", "Category")]
         public Category Category
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Category>("WestgateModel.FK_Subcategories_Categories", "Categories").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Category>("WestgateModel.FK_Subcategories_Categories", "Category").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Category>("WestgateModel.FK_Subcategories_Categories", "Categories").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Category>("WestgateModel.FK_Subcategories_Categories", "Category").Value = value;
             }
         }
         /// <summary>
@@ -977,13 +1001,13 @@ namespace Westgate.Data
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Category>("WestgateModel.FK_Subcategories_Categories", "Categories");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Category>("WestgateModel.FK_Subcategories_Categories", "Category");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Category>("WestgateModel.FK_Subcategories_Categories", "Categories", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Category>("WestgateModel.FK_Subcategories_Categories", "Category", value);
                 }
             }
         }
@@ -994,18 +1018,18 @@ namespace Westgate.Data
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("WestgateModel", "FK_Stories_Subcategories", "Stories")]
+        [EdmRelationshipNavigationPropertyAttribute("WestgateModel", "FK_Stories_Subcategories", "Story")]
         public EntityCollection<Story> Stories
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Story>("WestgateModel.FK_Stories_Subcategories", "Stories");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Story>("WestgateModel.FK_Stories_Subcategories", "Story");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Story>("WestgateModel.FK_Stories_Subcategories", "Stories", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Story>("WestgateModel.FK_Stories_Subcategories", "Story", value);
                 }
             }
         }
