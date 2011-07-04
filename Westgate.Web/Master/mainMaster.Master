@@ -219,7 +219,7 @@
                         <div style=" height: 38px;" class="nav_r">
                             <div class="top_grey_nav_partition" style="float: left; height: 38px">
                                 <div style="padding-top: 10px;">
-                                    <a href="javascript:OnHomeClick()" class="grey_top">Company</a>
+                                    <a href="javascript:OnHomeClick()" class="grey_top">Home</a>
                                 </div>
                             </div>
                             <asp:Repeater ID="Repeater1" runat="server">

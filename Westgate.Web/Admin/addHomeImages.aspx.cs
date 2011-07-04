@@ -87,6 +87,7 @@ namespace Westgate.Web.Admin
                     messageSuccessImg.Visible = true;
 
                 }
+                ClientScript.RegisterStartupScript(this.GetType(), "CloseFinding", "parent.window.location.href=parent.window.location.href;", true);
         }
         /*protected void SelectItemChange(object sender, EventArgs e)
         {
