@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using Westgate.Web.Pages;
 
+using Westgate.Data;
 namespace Westgate.Web.Admin
 {
     public partial class HomeImages : AuthenticatedPage
@@ -20,10 +21,11 @@ namespace Westgate.Web.Admin
             }
 
         }
-        protected void upOrder(object sender, EventArgs e) {
+        protected void upOrder(object sender, EventArgs e)
+        {
             HiddenField imageId = (HiddenField)((ImageButton)sender).Parent.FindControl("hiddenImageId");
             int id = Int32.Parse(imageId.Value);
-            var homeImages = (from c in DatabaseContext.Images where c.ImageId ==id select c).FirstOrDefault();
+            var homeImages = (from c in DatabaseContext.Images where c.ImageId == id select c).FirstOrDefault();
             var downImages = (from c in DatabaseContext.Images where c.OrderImage == (homeImages.OrderImage - 1) select c).FirstOrDefault();
             if (downImages != null)
             {
@@ -46,6 +48,21 @@ namespace Westgate.Web.Admin
             }
             DatabaseContext.SaveChanges();
             Response.Redirect("HomeImages.aspx");
+        }
+
+        protected void GridView1_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            if (e.CommandName.Equals("DeleteImage"))
+            {
+                int imageId = int.Parse(e.CommandArgument.ToString());
+                Westgate.Data.Image image = (from i in DatabaseContext.Images where i.ImageId == imageId select i).FirstOrDefault();
+                if(image != null)
+                {
+                    image.OrderImage = null;
+                    DatabaseContext.SaveChanges();
+                    GridView1.DataBind();
+                }
+            }
         }
     }
 }

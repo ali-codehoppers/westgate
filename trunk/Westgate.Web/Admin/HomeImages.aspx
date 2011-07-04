@@ -17,13 +17,21 @@
     </div>
     <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" Style="width: 97%;"
         BackColor="White" BorderColor="#DEDFDE" BorderStyle="None" BorderWidth="1px" 
-        CellPadding="4" ForeColor="Black" GridLines="Vertical">
+        CellPadding="4" ForeColor="Black" GridLines="Vertical" 
+        onrowcommand="GridView1_RowCommand">
         <AlternatingRowStyle BackColor="White" />
         <Columns>
             <asp:BoundField DataField="ImageId" HeaderText="ImageId" ReadOnly="True" SortExpression="ImageId"
                 Visible="False" />
             <asp:BoundField DataField="StoryId" HeaderText="StoryId" SortExpression="StoryId"
                 Visible="False" />
+            <asp:TemplateField >
+                <ItemTemplate>
+                    <center>
+                    <asp:ImageButton ID="deleteButton" ImageUrl="~/images/delete.png" runat="server" CommandName="DeleteImage" CommandArgument='<%# Eval("ImageId") %>' AlternateText="Remove Image from Home Page"/>
+                    </center>
+                </ItemTemplate>
+            </asp:TemplateField>
             <asp:BoundField DataField="Name" HeaderText="Name" SortExpression="Name" />
             <asp:BoundField DataField="Description" HeaderText="Description" SortExpression="Description" />
             <asp:TemplateField HeaderText="Before Image" SortExpression="BeforeImagePath">
@@ -41,7 +49,7 @@
                     <asp:HyperLink ID="HyperLink2" runat="server" NavigateUrl='<%# Eval("AfterImagePath") %>'
                         Target="_blank">Open</asp:HyperLink>
                 </ItemTemplate>
-            </asp:TemplateField>
+            </asp:TemplateField>            
             <asp:TemplateField HeaderText="Combined Image" SortExpression="CombinedImagePath">
                 <ItemTemplate>
                     <asp:Image ID="Image3" Width="64" Height="19" ImageUrl='<%# GetThumbnailImagePath(Eval("CombinedImagePath")) %>'
@@ -52,6 +60,7 @@
             </asp:TemplateField>
             <asp:BoundField DataField="OrderImage" HeaderText="OrderImage" SortExpression="OrderImage"
                 Visible="False" />
+            
             <asp:TemplateField>
                 <ItemTemplate>
                     <asp:HiddenField runat="server" ID="hiddenImageId" Value='<%# Eval("ImageId") %>'/>
