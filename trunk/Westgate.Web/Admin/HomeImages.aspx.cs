@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Westgate.Web.Pages;
+using System.Configuration;
 
 using Westgate.Data;
 namespace Westgate.Web.Admin
@@ -13,8 +14,18 @@ namespace Westgate.Web.Admin
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
-
+            if (IsPostBack == false)
+            {
+                tbText.Text = ConfigurationManager.AppSettings["HomeText"];                
+            }
+        }
+        protected override void OnLoadComplete(EventArgs e)
+        {
+            base.OnLoadComplete(e);
+            if (IsPostBack == false)
+            {
+                tbText.Text = ConfigurationManager.AppSettings["HomeText"];      
+            }
         }
         protected void upOrder(object sender, EventArgs e)
         {
@@ -94,6 +105,11 @@ namespace Westgate.Web.Admin
             }
             Response.Redirect(Request.UrlReferrer.AbsoluteUri.ToString());
 
+        }
+
+        protected void SaveButton_Click(object sender, EventArgs e)
+        {
+            ConfigurationManager.AppSettings["HomeText"] = "hello";   
         }
     }
 }

@@ -10,6 +10,13 @@
     <div id="dialog">
         <iframe id="catFrame" width="650" height="430" frameborder="0"></iframe>
     </div>
+    <div style="display:none;">
+        <asp:TextBox ID="tbText" runat="server" TextMode="MultiLine" Rows="6" Width="97%"></asp:TextBox>
+    </div>
+    <div style="display:none;">
+        <asp:Button ID="SaveButton" runat="server" Text="Save Changes" OnClick="SaveButton_Click"
+            CssClass="buttonStyle" />
+    </div>
     <div style="padding-left: 445px; margin-bottom: 10px;">
         <div class="linkButtonStyle">
             <a href="javascript:addHomeImages()">Add Home Images</a>

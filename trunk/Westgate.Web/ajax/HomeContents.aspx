@@ -10,9 +10,7 @@
             </tr>
             <tr>
                 <td colspan="2" align="left" valign="top">
-                    West Gate a leading London building company, works for domestic and commercial clients
-                    throughout London. The company carries out a wide range of general building and
-                    interior refurbishment work for residential and commercial clients, including:
+                    <%=ConfigurationManager.AppSettings["HomeText"]%>
                 </td>
             </tr>
         </table>

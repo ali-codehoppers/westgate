@@ -101,6 +101,7 @@
     <Content Include="images\btn_home.jpg" />
     <Content Include="images\btn_partition.jpg" />
     <Content Include="images\btn_submit.jpg" />
+    <Content Include="images\delete.png" />
     <Content Include="images\double_dotted.jpg" />
     <Content Include="images\down_arrow.png" />
     <Content Include="images\edit.png" />

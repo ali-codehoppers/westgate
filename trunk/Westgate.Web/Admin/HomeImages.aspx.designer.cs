@@ -22,6 +22,24 @@ namespace Westgate.Web.Admin {
         protected global::System.Web.UI.WebControls.Label HomeImagesLabel;
         
         /// <summary>
+        /// tbText control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tbText;
+        
+        /// <summary>
+        /// SaveButton control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button SaveButton;
+        
+        /// <summary>
         /// EntityDataSource1 control.
         /// </summary>
         /// <remarks>
