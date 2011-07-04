@@ -16,7 +16,7 @@ namespace Westgate.Web.Admin
 
         }
         protected void checkImages(object sender, EventArgs e) {
-            foreach (GridViewRow row in GridView1.Rows)
+/*            foreach (GridViewRow row in GridView1.Rows)
             {
                 CheckBox cb = (CheckBox)row.FindControl("checkItem");
                 HiddenField item = (HiddenField)(cb.Parent.FindControl("ImageHiddenValue"));
@@ -26,10 +26,9 @@ namespace Westgate.Web.Admin
                     cb.Checked = true;
                 }
             }
-        }
+ */       }
         protected void updateImages(object sender, EventArgs e) {
-            if (IsPostBack)
-            {
+
                 int count = 0;
                 foreach (GridViewRow row in GridView1.Rows)
                 {
@@ -86,8 +85,8 @@ namespace Westgate.Web.Admin
                     }
                     messageImg.Visible = false;
                     messageSuccessImg.Visible = true;
+
                 }
-            }
         }
         /*protected void SelectItemChange(object sender, EventArgs e)
         {

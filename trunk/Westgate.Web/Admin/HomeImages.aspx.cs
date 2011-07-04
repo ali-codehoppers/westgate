@@ -13,12 +13,7 @@ namespace Westgate.Web.Admin
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
-            {
-                var homeImages = from c in DatabaseContext.Images where c.OrderImage != null orderby c.OrderImage select c;
-                GridView1.DataSource = homeImages;
-                GridView1.DataBind();
-            }
+
 
         }
         protected void upOrder(object sender, EventArgs e)
@@ -58,11 +53,47 @@ namespace Westgate.Web.Admin
                 Westgate.Data.Image image = (from i in DatabaseContext.Images where i.ImageId == imageId select i).FirstOrDefault();
                 if(image != null)
                 {
-                    image.OrderImage = null;
-                    DatabaseContext.SaveChanges();
-                    GridView1.DataBind();
+                        int imageOrder = image.OrderImage.Value;
+                        var otherImages = from c in DatabaseContext.Images where c.OrderImage > image.OrderImage.Value select c;
+                        foreach (Westgate.Data.Image checkOrder in otherImages)
+                        {
+                            checkOrder.OrderImage = (checkOrder.OrderImage.Value) - 1;
+                        }
+                        DatabaseContext.SaveChanges();
+                        image.OrderImage = null;
+                        DatabaseContext.SaveChanges();
+                        GridView1.DataBind();
                 }
+
             }
+            if (e.CommandName.Equals("ImageUp"))
+            {
+                int imageId = int.Parse(e.CommandArgument.ToString());
+                var homeImages = (from c in DatabaseContext.Images where c.ImageId == imageId select c).FirstOrDefault();
+                var downImages = (from c in DatabaseContext.Images where c.OrderImage == (homeImages.OrderImage - 1) select c).FirstOrDefault();
+                if (downImages != null)
+                {
+                    homeImages.OrderImage = homeImages.OrderImage - 1;
+                    downImages.OrderImage = downImages.OrderImage + 1;
+                }
+                DatabaseContext.SaveChanges();
+
+            }
+            if (e.CommandName.Equals("ImageDown"))
+            {
+                int imageId = int.Parse(e.CommandArgument.ToString());
+                var homeImages = (from c in DatabaseContext.Images where c.ImageId == imageId select c).FirstOrDefault();
+                var downImages = (from c in DatabaseContext.Images where c.OrderImage == (homeImages.OrderImage + 1) select c).FirstOrDefault();
+                if (downImages != null)
+                {
+                    homeImages.OrderImage = homeImages.OrderImage + 1;
+                    downImages.OrderImage = downImages.OrderImage - 1;
+                }
+                DatabaseContext.SaveChanges();
+
+            }
+            Response.Redirect(Request.UrlReferrer.AbsoluteUri.ToString());
+
         }
     }
 }

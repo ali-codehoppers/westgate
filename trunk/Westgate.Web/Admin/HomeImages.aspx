@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin/Admin.Master" AutoEventWireup="true"
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin/Admin.Master" AutoEventWireup="false"
     CodeBehind="HomeImages.aspx.cs" Inherits="Westgate.Web.Admin.HomeImages" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
@@ -8,17 +8,23 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div id="dialog">
-        <iframe id="catFrame" width="650" height="430"></iframe>
+        <iframe id="catFrame" width="650" height="430" frameborder="0"></iframe>
     </div>
     <div style="padding-left: 445px; margin-bottom: 10px;">
         <div class="linkButtonStyle">
             <a href="javascript:addHomeImages()">Add Home Images</a>
         </div>
     </div>
+    <asp:EntityDataSource ID="EntityDataSource1" runat="server" 
+        ConnectionString="name=WestgateEntities" 
+        DefaultContainerName="WestgateEntities" EnableFlattening="False" 
+        EntitySetName="Images" Where="it.OrderImage is not null" 
+        OrderBy="it.OrderImage">
+        </asp:EntityDataSource>
     <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" Style="width: 97%;"
         BackColor="White" BorderColor="#DEDFDE" BorderStyle="None" BorderWidth="1px" 
         CellPadding="4" ForeColor="Black" GridLines="Vertical" 
-        onrowcommand="GridView1_RowCommand">
+        onrowcommand="GridView1_RowCommand" DataSourceID="EntityDataSource1">
         <AlternatingRowStyle BackColor="White" />
         <Columns>
             <asp:BoundField DataField="ImageId" HeaderText="ImageId" ReadOnly="True" SortExpression="ImageId"
@@ -28,7 +34,7 @@
             <asp:TemplateField >
                 <ItemTemplate>
                     <center>
-                    <asp:ImageButton ID="deleteButton" ImageUrl="~/images/delete.png" runat="server" CommandName="DeleteImage" CommandArgument='<%# Eval("ImageId") %>' AlternateText="Remove Image from Home Page"/>
+                    <asp:ImageButton ID="deleteButton" ImageUrl="~/images/delete.png" runat="server" CommandName="DeleteImage" CommandArgument='<%# Eval("ImageId") %>' AlternateText="Remove Image from Home Page" OnClientClick="return confirm('Are you sure you want to delete this record?');"/>
                     </center>
                 </ItemTemplate>
             </asp:TemplateField>
@@ -36,36 +42,32 @@
             <asp:BoundField DataField="Description" HeaderText="Description" SortExpression="Description" />
             <asp:TemplateField HeaderText="Before Image" SortExpression="BeforeImagePath">
                 <ItemTemplate>
-                    <asp:Image ID="Image1" Width="32" Height="19" ImageUrl='<%# GetThumbnailImagePath(Eval("BeforeImagePath")) %>'
-                        runat="server" />
-                    <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl='<%# Eval("BeforeImagePath") %>'
-                        Target="_blank">Open</asp:HyperLink>
+                    <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl='<%# Eval("BeforeImagePath") %>' Target="_blank">
+                        <asp:Image ID="Image1" Width="32" Height="19" ImageUrl='<%# GetThumbnailImagePath(Eval("BeforeImagePath")) %>' runat="server" />
+                    </asp:HyperLink>
                 </ItemTemplate>
             </asp:TemplateField>
             <asp:TemplateField HeaderText="After Image" SortExpression="AfterImagePath">
                 <ItemTemplate>
-                    <asp:Image ID="Image2" Width="32" Height="19" ImageUrl='<%# GetThumbnailImagePath(Eval("AfterImagePath")) %>'
-                        runat="server" />
-                    <asp:HyperLink ID="HyperLink2" runat="server" NavigateUrl='<%# Eval("AfterImagePath") %>'
-                        Target="_blank">Open</asp:HyperLink>
+                    <asp:HyperLink ID="HyperLink2" runat="server" NavigateUrl='<%# Eval("AfterImagePath") %>' Target="_blank">
+                          <asp:Image ID="Image2" Width="32" Height="19" ImageUrl='<%# GetThumbnailImagePath(Eval("AfterImagePath")) %>' runat="server" />
+                    </asp:HyperLink>
                 </ItemTemplate>
             </asp:TemplateField>            
             <asp:TemplateField HeaderText="Combined Image" SortExpression="CombinedImagePath">
                 <ItemTemplate>
-                    <asp:Image ID="Image3" Width="64" Height="19" ImageUrl='<%# GetThumbnailImagePath(Eval("CombinedImagePath")) %>'
-                        runat="server" />
-                    <asp:HyperLink ID="HyperLink3" runat="server" NavigateUrl='<%# Eval("CombinedImagePath") %>'
-                        Target="_blank">Open</asp:HyperLink>
+                    <asp:HyperLink ID="HyperLink3" runat="server" NavigateUrl='<%# Eval("CombinedImagePath") %>' Target="_blank">
+                        <asp:Image ID="Image3" Width="64" Height="19" ImageUrl='<%# GetThumbnailImagePath(Eval("CombinedImagePath")) %>' runat="server" />
+                    </asp:HyperLink>
                 </ItemTemplate>
             </asp:TemplateField>
-            <asp:BoundField DataField="OrderImage" HeaderText="OrderImage" SortExpression="OrderImage"
-                Visible="False" />
+            <asp:BoundField DataField="OrderImage" HeaderText="OrderImage" SortExpression="OrderImage" Visible="False" />
             
             <asp:TemplateField>
                 <ItemTemplate>
                     <asp:HiddenField runat="server" ID="hiddenImageId" Value='<%# Eval("ImageId") %>'/>
-                    <asp:ImageButton ID="upButton" ImageUrl="~/images/top_arrow.png" runat="server" OnClick="upOrder"/>
-                    <asp:ImageButton ID="downButton" ImageUrl="~/images/down_arrow.png" runat="server" OnClick="downOrder"/>
+                    <asp:ImageButton ID="upButton" ImageUrl="~/images/top_arrow.png" runat="server" CommandName="ImageUp" CommandArgument='<%# Eval("ImageId") %>'/>
+                    <asp:ImageButton ID="downButton" ImageUrl="~/images/down_arrow.png" runat="server" CommandName="ImageDown" CommandArgument='<%# Eval("ImageId") %>'/>
                 </ItemTemplate>
             </asp:TemplateField>
         </Columns>
@@ -82,6 +84,7 @@
         <SortedAscendingHeaderStyle BackColor="#848384" />
         <SortedDescendingCellStyle BackColor="#EAEAD3" />
         <SortedDescendingHeaderStyle BackColor="#575357" />
+        
     </asp:GridView>
     <script type="text/javascript">
         $(function () {
