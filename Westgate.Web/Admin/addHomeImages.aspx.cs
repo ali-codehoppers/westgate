@@ -27,7 +27,69 @@ namespace Westgate.Web.Admin
                 }
             }
         }
-        protected void SelectItemChange(object sender, EventArgs e)
+        protected void updateImages(object sender, EventArgs e) {
+            if (IsPostBack)
+            {
+                int count = 0;
+                foreach (GridViewRow row in GridView1.Rows)
+                {
+                    CheckBox cb = (CheckBox)row.FindControl("checkItem");
+                    if (cb.Checked)
+                    {
+                        count++;
+                    }
+                }
+                if (count > 10)
+                {
+                    messageImg.Visible = true;
+                    messageSuccessImg.Visible = false;
+                }
+                else
+                {
+                    var imageOrder = (from c in DatabaseContext.Images select c.OrderImage).Max();
+                    int imageCount = 0;
+                    if (imageOrder != null) {
+                        imageCount = imageOrder.Value;
+                    }
+                    imageCount = imageCount+1;
+                    foreach (GridViewRow row in GridView1.Rows)
+                    {
+                        CheckBox cb = (CheckBox)row.FindControl("checkItem");
+                        HiddenField item = (HiddenField)((cb).Parent.FindControl("ImageHiddenValue"));
+                        int imageId = Int32.Parse(item.Value);
+                        var image = (from c in DatabaseContext.Images where c.ImageId == imageId select c).FirstOrDefault();
+                        if (cb.Checked)
+                        {
+                            if (image.OrderImage == null)
+                            {
+
+                                image.OrderImage = imageCount;
+                                DatabaseContext.SaveChanges();
+                                imageCount++;
+                            }
+                        }
+                        else
+                        {
+                            if (image.OrderImage != null) {
+                                if (imageCount > image.OrderImage.Value) {
+                                    var otherImages = from c in DatabaseContext.Images where c.OrderImage > image.OrderImage.Value select c;
+                                    foreach (Westgate.Data.Image checkOrder in otherImages) {
+                                        checkOrder.OrderImage = (checkOrder.OrderImage.Value)-1;
+                                        imageCount = checkOrder.OrderImage.Value+1;
+                                    }
+                                    DatabaseContext.SaveChanges();
+                                }
+                            }
+                            image.OrderImage = null;
+                            DatabaseContext.SaveChanges();
+                        }
+                    }
+                    messageImg.Visible = false;
+                    messageSuccessImg.Visible = true;
+                }
+            }
+        }
+        /*protected void SelectItemChange(object sender, EventArgs e)
         {
             int count = 0;
             foreach(GridViewRow row in GridView1.Rows){
@@ -53,6 +115,6 @@ namespace Westgate.Web.Admin
                     DatabaseContext.SaveChanges();
                 }
             }
-        }
+        }*/
     }
 }

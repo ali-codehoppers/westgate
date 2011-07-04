@@ -14,6 +14,14 @@
         <asp:Panel runat="server" ID="messageImg" Visible="false">
             <asp:Label runat="server" ID="imageCount" CssClass="messageImage" Text="Limit:10 Maximum Images."></asp:Label>
         </asp:Panel>
+        <asp:Panel runat="server" ID="messageSuccessImg" Visible="false">
+            <asp:Label runat="server" ID="Label1" CssClass="messageSuccessImage" Text="Images for Home Page added successfully."></asp:Label>
+        </asp:Panel>
+      <div style="margin-bottom: 10px;margin-top:10px">
+        <div class="linkButtonStyle">
+            <asp:LinkButton runat="server" ID="UpdateHomeImages" OnClick="updateImages">Update</asp:LinkButton>
+        </div>
+      </div>
         <asp:EntityDataSource ID="EntityDataSource1" runat="server" ConnectionString="name=WestgateEntities"
             DefaultContainerName="WestgateEntities" EnableFlattening="False" EntitySetName="Images">
         </asp:EntityDataSource>
@@ -24,7 +32,7 @@
             <Columns>
                 <asp:TemplateField>
                     <ItemTemplate>
-                        <asp:CheckBox runat="server" ID="checkItem" AutoPostBack="true" OnCheckedChanged="SelectItemChange" />
+                        <asp:CheckBox runat="server" ID="checkItem" />
                         <asp:HiddenField runat="server" ID="ImageHiddenValue" Value='<%# Eval("ImageId") %>'/>
                     </ItemTemplate>
                 </asp:TemplateField>
