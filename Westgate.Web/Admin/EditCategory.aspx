@@ -8,7 +8,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div id="dialog">
-        <iframe id="subCatFrame" width="650" height="430"></iframe>
+        <iframe id="subCatFrame" width="650" height="430" frameborder="0"></iframe>
     </div>
         <asp:Panel runat="server" ID="message" Visible="false">
             <asp:Label CssClass="successStyle" ID="successMessage" runat="server" Text="Category Saved."></asp:Label>

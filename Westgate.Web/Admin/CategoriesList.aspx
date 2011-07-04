@@ -8,7 +8,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div id="dialog">
-        <iframe id="catFrame" width="650" height="430"></iframe>
+        <iframe id="catFrame" width="650" height="430" frameborder="0"></iframe>
     </div>
     <div style="padding-left: 445px; margin-bottom: 10px;">
         <div class="linkButtonStyle">
