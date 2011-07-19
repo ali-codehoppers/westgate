@@ -27,6 +27,9 @@
         <div style="width: 100%;">
             <asp:Label runat="server" ID="ErrorLabel" Visible="false" Style="color: Red" Text="Image size exceeded by 10MB Restriction."></asp:Label>
         </div>
+        <div style="padding:5px;">
+            <asp:Label runat="server" ID="ErrorMsg" Visible="false" Style="color: Red" Text="Before or After image is missing."></asp:Label>
+        </div>
         <div>
             <asp:Label ID="Label6" runat="server" Text="Name:" Width="200px"></asp:Label>
             <asp:TextBox runat="server" ID="tbName"></asp:TextBox>

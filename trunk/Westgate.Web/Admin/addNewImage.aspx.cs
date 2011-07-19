@@ -120,13 +120,18 @@ namespace Westgate.Web.Admin
         protected void btnSave_Click(object sender, EventArgs e)
         {
             Westgate.Data.Image image = new Data.Image();
-            SetImage(image);
-
-            DatabaseContext.AddToImages(image);
-            DatabaseContext.SaveChanges();
-            Response.Redirect("~/Admin/addNewImage.aspx?imageId=" + image.ImageId);
+            bool imageAdd = SetImage(image);
+            if (imageAdd)
+            {
+                DatabaseContext.AddToImages(image);
+                DatabaseContext.SaveChanges();
+                Response.Redirect("~/Admin/addNewImage.aspx?imageId=" + image.ImageId);
+            }
+            else {
+                //Response.Redirect("~/Admin/addNewImage.aspx");
+            }
         }
-        private void SetImage(Westgate.Data.Image image)
+        private bool SetImage(Westgate.Data.Image image)
         {
             if (Request["StoryId"] != null)
             {
@@ -156,6 +161,16 @@ namespace Westgate.Web.Admin
                 BeforeImageY1.Value = BeforeY1;
                 BeforeImageY2.Value = BeforeY2;
             }
+            else {
+                if (imgBefore.ImageUrl == null || imgBefore.ImageUrl =="")
+                {
+                    imgBefore.ImageUrl = "";
+                    imgAfter.ImageUrl = "";
+                    ErrorMsg.Visible = true;
+                    return false;
+                }
+            }
+
             string afterImagePath = SaveFile(fileAfterImage);
             if (afterImagePath != null)
             {
@@ -175,6 +190,16 @@ namespace Westgate.Web.Admin
                 AfterImageY1.Value = AfterY1;
                 AfterImageY2.Value = AfterY2;
             }
+            else
+            {
+                if (imgAfter.ImageUrl == null || imgAfter.ImageUrl == "")
+                {
+                    imgBefore.ImageUrl = "";
+                    imgAfter.ImageUrl = "";
+                    ErrorMsg.Visible = true;
+                    return false;
+                }
+            }
             if (imgBefore.ImageUrl != null && imgBefore.ImageUrl != "" && imgAfter.ImageUrl != null && imgAfter.ImageUrl != "")
             {
                 String path = CreateCombinedImage(imgBefore.ImageUrl, imgAfter.ImageUrl);
@@ -182,8 +207,15 @@ namespace Westgate.Web.Admin
                 {
                     image.CombinedImagePath = path;
                     imgCombined.ImageUrl = path;
+                    return true;
+                }
+                else
+                {
+                    ErrorMsg.Visible = true;
+                    return false;
                 }
             }
+            return true;
 
         }
 
