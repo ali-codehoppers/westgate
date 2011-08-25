@@ -10,42 +10,42 @@
 namespace Westgate.Web.Admin {
     
     
-    public partial class subCategoryList {
+    public partial class TagsList {
         
         /// <summary>
-        /// SubcategoryLabel control.
+        /// CategoryLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label SubcategoryLabel;
+        protected global::System.Web.UI.WebControls.Label CategoryLabel;
         
         /// <summary>
-        /// Label1 control.
+        /// message control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label1;
+        protected global::System.Web.UI.WebControls.Panel message;
         
         /// <summary>
-        /// ddlCategory control.
+        /// successMessage control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlCategory;
+        protected global::System.Web.UI.WebControls.Label successMessage;
         
         /// <summary>
-        /// GridView1 control.
+        /// RepeaterTags control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView GridView1;
+        protected global::System.Web.UI.WebControls.Repeater RepeaterTags;
     }
 }
