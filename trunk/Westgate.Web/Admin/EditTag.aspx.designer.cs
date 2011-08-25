@@ -10,16 +10,16 @@
 namespace Westgate.Web.Admin {
     
     
-    public partial class EditSubCategory {
+    public partial class EditTag {
         
         /// <summary>
-        /// EditSubcategoryLabel control.
+        /// EditCategoryLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label EditSubcategoryLabel;
+        protected global::System.Web.UI.WebControls.Label EditCategoryLabel;
         
         /// <summary>
         /// message control.
@@ -58,6 +58,33 @@ namespace Westgate.Web.Admin {
         protected global::System.Web.UI.WebControls.TextBox NameText;
         
         /// <summary>
+        /// ShowInTab control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label ShowInTab;
+        
+        /// <summary>
+        /// RadioButtonYes control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RadioButton RadioButtonYes;
+        
+        /// <summary>
+        /// RadioButtonNo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RadioButton RadioButtonNo;
+        
+        /// <summary>
         /// Description control.
         /// </summary>
         /// <remarks>
@@ -85,21 +112,30 @@ namespace Westgate.Web.Admin {
         protected global::System.Web.UI.WebControls.Button EditButton;
         
         /// <summary>
-        /// GridView1 control.
+        /// messageOrderSaved control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView GridView1;
+        protected global::System.Web.UI.WebControls.Panel messageOrderSaved;
         
         /// <summary>
-        /// edsStories control.
+        /// Label1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.EntityDataSource edsStories;
+        protected global::System.Web.UI.WebControls.Label Label1;
+        
+        /// <summary>
+        /// Repeater1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Repeater Repeater1;
     }
 }
