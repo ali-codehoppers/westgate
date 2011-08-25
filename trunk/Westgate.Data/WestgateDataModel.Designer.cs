@@ -18,9 +18,8 @@ using System.Runtime.Serialization;
 [assembly: EdmSchemaAttribute()]
 #region EDM Relationship Metadata
 
-[assembly: EdmRelationshipAttribute("WestgateModel", "FK_Subcategories_Categories", "Category", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Westgate.Data.Category), "Subcategory", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Westgate.Data.Subcategory), true)]
-[assembly: EdmRelationshipAttribute("WestgateModel", "FK_Images_Stories", "Story", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Westgate.Data.Story), "Image", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Westgate.Data.Image), true)]
-[assembly: EdmRelationshipAttribute("WestgateModel", "FK_Stories_Subcategories", "Subcategory", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Westgate.Data.Subcategory), "Story", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Westgate.Data.Story), true)]
+[assembly: EdmRelationshipAttribute("WestgateModel", "ImageImageTag", "Image", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Westgate.Data.Image), "ImageTag", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Westgate.Data.ImageTag), true)]
+[assembly: EdmRelationshipAttribute("WestgateModel", "TagImageTag", "Tag", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Westgate.Data.Tag), "ImageTag", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Westgate.Data.ImageTag), true)]
 
 #endregion
 
@@ -75,22 +74,6 @@ namespace Westgate.Data
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        public ObjectSet<Category> Categories
-        {
-            get
-            {
-                if ((_Categories == null))
-                {
-                    _Categories = base.CreateObjectSet<Category>("Categories");
-                }
-                return _Categories;
-            }
-        }
-        private ObjectSet<Category> _Categories;
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
         public ObjectSet<Image> Images
         {
             get
@@ -107,38 +90,6 @@ namespace Westgate.Data
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        public ObjectSet<Story> Stories
-        {
-            get
-            {
-                if ((_Stories == null))
-                {
-                    _Stories = base.CreateObjectSet<Story>("Stories");
-                }
-                return _Stories;
-            }
-        }
-        private ObjectSet<Story> _Stories;
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        public ObjectSet<Subcategory> Subcategories
-        {
-            get
-            {
-                if ((_Subcategories == null))
-                {
-                    _Subcategories = base.CreateObjectSet<Subcategory>("Subcategories");
-                }
-                return _Subcategories;
-            }
-        }
-        private ObjectSet<Subcategory> _Subcategories;
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
         public ObjectSet<UserEnquiry> UserEnquiries
         {
             get
@@ -151,17 +102,41 @@ namespace Westgate.Data
             }
         }
         private ObjectSet<UserEnquiry> _UserEnquiries;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<Tag> Tags
+        {
+            get
+            {
+                if ((_Tags == null))
+                {
+                    _Tags = base.CreateObjectSet<Tag>("Tags");
+                }
+                return _Tags;
+            }
+        }
+        private ObjectSet<Tag> _Tags;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<ImageTag> ImageTags
+        {
+            get
+            {
+                if ((_ImageTags == null))
+                {
+                    _ImageTags = base.CreateObjectSet<ImageTag>("ImageTags");
+                }
+                return _ImageTags;
+            }
+        }
+        private ObjectSet<ImageTag> _ImageTags;
 
         #endregion
         #region AddTo Methods
-    
-        /// <summary>
-        /// Deprecated Method for adding a new object to the Categories EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
-        /// </summary>
-        public void AddToCategories(Category category)
-        {
-            base.AddObject("Categories", category);
-        }
     
         /// <summary>
         /// Deprecated Method for adding a new object to the Images EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
@@ -172,22 +147,6 @@ namespace Westgate.Data
         }
     
         /// <summary>
-        /// Deprecated Method for adding a new object to the Stories EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
-        /// </summary>
-        public void AddToStories(Story story)
-        {
-            base.AddObject("Stories", story);
-        }
-    
-        /// <summary>
-        /// Deprecated Method for adding a new object to the Subcategories EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
-        /// </summary>
-        public void AddToSubcategories(Subcategory subcategory)
-        {
-            base.AddObject("Subcategories", subcategory);
-        }
-    
-        /// <summary>
         /// Deprecated Method for adding a new object to the UserEnquiries EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
         public void AddToUserEnquiries(UserEnquiry userEnquiry)
@@ -195,167 +154,29 @@ namespace Westgate.Data
             base.AddObject("UserEnquiries", userEnquiry);
         }
 
+         /// <summary>
+        /// Deprecated Method for adding a new object to the Tags EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToTags(Tag tag)
+                {
+            base.AddObject("Tags", tag);
+            }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the ImageTags EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToImageTags(ImageTag imageTag)
+        {
+            base.AddObject("ImageTags", imageTag);
+            }
+
         #endregion
-    }
+        }
     
 
-    #endregion
+        #endregion
     
     #region Entities
-    
-    /// <summary>
-    /// No Metadata Documentation available.
-    /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="WestgateModel", Name="Category")]
-    [Serializable()]
-    [DataContractAttribute(IsReference=true)]
-    public partial class Category : EntityObject
-    {
-        #region Factory Method
-    
-        /// <summary>
-        /// Create a new Category object.
-        /// </summary>
-        /// <param name="categoryId">Initial value of the CategoryId property.</param>
-        /// <param name="name">Initial value of the Name property.</param>
-        public static Category CreateCategory(global::System.Int32 categoryId, global::System.String name)
-        {
-            Category category = new Category();
-            category.CategoryId = categoryId;
-            category.Name = name;
-            return category;
-        }
-
-        #endregion
-        #region Primitive Properties
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.Int32 CategoryId
-        {
-            get
-            {
-                return _CategoryId;
-            }
-            set
-            {
-                if (_CategoryId != value)
-                {
-                    OnCategoryIdChanging(value);
-                    ReportPropertyChanging("CategoryId");
-                    _CategoryId = StructuralObject.SetValidValue(value);
-                    ReportPropertyChanged("CategoryId");
-                    OnCategoryIdChanged();
-                }
-            }
-        }
-        private global::System.Int32 _CategoryId;
-        partial void OnCategoryIdChanging(global::System.Int32 value);
-        partial void OnCategoryIdChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.String Name
-        {
-            get
-            {
-                return _Name;
-            }
-            set
-            {
-                OnNameChanging(value);
-                ReportPropertyChanging("Name");
-                _Name = StructuralObject.SetValidValue(value, false);
-                ReportPropertyChanged("Name");
-                OnNameChanged();
-            }
-        }
-        private global::System.String _Name;
-        partial void OnNameChanging(global::System.String value);
-        partial void OnNameChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public global::System.String Description
-        {
-            get
-            {
-                return _Description;
-            }
-            set
-            {
-                OnDescriptionChanging(value);
-                ReportPropertyChanging("Description");
-                _Description = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("Description");
-                OnDescriptionChanged();
-            }
-        }
-        private global::System.String _Description;
-        partial void OnDescriptionChanging(global::System.String value);
-        partial void OnDescriptionChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public Nullable<global::System.Int32> NumberOfSubcategories
-        {
-            get
-            {
-                return _NumberOfSubcategories;
-            }
-            set
-            {
-                OnNumberOfSubcategoriesChanging(value);
-                ReportPropertyChanging("NumberOfSubcategories");
-                _NumberOfSubcategories = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("NumberOfSubcategories");
-                OnNumberOfSubcategoriesChanged();
-            }
-        }
-        private Nullable<global::System.Int32> _NumberOfSubcategories;
-        partial void OnNumberOfSubcategoriesChanging(Nullable<global::System.Int32> value);
-        partial void OnNumberOfSubcategoriesChanged();
-
-        #endregion
-    
-        #region Navigation Properties
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("WestgateModel", "FK_Subcategories_Categories", "Subcategory")]
-        public EntityCollection<Subcategory> Subcategories
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Subcategory>("WestgateModel.FK_Subcategories_Categories", "Subcategory");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Subcategory>("WestgateModel.FK_Subcategories_Categories", "Subcategory", value);
-                }
-            }
-        }
-
-        #endregion
-    }
     
     /// <summary>
     /// No Metadata Documentation available.
@@ -371,14 +192,12 @@ namespace Westgate.Data
         /// Create a new Image object.
         /// </summary>
         /// <param name="imageId">Initial value of the ImageId property.</param>
-        /// <param name="storyId">Initial value of the StoryId property.</param>
         /// <param name="name">Initial value of the Name property.</param>
-        public static Image CreateImage(global::System.Int32 imageId, global::System.Int32 storyId, global::System.String name)
+        public static Image CreateImage(global::System.Int32 imageId, global::System.String name)
         {
             Image image = new Image();
             image.ImageId = imageId;
-            image.StoryId = storyId;
-            image.Name = name;
+             image.Name = name;
             return image;
         }
 
@@ -411,30 +230,6 @@ namespace Westgate.Data
         private global::System.Int32 _ImageId;
         partial void OnImageIdChanging(global::System.Int32 value);
         partial void OnImageIdChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.Int32 StoryId
-        {
-            get
-            {
-                return _StoryId;
-            }
-            set
-            {
-                OnStoryIdChanging(value);
-                ReportPropertyChanging("StoryId");
-                _StoryId = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("StoryId");
-                OnStoryIdChanged();
-            }
-        }
-        private global::System.Int32 _StoryId;
-        partial void OnStoryIdChanging(global::System.Int32 value);
-        partial void OnStoryIdChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -590,34 +385,18 @@ namespace Westgate.Data
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("WestgateModel", "FK_Images_Stories", "Story")]
-        public Story Story
+        [EdmRelationshipNavigationPropertyAttribute("WestgateModel", "ImageImageTag", "ImageTag")]
+        public EntityCollection<ImageTag> ImageTags
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Story>("WestgateModel.FK_Images_Stories", "Story").Value;
-            }
-            set
-            {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Story>("WestgateModel.FK_Images_Stories", "Story").Value = value;
-            }
-        }
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [BrowsableAttribute(false)]
-        [DataMemberAttribute()]
-        public EntityReference<Story> StoryReference
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Story>("WestgateModel.FK_Images_Stories", "Story");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<ImageTag>("WestgateModel.ImageImageTag", "ImageTag");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Story>("WestgateModel.FK_Images_Stories", "Story", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<ImageTag>("WestgateModel.ImageImageTag", "ImageTag", value);
                 }
             }
         }
@@ -628,26 +407,24 @@ namespace Westgate.Data
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="WestgateModel", Name="Story")]
+    [EdmEntityTypeAttribute(NamespaceName="WestgateModel", Name="ImageTag")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
-    public partial class Story : EntityObject
+    public partial class ImageTag : EntityObject
     {
         #region Factory Method
     
         /// <summary>
-        /// Create a new Story object.
+        /// Create a new ImageTag object.
         /// </summary>
-        /// <param name="storyId">Initial value of the StoryId property.</param>
-        /// <param name="subcategoryId">Initial value of the SubcategoryId property.</param>
-        /// <param name="name">Initial value of the Name property.</param>
-        public static Story CreateStory(global::System.Int32 storyId, global::System.Int32 subcategoryId, global::System.String name)
+        /// <param name="imageId">Initial value of the ImageId property.</param>
+        /// <param name="tagId">Initial value of the TagId property.</param>
+        public static ImageTag CreateImageTag(global::System.Int32 imageId, global::System.Int32 tagId)
         {
-            Story story = new Story();
-            story.StoryId = storyId;
-            story.SubcategoryId = subcategoryId;
-            story.Name = name;
-            return story;
+            ImageTag imageTag = new ImageTag();
+            imageTag.ImageId = imageId;
+            imageTag.TagId = tagId;
+            return imageTag;
         }
 
         #endregion
@@ -656,101 +433,80 @@ namespace Westgate.Data
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.Int32 StoryId
+        public global::System.Int32 OrderNumber
         {
             get
             {
-                return _StoryId;
+                return _OrderNumber;
             }
             set
             {
-                if (_StoryId != value)
+                OnOrderNumberChanging(value);
+                ReportPropertyChanging("OrderNumber");
+                _OrderNumber = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("OrderNumber");
+                OnOrderNumberChanged();
+            }
+        }
+        private global::System.Int32 _OrderNumber = 0;
+        partial void OnOrderNumberChanging(global::System.Int32 value);
+        partial void OnOrderNumberChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 ImageId
+        {
+            get
+            {
+                return _ImageId;
+            }
+            set
+            {
+                if (_ImageId != value)
                 {
-                    OnStoryIdChanging(value);
-                    ReportPropertyChanging("StoryId");
-                    _StoryId = StructuralObject.SetValidValue(value);
-                    ReportPropertyChanged("StoryId");
-                    OnStoryIdChanged();
+                    OnImageIdChanging(value);
+                    ReportPropertyChanging("ImageId");
+                    _ImageId = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("ImageId");
+                    OnImageIdChanged();
                 }
             }
         }
-        private global::System.Int32 _StoryId;
-        partial void OnStoryIdChanging(global::System.Int32 value);
-        partial void OnStoryIdChanged();
+        private global::System.Int32 _ImageId;
+        partial void OnImageIdChanging(global::System.Int32 value);
+        partial void OnImageIdChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.Int32 SubcategoryId
+        public global::System.Int32 TagId
         {
             get
             {
-                return _SubcategoryId;
+                return _TagId;
             }
             set
             {
-                OnSubcategoryIdChanging(value);
-                ReportPropertyChanging("SubcategoryId");
-                _SubcategoryId = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("SubcategoryId");
-                OnSubcategoryIdChanged();
+                if (_TagId != value)
+                {
+                    OnTagIdChanging(value);
+                    ReportPropertyChanging("TagId");
+                    _TagId = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("TagId");
+                    OnTagIdChanged();
             }
         }
-        private global::System.Int32 _SubcategoryId;
-        partial void OnSubcategoryIdChanging(global::System.Int32 value);
-        partial void OnSubcategoryIdChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.String Name
-        {
-            get
-            {
-                return _Name;
-            }
-            set
-            {
-                OnNameChanging(value);
-                ReportPropertyChanging("Name");
-                _Name = StructuralObject.SetValidValue(value, false);
-                ReportPropertyChanged("Name");
-                OnNameChanged();
-            }
         }
-        private global::System.String _Name;
-        partial void OnNameChanging(global::System.String value);
-        partial void OnNameChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public global::System.String Description
-        {
-            get
-            {
-                return _Description;
-            }
-            set
-            {
-                OnDescriptionChanging(value);
-                ReportPropertyChanging("Description");
-                _Description = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("Description");
-                OnDescriptionChanged();
-            }
-        }
-        private global::System.String _Description;
-        partial void OnDescriptionChanging(global::System.String value);
-        partial void OnDescriptionChanged();
+        private global::System.Int32 _TagId;
+        partial void OnTagIdChanging(global::System.Int32 value);
+        partial void OnTagIdChanged();
 
         #endregion
     
@@ -762,18 +518,34 @@ namespace Westgate.Data
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("WestgateModel", "FK_Images_Stories", "Image")]
-        public EntityCollection<Image> Images
+        [EdmRelationshipNavigationPropertyAttribute("WestgateModel", "ImageImageTag", "Image")]
+        public Image Image
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Image>("WestgateModel.FK_Images_Stories", "Image");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Image>("WestgateModel.ImageImageTag", "Image").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Image>("WestgateModel.ImageImageTag", "Image").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<Image> ImageReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Image>("WestgateModel.ImageImageTag", "Image");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Image>("WestgateModel.FK_Images_Stories", "Image", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Image>("WestgateModel.ImageImageTag", "Image", value);
                 }
             }
         }
@@ -784,16 +556,16 @@ namespace Westgate.Data
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("WestgateModel", "FK_Stories_Subcategories", "Subcategory")]
-        public Subcategory Subcategory
+        [EdmRelationshipNavigationPropertyAttribute("WestgateModel", "TagImageTag", "Tag")]
+        public Tag Tag
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Subcategory>("WestgateModel.FK_Stories_Subcategories", "Subcategory").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Tag>("WestgateModel.TagImageTag", "Tag").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Subcategory>("WestgateModel.FK_Stories_Subcategories", "Subcategory").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Tag>("WestgateModel.TagImageTag", "Tag").Value = value;
             }
         }
         /// <summary>
@@ -801,17 +573,17 @@ namespace Westgate.Data
         /// </summary>
         [BrowsableAttribute(false)]
         [DataMemberAttribute()]
-        public EntityReference<Subcategory> SubcategoryReference
+        public EntityReference<Tag> TagReference
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Subcategory>("WestgateModel.FK_Stories_Subcategories", "Subcategory");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Tag>("WestgateModel.TagImageTag", "Tag");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Subcategory>("WestgateModel.FK_Stories_Subcategories", "Subcategory", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Tag>("WestgateModel.TagImageTag", "Tag", value);
                 }
             }
         }
@@ -822,26 +594,28 @@ namespace Westgate.Data
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="WestgateModel", Name="Subcategory")]
+    [EdmEntityTypeAttribute(NamespaceName="WestgateModel", Name="Tag")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
-    public partial class Subcategory : EntityObject
+    public partial class Tag : EntityObject
     {
         #region Factory Method
     
         /// <summary>
-        /// Create a new Subcategory object.
+        /// Create a new Tag object.
         /// </summary>
-        /// <param name="subcategoryId">Initial value of the SubcategoryId property.</param>
-        /// <param name="categoryId">Initial value of the CategoryId property.</param>
+        /// <param name="tagId">Initial value of the TagId property.</param>
         /// <param name="name">Initial value of the Name property.</param>
-        public static Subcategory CreateSubcategory(global::System.Int32 subcategoryId, global::System.Int32 categoryId, global::System.String name)
+        /// <param name="showInTabs">Initial value of the ShowInTabs property.</param>
+        /// <param name="orderNumber">Initial value of the OrderNumber property.</param>
+        public static Tag CreateTag(global::System.Int32 tagId, global::System.String name, global::System.Boolean showInTabs, global::System.Int32 orderNumber)
         {
-            Subcategory subcategory = new Subcategory();
-            subcategory.SubcategoryId = subcategoryId;
-            subcategory.CategoryId = categoryId;
-            subcategory.Name = name;
-            return subcategory;
+            Tag tag = new Tag();
+            tag.TagId = tagId;
+            tag.Name = name;
+            tag.ShowInTabs = showInTabs;
+            tag.OrderNumber = orderNumber;
+            return tag;
         }
 
         #endregion
@@ -852,51 +626,27 @@ namespace Westgate.Data
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.Int32 SubcategoryId
+        public global::System.Int32 TagId
         {
             get
             {
-                return _SubcategoryId;
+                return _TagId;
             }
             set
             {
-                if (_SubcategoryId != value)
-                {
-                    OnSubcategoryIdChanging(value);
-                    ReportPropertyChanging("SubcategoryId");
-                    _SubcategoryId = StructuralObject.SetValidValue(value);
-                    ReportPropertyChanged("SubcategoryId");
-                    OnSubcategoryIdChanged();
-                }
+                if (_TagId != value)
+            {
+                    OnTagIdChanging(value);
+                    ReportPropertyChanging("TagId");
+                    _TagId = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("TagId");
+                    OnTagIdChanged();
+            }
             }
         }
-        private global::System.Int32 _SubcategoryId;
-        partial void OnSubcategoryIdChanging(global::System.Int32 value);
-        partial void OnSubcategoryIdChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.Int32 CategoryId
-        {
-            get
-            {
-                return _CategoryId;
-            }
-            set
-            {
-                OnCategoryIdChanging(value);
-                ReportPropertyChanging("CategoryId");
-                _CategoryId = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("CategoryId");
-                OnCategoryIdChanged();
-            }
-        }
-        private global::System.Int32 _CategoryId;
-        partial void OnCategoryIdChanging(global::System.Int32 value);
-        partial void OnCategoryIdChanged();
+        private global::System.Int32 _TagId;
+        partial void OnTagIdChanging(global::System.Int32 value);
+        partial void OnTagIdChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -949,26 +699,74 @@ namespace Westgate.Data
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Int32> DefaultStoryId
+        public global::System.Boolean ShowInTabs
         {
             get
             {
-                return _DefaultStoryId;
+                return _ShowInTabs;
             }
             set
             {
-                OnDefaultStoryIdChanging(value);
-                ReportPropertyChanging("DefaultStoryId");
-                _DefaultStoryId = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("DefaultStoryId");
-                OnDefaultStoryIdChanged();
+                OnShowInTabsChanging(value);
+                ReportPropertyChanging("ShowInTabs");
+                _ShowInTabs = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("ShowInTabs");
+                OnShowInTabsChanged();
             }
         }
-        private Nullable<global::System.Int32> _DefaultStoryId;
-        partial void OnDefaultStoryIdChanging(Nullable<global::System.Int32> value);
-        partial void OnDefaultStoryIdChanged();
+        private global::System.Boolean _ShowInTabs;
+        partial void OnShowInTabsChanging(global::System.Boolean value);
+        partial void OnShowInTabsChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Boolean IsEditable
+        {
+            get
+            {
+                return _IsEditable;
+            }
+            set
+            {
+                OnIsEditableChanging(value);
+                ReportPropertyChanging("IsEditable");
+                _IsEditable = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("IsEditable");
+                OnIsEditableChanged();
+            }
+        }
+        private global::System.Boolean _IsEditable = true;
+        partial void OnIsEditableChanging(global::System.Boolean value);
+        partial void OnIsEditableChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 OrderNumber
+        {
+            get
+            {
+                return _OrderNumber;
+            }
+            set
+            {
+                OnOrderNumberChanging(value);
+                ReportPropertyChanging("OrderNumber");
+                _OrderNumber = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("OrderNumber");
+                OnOrderNumberChanged();
+            }
+        }
+        private global::System.Int32 _OrderNumber;
+        partial void OnOrderNumberChanging(global::System.Int32 value);
+        partial void OnOrderNumberChanged();
 
         #endregion
     
@@ -980,56 +778,18 @@ namespace Westgate.Data
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("WestgateModel", "FK_Subcategories_Categories", "Category")]
-        public Category Category
+        [EdmRelationshipNavigationPropertyAttribute("WestgateModel", "TagImageTag", "ImageTag")]
+        public EntityCollection<ImageTag> ImageTags
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Category>("WestgateModel.FK_Subcategories_Categories", "Category").Value;
-            }
-            set
-            {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Category>("WestgateModel.FK_Subcategories_Categories", "Category").Value = value;
-            }
-        }
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [BrowsableAttribute(false)]
-        [DataMemberAttribute()]
-        public EntityReference<Category> CategoryReference
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Category>("WestgateModel.FK_Subcategories_Categories", "Category");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<ImageTag>("WestgateModel.TagImageTag", "ImageTag");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Category>("WestgateModel.FK_Subcategories_Categories", "Category", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("WestgateModel", "FK_Stories_Subcategories", "Story")]
-        public EntityCollection<Story> Stories
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Story>("WestgateModel.FK_Stories_Subcategories", "Story");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Story>("WestgateModel.FK_Stories_Subcategories", "Story", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<ImageTag>("WestgateModel.TagImageTag", "ImageTag", value);
                 }
             }
         }

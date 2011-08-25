@@ -11,7 +11,6 @@
 <body>
     <form id="form1" runat="server">
     <div>
-
       <div style="width:100%; margin-bottom: 10px;position:fixed;background-color:White">
         <div class="linkButtonStyle" style="float:right">
             <asp:LinkButton runat="server" ID="UpdateHomeImages" OnClick="updateImages">Add Images</asp:LinkButton>
@@ -25,12 +24,13 @@
             <asp:Label runat="server" ID="Label1" CssClass="messageSuccessImage" Text="Images for Home Page added successfully."></asp:Label>
         </asp:Panel>
         <asp:EntityDataSource ID="EntityDataSource1" runat="server" ConnectionString="name=WestgateEntities"
-            DefaultContainerName="WestgateEntities" EnableFlattening="False" 
-              EntitySetName="Images" Where="it.OrderImage is null">
+					DefaultContainerName="WestgateEntities" EnableFlattening="False" EntitySetName="Images"
+					Where="it.OrderImage is null">
         </asp:EntityDataSource>
-        <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataKeyNames="ImageId" BackColor="White" BorderColor="#DEDFDE" BorderStyle="None"
-            BorderWidth="1px" CellPadding="4" ForeColor="Black" GridLines="Vertical"
-            DataSourceID="EntityDataSource1" Style="width: 100%">
+				<asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataKeyNames="ImageId"
+					BackColor="White" BorderColor="#DEDFDE" BorderStyle="None" BorderWidth="1px"
+					CellPadding="4" ForeColor="Black" GridLines="Vertical" DataSourceID="EntityDataSource1"
+					Style="width: 100%">
             <AlternatingRowStyle BackColor="White" />
             <Columns>
                 <asp:TemplateField>
@@ -47,26 +47,33 @@
                 <asp:BoundField DataField="Description" HeaderText="Description" SortExpression="Description" />
                 <asp:TemplateField HeaderText="Before Image" SortExpression="BeforeImagePath">
                     <ItemTemplate>
-                        <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl='<%# Eval("BeforeImagePath") %>' Target="_blank">
-                            <asp:Image ID="Image1" Width="32" Height="19" ImageUrl='<%# GetThumbnailImagePath(Eval("BeforeImagePath")) %>' runat="server" />
+								<asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl='<%# Eval("BeforeImagePath") %>'
+									Target="_blank">
+									<asp:Image ID="Image1" Width="32" Height="19" ImageUrl='<%# GetThumbnailImagePath(Eval("BeforeImagePath")) %>'
+										runat="server" />
                         </asp:HyperLink>
                     </ItemTemplate>
                 </asp:TemplateField>
                 <asp:TemplateField HeaderText="After Image" SortExpression="AfterImagePath">
                     <ItemTemplate>
-                        <asp:HyperLink ID="HyperLink2" runat="server" NavigateUrl='<%# Eval("AfterImagePath") %>' Target="_blank">
-                            <asp:Image ID="Image2" Width="32" Height="19" ImageUrl='<%# GetThumbnailImagePath(Eval("AfterImagePath")) %>' runat="server" />
+								<asp:HyperLink ID="HyperLink2" runat="server" NavigateUrl='<%# Eval("AfterImagePath") %>'
+									Target="_blank">
+									<asp:Image ID="Image2" Width="32" Height="19" ImageUrl='<%# GetThumbnailImagePath(Eval("AfterImagePath")) %>'
+										runat="server" />
                         </asp:HyperLink>
                     </ItemTemplate>
                 </asp:TemplateField>
                 <asp:TemplateField HeaderText="Combined Image" SortExpression="CombinedImagePath">
                     <ItemTemplate>
-                        <asp:HyperLink ID="HyperLink3" runat="server" NavigateUrl='<%# Eval("CombinedImagePath") %>' Target="_blank">
-                            <asp:Image ID="Image3" Width="64" Height="19" ImageUrl='<%# GetThumbnailImagePath(Eval("CombinedImagePath")) %>' runat="server" />
+								<asp:HyperLink ID="HyperLink3" runat="server" NavigateUrl='<%# Eval("CombinedImagePath") %>'
+									Target="_blank">
+									<asp:Image ID="Image3" Width="64" Height="19" ImageUrl='<%# GetThumbnailImagePath(Eval("CombinedImagePath")) %>'
+										runat="server" />
                         </asp:HyperLink>
                     </ItemTemplate>
                 </asp:TemplateField>
-                <asp:BoundField DataField="OrderImage" HeaderText="OrderImage" SortExpression="OrderImage" Visible="False" />
+						<asp:BoundField DataField="OrderImage" HeaderText="OrderImage" SortExpression="OrderImage"
+							Visible="False" />
             </Columns>
             <FooterStyle BackColor="#CCCC99" />
             <HeaderStyle BackColor="#666666" Font-Bold="True" ForeColor="#FFFFFF" />

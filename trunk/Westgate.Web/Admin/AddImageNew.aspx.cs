@@ -11,9 +11,11 @@ using System.Drawing.Drawing2D;
 
 using Westgate.Data;
 using System.Drawing.Imaging;
+using System.Text;
+
 namespace Westgate.Web.Admin
 {
-    public partial class addNewImage : AuthenticatedPage
+    public partial class AddImageNew : AuthenticatedPage
     {
         Westgate.Data.Image EditImage;
         String BeforeX1, BeforeX2, BeforeY1, BeforeY2, AfterX1, AfterX2, AfterY1, AfterY2;
@@ -50,7 +52,18 @@ namespace Westgate.Web.Admin
                     imgCombined.ImageUrl = image.CombinedImagePath;
                     tbName.Text = image.Name;
                     tbDescription.Text = image.Description;
-
+                    
+                    var selectedTags = (from imgTag in DatabaseContext.ImageTags
+                                       where imgTag.ImageId==image.ImageId
+                                       select imgTag.Tag);
+                    StringBuilder sb = new StringBuilder();
+                    foreach( Tag tag in selectedTags)
+                    {
+                        if(sb.Length!=0)
+                            sb.Append(", ");
+                        sb.Append(tag.Name);
+                    }
+                    textTags.Text = sb.ToString();
                 }
             }
         }
@@ -125,18 +138,68 @@ namespace Westgate.Web.Admin
             {
                 DatabaseContext.AddToImages(image);
                 DatabaseContext.SaveChanges();
-                Response.Redirect("~/Admin/addNewImage.aspx?imageId=" + image.ImageId);
+                SetImageTagList(image);
+                Response.Redirect("~/Admin/AddImageNew.aspx?imageId=" + image.ImageId);
             }
-            else {
+            else
+            {
                 //Response.Redirect("~/Admin/addNewImage.aspx");
             }
         }
+
+        private bool SetImageTagList(Westgate.Data.Image image)
+        {
+
+            var imageTagsList = (from ImageTag imgTag in DatabaseContext.ImageTags
+                                 where imgTag.ImageId == image.ImageId
+                                 select imgTag);
+
+            foreach (ImageTag imgTag in imageTagsList)
+            {
+                DatabaseContext.ImageTags.DeleteObject(imgTag);
+            }
+
+            String[] TagsList = textTags.Text.Split(',');
+            //String[] TagsList = null;
+            int order = 1;
+            foreach (String tagName in TagsList)
+            {
+                var tag = (from tags in DatabaseContext.Tags
+                           where tags.Name == tagName.Trim()
+                           select tags).FirstOrDefault();
+
+                if (tag != null)
+                {
+
+                    var preRecords = (from itag in DatabaseContext.ImageTags
+                        where itag.Tag.TagId == tag.TagId
+                        select itag.OrderNumber);
+
+                    if (preRecords != null && preRecords.Count() > 0)
+                        order = preRecords.Max() + 1;
+
+                    ImageTag imgTag = new ImageTag
+                    {
+                        Image = image,
+                        Tag = tag,
+                        OrderNumber = order
+                    };
+                    DatabaseContext.ImageTags.AddObject(imgTag);
+                    DatabaseContext.SaveChanges();
+                    order++;
+                }
+            }
+
+            return true;
+
+        }
+
         private bool SetImage(Westgate.Data.Image image)
         {
-			if (Request["tagId"] != null)
+            if (Request["tagId"] != null)
             {
-				int tagId = int.Parse(Request["tagId"] );
-				Tag tag = (from t in DatabaseContext.Tags where t.TagId == tagId select t).FirstOrDefault();
+                int tagId = int.Parse(Request["tagId"]);
+                Tag tag = (from t in DatabaseContext.Tags where t.TagId == tagId select t).FirstOrDefault();
 
                 ImageTag imgTag = new ImageTag
                 {
@@ -145,8 +208,10 @@ namespace Westgate.Web.Admin
                 };
                 DatabaseContext.ImageTags.AddObject(imgTag);
                 DatabaseContext.SaveChanges();
-			//    image.StoryId = int.Parse(Request["StoryId"]);
-            }else{
+                //    image.StoryId = int.Parse(Request["StoryId"]);
+            }
+            else
+            {
 
             }
 
@@ -174,9 +239,9 @@ namespace Westgate.Web.Admin
                 BeforeImageY1.Value = BeforeY1;
                 BeforeImageY2.Value = BeforeY2;
             }
-			else
-			{
-                if (imgBefore.ImageUrl == null || imgBefore.ImageUrl =="")
+            else
+            {
+                if (imgBefore.ImageUrl == null || imgBefore.ImageUrl == "")
                 {
                     imgBefore.ImageUrl = "";
                     imgAfter.ImageUrl = "";
@@ -304,6 +369,7 @@ namespace Westgate.Web.Admin
             AfterY2 = AfterImageY2.Value;
             Westgate.Data.Image image = GetImage();
             SetImage(image);
+            SetImageTagList(image);
             DatabaseContext.SaveChanges();
             beforeImage = System.Drawing.Image.FromFile(Server.MapPath(image.BeforeImagePath));
             imgBefore.ImageUrl = viewImage(beforeImage, "Before");
@@ -317,7 +383,10 @@ namespace Westgate.Web.Admin
             Westgate.Data.Image image = GetImage();
             DatabaseContext.DeleteObject(image);
             DatabaseContext.SaveChanges();
-            Response.Redirect("~/Admin/addNewImage.aspx");
+            Response.Redirect("~/Admin/AddImageNew.aspx");
         }
+
+
+
     }
 }
