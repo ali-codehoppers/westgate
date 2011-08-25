@@ -124,8 +124,8 @@ namespace Westgate.Web.Admin
             {
                 if (Request["imageId"] != null)
                 {
-                    ddlCategory.SelectedItem.Value = EditImage.Story.Subcategory.CategoryId.ToString();
-                    ddlCategory.SelectedItem.Text = EditImage.Story.Subcategory.Category.Name;
+//                    ddlCategory.SelectedItem.Value = EditImage.Story.Subcategory.CategoryId.ToString();
+ //                   ddlCategory.SelectedItem.Text = EditImage.Story.Subcategory.Category.Name;
                 }
             }
             ddlSubcategories.DataBind();
@@ -136,8 +136,8 @@ namespace Westgate.Web.Admin
             {
                 if (Request["imageId"] != null)
                 {
-                    ddlSubcategories.SelectedItem.Value = EditImage.Story.SubcategoryId.ToString();
-                    ddlSubcategories.SelectedItem.Text = EditImage.Story.Subcategory.Name;
+//                    ddlSubcategories.SelectedItem.Value = EditImage.Story.SubcategoryId.ToString();
+ //                   ddlSubcategories.SelectedItem.Text = EditImage.Story.Subcategory.Name;
                 }
             }
             ddlStories.DataBind();
@@ -148,8 +148,8 @@ namespace Westgate.Web.Admin
             {
                 if (Request["imageId"] != null)
                 {
-                    ddlStories.SelectedItem.Value = EditImage.StoryId.ToString();
-                    ddlStories.SelectedItem.Text = EditImage.Story.Name;
+//                    ddlStories.SelectedItem.Value = EditImage.StoryId.ToString();
+ //                   ddlStories.SelectedItem.Text = EditImage.Story.Name;
                 }
             }
         }
@@ -165,7 +165,22 @@ namespace Westgate.Web.Admin
         }
         private void SetImage(Westgate.Data.Image image)
         {
-            image.StoryId = int.Parse(ddlStories.SelectedValue);
+			if (Request["tagId"] != null)
+			{
+				int tagId = int.Parse(Request["tagId"]);
+				Tag tag = (from t in DatabaseContext.Tags
+						   where t.TagId == tagId
+						   select t).FirstOrDefault();
+                ImageTag imgTag = new ImageTag
+                {
+                    Image = image,
+                    Tag = tag
+                };
+                DatabaseContext.ImageTags.AddObject(imgTag);
+                DatabaseContext.SaveChanges();
+			}
+
+//            image.StoryId = int.Parse(ddlStories.SelectedValue);
             image.Name = tbName.Text;
             image.Description = tbDescription.Text;
             string beforeImagePath = SaveFile(fileBeforeImage);

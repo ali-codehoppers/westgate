@@ -10,16 +10,16 @@
 namespace Westgate.Web.Admin {
     
     
-    public partial class AddCategory {
+    public partial class AddTag {
         
         /// <summary>
-        /// CategoryForm control.
+        /// TagForm control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm CategoryForm;
+        protected global::System.Web.UI.HtmlControls.HtmlForm TagForm;
         
         /// <summary>
         /// addLabel control.
@@ -65,6 +65,33 @@ namespace Westgate.Web.Admin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox NameText;
+        
+        /// <summary>
+        /// ShowInTab control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label ShowInTab;
+        
+        /// <summary>
+        /// RadioButtonYes control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RadioButton RadioButtonYes;
+        
+        /// <summary>
+        /// RadioButtonNo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RadioButton RadioButtonNo;
         
         /// <summary>
         /// Description control.

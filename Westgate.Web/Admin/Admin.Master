@@ -15,9 +15,9 @@
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 </head>
-<body style="margin: auto;width:1000px;">
+<body style="margin: auto; width:1200px;">
     <form id="form1" runat="server">
-    <center>
+
         <div>
             <div style="float:left;width:20%;text-align:center;">
                 <img src='<%=this.ResolveClientUrl("~/images/logo.jpg")%>' alt="" width="187" height="129" />
@@ -35,7 +35,7 @@
         </div>
           
         <div style="margin-top:20px;width:100%;"> 
-           <div style="float:left;width:350px;text-align:left;">                 
+           <div style="float:left;width:235px;text-align:left;">                 
                 <div style="border:2px solid #CCC;min-height:500px;">
                     <asp:TreeView ID="tvStructure" runat="server" ImageSet="Simple" 
                             ShowLines="True">
@@ -48,8 +48,8 @@
                     </asp:TreeView>
                 </div>
             </div>
-            <div style="float:left;width:618px;text-align:left;margin-left:5px;border:3px solid #ccc;min-height:520px;">
-                <div style="font-size:14pt;font-weight:bold;height:30px;width:97%;background-color:#CCC;padding:10px;">
+            <div style="float:left;width:950px;text-align:left;margin-left:5px;border:3px solid #ccc;min-height:520px;">
+                <div style="font-size:14pt;font-weight:bold;height:30px;width:98%;background-color:#CCC;padding:10px;">
                     <asp:ContentPlaceHolder ID="HeadingPlaceHolder" runat="server">
                     </asp:ContentPlaceHolder>
                 </div>
@@ -60,7 +60,7 @@
             </div>
             <div style="clear:both"></div>
         </div>
-    </center>
+
     </form>
 </body>
 </html>
