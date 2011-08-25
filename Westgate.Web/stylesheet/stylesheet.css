@@ -53,6 +53,13 @@ h2 {
 	padding:0px 10px 0px 10px;
 	margin: 0px 0px 0px 0px;
 }
+
+.gallery_repeater {
+	text-decoration: none;
+	padding:0px 10px 0px 10px;
+	margin: 0px 0px 0px 0px;
+}
+
 .grey_welcome
 {
 	background: url(../images/bg_in.jpg) repeat left top;
@@ -60,6 +67,13 @@ h2 {
 	padding: 0px 10px 0px 10px;
 	margin: 0px 0px 0px 0px;
 }
+
+.grey_welcome_main
+{
+	background: url(../images/bg_in.jpg) repeat left top;
+	text-decoration: none;
+}
+
 .newsletter_bg
 {
 	background-position: left top;
@@ -240,4 +254,23 @@ A.grey_top:hover {
     font-weight: bold;
     font-family: Arial, Helvetica, sans-serif;
     font-size: 16px;
+}
+
+.listTableHeader
+{
+    color: #333;
+    background-color: #DDD;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 15px;
+}
+
+
+.listItem
+{
+    color: #333;
+    background-color: #DDD;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
 }

@@ -7,11 +7,14 @@ using System.Web.UI.WebControls;
 
 namespace Westgate.Web.ajax
 {
-    public partial class CompanyContents : System.Web.UI.Page
+    public partial class Image : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (Request["imagePath"] != null)
+            {
+                this.img.ImageUrl = Request["imagePath"];
+            }
         }
     }
 }
