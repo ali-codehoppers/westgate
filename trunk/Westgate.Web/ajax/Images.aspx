@@ -5,10 +5,11 @@
         <asp:Repeater ID="rptImages" runat="server">
             <ItemTemplate>
                 <li>
-                    <asp:Image runat="server" ImageUrl='<%#Eval("AfterImagePath")%>' AlternateText='<%#Eval("Name")%>'></asp:Image>
-                           
+<%--                    <asp:Image runat="server" ImageUrl='<%#Eval("AfterImagePath")%>' AlternateText='<%#Eval("Name")%>'></asp:Image>
                     
+                    --%>
                     <div class="panel-content">
+                    <a href='<%#Eval("CombinedImagePath")%>' title='<%#Eval("Name")%>' rel="lyteshow[gallery1]">
                         <asp:Image runat="server" ImageUrl='<%#Eval("CombinedImagePath")%>' AlternateText='<%#Eval("Name")%>'></asp:Image>
 			        </div>
                     <div class="panel-overlay">

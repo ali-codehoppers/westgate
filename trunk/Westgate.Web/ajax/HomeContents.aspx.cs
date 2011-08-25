@@ -11,15 +11,14 @@ namespace Westgate.Web.ajax
 {
     public partial class HomeContents : AJAXPage
     {
-        IQueryable<Category> categoryItem;
-        IQueryable<Subcategory> subcategoryItem;
+        IQueryable<Tag> tagItem;
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
-                categoryItem = from rowCat in DatabaseContext.Categories select rowCat;
-                Label1.Text = categoryItem.Count().ToString();
-                CategoryRepeater.DataSource = categoryItem;
+                tagItem = from rowTag in DatabaseContext.Tags where rowTag.ShowInTabs select rowTag;
+//				Label1.Text = tagItem.Count().ToString();
+				CategoryRepeater.DataSource = tagItem;
                 CategoryRepeater.DataBind();
             }
         }
@@ -27,15 +26,6 @@ namespace Westgate.Web.ajax
         protected void CategoryRepeater_ItemCommand(object source, RepeaterItemEventArgs e)
         {
 
-            Repeater rptHeader = (Repeater)e.Item.FindControl("subCategoryRepeater");
-            if (rptHeader != null)
-            {
-                Label catId = (Label)e.Item.FindControl("CatId");
-                int id = int.Parse(catId.Text);
-                subcategoryItem = from row in DatabaseContext.Subcategories where row.CategoryId == id select row;
-                rptHeader.DataSource = subcategoryItem;
-                rptHeader.DataBind();
-            }
         }
     }
 }

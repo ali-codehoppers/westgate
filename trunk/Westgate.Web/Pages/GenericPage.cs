@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-
-
 using Westgate.Data;
 
 namespace Westgate.Web.Pages

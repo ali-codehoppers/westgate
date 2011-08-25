@@ -10,24 +10,33 @@
 namespace Westgate.Web.ajax {
     
     
-    public partial class SiteMapContents {
+    public partial class TagContents {
         
         /// <summary>
-        /// Link1 control.
+        /// tagName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink Link1;
+        protected global::System.Web.UI.WebControls.Label tagName;
         
         /// <summary>
-        /// CategoryRepeater control.
+        /// tagDescription control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater CategoryRepeater;
+        protected global::System.Web.UI.WebControls.Label tagDescription;
+        
+        /// <summary>
+        /// Label1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label1;
     }
 }

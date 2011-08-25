@@ -17,27 +17,42 @@ namespace Westgate.Web.ajax
             string pageType = Request["pageType"].ToUpper();
             if (pageType.Equals("HOME"))
             {
-                var homeImages = from i in DatabaseContext.Images where i.OrderImage != null orderby i.OrderImage select i;
-                if (homeImages.Count()==0) {
-                    homeImages = (from i in DatabaseContext.Images orderby i.ImageId descending select i); 
-                }
-                rptImages.DataSource = homeImages;
-            }
-            else if (pageType.Equals("CATEGORY"))
+				var homeImages = from i in DatabaseContext.Images
+								 where i.OrderImage != null
+								 orderby i.OrderImage
+								 select i;
+				if (homeImages.Count() == 0)
             {
-                int categoryId = int.Parse(Request["categoryId"]);
-                rptImages.DataSource = (from i in DatabaseContext.Images where i.Story.Subcategory.CategoryId == categoryId orderby i.ImageId descending select i);
+					homeImages = (from i in DatabaseContext.Images
+								  orderby i.ImageId descending
+								  select i);
             }
-            else if (pageType.Equals("SUBCATEGORY"))
+				rptImages.DataSource = homeImages;
+            }
+
+			if (pageType.Equals("TAG"))
             {
-                int subcategoryId = int.Parse(Request["subcategoryId"]);
-                rptImages.DataSource = (from i in DatabaseContext.Images where i.Story.SubcategoryId == subcategoryId orderby i.ImageId descending select i);
+				int tagId = int.Parse(Request["tagId"]);
+
+				Tag tag = (from t in DatabaseContext.Tags
+						   where t.TagId == tagId
+						   select t).FirstOrDefault();
+
+                var tagImages = (from imgTag in DatabaseContext.ImageTags
+                                 where imgTag.Tag.TagId == tag.TagId
+                                 orderby imgTag.OrderNumber
+                                  select imgTag.Image);
+
+				//var tagImages = (from i in DatabaseContext.Images
+				//                  where i.Tags.Contains(tag) == true
+				//                 orderby i.ImageId descending
+				//                  select i);
+
+				rptImages.DataSource = tagImages;
             }
-            else if (pageType.Equals("STORY"))
-            {
-                int storyId = int.Parse(Request["storyId"]);
-                rptImages.DataSource = (from i in DatabaseContext.Images where i.StoryId == storyId orderby i.ImageId descending select i);
-            }
+
+
+
             rptImages.DataBind();
         }
     }

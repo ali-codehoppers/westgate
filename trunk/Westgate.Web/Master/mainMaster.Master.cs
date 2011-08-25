@@ -15,9 +15,73 @@ namespace Westgate.Web.Master
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            Tag allTag = new Tag
+            {
+                TagId = 0,
+                Name = "All"
+            };
+
+            Tag galleryTag = new Tag
+            {
+                TagId = 4,
+                Name = "Gallery"
+            };
+
+
+
+
             WestgateEntities DatabaseContext = new WestgateEntities();
-            Repeater1.DataSource = (from row in DatabaseContext.Categories select row).Take(7);
+            List<Tag> taglistMain = (from row in DatabaseContext.Tags where row.ShowInTabs orderby row.OrderNumber select row).Take(6).ToList();
+            taglistMain.Insert(2, galleryTag);
+
+            Repeater1.DataSource = taglistMain;
             Repeater1.DataBind();
+
+            List<Tag> taglistMore = (from row in DatabaseContext.Tags where row.ShowInTabs orderby row.OrderNumber select row).ToList();
+            if (taglistMain.Count > 0)
+            {
+                div_repeatermore.Visible = true;
+                for (int i = 0; i < 6; i++)
+                {
+                    taglistMore.RemoveAt(0);
+                }
+
+                RepeaterMore.DataSource = taglistMore;
+                RepeaterMore.DataBind();
+            }
+            else
+            {
+                div_repeatermore.Visible = false;
+
+            }
+
+//            Repeater1.DataSource = (from row in DatabaseContext.Tags where row.ShowInTabs orderby row.OrderNumber select row).Take(7);
+//           Repeater1.DataBind();
+
+
+            List<Tag> taglist = (from row in DatabaseContext.Tags where row.ShowInTabs orderby row.OrderNumber select row).ToList();
+            taglist.Insert(0, allTag);
+
+            Repeater2.DataSource = taglist;
+            Repeater2.DataBind();
+
+            if (!IsPostBack)
+            {
+
+
+                //TreeNode categoriesNode = new TreeNode("All");
+                //categoriesNode.NavigateUrl = "javascript:onGalleryClick()";
+                //categoriesNode.Expand();
+                //List<Tag> listTags = (from t in DatabaseContext.Tags orderby t.Name select t).ToList();
+                //foreach (Tag tag in listTags)
+                //{
+                //    TreeNode catNode = new TreeNode(tag.Name, tag.TagId.ToString());
+                //    catNode.NavigateUrl = "javascript:onGalleryClick("+tag.TagId+")";
+                //    catNode.CollapseAll();
+                //    categoriesNode.ChildNodes.Add(catNode);
+                //}
+                //tvStructure.Nodes.Add(categoriesNode);
+            }
         }
 
 
