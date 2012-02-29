@@ -4,7 +4,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div style="width: 100%">
         <div style="float: left; width: 35%;">
-            <img src="<%=this.ResolveClientUrl("~/wgtest/images/img_address_new.png")%>" alt="" width="220px"
+            <img src="<%=this.ResolveClientUrl("~/images/img_address_new.png")%>" alt="" width="220px"
                 border="0" />
             <%--<div style="color: #faa01d; font-weight: bold; font-size: 10pt; margin-top: 30px;
                 margin-bottom: 20px; min-height:330px">
@@ -22,7 +22,7 @@
         </div>
         <div style="float: left; width: 65%">
             <iframe width="450" height="330" frameborder="0" scrolling="no" marginheight="0"
-                marginwidth="0" src="http://maps.google.com/maps/place?q=chandler+Arizona&hl=en&ftid=0x872a55595c22b693:0x386ce373138cfdf0">
+                marginwidth="0" src="http://maps.google.com/maps?f=q&amp;source=s_q&amp;hl=en&amp;geocode=&amp;q=London+N19+4EF,+United+Kingdom&amp;aq=0&amp;sll=37.0625,-95.677068&amp;sspn=36.642161,86.572266&amp;ie=UTF8&amp;hq=&amp;hnear=London+N19+4EF,+United+Kingdom&amp;ll=51.567681,-0.122309&amp;spn=0.017606,0.038538&amp;z=14&amp;iwloc=A&amp;output=embed">
             </iframe>
             <br />
             <small><a target="_blank" href="http://maps.google.com/maps?f=q&amp;source=embed&amp;hl=en&amp;geocode=&amp;q=London+N19+4EF,+United+Kingdom&amp;aq=0&amp;sll=37.0625,-95.677068&amp;sspn=36.642161,86.572266&amp;ie=UTF8&amp;hq=&amp;hnear=London+N19+4EF,+United+Kingdom&amp;ll=51.567681,-0.122309&amp;spn=0.017606,0.038538&amp;z=14&amp;iwloc=A"
