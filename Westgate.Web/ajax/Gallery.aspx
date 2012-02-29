@@ -4,13 +4,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title></title>
-    <script src="<%=this.ResolveClientUrl("~/wgtest/script/jquery-1.5.1.min.js")%>" type="text/javascript"></script>
-    <script src="<%=this.ResolveClientUrl("~/wgtest/script/tooltip/js/jtip.js")%>" type="text/javascript"></script>
-    <link href="<%=this.ResolveClientUrl("~/wgtest/script/tooltip/css/global.css")%>"
+    <script src="<%=this.ResolveClientUrl("~/script/jquery-1.5.1.min.js")%>" type="text/javascript"></script>
+    <script src="<%=this.ResolveClientUrl("~/script/tooltip/js/jtip.js")%>" type="text/javascript"></script>
+    <link href="<%=this.ResolveClientUrl("~/script/tooltip/css/global.css")%>"
         rel="stylesheet" type="text/css" />
-    <link href="<%=this.ResolveClientUrl("~/wgtest/script/lightbox/jquery.lightbox-0.5.css")%>"
+    <link href="<%=this.ResolveClientUrl("~/script/lightbox/jquery.lightbox-0.5.css")%>"
         rel="stylesheet" type="text/css" />
-    <script src="<%=this.ResolveClientUrl("~/wgtest/script/lightbox/jquery.lightbox-0.5.js")%>"
+    <script src="<%=this.ResolveClientUrl("~/script/lightbox/jquery.lightbox-0.5.js")%>"
         type="text/javascript"></script>
 
    <script type="text/javascript">
