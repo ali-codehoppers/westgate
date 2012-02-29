@@ -36,32 +36,32 @@ namespace Westgate.Web.Admin
                     if (!tagItem.IsEditable)
                         SetTag(tagItem);
 
-                    SetImagesOrderNumber(tagItem);
+                    //SetImagesOrderNumber(tagItem);
 
-                    imageList = (from imgTag in DatabaseContext.ImageTags
-                                 where imgTag.Tag.TagId == tagItem.TagId
-                                 orderby imgTag.OrderNumber
-                                 select imgTag.Image);
+                    //imageList = (from imgTag in DatabaseContext.ImageTags
+                    //             where imgTag.Tag.TagId == tagItem.TagId
+                    //             orderby imgTag.OrderNumber
+                    //             select imgTag.Image);
 
-                    Repeater1.DataSource = imageList;
-                    Repeater1.DataBind();
+                    //Repeater1.DataSource = imageList;
+                    //Repeater1.DataBind();
                 }
-                if (Request["deleteID"] != null)
-                {
-                    int imageId = Int32.Parse(Request["deleteID"]);
-                    Westgate.Data.Image img = (from image in DatabaseContext.Images
-                                               where image.ImageId == imageId
-                                               select image).FirstOrDefault();
+                //if (Request["deleteID"] != null)
+                //{
+                //    int imageId = Int32.Parse(Request["deleteID"]);
+                //    Westgate.Data.Image img = (from image in DatabaseContext.Images
+                //                               where image.ImageId == imageId
+                //                               select image).FirstOrDefault();
 
-                    var imageTag = (from imgTag in DatabaseContext.ImageTags
-                                    where imgTag.ImageId == img.ImageId
-                                    && imgTag.TagId == tagItem.TagId
-                                    select imgTag).FirstOrDefault();
-                    DatabaseContext.ImageTags.DeleteObject(imageTag);
-                    DatabaseContext.SaveChanges();
-                    SetImagesOrderNumber(tagItem);
-                    Response.Redirect("~/Admin/EditTag.aspx?tagId=" + tagItem.TagId);
-                }
+                //    var imageTag = (from imgTag in DatabaseContext.ImageTags
+                //                    where imgTag.ImageId == img.ImageId
+                //                    && imgTag.TagId == tagItem.TagId
+                //                    select imgTag).FirstOrDefault();
+                //    DatabaseContext.ImageTags.DeleteObject(imageTag);
+                //    DatabaseContext.SaveChanges();
+                //    SetImagesOrderNumber(tagItem);
+                //    Response.Redirect("~/Admin/EditTag.aspx?tagId=" + tagItem.TagId);
+                //}
 
             }
 

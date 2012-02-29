@@ -49,31 +49,31 @@
     <div id="Pagination" class="grey_top">
     </div>
     <script type="text/javascript">
-        function pageselectCallback(page_index, jq) {
+//        function pageselectCallback(page_index, jq) {
 
-            //var new_content = jQuery('#hiddenresult div.result:eq(' + page_index + ')').clone();
-            //$('#Searchresult').empty().append(new_content);
-            $('#Searchresult').empty().append(jQuery('#hiddenresult div.result:eq(' + page_index + ')').clone());
+//            //var new_content = jQuery('#hiddenresult div.result:eq(' + page_index + ')').clone();
+//            //$('#Searchresult').empty().append(new_content);
+//            $('#Searchresult').empty().append(jQuery('#hiddenresult div.result:eq(' + page_index + ')').clone());
 
-            return false;
-        }
+//            return false;
+//        }
 
-        /** 
-        * Initialisation function for pagination
-        */
-        function initPagination() {
-            // count entries inside the hidden content
-            var num_entries = jQuery('#hiddenresult div.result').length;
-            // Create content inside pagination element
-            $("#Pagination").pagination(num_entries, {
-                callback: pageselectCallback,
-                items_per_page: 1 // Show only one item per page
-            });
-        }
+//        /** 
+//        * Initialisation function for pagination
+//        */
+//        function initPagination() {
+//            // count entries inside the hidden content
+//            var num_entries = jQuery('#hiddenresult div.result').length;
+//            // Create content inside pagination element
+//            $("#Pagination").pagination(num_entries, {
+//                callback: pageselectCallback,
+//                items_per_page: 1 // Show only one item per page
+//            });
+//        }
 
-        // When document is ready, initialize pagination
-        $(document).ready(function () {
-            initPagination();
-        });
+//        // When document is ready, initialize pagination
+//        $(document).ready(function () {
+//            initPagination();
+//        });
     </script>
 </asp:Content>

@@ -81,6 +81,8 @@
                 ErrorMessage="*" Display="Dynamic" Style="color: Red"> 
             </asp:RequiredFieldValidator>
         </div>
+
+        <!--
         <div class="labelStyle">
             <asp:Label ID="Label1" runat="server" Text="Tags:" Width="200px"></asp:Label>
             <input id="tags" type="text" />
@@ -92,6 +94,8 @@
             <div id="selectedTagsDiv" class="BlockContainer" style="float: left; margin-left: 5px">
             </div>
         </div>
+        -->
+
         <div style="clear: both">
         </div>
         <asp:TextBox ID="textTags" runat="server" Style="visibility: hidden" />
@@ -104,7 +108,7 @@
             <asp:FileUpload ID="fileAfterImage" runat="server" />
         </div>
         <asp:HiddenField ID="BeforeAcutalImage" runat="server" />
-        <div style="float: left; width: 470px">
+        <div id="beforeImage_new" style="float: left; width: 470px" runat="server">
             <div class="labelStyle">
                 Before Image:</div>
             <div>
@@ -113,7 +117,7 @@
         <div id="beforeCrop" style="float: left; width: 0px">
         </div>
         <asp:HiddenField ID="AfterActualImage" runat="server" />
-        <div style="float: left; width: 500px">
+        <div id="afterImage_new" style="float: left; width: 500px" runat="server">
             <div class="labelStyle">
                 After Image:</div>
             <div>
@@ -178,6 +182,7 @@
         function onSuccess(response) {
             data = response.split('\n');
             orgData = response.split('\n');
+            
             $("#tags")
            .bind("keydown", function (event) {
                if (event.keyCode === $.ui.keyCode.TAB &&
@@ -210,7 +215,7 @@
         $("#tags").keyup(function (event) {
             if (event.keyCode == 13) {
                 var text = this.value
-                if (orgData.indexOf(text) != -1) {
+                if ($.inArray(text, orgData) != -1) {
                     if (this.value != "")
                         addItem(text);
                     this.value = "";
@@ -240,13 +245,13 @@
 
             var terms = split(textBox.value);
 
-            if (terms.indexOf(tag) != -1) {
-                terms.splice(terms.indexOf(tag), 1);
+            if ($.inArray(tag, terms) != -1) {
+                terms.splice($.inArray(tag, terms), 1);
                 data.push(tag);
             }
-            refreshTags();
             var newValue = terms.join(",");
             textBox.value = newValue;
+            refreshTags();
 //            var selectedTags = document.getElementById("selectedTagsDiv");
 //            selectedTags.innerHTML = "";
 
@@ -270,16 +275,20 @@
                 terms.pop();
 
 
-            if (terms.indexOf(item) == -1) {
-                // add the selected item
+            if ($.inArray(item, terms) == -1) {
+                 // add the selected item
                 terms.push(item);
-                data.splice(data.indexOf(item), 1);
+                data.splice($.inArray(item, data), 1);
+
                 // add placeholder to get the comma-and-space at the end
                 //                   this.value = terms.join(", ");
                 textBox.value = terms.join(",");
 
-                var selectedTags = document.getElementById("selectedTagsDiv");
-                selectedTagsDiv.innerHTML += getItemHtml(item);
+//                var selectedTags = document.getElementById("selectedTagsDiv");
+                $('#selectedTagsDiv').append(getItemHtml(item));
+                
+
+                //selectedTagsDiv.innerHTML += getItemHtml(item);
             }
         }
 
@@ -292,13 +301,14 @@
             var newValue = terms.join(",");
             textBox.value = newValue;
             var selectedTags = document.getElementById("selectedTagsDiv");
-            selectedTags.innerHTML = "";
+            $('#selectedTagsDiv').empty();
 
             for (var i = 0; i < terms.length; i++) {
                 if (terms[i].length > 0) {
-                    selectedTagsDiv.innerHTML += getItemHtml(terms[i]);
-                    if (data.indexOf(terms[i]) != -1) {
-                        data.splice(data.indexOf(terms[i]), 1);
+                    $('#selectedTagsDiv').append(getItemHtml(terms[i]));
+                    //selectedTagsDiv.innerHTML += getItemHtml(terms[i]);
+                    if ($.inArray(terms[i], data) != -1) {
+                        data.splice($.inArray(terms[i], data), 1);
                     }
                 }
             }

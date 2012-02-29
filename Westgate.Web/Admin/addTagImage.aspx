@@ -7,6 +7,15 @@
 	<title></title>
 	<link href="<%=this.ResolveClientUrl("~/stylesheet/stylesheet.css")%>" rel="stylesheet"
 		type="text/css" />
+           <script type="text/javascript">
+        $(document).ready(function () {
+            $('#GridViewImages a').lightBox({
+                maxHeight: 500,
+                maxWidth: 600
+            });
+        });
+
+        </script>
 </head>
 <body>
 	<form id="form1" runat="server">
@@ -36,12 +45,12 @@
 							Visible="False" />
 						<asp:BoundField DataField="Name" HeaderText="Name" SortExpression="Name" />
 						<asp:BoundField DataField="Description" HeaderText="Description" SortExpression="Description" />
-						<asp:TemplateField HeaderText="Before Image" SortExpression="BeforeImagePath">
+						<asp:TemplateField HeaderText="Before Image" SortExpression="BeforeImagePath" >
 							<ItemTemplate>
 								<asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl='<%# Eval("BeforeImagePath") %>'
-									Target="_blank">
+									Target="_blank" style="margin-left: auto; margin-right: auto;">
 									<asp:Image ID="Image1" Width="32" Height="19" ImageUrl='<%# GetThumbnailImagePath(Eval("BeforeImagePath")) %>'
-										runat="server" />
+										runat="server" style="max-width:50px; max-height:50px; min-width:50px; min-height:50px; margin-left: auto; margin-right: auto;" />
 								</asp:HyperLink>
 							</ItemTemplate>
 						</asp:TemplateField>
@@ -50,7 +59,7 @@
 								<asp:HyperLink ID="HyperLink2" runat="server" NavigateUrl='<%# Eval("AfterImagePath") %>'
 									Target="_blank">
 									<asp:Image ID="Image2" Width="32" Height="19" ImageUrl='<%# GetThumbnailImagePath(Eval("AfterImagePath")) %>'
-										runat="server" />
+										runat="server" style="max-width:50px; max-height:50px; min-width:50px; min-height:50px;"/>
 								</asp:HyperLink>
 							</ItemTemplate>
 						</asp:TemplateField>
@@ -59,7 +68,7 @@
 								<asp:HyperLink ID="HyperLink3" runat="server" NavigateUrl='<%# Eval("CombinedImagePath") %>'
 									Target="_blank">
 									<asp:Image ID="Image3" Width="64" Height="19" ImageUrl='<%# GetThumbnailImagePath(Eval("CombinedImagePath")) %>'
-										runat="server" />
+										runat="server" style="max-width:120px; max-height:50px; min-width:100px; min-height:50px;" />
 								</asp:HyperLink>
 							</ItemTemplate>
 						</asp:TemplateField>

@@ -65,11 +65,10 @@ namespace Westgate.Web.Admin
 
         private void SetGallery()
         {
-            var tagImages = (from imgTag in DatabaseContext.ImageTags
-                             orderby imgTag.Tag.OrderNumber, imgTag.OrderNumber
-                             select imgTag.Image);
-            Repeater1.DataSource = tagImages;
-            Label1.Text = tagImages.Count().ToString();
+            var images = (from img in DatabaseContext.Images
+                                select img);
+            Repeater1.DataSource = images;
+            Label1.Text = images.Count().ToString();
             Repeater1.DataBind();
 
         }

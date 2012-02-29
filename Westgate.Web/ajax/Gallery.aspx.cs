@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using Westgate.Web.Pages;
 using Westgate.Data;
+using System.Web.UI.HtmlControls;
 
 namespace Westgate.Web.ajax
 {
@@ -13,7 +14,6 @@ namespace Westgate.Web.ajax
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
             if (!IsPostBack)
             {
 //                TreeNode categoriesNode = new TreeNode("All");
@@ -68,9 +68,9 @@ namespace Westgate.Web.ajax
 
         private void SetGallery()
         {
-            var tagImages = (from imgTag in DatabaseContext.ImageTags
-                             orderby imgTag.Tag.OrderNumber, imgTag.OrderNumber
-                             select imgTag.Image);
+            var tagImages = (from Image in DatabaseContext.Images
+                             orderby Image.OrderImage
+                             select Image);
             Repeater1.DataSource = tagImages;
             Label1.Text = tagImages.Count().ToString();
             Repeater1.DataBind();

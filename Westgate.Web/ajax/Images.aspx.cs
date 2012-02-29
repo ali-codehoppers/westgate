@@ -19,19 +19,19 @@ namespace Westgate.Web.ajax
                 rptImages.DataSource = (from i in DatabaseContext.Images orderby i.ImageId descending select i).Take(10);
             }
 
-			if (pageType.Equals("TAG"))
+            if (pageType.Equals("TAG"))
             {
-				int tagId = int.Parse(Request["tagId"]);
+                int tagId = int.Parse(Request["tagId"]);
 
-				Tag tag = (from t in DatabaseContext.Tags
-						   where t.TagId == tagId
-						   select t).FirstOrDefault();
+                Tag tag = (from t in DatabaseContext.Tags
+                           where t.TagId == tagId
+                           select t).FirstOrDefault();
 
                 var tagImages = (from imgTag in DatabaseContext.ImageTags
                                  where imgTag.Tag.TagId == tagId
                                  orderby imgTag.OrderNumber
-                                 select imgTag.Image );
-				rptImages.DataSource = tagImages;
+                                 select imgTag.Image);
+                rptImages.DataSource = tagImages;
             }
 
 
