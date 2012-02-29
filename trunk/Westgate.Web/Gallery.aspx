@@ -8,10 +8,12 @@
         type="text/css" />
     <script src="<%=this.ResolveClientUrl("~/script/pagination/jquery.pagination.js")%>"
         type="text/javascript"></script>
-    <script src="<%=this.ResolveClientUrl("~/script/lightbox/jquery.lightbox-0.5.js")%>"
-        type="text/javascript"></script>
     <link href="<%=this.ResolveClientUrl("~/script/lightbox/jquery.lightbox-0.5.css")%>"
         rel="stylesheet" type="text/css" />
+    <script src="<%=this.ResolveClientUrl("~/script/lightbox/jquery.lightbox-0.5.js")%>"
+        type="text/javascript"></script>
+
+
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div style="margin: 5px">

@@ -41,31 +41,47 @@ namespace Westgate.Web.Admin
                     Westgate.Data.Image image = GetImage();
                     EditImage = image;
 
-                    beforeImage = System.Drawing.Image.FromFile(Server.MapPath(image.BeforeImagePath));
-                    ///////////////////////////////////////////////////////////////
-                    imgBefore.ImageUrl = viewImage(beforeImage, "Before");
-                    //////////////////////////////////////////////////////////////
-                    afterImage = System.Drawing.Image.FromFile(Server.MapPath(image.AfterImagePath));
-                    ///////////////////////////////////////////////////////////////
-                    imgAfter.ImageUrl = viewImage(afterImage, "After");
-                    /////////////////////////////////////////////////////////////
+                    if (image.BeforeImagePath != null && image.BeforeImagePath.Length > 0)
+                    {
+                        beforeImage = System.Drawing.Image.FromFile(Server.MapPath(image.BeforeImagePath));
+                        ///////////////////////////////////////////////////////////////
+                        imgBefore.ImageUrl = viewImage(beforeImage, "Before");
+                        //////////////////////////////////////////////////////////////
+                    }
+                    else
+                    {
+                        beforeImage_new.Visible = false;
+                    }
+                    if (image.AfterImagePath != null && image.AfterImagePath.Length > 0)
+                    {
+                        afterImage = System.Drawing.Image.FromFile(Server.MapPath(image.AfterImagePath));
+                        ///////////////////////////////////////////////////////////////
+                        imgAfter.ImageUrl = viewImage(afterImage, "After");
+                        /////////////////////////////////////////////////////////////
+                    }
+                    else
+                    {
+                        afterImage_new.Visible = false;
+                    }
+
                     imgCombined.ImageUrl = image.CombinedImagePath;
                     tbName.Text = image.Name;
                     tbDescription.Text = image.Description;
-                    
-                    var selectedTags = (from imgTag in DatabaseContext.ImageTags
-                                       where imgTag.ImageId==image.ImageId
-                                       select imgTag.Tag);
-                    StringBuilder sb = new StringBuilder();
-                    foreach( Tag tag in selectedTags)
-                    {
-                        if(sb.Length!=0)
-                            sb.Append(", ");
-                        sb.Append(tag.Name);
-                    }
-                    textTags.Text = sb.ToString();
+
+                    //var selectedTags = (from imgTag in DatabaseContext.ImageTags
+                    //                   where imgTag.ImageId==image.ImageId
+                    //                   select imgTag.Tag);
+                    //StringBuilder sb = new StringBuilder();
+                    //foreach( Tag tag in selectedTags)
+                    //{
+                    //    if(sb.Length!=0)
+                    //        sb.Append(", ");
+                    //    sb.Append(tag.Name);
+                    //}
+                    //textTags.Text = sb.ToString();
                 }
             }
+
         }
         private String viewImage(System.Drawing.Image image, String type)
         {
@@ -138,7 +154,7 @@ namespace Westgate.Web.Admin
             {
                 DatabaseContext.AddToImages(image);
                 DatabaseContext.SaveChanges();
-                SetImageTagList(image);
+                //SetImageTagList(image);
                 Response.Redirect("~/Admin/AddImageNew.aspx?imageId=" + image.ImageId);
             }
             else
@@ -172,8 +188,8 @@ namespace Westgate.Web.Admin
                 {
 
                     var preRecords = (from itag in DatabaseContext.ImageTags
-                        where itag.Tag.TagId == tag.TagId
-                        select itag.OrderNumber);
+                                      where itag.Tag.TagId == tag.TagId
+                                      select itag.OrderNumber);
 
                     if (preRecords != null && preRecords.Count() > 0)
                         order = preRecords.Max() + 1;
@@ -196,30 +212,38 @@ namespace Westgate.Web.Admin
 
         private bool SetImage(Westgate.Data.Image image)
         {
-            if (Request["tagId"] != null)
-            {
-                int tagId = int.Parse(Request["tagId"]);
-                Tag tag = (from t in DatabaseContext.Tags where t.TagId == tagId select t).FirstOrDefault();
+            //if (Request["tagId"] != null)
+            //{
+            //    int tagId = int.Parse(Request["tagId"]);
+            //    Tag tag = (from t in DatabaseContext.Tags where t.TagId == tagId select t).FirstOrDefault();
 
-                ImageTag imgTag = new ImageTag
-                {
-                    Image = image,
-                    Tag = tag
-                };
-                DatabaseContext.ImageTags.AddObject(imgTag);
-                DatabaseContext.SaveChanges();
-                //    image.StoryId = int.Parse(Request["StoryId"]);
-            }
-            else
-            {
+            //    ImageTag imgTag = new ImageTag
+            //    {
+            //        Image = image,
+            //        Tag = tag
+            //    };
+            //    DatabaseContext.ImageTags.AddObject(imgTag);
+            //    DatabaseContext.SaveChanges();
+            //    //    image.StoryId = int.Parse(Request["StoryId"]);
+            //}
+            //else
+            //{
 
-            }
-
-
+            //}
 
             image.Name = tbName.Text;
             image.Description = tbDescription.Text;
             string beforeImagePath = SaveFile(fileBeforeImage);
+            string afterImagePath = SaveFile(fileAfterImage);
+
+            if ((beforeImagePath == null || beforeImagePath == "") && (afterImagePath == null || afterImagePath == ""))
+            {
+                imgBefore.ImageUrl = "";
+                imgAfter.ImageUrl = "";
+                if((image.BeforeImagePath==null || image.BeforeImagePath.Length==0)&&(image.AfterImagePath==null || image.AfterImagePath.Length==0))
+                ErrorMsg.Visible = true;
+                return false;
+            }
 
             if (beforeImagePath != null)
             {
@@ -239,18 +263,7 @@ namespace Westgate.Web.Admin
                 BeforeImageY1.Value = BeforeY1;
                 BeforeImageY2.Value = BeforeY2;
             }
-            else
-            {
-                if (imgBefore.ImageUrl == null || imgBefore.ImageUrl == "")
-                {
-                    imgBefore.ImageUrl = "";
-                    imgAfter.ImageUrl = "";
-                    ErrorMsg.Visible = true;
-                    return false;
-                }
-            }
 
-            string afterImagePath = SaveFile(fileAfterImage);
             if (afterImagePath != null)
             {
                 AfterActualImage.Value = afterImagePath;
@@ -269,23 +282,18 @@ namespace Westgate.Web.Admin
                 AfterImageY1.Value = AfterY1;
                 AfterImageY2.Value = AfterY2;
             }
-            else
-            {
-                if (imgAfter.ImageUrl == null || imgAfter.ImageUrl == "")
-                {
-                    imgBefore.ImageUrl = "";
-                    imgAfter.ImageUrl = "";
-                    ErrorMsg.Visible = true;
-                    return false;
-                }
-            }
+
             if (imgBefore.ImageUrl != null && imgBefore.ImageUrl != "" && imgAfter.ImageUrl != null && imgAfter.ImageUrl != "")
             {
                 String path = CreateCombinedImage(imgBefore.ImageUrl, imgAfter.ImageUrl);
-                if (path != null)
+                String galleryImagePathBefore = CreateGalleryImage(new Bitmap(Server.MapPath(imgBefore.ImageUrl)), new Size(400, 400));
+                String galleryImagePathAfter = CreateGalleryImage(new Bitmap(Server.MapPath(imgAfter.ImageUrl)), new Size(400, 400));
+                if (path != null && galleryImagePathBefore != null && galleryImagePathAfter!=null)
                 {
                     image.CombinedImagePath = path;
                     imgCombined.ImageUrl = path;
+                    image.GalleryImagePathBefore = galleryImagePathBefore;
+                    image.GalleryImagePathAfter = galleryImagePathAfter;
                     return true;
                 }
                 else
@@ -294,6 +302,45 @@ namespace Westgate.Web.Admin
                     return false;
                 }
             }
+            else if (imgAfter.ImageUrl != null && imgAfter.ImageUrl != "")
+            {
+                String path = CreateCombinedImage(imgAfter.ImageUrl);
+                String galleryImagePath = CreateGalleryImage(new Bitmap(Server.MapPath(imgAfter.ImageUrl)), new Size(400, 400));
+                if (path != null && galleryImagePath != null)
+                {
+                    image.CombinedImagePath = path;
+                    imgCombined.ImageUrl = path;
+                    image.GalleryImagePathAfter = galleryImagePath;
+                    image.GalleryImagePathBefore = galleryImagePath;
+                    return true;
+                }
+                else
+                {
+                    ErrorMsg.Visible = true;
+                    return false;
+                }
+
+            }
+            else if (imgBefore.ImageUrl != null && imgBefore.ImageUrl != "")
+            {
+                String path = CreateCombinedImage(imgBefore.ImageUrl);
+                String galleryImagePath = CreateGalleryImage(new Bitmap(Server.MapPath(imgBefore.ImageUrl)), new Size(400, 400));
+                if (path != null && galleryImagePath != null)
+                {
+                    image.CombinedImagePath = path;
+                    imgCombined.ImageUrl = path;
+                    image.GalleryImagePathBefore = galleryImagePath;
+                    image.GalleryImagePathAfter = galleryImagePath;
+                    return true;
+                }
+                else
+                {
+                    ErrorMsg.Visible = true;
+                    return false;
+                }
+
+            }
+
             return true;
 
         }
@@ -330,6 +377,39 @@ namespace Westgate.Web.Admin
             catch { }
             return null;
         }
+
+        private string CreateCombinedImage(string imagePath)
+        {
+            try
+            {
+                System.Drawing.Image image = System.Drawing.Image.FromFile(Server.MapPath(imagePath));
+
+                int imageWidth = Convert.ToInt32(image.PhysicalDimension.Width.ToString());
+                int imageHeight = Convert.ToInt32(image.PhysicalDimension.Height.ToString());
+
+                int x0 = 936 - imageWidth;
+                int y0 = 350 - imageHeight;
+                Bitmap combinedImage = new Bitmap(936, 350);
+                Graphics graphic = Graphics.FromImage(combinedImage);
+
+                graphic.Clear(Color.White);
+                graphic.InterpolationMode = InterpolationMode.HighQualityBicubic;
+                graphic.DrawImage(image, x0 / 2, y0 / 2, (float)imageWidth, (float)imageHeight);
+                graphic.Dispose();
+
+                string fileName = System.Guid.NewGuid().ToString() + ".png";
+                string path = Server.MapPath("~/UserImages") + @"\" + fileName;
+                combinedImage.Save(path);
+                SaveThumbNail(path);
+                System.Drawing.Image img = System.Drawing.Image.FromFile(path);
+                img.Save(path.Replace(".png", ".jpg"), System.Drawing.Imaging.ImageFormat.Jpeg);
+                return "~/UserImages/" + fileName.Replace(".png", ".jpg");
+            }
+            catch { }
+            return null;
+        }
+
+
         private string SaveFile(FileUpload file)
         {
             try
@@ -359,6 +439,7 @@ namespace Westgate.Web.Admin
         }
         protected void btnUpdate_Click(object sender, EventArgs e)
         {
+            ErrorMsg.Visible = false;
             BeforeX1 = BeforeImageX1.Value;
             BeforeX2 = BeforeImageX2.Value;
             BeforeY1 = BeforeImageY1.Value;
@@ -369,12 +450,27 @@ namespace Westgate.Web.Admin
             AfterY2 = AfterImageY2.Value;
             Westgate.Data.Image image = GetImage();
             SetImage(image);
-            SetImageTagList(image);
+            //SetImageTagList(image);
             DatabaseContext.SaveChanges();
-            beforeImage = System.Drawing.Image.FromFile(Server.MapPath(image.BeforeImagePath));
-            imgBefore.ImageUrl = viewImage(beforeImage, "Before");
-            afterImage = System.Drawing.Image.FromFile(Server.MapPath(image.AfterImagePath));
-            imgAfter.ImageUrl = viewImage(afterImage, "After");
+
+            if (image.BeforeImagePath != null && image.BeforeImagePath.Length > 0)
+            {
+                beforeImage = System.Drawing.Image.FromFile(Server.MapPath(image.BeforeImagePath));
+                imgBefore.ImageUrl = viewImage(beforeImage, "Before");
+                beforeImage_new.Visible = true;
+            }
+            else
+                beforeImage_new.Visible = false;
+
+            if (image.AfterImagePath != null && image.AfterImagePath.Length > 0)
+            {
+                afterImage = System.Drawing.Image.FromFile(Server.MapPath(image.AfterImagePath));
+                imgAfter.ImageUrl = viewImage(afterImage, "After");
+                beforeImage_new.Visible = true;
+            }
+            else
+                beforeImage_new.Visible = false;
+
             imgCombined.ImageUrl = image.CombinedImagePath;
 
         }
@@ -387,6 +483,56 @@ namespace Westgate.Web.Admin
         }
 
 
+        private String CreateGalleryImage(System.Drawing.Image sourceImage, Size size)
+        {
+            int sourceWidth = (int)sourceImage.PhysicalDimension.Width;
+            int sourceHeight = (int)sourceImage.PhysicalDimension.Height;
 
+            float nPercent = 0;
+            float nPercentW = 0;
+            float nPercentH = 0;
+
+            nPercentW = ((float)size.Width / (float)sourceWidth);
+            nPercentH = ((float)size.Height / (float)sourceHeight);
+
+            if (nPercentH > nPercentW)
+                nPercent = nPercentH;
+            else
+                nPercent = nPercentW;
+
+            int destWidth = (int)(sourceWidth * nPercent);
+            int destHeight = (int)(sourceHeight * nPercent);
+
+            int cropSizeWidth = 0;
+            int cropSizeHeight = 0;
+
+            if (destWidth > size.Width)
+            {
+                cropSizeWidth = (destWidth - size.Width) / 2;
+            }
+            if (destHeight > size.Height)
+            {
+                cropSizeHeight = (destHeight - size.Height) / 2;
+            }
+
+            Bitmap b = new Bitmap(destWidth, destHeight);
+            Graphics g = Graphics.FromImage((System.Drawing.Image)b);
+            g.InterpolationMode = InterpolationMode.HighQualityBicubic;
+
+            g.DrawImage(sourceImage, 0, 0, destWidth, destHeight);
+            g.Dispose();
+
+            Bitmap bmp2 = new Bitmap(size.Width, size.Height);
+            Graphics g2 = Graphics.FromImage((System.Drawing.Image)bmp2);
+
+            g2.DrawImage(b, new Rectangle(0, 0, size.Width, size.Height), new Rectangle(cropSizeWidth, cropSizeHeight, size.Width, size.Height), GraphicsUnit.Pixel);
+            g2.Dispose();
+
+            string fileName = System.Guid.NewGuid().ToString() + ".png";
+            string path = Server.MapPath("~/UserImages") + @"\HomeGalleryImages\" + fileName;
+
+            bmp2.Save(path, System.Drawing.Imaging.ImageFormat.Png);
+            return "~/UserImages/HomeGalleryImages/" + fileName;
+        }
     }
 }

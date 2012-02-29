@@ -12,37 +12,30 @@ namespace Westgate.Web
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (this.Request["Name"] != null)
-            {
-                this.Text_Name.Text = "" + this.Request["Name"];
-            }
-            else
-            {
-                this.Text_Name.Text = "";
-                this.Text_Name.Visible = false;
-            }
 
-            if (this.Request["Desc"] != null)
+            Westgate.Data.Image image = null;
+            if (this.Request["ImageId"] != null)
             {
-                this.Text_Desc.Text = ""+this.Request["Desc"];
-            }
-            else
-            {
-                this.Text_Desc.Text = "";
-                this.Text_Desc.Visible = false;
-            }
+                try
+                {
+                    int id = int.Parse(this.Request["ImageId"]);
 
-            if (this.Request["Path"] != null)
-            {
-                // this.Image_Tooltip.Attributes["src"] = (String)GetThumbnailImagePath(this.Request["Path"]);
+                    image = (from img in DatabaseContext.Images
+                             where img.ImageId == id
+                             select img).FirstOrDefault();
 
-                this.Image_Tooltip.ImageUrl = (String)GetThumbnailImagePath(this.Request["Path"]);
+                    if (image != null)
+                    {
+                        this.Text_Name.Text = image.Name;
+                        this.Text_Desc.Text = image.Description;
+                        String path = (String)GetThumbnailImagePath(image.CombinedImagePath).ToString().Replace("../", "");
+                        this.Image_Tooltip.ImageUrl = (String)GetThumbnailImagePath(image.CombinedImagePath).ToString().Replace("~/","");
+                    }
+                }
+                catch
+                {
+                }
             }
-            else
-            {
-                this.Image_Tooltip.Visible = false;
-            }
-
         }
     }
 }

@@ -23,7 +23,7 @@ namespace Westgate.Web.Master
 
             Tag galleryTag = new Tag
             {
-                TagId = 4,
+                TagId = 3,
                 Name = "Gallery"
             };
 
@@ -38,7 +38,7 @@ namespace Westgate.Web.Master
             Repeater1.DataBind();
 
             List<Tag> taglistMore = (from row in DatabaseContext.Tags where row.ShowInTabs orderby row.OrderNumber select row).ToList();
-            if (taglistMain.Count > 0)
+            if (taglistMore.Count>6)
             {
                 div_repeatermore.Visible = true;
                 for (int i = 0; i < 6; i++)
@@ -55,15 +55,15 @@ namespace Westgate.Web.Master
 
             }
 
-//            Repeater1.DataSource = (from row in DatabaseContext.Tags where row.ShowInTabs orderby row.OrderNumber select row).Take(7);
-//           Repeater1.DataBind();
+            //            Repeater1.DataSource = (from row in DatabaseContext.Tags where row.ShowInTabs orderby row.OrderNumber select row).Take(7);
+            //           Repeater1.DataBind();
 
 
-            List<Tag> taglist = (from row in DatabaseContext.Tags where row.ShowInTabs orderby row.OrderNumber select row).ToList();
-            taglist.Insert(0, allTag);
+            //List<Tag> taglist = (from row in DatabaseContext.Tags where row.ShowInTabs orderby row.OrderNumber select row).ToList();
+            //taglist.Insert(0, allTag);
 
-            Repeater2.DataSource = taglist;
-            Repeater2.DataBind();
+            //Repeater2.DataSource = taglist;
+            //Repeater2.DataBind();
 
             if (!IsPostBack)
             {
@@ -89,24 +89,29 @@ namespace Westgate.Web.Master
         protected void submitButton_Click(object sender, ImageClickEventArgs e)
         {
             WestgateEntities DatabaseContext = new WestgateEntities();
-            UserEnquiry enquiry = new UserEnquiry {     
-                                                        companyName = CompanyTextID.Text, 
-                                                        personName = PersonTextID.Text,
-                                                        email=EmailTextID.Text,
-                                                        postCode=PostTextID.Text,
-                                                        phoneNumber=PhoneTextID.Text,
-                                                        enquiry = EnquirySelectedId.SelectedItem.Text
-                                                };
-            DatabaseContext.AddToUserEnquiries(enquiry);
+            UserEnquiry enquiry = new UserEnquiry
+            {
+                companyName = CompanyTextID.Text,
+                personName = PersonTextID.Text,
+                email = EmailTextID.Text,
+                postCode = PostTextID.Text,
+                phoneNumber = PhoneTextID.Text,
+                enquiry = EnquirySelectedId.SelectedItem.Text
+            };
+            DatabaseContext.UserEnquiries.AddObject(enquiry);
+            //            DatabaseContext.AddToUserEnquiries(enquiry);
             DatabaseContext.SaveChanges();
             MailMessage message = new MailMessage();
             message.To.Add(new MailAddress(EmailTextID.Text, PersonTextID.Text));
-            message.Body = "Company :" + CompanyTextID.Text + "<br/>Person :" + PersonTextID.Text + "<br/>Email :"+EmailTextID.Text+ "<br/>Post Code : "+PostTextID.Text+"<br/>Phone :"+PhoneTextID.Text+"<br/>Nature of Enquiry :"+EnquirySelectedId.SelectedItem.Text;
+            message.Body = "Company :" + CompanyTextID.Text + "<br/>Person :" + PersonTextID.Text + "<br/>Email :" + EmailTextID.Text + "<br/>Post Code : " + PostTextID.Text + "<br/>Phone :" + PhoneTextID.Text + "<br/>Nature of Enquiry :" + EnquirySelectedId.SelectedItem.Text;
             message.Subject = "Nature of Enquiry";
             message.IsBodyHtml = true;
             EmailUtility.SendEmail(message);
             ErrorLabel.Visible = true;
-            ErrorLabel.Text = "Request Sent";   
+            ErrorLabel.Text = "Request Sent";
+
+
+
         }
     }
 }

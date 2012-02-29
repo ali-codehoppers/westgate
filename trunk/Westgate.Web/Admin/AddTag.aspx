@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="AddTag.aspx.cs" Inherits="Westgate.Web.Admin.AddTag" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="AddTag.aspx.cs" Inherits="Westgate.Web.Admin.AddTag" ValidateRequest="false" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -31,11 +31,11 @@
                 Width="50px" Checked="true" />
         </div>
         <div class="labelStyle">
-            <asp:Label ID="Description" runat="server" Text="Description"></asp:Label>
+            <asp:Label ID="Description" runat="server" Text="Description" ></asp:Label>
         </div>
         <div>
             <asp:TextBox ID="DescriptionText" runat="server" TextMode="MultiLine" Height="100px"
-                Width="97%"></asp:TextBox>
+                Width="90%"></asp:TextBox>
         </div>
         <div>
             <asp:Button ID="AddButton" runat="server" Text="Add Record" OnClick="AddButton_Click"

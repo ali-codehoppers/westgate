@@ -153,14 +153,14 @@ namespace Westgate.Data
         {
             base.AddObject("UserEnquiries", userEnquiry);
         }
-
-         /// <summary>
+    
+        /// <summary>
         /// Deprecated Method for adding a new object to the Tags EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
         public void AddToTags(Tag tag)
-                {
+        {
             base.AddObject("Tags", tag);
-            }
+        }
     
         /// <summary>
         /// Deprecated Method for adding a new object to the ImageTags EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
@@ -168,13 +168,13 @@ namespace Westgate.Data
         public void AddToImageTags(ImageTag imageTag)
         {
             base.AddObject("ImageTags", imageTag);
-            }
+        }
 
         #endregion
-        }
+    }
     
 
-        #endregion
+    #endregion
     
     #region Entities
     
@@ -197,7 +197,7 @@ namespace Westgate.Data
         {
             Image image = new Image();
             image.ImageId = imageId;
-             image.Name = name;
+            image.Name = name;
             return image;
         }
 
@@ -374,6 +374,54 @@ namespace Westgate.Data
         private Nullable<global::System.Int32> _OrderImage;
         partial void OnOrderImageChanging(Nullable<global::System.Int32> value);
         partial void OnOrderImageChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String GalleryImagePathBefore
+        {
+            get
+            {
+                return _GalleryImagePathBefore;
+            }
+            set
+            {
+                OnGalleryImagePathBeforeChanging(value);
+                ReportPropertyChanging("GalleryImagePathBefore");
+                _GalleryImagePathBefore = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("GalleryImagePathBefore");
+                OnGalleryImagePathBeforeChanged();
+            }
+        }
+        private global::System.String _GalleryImagePathBefore;
+        partial void OnGalleryImagePathBeforeChanging(global::System.String value);
+        partial void OnGalleryImagePathBeforeChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String GalleryImagePathAfter
+        {
+            get
+            {
+                return _GalleryImagePathAfter;
+            }
+            set
+            {
+                OnGalleryImagePathAfterChanging(value);
+                ReportPropertyChanging("GalleryImagePathAfter");
+                _GalleryImagePathAfter = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("GalleryImagePathAfter");
+                OnGalleryImagePathAfterChanged();
+            }
+        }
+        private global::System.String _GalleryImagePathAfter;
+        partial void OnGalleryImagePathAfterChanging(global::System.String value);
+        partial void OnGalleryImagePathAfterChanged();
 
         #endregion
     
@@ -501,8 +549,8 @@ namespace Westgate.Data
                     _TagId = StructuralObject.SetValidValue(value);
                     ReportPropertyChanged("TagId");
                     OnTagIdChanged();
+                }
             }
-        }
         }
         private global::System.Int32 _TagId;
         partial void OnTagIdChanging(global::System.Int32 value);
@@ -635,13 +683,13 @@ namespace Westgate.Data
             set
             {
                 if (_TagId != value)
-            {
+                {
                     OnTagIdChanging(value);
                     ReportPropertyChanging("TagId");
                     _TagId = StructuralObject.SetValidValue(value);
                     ReportPropertyChanged("TagId");
                     OnTagIdChanged();
-            }
+                }
             }
         }
         private global::System.Int32 _TagId;

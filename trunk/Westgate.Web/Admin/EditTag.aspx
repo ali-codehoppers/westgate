@@ -25,7 +25,7 @@
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div id="dialog">
-        <iframe id="catFrame" width="650" height="430" frameborder="0"></iframe>
+        <iframe id="catFrame" width="850" height="580" frameborder="0"></iframe>
     </div>
     <asp:Panel runat="server" ID="message" Visible="false">
         <asp:Label CssClass="successStyle" ID="successMessage" runat="server" Text="Category Saved."></asp:Label>
@@ -46,16 +46,16 @@
             <asp:Label ID="Description" runat="server" Text="Description"></asp:Label>
         </div>
         <div>
-            <asp:TextBox ID="DescriptionText" runat="server" TextMode="MultiLine" Height="100px"
+            <asp:TextBox ID="DescriptionText" runat="server" TextMode="MultiLine" Height="300px"
                 Width="97%"></asp:TextBox>
         </div>
         <asp:Button ID="EditButton" runat="server" Text="Save Changes" OnClick="EditButton_Click"
             CssClass="buttonStyle" />
     </div>
-    <div style="width: 97%">
+    <div style="width: 97%; display:none;">
         <hr />
     </div>
-    <div style="height: 50px">
+    <div style="height: 50px; display:none;">
         <asp:Panel runat="server" ID="messageOrderSaved" Style="display: none;">
             <asp:Label CssClass="successStyle" ID="Label1" runat="server" Text="Images order have been saved sucessfully.."></asp:Label>
         </asp:Panel>
@@ -71,38 +71,38 @@
         </div>
     </div>
     <br />
-    <div>
+    <div style="display:none;">
         <asp:Repeater ID="Repeater1" runat="server">
             <HeaderTemplate>
                 <table class="listTableHeader" border="0" style="width: 90%; margin-left: 40px;">
                     <tr>
-                        <td style="padding-left: 10px; min-width: 100px;">
+                        <td width="100" style="padding-left: 10px; min-width: 100px;">
                             Name
                         </td>
-                        <td style="min-width: 10px">
+                        <td width="10" style="min-width: 10px">
                         </td>
-                        <td style="min-width: 250px">
+                        <td width="250" style="min-width: 250px">
                             Description
                         </td>
-                        <td style="min-width: 10px">
+                        <td width="10" style="min-width: 10px">
                         </td>
-                        <td style="min-width: 100px" align="center">
+                        <td width="100" style="min-width: 100px" align="center">
                             Before<br>
                             Image
                         </td>
-                        <td style="min-width: 10px">
+                        <td width="10" style="min-width: 10px">
                         </td>
-                        <td style="min-width: 100px" align="center">
+                        <td width="100" style="min-width: 100px" align="center">
                             After<br>
                             Image
                         </td>
-                        <td style="min-width: 10px">
+                        <td width="10" style="min-width: 10px">
                         </td>
-                        <td style="min-width: 125px" align="center">
+                        <td width="125" style="min-width: 125px" align="center">
                             Combined<br>
                             Image
                         </td>
-                        <td width="20%">
+                        <td width="100">
                             <div style="width: 97%">
                                 &nbsp;
                             </div>
@@ -115,44 +115,44 @@
                 <li class="ui-state-default">
                     <table border="0">
                         <tr>
-                            <td style="padding-left: 10px; min-width: 100px">
+                            <td width="100" style="padding-left: 10px; min-width: 100px;max-width: 100px;">
                                 <%#Eval("Name") %>
                             </td>
-                            <td style="min-width: 10px">
+                            <td width="10" style="min-width: 10px">
                             </td>
-                            <td style="min-width: 250px">
+                            <td width="250" style="min-width: 250px;max-width: 250px;">
                                 <%#Eval("Description")%>
                             </td>
-                            <td style="min-width: 10px">
+                            <td width="10" style="min-width: 10px">
                             </td>
-                            <td style="min-width: 100px" align="center">
+                            <td width="100" style="min-width: 100px" align="center">
                                 <asp:Image ID="Image4" Width="32" Height="19" ImageUrl='<%# GetThumbnailImagePath(Eval("BeforeImagePath")) %>'
                                     runat="server" />
                                 <br>
                                 <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl='<%# Eval("BeforeImagePath") %>'
                                     Target="_blank">Open</asp:HyperLink>
                             </td>
-                            <td style="min-width: 10px">
+                            <td width="10" style="min-width: 10px">
                             </td>
-                            <td style="min-width: 100px" align="center">
+                            <td width="100" style="min-width: 100px" align="center">
                                 <asp:Image ID="Image5" Width="32" Height="19" ImageUrl='<%# GetThumbnailImagePath(Eval("AfterImagePath")) %>'
                                     runat="server" />
                                 <br>
                                 <asp:HyperLink ID="HyperLink5" runat="server" NavigateUrl='<%# Eval("AfterImagePath") %>'
                                     Target="_blank">Open</asp:HyperLink>
                             </td>
-                            <td style="min-width: 10px">
+                            <td width="10" style="min-width: 10px">
                             </td>
-                            <td style="min-width: 125px" align="center">
+                            <td width="125" style="min-width: 125px" align="center">
                                 <asp:Image ID="Image6" Width="64" Height="19" ImageUrl='<%# GetThumbnailImagePath(Eval("CombinedImagePath")) %>'
                                     runat="server" />
                                 <br>
                                 <asp:HyperLink ID="HyperLink6" runat="server" NavigateUrl='<%# Eval("CombinedImagePath") %>'
                                     Target="_blank">Open</asp:HyperLink>
                             </td>
-                            <td style="min-width: 10px">
+                            <td  width="10" style="min-width: 10px">
                             </td>
-                            <td style="min-width: 100px">
+                            <td  width="100" style="min-width: 100px">
                                 <div style="width: 80px;">
                                     <div style="float: left; padding-left: 10px">
                                         <a href="javascript:deleteImage('<%# Eval("ImageId")%>','<%=Request["TagId"] %>')"
@@ -264,8 +264,8 @@
             $("#dialog").dialog({
                 bgiframe: true,
                 autoOpen: false,
-                height: 500,
-                width: 700,
+                height: 640,
+                width: 900,
                 modal: true,
                 resizable: false,
                 closeText: 'show',
@@ -324,6 +324,24 @@
                 fail: onFail
             });
         }
+
+        $(document).ready(function () {
+            var Browser = {
+                Version: function () {
+                    var version = 999; // we assume a sane browser
+                    if (navigator.appVersion.indexOf("MSIE") != -1)
+                    // bah, IE again, lets downgrade version number
+                        version = parseFloat(navigator.appVersion.split("MSIE")[1]);
+                    return version;
+                }
+            }
+
+            if (Browser.Version() == 7) {
+                $("#sortable").css("margin-left", "40px");
+            }
+
+        });
+
 
     </script>
 </asp:Content>

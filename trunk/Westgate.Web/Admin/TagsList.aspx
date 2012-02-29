@@ -34,29 +34,31 @@
             <a href="javascript:addTag()">Add Tag</a>
         </div>
     </div>
+    <div style="clear: both">
+    </div>
     <div>
         <asp:Repeater ID="RepeaterTags" runat="server">
             <HeaderTemplate>
                 <table class="listTableHeader" style="width: 90%; margin-left: 40px;">
                     <tr>
-                        <td style="padding-left: 10px; min-width: 150px;">
+                        <td width="150" style="padding-left: 10px; min-width: 150px;">
                             <b>Name</b>
                         </td>
-                        <td style="min-width: 20px">
+                        <td width="20" style="min-width: 20px">
                         </td>
-                        <td style="min-width: 450px">
+                        <td width="450" style="min-width: 450px">
                             <b>Description</b>
                         </td>
-                        <td style="width: 20px">
+                        <td width="20" style="min-width: 20px">
                         </td>
-                        <td style="min-width: 80px" align="center">
+                        <td width="50" style="min-width: 50px; max-width: 50px" align="center">
                             <b>Show in
                                 <br>
                                 Tabs</b>
                         </td>
-                        <td style="width: 20px">
+                        <td width="20" style="min-width: 20px">
                         </td>
-                        <td width="20%">
+                        <td width="20%" style="min-width:100px; max-width: 100px">
                             <div style="width: 97%">
                                 &nbsp;
                             </div>
@@ -69,23 +71,23 @@
                 <li class="ui-state-default">
                     <table border="0">
                         <tr>
-                            <td style="padding-left: 10px; min-width: 150px">
+                            <td width="150" style="padding-left: 10px; min-width: 150px; max-width: 150px">
                                 <%#Eval("Name") %>
                             </td>
-                            <td style="width: 20px">
+                            <td width="20" style="min-width: 20px">
                             </td>
-                            <td style="min-width: 450px">
+                            <td width="450" style="min-width: 450px; max-width: 450px">
                                 <%#Eval("Description")%>
                             </td>
-                            <td style="min-width: 20px">
+                            <td width="20" style="min-width: 20px">
                             </td>
-                            <td style="width: 50px">
+                            <td width="50" style="min-width: 50px" align="center">
                                 <%#Eval("ShowInTabs")%>
                             </td>
-                            <td style="width: 20px">
+                            <td width="20" style="min-width: 20px">
                             </td>
-                            <td width="100px">
-                                <div style="width: 80px;">
+                            <td width="100" style="min-width:100px; max-width: 100px">
+                                <div style="min-width: 80px;">
                                     <div style="float: left; padding-left: 10px">
                                         <a href="EditTag.aspx?TagId=<%# Eval("TagId")%>" style="text-decoration: none">
                                             <img src="../images/edit.png" style="border: 0px;" /></a>
@@ -181,6 +183,9 @@
             });
             $("#sortable").disableSelection();
             $('#RepeaterTags').sortable('serialize');
+
+
+
         });
 
         function onSuccess(response) {
@@ -198,5 +203,23 @@
         function onFail(response) {
             alert("An error has occurred while updating order.");
         }
+
+        $(document).ready(function () {
+            var Browser = {
+                Version: function () {
+                    var version = 999; // we assume a sane browser
+                    if (navigator.appVersion.indexOf("MSIE") != -1)
+                    // bah, IE again, lets downgrade version number
+                        version = parseFloat(navigator.appVersion.split("MSIE")[1]);
+                    return version;
+                }
+            }
+
+            if (Browser.Version() == 7) {
+                $("#sortable").css("margin-left", "40px");
+            }
+
+        });
+
     </script>
 </asp:Content>

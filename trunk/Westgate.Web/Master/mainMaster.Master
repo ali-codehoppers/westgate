@@ -7,7 +7,8 @@
     <title></title>
     <link href="<%=this.ResolveClientUrl("~/stylesheet/stylesheet.css")%>" rel="stylesheet"
         type="text/css" />
-    <script src="<%=this.ResolveClientUrl("~/script/jquery-1.5.1.min.js")%>" type="text/javascript"></script>
+    <%--    <script src="<%=this.ResolveClientUrl("~/script/jquery-1.5.1.min.js")%>" type="text/javascript"></script>--%>
+    <script language="javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
     <link href="<%=this.ResolveClientUrl("~/script/galleryview-2.1.1/galleryview.css")%>"
         rel="stylesheet" type="text/css" />
     <script src="<%=this.ResolveClientUrl("~/script/galleryview-2.1.1/jquery.easing.1.3.js")%>"
@@ -28,13 +29,14 @@
         rel="stylesheet" type="text/css" />
     <script src="<%=this.ResolveClientUrl("~/script/gallery/jquery.ad-gallery.js")%>"
         type="text/javascript"></script>
+    <script src="<%=this.ResolveClientUrl("~/script/new_gallery/3dslider.js")%>" type="text/javascript"></script>
     <script type="text/javascript" src="<%=this.ResolveClientUrl("~/script/tab/jquery-ui.min.js")%>"></script>
-    <script type="text/javascript" src="<%=this.ResolveClientUrl("~/script/jquery-1.6.2.js")%>"></script>
     <script type="text/javascript" src="<%=this.ResolveClientUrl("~/script/ui/jquery.ui.core.js")%>"></script>
     <script type="text/javascript" src="<%=this.ResolveClientUrl("~/script/ui/jquery.ui.widget.js")%>"></script>
     <script type="text/javascript" src="<%=this.ResolveClientUrl("~/script/ui/jquery.ui.mouse.js")%>"></script>
     <script type="text/javascript" src="<%=this.ResolveClientUrl("~/script/ui/jquery.ui.sortable.js")%>"></script>
-    <script type="text/javascript" src="<%=this.ResolveClientUrl("~/script/plugin/gallery_layouts-min.js")%>"></script>
+    <%--    <script type="text/javascript" src="<%=this.ResolveClientUrl("~/script/plugin/gallery_layouts-min.js")%>"></script>
+    --%>
     <link href="<%=this.ResolveClientUrl("~/script/tab/jquery-ui.css")%>" rel="stylesheet"
         type="text/css" />
     <asp:ContentPlaceHolder ID="headplace" runat="server">
@@ -72,11 +74,19 @@
         {
             color: #fff;
         }
+        
+        #phone_Link
+        {
+            text-decoration: none;
+            color: Black;
+        }
     </style>
     <style type="text/css">
         /* menu styles */
         #jsddm
         {
+            width: auto;
+            height: auto;
         }
         
         #jsddm li
@@ -126,6 +136,16 @@
         {
             background: #CCC;
         }
+        
+        #ContentPlaceHolder1_tagDescription li
+        {
+            margin-left: 30px;
+        }
+        
+        .skype_pnh_text_span
+        {
+            font-size: 16px;
+        }
     </style>
     <script type="text/javascript">
         var timeout = 500;
@@ -160,65 +180,171 @@
     </script>
     <script type="text/javascript">
 
-        function OnHomeClick() {
-            $.post('ajax/homecontents.aspx', function (data) {
-                $('#contentsDiv').html(data);
-            });
-            $("#imagesFrame").attr("src", "ajax/imagecontents.aspx?pageType=HOME");
-            $("#imagesFrame").attr("style", "display:block");
-            $("#profileSection").attr("style", "display:block");
-            $("#profilemain").attr("style", "width: 27%; float: right; min-height: 375px;");
-            $("#contentsDiv").attr("style", "padding-top: 10px; min-height: 363px; width: 100%;");
-        }
+        var frame1_Loaded = false;
+        var frame2_Loaded = false;
 
-        function OnTagClick(id) {
-
-            if (id == 4) {
-                $('#profilemain').hide();
-                $('#frame').hide();
-                $('#main_contentsDiv').width('98%');
-                $('#main_contentsDiv').height('auto');
-                $('#div_gallery').show();
-                $('#div_gallery').attr("style", "width: 18%; float: left; padding-right:5px; border-right: 5px solid #fff;")
-
-                $('#contentsDiv').width('100%');
-                $('#contentsDiv').height('auto');
-
-                $('#contentsDiv').removeClass();
-
+        function showImagesFrame() {
+            if (frame1_Loaded == true) {
+                document.getElementById('loadingFrame_div').style.display = 'none';
+                document.getElementById('frame').style.display = '';
+                if (frame2_Loaded == false)
+                    $("#imagesFrame_Full").attr("src", "ajax/imagecontents.aspx?pageType=TAG");
             }
             else {
+                $("#imagesFrame").attr("src", "ajax/imagecontents.aspx?pageType=BASICGALLERY");
+            }
+        }
+
+
+
+
+        function iframeLoaded() {
+            if (frame1_Loaded == false && document.getElementById('imagesFrame').src != null && document.getElementById('imagesFrame').src.toString() != "") {
+                document.getElementById('loadingFrame_div').style.display = 'none';
+                document.getElementById('frame').style.display = '';
+                if (frame2_Loaded == false)
+                    $("#imagesFrame_Full").attr("src", "ajax/imagecontents.aspx?pageType=TAG");
+                frame1_Loaded = true;
+            }
+        }
+
+        function iframeFullLoaded() {
+
+            if (frame2_Loaded == false && document.getElementById('imagesFrame_Full').src != null && document.getElementById('imagesFrame_Full').src.toString() != "") {
+                //                document.getElementById('imagesFrame').innerHTML = document.getElementById('imagesFrame_Full').innerHTML;
+
+                $("#imagesFrame").attr("id", "imagesFrame_Temp");
+                $("#imagesFrame_Full").attr("id", "imagesFrame");
+                $("#imagesFrame_Temp").attr("id", "imagesFrame_Full");
+                document.getElementById('imagesFrame').style.display = 'block';
+                document.getElementById('imagesFrame_Full').style.display = 'none';
+
+                $("#imagesFrame").attr("onload", "iframeLoaded();");
+                $("#imagesFrame_Full").attr("onload", "iframeFullLoaded();");
+                $("#imagesFrame_Full").attr("src", "");
+                frame2_Loaded = true;
+            }
+        }
+
+
+    </script>
+    <script type="text/javascript">
+
+        /*  function OnHomeClick() {
+        $.post('ajax/homecontents.aspx', function (data) {
+        $('#contentsDiv').html(data);
+        });
+        $("#imagesFrame").attr("src", "ajax/imagecontents.aspx?pageType=HOME");
+        $("#imagesFrame").attr("style", "display:block");
+        $("#profileSection").attr("style", "display:block");
+        $("#profilemain").attr("style", "width: 27%; float: right; min-height: 375px;");
+        $("#contentsDiv").attr("style", "padding-top: 10px; min-height: 363px; width: 100%;");
+        }
+        */
+        var isAnimating = true;
+
+        $(document).ready(function () {
+            //changeCallImage();
+            var t = setTimeout("changeCallImage()", 5000);
+        });
+
+
+        function changeCallImage() {
+            if (isAnimating) {
+                $("#call_Container").attr("style", "min-height: 70px; min-width: 280px; float: right; margin-left: 50px; margin-right: 10px; margin-top: 5px; background-repeat: no-repeat; background-image: url(../wgtest/images/callout_call_2.png)");
+                isAnimating = false;
+                var t = setTimeout("changeCallImage()", 10000);
+            }
+            else {
+                $("#call_Container").attr("style", "min-height: 70px; min-width: 280px; float: right; margin-left: 50px; margin-right: 10px; margin-top: 5px; background-repeat: no-repeat; background-image: url(../wgtest/images/callout_call_2.gif)");
+                isAnimating = true;
+                var t = setTimeout("changeCallImage()", 5000);
+
+            }
+        }
+
+
+        function OnTagClick(id) {
+            $('#profilemain_org').hide();
+            if (id == 1) {
+
                 $('#profilemain').show();
                 $('#frame').show();
                 $('#main_contentsDiv').width('70%');
                 $('#div_gallery').hide();
-                $('#contentsDiv').width('100%');
+                $('#contentsDiv').empty();
+                $("#loadingDiv").attr("style", "width: 100%; min-height: 500px; background-color: #f6f6f6; display: none;");
 
-        }
-
-            $('#profilemain_org').hide();
-
-            if (id != 4) {
                 $.post('ajax/TagContents.aspx?tagId=' + id, function (data) {
                     $('#contentsDiv').html(data);
                 });
-                $.post('ajax/images.aspx?pageType=TAG&tagId=' + id, function (data) {
-                    $('#photos').html(data);
-                });
-                $("#imagesFrame").attr("src", "ajax/imagecontents.aspx?pageType=TAG&tagId=" + id);
-                $("#imagesFrame").attr("style", "display:block");
+                //                $.post('ajax/images.aspx?pageType=BASICGALLERY&tagId=' + id, function (data) {
+                //                    $('#photos').html(data);
+                //                });
+                $("#frame").attr("style", "display:none");
+                $("#loadingFrame_div").attr("style", "width: 963px; height: 484px; background-color: #f6f6f6; display: block;");
+                //if (frame1_Loaded == false)
+                //    $("#imagesFrame").attr("src", "ajax/imagecontents.aspx?pageType=BASICGALLERY&tagId=" + id);
+                showImagesFrame();
+                $("#imagesFrame").attr("style", "display:block; margin-left:10px; margin-bottom:8px; ");
                 $("#profileSection").attr("style", "display:block");
                 $("#profilemain").attr("style", "width: 27%; float: right; min-height: 375px;");
-                $("#contentsDiv").attr("style", "padding-top: 10px; min-height: 363px; width: 100%;");
+                $("#contentsDiv").attr("style", "padding-top: 10px; min-height: 500px; width: 100%; float:left");
+
+
+            }
+            else if (id == 3) {
+                $('#profilemain').hide();
+                $('#frame').hide();
+                $('#main_contentsDiv').width('98%');
+                $('#main_contentsDiv').height('300px');
+
+                $('#div_gallery').attr("style", "width: 18%; float: left; padding-right:5px; border-right: 5px solid #fff;")
+                $('#div_gallery').hide();
+
+                $('#contentsDiv').removeClass();
+                $('#contentsDiv').empty();
+                $("#loadingDiv").attr("style", "width: 100%; min-height: 500px; background-color: #f6f6f6; display: block;");
+                $("#loadingFrame_div").attr("style", "width: 963px; height: 484px; background-color: #f6f6f6; display: none;");
+
+                $.post('ajax/Gallery.aspx', function (data) {
+                    $("#loadingDiv").attr("style", "width: 100%; min-height: 500px; background-color: #f6f6f6; display:none;");
+                    $("#contentsDiv").attr("style", "padding-top: 10px; min-height: 500px; height:auto; width: 100%; float:left");
+                    $('#contentsDiv').html(data);
+
+                });
+                //                $("#imagesFrame").attr("src", "");
+                $("#contentsDiv").attr("style", "padding-top: 10px; min-height: 500px; height:auto; width: 100%; float:left;display:none;");
+                $('#main_contentsDiv').height('auto');
+                $('#frame').hide();
+                $('#frame').attr("style", "display:none;");
 
             }
             else {
-                $.post('ajax/Gallery.aspx', function (data) {
+
+                $('#profilemain').show();
+                $('#frame').hide();
+                $('#main_contentsDiv').width('70%');
+                $('#div_gallery').hide();
+                $('#contentsDiv').empty();
+                $("#loadingDiv").attr("style", "width: 100%; min-height: 500px; background-color: #f6f6f6; display:none;");
+                $("#loadingFrame_div").attr("style", "width: 963px; height: 484px; background-color: #f6f6f6; display: none;");
+                //                $("#contentsDiv").attr("style", "padding-top: 10px; min-height: 400px; height:auto; width: 100%; float:left");
+
+
+                $.post('ajax/TagContents.aspx?tagId=' + id, function (data) {
                     $('#contentsDiv').html(data);
                 });
+                //                $.post('ajax/images.aspx?pageType=TAG&tagId=' + id, function (data) {
+                //                    $('#photos').html(data);
+                //                });
+                //                $("#imagesFrame").attr("src", "ajax/imagecontents.aspx?pageType=TAG&tagId=" + id);
+                //                $("#imagesFrame").attr("style", "display:block");
+                $("#profileSection").attr("style", "display:block");
+                $("#profilemain").attr("style", "width: 27%; float: right; min-height: 375px;");
+                $("#contentsDiv").attr("style", "padding-top: 10px; min-height: 500px; height:auto; width: 100%; float:left");
+
             }
-
-
 
         }
 
@@ -229,75 +355,89 @@
         }
 
 
-        function OnCategoryClick(id) {
-            $.post('ajax/CategoryContents.aspx?categoryId=' + id, function (data) {
-                $('#contentsDiv').html(data);
-            });
-            $.post('ajax/images.aspx?pageType=CATEGORY&categoryId=' + id, function (data) {
-                $('#photos').html(data);
-            });
-            $("#imagesFrame").attr("src", "ajax/imagecontents.aspx?pageType=CATEGORY&categoryId=" + id);
-            $("#imagesFrame").attr("style", "display:block");
-            $("#profileSection").attr("style", "display:block");
-            $("#profilemain").attr("style", "width: 27%; float: right; min-height: 375px;");
-            $("#contentsDiv").attr("style", "padding-top: 10px; min-height: 363px; width: 70%; border-right: 1px dotted #CCCCCC;");
-        }
-        function OnSubcategoryClick(id) {
-            $.post('ajax/SubcategoryContents.aspx?SubcategoryId=' + id, function (data) {
-                $('#contentsDiv').html(data);
-            });
-            $.post('ajax/images.aspx?pageType=SUBCATEGORY&subcategoryId=' + id, function (data) {
-                $('#photos').html(data);
-            });
-            $("#imagesFrame").attr("src", "ajax/imagecontents.aspx?pageType=SUBCATEGORY&subcategoryId=" + id);
-            $("#imagesFrame").attr("style", "display:block");
-            $("#profileSection").attr("style", "display:block");
-            $("#profilemain").attr("style", "width: 27%; float: right; min-height: 375px;");
-            $("#contentsDiv").attr("style", "padding-top: 10px; min-height: 363px; width: 70%; border-right: 1px dotted #CCCCCC;");
-        }
-        function OnStoryClick(id) {
-            $.post('ajax/StoryContents.aspx?StoryId=' + id, function (data) {
-                $('#contentsDiv').html(data);
-            });
-            $.post('ajax/images.aspx?pageType=STORY&storyId=' + id, function (data) {
-                $('#photos').html(data);
-            });
-            $("#imagesFrame").attr("src", "ajax/imagecontents.aspx?pageType=STORY&storyId=" + id);
-            $("#imagesFrame").attr("style", "display:block");
-            $("#profileSection").attr("style", "display:block");
-            $("#profilemain").attr("style", "width: 27%; float: right; min-height: 375px;");
-            $("#contentsDiv").attr("style", "padding-top: 10px; min-height: 363px; width: 70%; border-right: 1px dotted #CCCCCC;");
-        }
+        //        function OnCategoryClick(id) {
+        //            $.post('ajax/CategoryContents.aspx?categoryId=' + id, function (data) {
+        //                $('#contentsDiv').html(data);
+        //            });
+        //            $.post('ajax/images.aspx?pageType=CATEGORY&categoryId=' + id, function (data) {
+        //                $('#photos').html(data);
+        //            });
+        //            $("#imagesFrame").attr("src", "ajax/imagecontents.aspx?pageType=CATEGORY&categoryId=" + id);
+        //            $("#imagesFrame").attr("style", "display:block");
+        //            $("#profileSection").attr("style", "display:block");
+        //            $("#profilemain").attr("style", "width: 27%; float: right; min-height: 375px;");
+        //            $("#contentsDiv").attr("style", "padding-top: 10px; min-height: 363px; width: 70%; border-right: 1px dotted #CCCCCC;");
+        //        }
+        //        function OnSubcategoryClick(id) {
+        //            $.post('ajax/SubcategoryContents.aspx?SubcategoryId=' + id, function (data) {
+        //                $('#contentsDiv').html(data);
+        //            });
+        //            $.post('ajax/images.aspx?pageType=SUBCATEGORY&subcategoryId=' + id, function (data) {
+        //                $('#photos').html(data);
+        //            });
+        //            $("#imagesFrame").attr("src", "ajax/imagecontents.aspx?pageType=SUBCATEGORY&subcategoryId=" + id);
+        //            $("#imagesFrame").attr("style", "display:block");
+        //            $("#profileSection").attr("style", "display:block");
+        //            $("#profilemain").attr("style", "width: 27%; float: right; min-height: 375px;");
+        //            $("#contentsDiv").attr("style", "padding-top: 10px; min-height: 363px; width: 70%; border-right: 1px dotted #CCCCCC;");
+        //        }
+        //        function OnStoryClick(id) {
+        //            $.post('ajax/StoryContents.aspx?StoryId=' + id, function (data) {
+        //                $('#contentsDiv').html(data);
+        //            });
+        //            $.post('ajax/images.aspx?pageType=STORY&storyId=' + id, function (data) {
+        //                $('#photos').html(data);
+        //            });
+        //            $("#imagesFrame").attr("src", "ajax/imagecontents.aspx?pageType=STORY&storyId=" + id);
+        //            $("#imagesFrame").attr("style", "display:block");
+        //            $("#profileSection").attr("style", "display:block");
+        //            $("#profilemain").attr("style", "width: 27%; float: right; min-height: 375px;");
+        //            $("#contentsDiv").attr("style", "padding-top: 10px; min-height: 363px; width: 70%; border-right: 1px dotted #CCCCCC;");
+        //        }
         function OnContactClick() {
 
             $('#profilemain').hide();
             $('#profilemain_org').show();
-            $('#frame').show();
+            $('#frame').hide();
             $('#main_contentsDiv').width('70%');
             $('#div_gallery').hide();
+            $('#contentsDiv').empty();
             $('#contentsDiv').width('100%');
-
-
+            $("#loadingDiv").attr("style", "width: 100%; min-height: 500px; background-color: #f6f6f6; display:none;");
+            $("#loadingFrame_div").attr("style", "width: 963px; height: 484px; background-color: #f6f6f6; display: none;");
 
             $.post('ajax/ContactContents.aspx', function (data) {
                 $('#contentsDiv').html(data);
             });
-            $("#imagesFrame").attr("src", "ajax/imagecontents.aspx?pageType=HOME");
-            $("#imagesFrame").attr("style", "display:block");
+            //$("#imagesFrame").attr("src", "ajax/imagecontents.aspx?pageType=HOME");
+            //$("#imagesFrame").attr("style", "display:block");
             $("#profileSection").attr("style", "display:block");
-            $("#profilemain_org").attr("style", "width: 27%; float: right; min-height: 375px;");
+            //            $("#profilemain_org").attr("style", "width: 27%; float: right; min-height: 375px;");
             $("#contentsDiv").attr("style", "padding-top: 10px; min-height: 363px; width: 100%; border-right: 1px dotted #CCCCCC;");
+
         }
         function OnSiteClick() {
+
+
+            $('#profilemain').show();
+            $('#profilemain_org').hide();
+            $('#frame').hide();
+            $('#main_contentsDiv').width('70%');
+            $('#div_gallery').hide();
+            $('#contentsDiv').width('100%');
+            $("#loadingDiv").attr("style", "width: 100%; min-height: 500px; background-color: #f6f6f6; display:none;");
+            $("#loadingFrame_div").attr("style", "width: 963px; height: 484px; background-color: #f6f6f6; display: none;");
 
             $.post('ajax/SiteMapContents.aspx', function (data) {
                 $('#contentsDiv').html(data);
             });
-            $("#imagesFrame").attr("style", "display:none");
+
+            //$("#imagesFrame").attr("style", "display:none");
             $("#profileSection").attr("style", "display:none");
-            $("#profilemain").attr("style", "width: 0%; float: right; min-height: 375px;");
+            $("#profilemain").attr("style", "width: 27%; float: right; min-height: 375px;");
             $("#contentsDiv").attr("style", "padding-top: 10px; min-height: 363px; width: 98%;float:left; ");
         }
+
         function OnSearchClick() {
             var search = document.getElementById("searchfield").value;
             if (search == null) {
@@ -311,8 +451,41 @@
             var width = $("#mainDiv").width();
             $("#profilemain").attr("style", "width: 0%; float: right; min-height: 375px;");
             $("#contentsDiv").attr("style", "padding-top: 10px; min-height: 363px; float:left;");
-            $("#contentsDiv").width(width-30);
+            $("#contentsDiv").width(width - 30);
+            $("#loadingDiv").attr("style", "width: 100%; min-height: 500px; background-color: #f6f6f6; display:none;");
         }
+
+        function SendEmail() {
+            var companyNameVal = $("#<%= CompanyTextID.ClientID%>").val();
+            var personNameVal = $("#<%= PersonTextID.ClientID%>").val();
+            var emailtextVal = $("#<%= EmailTextID.ClientID%>").val();
+            var postCodeVal = $("#<%= PostTextID.ClientID%>").val();
+            var phoneNumberVal = $("#<%= PhoneTextID.ClientID%>").val();
+            var enquiryVal = $("#<%= EnquirySelectedId.ClientID%>").val();
+            $.ajax({
+                type: "POST",
+                url: "ajax/AddUserEnquiery.aspx",
+                data: { companyName: companyNameVal, personName: personNameVal, email: emailtextVal, postCode: postCodeVal, phoneNumber: phoneNumberVal, enquiry: enquiryVal },
+                success: onSuccess,
+                fail: onFail
+            });
+            return false;
+        }
+
+
+
+        function onSuccess(response) {
+            alert("Message sent sucessfully.");
+            $("#<%= CompanyTextID.ClientID%>").val("");
+            $("#<%= PersonTextID.ClientID%>").val("");
+            $("#<%= EmailTextID.ClientID%>").val("");
+            $("#<%= PostTextID.ClientID%>").val("");
+            $("#<%= PhoneTextID.ClientID%>").val("");
+        }
+
+        function onFail(response) {
+        }
+
         function detectKey(e, t) {
             var keynum;
             if (window.event) // IE
@@ -329,6 +502,13 @@
         }
 
     </script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#slideshow").dddSlider();
+            //usage with custom options. All the below options provided are default
+            //$("#slideshow").dddSlider({slideWidth: 500, autoplay: true, speed: 800, speedBtwnSlides: 4500, playLbl: "Play", pauseLbl: "Pause", incP: 60});
+        });
+    </script>
 </head>
 <body style="margin: auto; width: 995px">
     <form id="form1" runat="server">
@@ -336,11 +516,11 @@
         <div style="padding-left: 8px;" class="left_r">
             <div style="padding-right: 8px;" class="right_r">
                 <div style="width: 100%;">
-                    <div style="width: 22%; float: left;">
-                        <img src='<%=this.ResolveClientUrl("~/images/logo.jpg")%>' alt="" width="187" height="129" />
+                    <div style="width: 60%; float: left; margin-left: 20px; margin-top: 5px;">
+                        <img src='<%=this.ResolveClientUrl("~/images/logo_new.png")%>' alt="" height="100" />
                     </div>
-                    <div style="width: 77%;  float: right;">
-                        <div style="width: 100%;padding-top:10px;">
+                    <div style="width: 35%; float: right;">
+                        <div style="width: 100%; padding-top: 10px;">
                             <div style="float: right;">
                                 <div style="float: left; padding-right: 10px;">
                                     <a href="admin/login.aspx" id="login"></a>
@@ -354,31 +534,44 @@
                                             border="0" /></a></div>
                             </div>
                             <div style="float: right; clear: both">
-                                <div class="top_nav_partition" style="float: left; display:none">
+                                <div class="top_nav_partition" style="float: left; display: none">
                                     <a href="#" class="top">Careers</a></div>
                                 <div class="top_nav_partition" style="float: left">
-                                    <a href="#" class="top" style="display:none">Downloads</a></div>
+                                    <a href="#" class="top" style="display: none">Downloads</a></div>
                                 <div class="top_nav_partition" style="float: left">
-                                    <a href="javascript:OnSiteClick()" class="top">Sitemap</a></div>
-                                <div class="top_nav_partition" style="float: left">
-                                    <a href="javascript:OnContactClick()" class="top">Contact Us</a></div>
+                                    <a href="javascript:OnSiteClick()" class="top" style="display: none">Sitemap</a></div>
+                                <div style="float: left">
+                                    <a href="javascript:OnContactClick()" class="top" style="display: none">Contact Us</a></div>
                             </div>
                         </div>
                         <div style="clear: both">
-                            <img src="<%=this.ResolveClientUrl("~/images/logo_txt.jpg")%>" alt="" width="225"
-                                height="47" />
+                            <%--                            <img style="float: left;" src="<%=this.ResolveClientUrl("~/images/logo_txt.jpg")%>"
+                                alt="" width="225" height="47" />
+                            --%>
+                            <div id="call_Container" align="center" style="min-height: 70px; min-width: 280px;
+                                float: right; margin-left: 50px; margin-right: 10px; margin-top: 5px; background-repeat: no-repeat;
+                                background-image: url(<%=this.ResolveClientUrl("~/images/callout_call_2.gif")%>);">
+                                <div style="margin-top: 25px; margin-left: 85px; font-weight: bold; font-size: 18px;
+                                    float: left; vertical-align: middle;">
+                                    <a href="tel:02072814291" id="phone_Link">0207 281 4291</a>
+                                    <%--                                    +<span style="display: none;">_</span>44 (0) 207 <span style="display: none;">_</span>281
+                                    4291<br />--%>
+                                </div>
+                            </div>
+                            <div style="clear: both">
+                            </div>
                         </div>
                     </div>
                 </div>
                 <div>
                     <div style="float: left; height: 38px; width: 98%;">
-                        <div style="float: left; width: 4%">
+                        <!-- <div class="top_grey_nav_partition" style="float: left; width: 4%">
                             <a href="javascript:OnTagClick(1)" style="width: 38px; height: 38px;">
-                                <img src="<%=this.ResolveClientUrl("~/images/btn_home.jpg")%>" alt="" width="38"
+                                <img src="<%=this.ResolveClientUrl("~/images/icon_home.png")%>" alt="" width="38"
                                     height="38" border="0" />
                             </a>
-                        </div>
-                        <div style=" height: 38px;" class="nav_r">
+                        </div> -->
+                        <div style="height: 38px;" class="nav_r">
                             <%--                            <div class="top_grey_nav_partition" style="float: left; height: 38px">
                                 <div style="padding-top: 10px;">
                                     <a href="javascript:OnHomeClick()" class="grey_top">Home</a>
@@ -404,7 +597,7 @@
                                             </HeaderTemplate>
                                             <ItemTemplate>
                                                 <li>
-                                                    <div style="height: 25px; width: auto; min-width: 50px">
+                                                    <div style="height: 25px; width: auto; min-width: 150px; max-width: 150px;">
                                                         <div>
                                                             <asp:HyperLink ID="Linking1" class="grey_top" runat="server" NavigateUrl='<%# "javascript:OnTagClick("+Eval("TagId")+")"%>'
                                                                 Text='<%# Eval("Name")%>'></asp:HyperLink>
@@ -425,37 +618,49 @@
                         <img src="<%=this.ResolveClientUrl("~/images/nav_right.jpg")%>" alt="" width="12"
                             height="38" />
                     </div>
-                    <div style="clear:both">
+                    <div style="clear: both">
                     </div>
                 </div>
                 <div>
-                    <div id="frame" >
-                        <iframe width="963" height="484" scrolling="no" id="imagesFrame" style="border: 0;"
-                            frameborder="0" src="ajax/Loading.aspx"></iframe>
+                    <div id="frame" style="display: none">
+                        <iframe width="963" height="484" scrolling="no" id="imagesFrame" style="border: 0;
+                            margin-left:10px; margin-bottom: 8px;" frameborder="0" src="ajax/Loading.aspx"
+                            onload="iframeLoaded();"></iframe>
+                        <iframe width="963" height="484" scrolling="no" id="imagesFrame_Full" style="border: 0;
+                            margin-left:10px; margin-bottom: 8px; display: none;" frameborder="0" src=""
+                            onload="iframeFullLoaded();"></iframe>
+                    </div>
+                    <div id="loadingFrame_div" style="width: 963px; height: 484px; background-color: #f6f6f6;
+                        display: block;">
+                        <center>
+                            <img src="../wgtest/images/ajax-loader.gif" style="margin-top: 210px" />
+                        </center>
                     </div>
                 </div>
-                <div style="clear:both">
+                <div style="clear: both">
                 </div>
-                <div class="double_dotted" style="height:4px">
+                <div class="double_dotted" style="height: 4px">
                 </div>
                 <div style="width: 100%;" id="mainDiv">
-                    <div id="profilemain" class="newsletter_bg" style="float: right; min-height: 375px; padding-left:10px">
-                        <div style="color: #faa01d; font-weight: bold; font-size: 13pt; margin-top: 30px;
+                    <div id="profilemain" class="newsletter_bg_new" style="width: 27%; float: right;
+                        min-height: 375px; padding: 15px;">
+                        <%--<div style="color: #faa01d; font-size: 16pt; margin-left: 70px; margin-top: 30px;
                             margin-bottom: 20px;">
-                            West Gate Maintenance Ltd
+                            <span>West Gate</span> <span style="color: #275D99;">&nbsp;Maintenance Ltd</span>
                         </div>
-                        <div style="color: #4f5456; font-weight: bold;">
+                        <div style="color: #4f5456; margin-left: 25px; font-weight: bold;">
                             <span>Grenville Workshops</span><br />
-                            <span style="margin-left:5px" >502 Hornsey Road</span><br />
-                            <span style="margin-left:5px">LONDON</span><br />
-                            <span style="margin-left:5px">N19 4EF</span><br />
+                            <span style="margin-left: 5px">502 Hornsey Road</span><br />
+                            <span style="margin-left: 5px">LONDON</span><br />
+                            <span style="margin-left: 5px">N19 4EF</span><br />
                             <br />
                             <span style="color: #faa01d;">T:</span> +44 (0) 207 281 4291<br />
                             <span style="color: #faa01d;">F:</span> +44 (0) 207 272 0211<br />
                             <span style="color: #faa01d;">E:</span> <a href="mailto:annette@west-gate.net">annette@west-gate.net</a>
-                        </div>
+                        </div>--%>
                     </div>
-                    <div id="profilemain_org" class="newsletter_bg" style="width: 27%; float: right; min-height: 375px; display:none">
+                    <div id="profilemain_org" class="newsletter_bg" style="width: 27%; float: right;
+                        min-height: 375px; display: none">
                         <div id="profileSection" style="float: left">
                             <div class="row" style="width: 100%; clear: both">
                                 <div class="col" style="float: left;">
@@ -469,7 +674,7 @@
                                 </div>
                             </div>
                             <div class="row" style="width: 100%; clear: both">
-                                <asp:Label ID="ErrorLabel" Visible="false" runat="server" Style="color: Red"></asp:Label>
+                                <asp:Label ID="ErrorLabel" runat="server" Style="color: Red; display: none"></asp:Label>
                             </div>
                             <div class="row" style="width: 100%;">
                                 <div class="col" style="float: left; width: 110px;">
@@ -533,9 +738,9 @@
                                 </div>
                                 <div class="col">
                                     <asp:DropDownList runat="server" ID="EnquirySelectedId" CssClass="newsletter_field">
-                                        <asp:ListItem Text="Building Works" Value="1" Selected="True"></asp:ListItem>
-                                        <asp:ListItem Text="Surveying" Value="2"></asp:ListItem>
-                                        <asp:ListItem Text="General Enquiry" Value="3"></asp:ListItem>
+                                        <asp:ListItem Text="Building Works" Value="Building Works" Selected="True"></asp:ListItem>
+                                        <asp:ListItem Text="Surveying" Value="Surveying"></asp:ListItem>
+                                        <asp:ListItem Text="General Enquiry" Value="General Enquiry"></asp:ListItem>
                                     </asp:DropDownList>
                                 </div>
                             </div>
@@ -544,14 +749,15 @@
                                     &nbsp;
                                 </div>
                                 <div class="col">
-                                    <asp:ImageButton runat="server" ID="submitButton" ImageUrl='~/images/btn_submit.jpg'
-                                        OnClick="submitButton_Click" />
+                                    <asp:ImageButton runat="server" ID="ImageButton1" ImageUrl='~/images/btn_submit.jpg'
+                                        OnClientClick="SendEmail(); return false;" />
+                                    <%--                                    <button id="submitButton" onclick="SendEmail()" title="Submit" value="Submit" />--%>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div id="main_contentsDiv" class="grey_welcome" style="width: 70%; border-right: 1px dotted #CCCCCC;">
-                        <div id="div_gallery" style="width: 18%; float: left; display: none">
+                        <!--                        <div id="div_gallery" style="width: 18%; float: left;">
                             <div style="padding-top: 5px; min-height: 500px;">
                                 <asp:Repeater ID="Repeater2" runat="server">
                                     <ItemTemplate>
@@ -569,33 +775,40 @@
                                 </asp:Repeater>
                             </div>
                         </div>
-                        <div id="contentsDiv" style="padding-top: 10px; float: left;
-                            min-height: 450px; width: 100%;">
-                        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
-                        </asp:ContentPlaceHolder>
+-->
+                        <div id="loadingDiv" style="width: 100%; height: 500px; background-color: #f6f6f6;
+                            display: none;">
+                            <center>
+                                <img src="../wgtest/images/ajax-loader.gif" style="margin-top: 215px" />
+                            </center>
+                        </div>
+                        <div id="contentsDiv" style="padding-top: 10px; float: left; min-height: 450px; width: 100%;">
+                            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                            </asp:ContentPlaceHolder>
+                        </div>
+                        <div style="clear: both">
+                        </div>
                     </div>
                     <div style="clear: both">
                     </div>
                 </div>
-                    <div style="clear: both">
-                    </div>
-                </div>
-                <div class="double_dotted" style="height:4px">
+                <div class="double_dotted" style="height: 4px">
                 </div>
                 <div>
                     <div style="padding-top: 15px">
-                        <div style="width: 9%; height: 86px; float: left; padding-left: 10px">
-                            <img src="<%=this.ResolveClientUrl("~/images/logo_footer.jpg")%>" alt="" width="86"
-                                height="61" />
+                        <div style="width: 19%; height: 65px; float: left; padding-left: 10px">
+                            <img src="<%=this.ResolveClientUrl("~/images/certificate_1.png")%>" alt="" height="60" />
                         </div>
-                        <div style="width: 87%" class="txt_pipe">
+                        <div style="width: 60%; float: left; padding-left: 10px" class="txt_pipe">
                             <div style="text-align: center; width: 100%">
                                 Copyright©2011 West Gate Maintenance Limited. All Rights Reserved.</div>
                             <div style="text-align: center; width: 100%">
                                 <a href="#" class="top">Privacy Policy</a> | <a href="#" class="top">Terms &amp; Conditions</a>
                                 | <a href="#" class="top">Disclaimer</a> | <a href="javascript:OnSiteClick()" class="top">
-                                    Sitemap</a> | <a href="#" class="top">Help</a> |<a href="javascript:OnContactClick()"
-                                        class="top"> Contact Us</a></div>
+                                    Sitemap</a> | <a href="javascript:OnContactClick()" class="top">Contact Us</a></div>
+                        </div>
+                        <div style="width: 10%; height: 80px; float: left; padding-left: 10px;">
+                            <img src="<%=this.ResolveClientUrl("~/images/certificate_2.png")%>" alt="" height="70" />
                         </div>
                     </div>
                 </div>

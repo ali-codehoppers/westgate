@@ -85,6 +85,31 @@ h2 {
 	line-height: 25px;
 	background-repeat: no-repeat;
 }
+
+.newsletter_bg_new
+{
+	background-position: left top;
+	font: normal 12px 'Lucida Sans Unicode' , 'Lucida Grande' , sans-serif;
+	color: #999;
+	text-indent: 5px;
+	background: url(../images/img_address_new.png);
+	text-decoration: none;
+	line-height: 25px;
+	background-repeat: no-repeat;
+}
+
+.contactus_bg_new
+{
+    background-position: left top;
+	font: normal 12px 'Lucida Sans Unicode' , 'Lucida Grande' , sans-serif;
+	color: #999;
+	text-indent: 5px;
+	background: url(../images/img_address.png);
+	text-decoration: none;
+	line-height: 25px;
+	background-repeat: no-repeat;
+}
+
 .newsletter_field {
 	font: normal 12px 'Lucida Sans Unicode', 'Lucida Grande', sans-serif;
 	color: #888;
@@ -275,3 +300,4 @@ A.grey_top:hover {
     font-family: Arial, Helvetica, sans-serif;
     font-size: 14px;
 }
+

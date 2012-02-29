@@ -31,5 +31,18 @@ namespace Westgate.Web.Pages
         {
             return path.ToString().Replace(".png", "_thumb.png");
         }
+
+        protected String GetThumbnailPath(String imageId)
+        {
+            int imgId = Int32.Parse(imageId);
+          Image image = (from img in DatabaseContext.Images
+                         where img.ImageId == imgId
+						   select img).FirstOrDefault();
+
+            if(image.AfterImagePath!=null && image.AfterImagePath.Length>0)
+                return image.AfterImagePath.ToString().Replace(".png", "_thumb.png");
+            else
+                return image.BeforeImagePath.ToString().Replace(".png", "_thumb.png");
+        }
     }
 }
