@@ -31,13 +31,13 @@ namespace Westgate.Web.Master
 
 
             WestgateEntities DatabaseContext = new WestgateEntities();
-            List<Tag> taglistMain = (from row in DatabaseContext.Tags where row.ShowInTabs orderby row.OrderNumber select row).Take(6).ToList();
+            List<Tag> taglistMain = (from row in DatabaseContext.Tags where row.ShowInTabs orderby row.OrderNumber select row).ToList();
             taglistMain.Insert(2, galleryTag);
 
             Repeater1.DataSource = taglistMain;
             Repeater1.DataBind();
 
-            List<Tag> taglistMore = (from row in DatabaseContext.Tags where row.ShowInTabs orderby row.OrderNumber select row).ToList();
+            /*List<Tag> taglistMore = (from row in DatabaseContext.Tags where row.ShowInTabs orderby row.OrderNumber select row).ToList();
             if (taglistMore.Count>6)
             {
                 div_repeatermore.Visible = true;
@@ -54,6 +54,8 @@ namespace Westgate.Web.Master
                 div_repeatermore.Visible = false;
 
             }
+            */
+            div_repeatermore.Visible = false;
 
             //            Repeater1.DataSource = (from row in DatabaseContext.Tags where row.ShowInTabs orderby row.OrderNumber select row).Take(7);
             //           Repeater1.DataBind();
