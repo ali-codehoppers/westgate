@@ -38,7 +38,7 @@ namespace Westgate.Web.ajax
 
                 if(pageType.Equals("BASICGALLERY"))
                 {
-                    tagImages = (from img in DatabaseContext.Images select img).Take(5).ToList();
+                    tagImages = (from img in DatabaseContext.Images where img.HomeImage==true select img).ToList();
                 }
                 else
                 {

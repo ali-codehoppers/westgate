@@ -34,10 +34,10 @@ namespace Westgate.Web.Admin
 		{
             int orderNumber = 1;
             var preRecords = (from tag in DatabaseContext.Tags
-                              select tag.OrderNumber);
-            if (preRecords != null && preRecords.Count() > 0)
+                              select tag.OrderNumber).Max();
+            if (preRecords.Value != null && preRecords.Value > 0)
             {
-                orderNumber = preRecords.Max() + 1;
+                orderNumber = preRecords.Value + 1;
             }
 
 

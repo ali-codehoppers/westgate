@@ -31,6 +31,7 @@ namespace Westgate.Web.Admin
                 tvStructure.Nodes.Add(categoriesNode);
                 tvStructure.Nodes.Add(new TreeNode("Add New Image", "Add New Image", "", "~/Admin/AddImageNew.aspx", ""));
                 tvStructure.Nodes.Add(new TreeNode("Gallery", "Gallery", "", "~/Admin/Gallery.aspx", ""));
+                tvStructure.Nodes.Add(new TreeNode("Order Tags", "Order Tags", "", "~/Admin/OrderTags.aspx", ""));
             }
         }
     }

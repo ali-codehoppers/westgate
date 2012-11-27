@@ -189,10 +189,9 @@ namespace Westgate.Web.Admin
 
                     var preRecords = (from itag in DatabaseContext.ImageTags
                                       where itag.Tag.TagId == tag.TagId
-                                      select itag.OrderNumber);
-
-                    if (preRecords != null && preRecords.Count() > 0)
-                        order = preRecords.Max() + 1;
+                                      select itag.OrderNumber).Max();
+                    if (preRecords.Value != null && preRecords.Value > 0)
+                        order = preRecords.Value + 1;
 
                     ImageTag imgTag = new ImageTag
                     {
