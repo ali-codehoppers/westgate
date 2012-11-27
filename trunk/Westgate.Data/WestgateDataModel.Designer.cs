@@ -18,8 +18,8 @@ using System.Runtime.Serialization;
 [assembly: EdmSchemaAttribute()]
 #region EDM Relationship Metadata
 
-[assembly: EdmRelationshipAttribute("WestgateModel", "ImageImageTag", "Image", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Westgate.Data.Image), "ImageTag", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Westgate.Data.ImageTag), true)]
-[assembly: EdmRelationshipAttribute("WestgateModel", "TagImageTag", "Tag", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Westgate.Data.Tag), "ImageTag", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Westgate.Data.ImageTag), true)]
+[assembly: EdmRelationshipAttribute("WGLiveModel", "FK_ImageTag_Images", "Image", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Westgate.Data.Image), "ImageTag", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Westgate.Data.ImageTag), true)]
+[assembly: EdmRelationshipAttribute("WGLiveModel", "FK_ImageTag_Tags", "Tag", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Westgate.Data.Tag), "ImageTag", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Westgate.Data.ImageTag), true)]
 
 #endregion
 
@@ -90,22 +90,6 @@ namespace Westgate.Data
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        public ObjectSet<UserEnquiry> UserEnquiries
-        {
-            get
-            {
-                if ((_UserEnquiries == null))
-                {
-                    _UserEnquiries = base.CreateObjectSet<UserEnquiry>("UserEnquiries");
-                }
-                return _UserEnquiries;
-            }
-        }
-        private ObjectSet<UserEnquiry> _UserEnquiries;
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
         public ObjectSet<Tag> Tags
         {
             get
@@ -118,6 +102,22 @@ namespace Westgate.Data
             }
         }
         private ObjectSet<Tag> _Tags;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<UserEnquiry> UserEnquiries
+        {
+            get
+            {
+                if ((_UserEnquiries == null))
+                {
+                    _UserEnquiries = base.CreateObjectSet<UserEnquiry>("UserEnquiries");
+                }
+                return _UserEnquiries;
+            }
+        }
+        private ObjectSet<UserEnquiry> _UserEnquiries;
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -147,19 +147,19 @@ namespace Westgate.Data
         }
     
         /// <summary>
-        /// Deprecated Method for adding a new object to the UserEnquiries EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
-        /// </summary>
-        public void AddToUserEnquiries(UserEnquiry userEnquiry)
-        {
-            base.AddObject("UserEnquiries", userEnquiry);
-        }
-    
-        /// <summary>
         /// Deprecated Method for adding a new object to the Tags EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
         public void AddToTags(Tag tag)
         {
             base.AddObject("Tags", tag);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the UserEnquiries EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToUserEnquiries(UserEnquiry userEnquiry)
+        {
+            base.AddObject("UserEnquiries", userEnquiry);
         }
     
         /// <summary>
@@ -181,7 +181,7 @@ namespace Westgate.Data
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="WestgateModel", Name="Image")]
+    [EdmEntityTypeAttribute(NamespaceName="WGLiveModel", Name="Image")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
     public partial class Image : EntityObject
@@ -193,11 +193,13 @@ namespace Westgate.Data
         /// </summary>
         /// <param name="imageId">Initial value of the ImageId property.</param>
         /// <param name="name">Initial value of the Name property.</param>
-        public static Image CreateImage(global::System.Int32 imageId, global::System.String name)
+        /// <param name="homeImage">Initial value of the HomeImage property.</param>
+        public static Image CreateImage(global::System.Int32 imageId, global::System.String name, global::System.Boolean homeImage)
         {
             Image image = new Image();
             image.ImageId = imageId;
             image.Name = name;
+            image.HomeImage = homeImage;
             return image;
         }
 
@@ -422,6 +424,30 @@ namespace Westgate.Data
         private global::System.String _GalleryImagePathAfter;
         partial void OnGalleryImagePathAfterChanging(global::System.String value);
         partial void OnGalleryImagePathAfterChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Boolean HomeImage
+        {
+            get
+            {
+                return _HomeImage;
+            }
+            set
+            {
+                OnHomeImageChanging(value);
+                ReportPropertyChanging("HomeImage");
+                _HomeImage = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("HomeImage");
+                OnHomeImageChanged();
+            }
+        }
+        private global::System.Boolean _HomeImage;
+        partial void OnHomeImageChanging(global::System.Boolean value);
+        partial void OnHomeImageChanged();
 
         #endregion
     
@@ -433,18 +459,18 @@ namespace Westgate.Data
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("WestgateModel", "ImageImageTag", "ImageTag")]
+        [EdmRelationshipNavigationPropertyAttribute("WGLiveModel", "FK_ImageTag_Images", "ImageTag")]
         public EntityCollection<ImageTag> ImageTags
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<ImageTag>("WestgateModel.ImageImageTag", "ImageTag");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<ImageTag>("WGLiveModel.FK_ImageTag_Images", "ImageTag");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<ImageTag>("WestgateModel.ImageImageTag", "ImageTag", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<ImageTag>("WGLiveModel.FK_ImageTag_Images", "ImageTag", value);
                 }
             }
         }
@@ -455,7 +481,7 @@ namespace Westgate.Data
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="WestgateModel", Name="ImageTag")]
+    [EdmEntityTypeAttribute(NamespaceName="WGLiveModel", Name="ImageTag")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
     public partial class ImageTag : EntityObject
@@ -481,9 +507,9 @@ namespace Westgate.Data
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public global::System.Int32 OrderNumber
+        public Nullable<global::System.Int32> OrderNumber
         {
             get
             {
@@ -498,8 +524,8 @@ namespace Westgate.Data
                 OnOrderNumberChanged();
             }
         }
-        private global::System.Int32 _OrderNumber = 0;
-        partial void OnOrderNumberChanging(global::System.Int32 value);
+        private Nullable<global::System.Int32> _OrderNumber;
+        partial void OnOrderNumberChanging(Nullable<global::System.Int32> value);
         partial void OnOrderNumberChanged();
     
         /// <summary>
@@ -566,16 +592,16 @@ namespace Westgate.Data
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("WestgateModel", "ImageImageTag", "Image")]
+        [EdmRelationshipNavigationPropertyAttribute("WGLiveModel", "FK_ImageTag_Images", "Image")]
         public Image Image
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Image>("WestgateModel.ImageImageTag", "Image").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Image>("WGLiveModel.FK_ImageTag_Images", "Image").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Image>("WestgateModel.ImageImageTag", "Image").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Image>("WGLiveModel.FK_ImageTag_Images", "Image").Value = value;
             }
         }
         /// <summary>
@@ -587,13 +613,13 @@ namespace Westgate.Data
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Image>("WestgateModel.ImageImageTag", "Image");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Image>("WGLiveModel.FK_ImageTag_Images", "Image");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Image>("WestgateModel.ImageImageTag", "Image", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Image>("WGLiveModel.FK_ImageTag_Images", "Image", value);
                 }
             }
         }
@@ -604,16 +630,16 @@ namespace Westgate.Data
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("WestgateModel", "TagImageTag", "Tag")]
+        [EdmRelationshipNavigationPropertyAttribute("WGLiveModel", "FK_ImageTag_Tags", "Tag")]
         public Tag Tag
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Tag>("WestgateModel.TagImageTag", "Tag").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Tag>("WGLiveModel.FK_ImageTag_Tags", "Tag").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Tag>("WestgateModel.TagImageTag", "Tag").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Tag>("WGLiveModel.FK_ImageTag_Tags", "Tag").Value = value;
             }
         }
         /// <summary>
@@ -625,13 +651,13 @@ namespace Westgate.Data
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Tag>("WestgateModel.TagImageTag", "Tag");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Tag>("WGLiveModel.FK_ImageTag_Tags", "Tag");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Tag>("WestgateModel.TagImageTag", "Tag", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Tag>("WGLiveModel.FK_ImageTag_Tags", "Tag", value);
                 }
             }
         }
@@ -642,7 +668,7 @@ namespace Westgate.Data
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="WestgateModel", Name="Tag")]
+    [EdmEntityTypeAttribute(NamespaceName="WGLiveModel", Name="Tag")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
     public partial class Tag : EntityObject
@@ -655,14 +681,14 @@ namespace Westgate.Data
         /// <param name="tagId">Initial value of the TagId property.</param>
         /// <param name="name">Initial value of the Name property.</param>
         /// <param name="showInTabs">Initial value of the ShowInTabs property.</param>
-        /// <param name="orderNumber">Initial value of the OrderNumber property.</param>
-        public static Tag CreateTag(global::System.Int32 tagId, global::System.String name, global::System.Boolean showInTabs, global::System.Int32 orderNumber)
+        /// <param name="isEditable">Initial value of the IsEditable property.</param>
+        public static Tag CreateTag(global::System.Int32 tagId, global::System.String name, global::System.Boolean showInTabs, global::System.Boolean isEditable)
         {
             Tag tag = new Tag();
             tag.TagId = tagId;
             tag.Name = name;
             tag.ShowInTabs = showInTabs;
-            tag.OrderNumber = orderNumber;
+            tag.IsEditable = isEditable;
             return tag;
         }
 
@@ -788,16 +814,16 @@ namespace Westgate.Data
                 OnIsEditableChanged();
             }
         }
-        private global::System.Boolean _IsEditable = true;
+        private global::System.Boolean _IsEditable;
         partial void OnIsEditableChanging(global::System.Boolean value);
         partial void OnIsEditableChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public global::System.Int32 OrderNumber
+        public Nullable<global::System.Int32> OrderNumber
         {
             get
             {
@@ -812,8 +838,8 @@ namespace Westgate.Data
                 OnOrderNumberChanged();
             }
         }
-        private global::System.Int32 _OrderNumber;
-        partial void OnOrderNumberChanging(global::System.Int32 value);
+        private Nullable<global::System.Int32> _OrderNumber;
+        partial void OnOrderNumberChanging(Nullable<global::System.Int32> value);
         partial void OnOrderNumberChanged();
 
         #endregion
@@ -826,18 +852,18 @@ namespace Westgate.Data
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("WestgateModel", "TagImageTag", "ImageTag")]
+        [EdmRelationshipNavigationPropertyAttribute("WGLiveModel", "FK_ImageTag_Tags", "ImageTag")]
         public EntityCollection<ImageTag> ImageTags
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<ImageTag>("WestgateModel.TagImageTag", "ImageTag");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<ImageTag>("WGLiveModel.FK_ImageTag_Tags", "ImageTag");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<ImageTag>("WestgateModel.TagImageTag", "ImageTag", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<ImageTag>("WGLiveModel.FK_ImageTag_Tags", "ImageTag", value);
                 }
             }
         }
@@ -848,7 +874,7 @@ namespace Westgate.Data
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="WestgateModel", Name="UserEnquiry")]
+    [EdmEntityTypeAttribute(NamespaceName="WGLiveModel", Name="UserEnquiry")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
     public partial class UserEnquiry : EntityObject

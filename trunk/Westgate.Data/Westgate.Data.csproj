@@ -52,13 +52,11 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <None Include="App.Config" />
     <EntityDeploy Include="WestgateDataModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>WestgateDataModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.Config" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="WestgateDataModel.edmx.sql" />
