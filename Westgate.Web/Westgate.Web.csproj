@@ -67,6 +67,7 @@
     <Content Include="Admin\ajax\DeleteImage.aspx" />
     <Content Include="Admin\ajax\OrderImages.aspx" />
     <Content Include="Admin\ajax\OrderTags.aspx" />
+    <Content Include="Admin\ajax\SelectHomeImage.aspx" />
     <Content Include="Admin\AutoCompleteTags.aspx" />
     <Content Include="Admin\CombinedImage.aspx" />
     <Content Include="Admin\EditTag.aspx" />
@@ -75,6 +76,7 @@
     <Content Include="Admin\ImagesList.aspx" />
     <Content Include="Admin\imageTransfer.aspx" />
     <Content Include="Admin\Login.aspx" />
+    <Content Include="Admin\OrderTags.aspx" />
     <Content Include="Admin\script\admin.js" />
     <Content Include="Admin\script\jscripts\HtmlEditor.js" />
     <Content Include="Admin\script\jscripts\tiny_mce\langs\en.js" />
@@ -371,7 +373,7 @@
     <Content Include="images\down_arrow.png" />
     <Content Include="images\edit.png" />
     <Content Include="images\gallery_bg.jpg" />
-    <Content Include="images\galler_img_bg.png" />
+    <Content Include="images\gallery_img_bg.png" />
     <Content Include="images\icon_cancel.png" />
     <Content Include="images\icon_home.png" />
     <Content Include="images\image1.jpg" />
@@ -405,23 +407,28 @@
     <Content Include="images\logo.jpg" />
     <Content Include="images\logo_footer.jpg" />
     <Content Include="images\logo_new.png" />
+    <Content Include="images\Logo_safe.jpg" />
     <Content Include="images\logo_txt.jpg" />
     <Content Include="images\mid_top.jpg" />
     <Content Include="images\nav_mid.jpg" />
     <Content Include="images\nav_partition.jpg" />
     <Content Include="images\nav_right.jpg" />
+    <Content Include="images\New-QAS-LOGO-Templates-2004.jpg" />
+    <Content Include="images\New-QAS-LOGO-Templates-2008.jpg" />
     <Content Include="images\newsletter_bg.jpg" />
     <Content Include="images\news_icon.jpg" />
     <Content Include="images\right_arrow.png" />
     <Content Include="images\right_bottom.jpg" />
     <Content Include="images\right_r.jpg" />
     <Content Include="images\right_top.jpg" />
+    <Content Include="images\save_home.png" />
     <Content Include="images\scrolling_pic_bg.jpg" />
     <Content Include="images\search.jpg" />
     <Content Include="images\signin_btn.jpg" />
     <Content Include="images\tick_icon.jpg" />
     <Content Include="images\top_arrow.png" />
     <Content Include="images\gallery_bg.png" />
+    <Content Include="images\unsave_home.png" />
     <Content Include="images\westgate_address.png" />
     <Content Include="images\img_address.png" />
     <Content Include="images\y_addressbar.jpg">
@@ -1005,6 +1012,13 @@
     <Compile Include="Admin\ajax\OrderTags.aspx.designer.cs">
       <DependentUpon>OrderTags.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Admin\ajax\SelectHomeImage.aspx.cs">
+      <DependentUpon>SelectHomeImage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\ajax\SelectHomeImage.aspx.designer.cs">
+      <DependentUpon>SelectHomeImage.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Admin\AutoCompleteTags.aspx.cs">
       <DependentUpon>AutoCompleteTags.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1060,6 +1074,13 @@
     </Compile>
     <Compile Include="Admin\Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\OrderTags.aspx.cs">
+      <DependentUpon>OrderTags.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\OrderTags.aspx.designer.cs">
+      <DependentUpon>OrderTags.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\TagsList.aspx.cs">
       <DependentUpon>TagsList.aspx</DependentUpon>
