@@ -4,105 +4,106 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="WestgateModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
-  <EntityContainer Name="WestgateModelStoreContainer">
-    <EntitySet Name="Images" EntityType="WestgateModel.Store.Images" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="UserEnquiries" EntityType="WestgateModel.Store.UserEnquiries" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="Tags" EntityType="WestgateModel.Store.Tags" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="ImageTags" EntityType="WestgateModel.Store.ImageTags" store:Type="Tables" Schema="dbo" />
-    <AssociationSet Name="ImageImageTag" Association="WestgateModel.Store.ImageImageTag">
-      <End Role="Image" EntitySet="Images" />
-      <End Role="ImageTag" EntitySet="ImageTags" />
-    </AssociationSet>
-    <AssociationSet Name="TagImageTag" Association="WestgateModel.Store.TagImageTag">
-      <End Role="Tag" EntitySet="Tags" />
-      <End Role="ImageTag" EntitySet="ImageTags" />
-    </AssociationSet>
-  </EntityContainer>
-  <EntityType Name="Images">
-    <Key>
-      <PropertyRef Name="ImageId" />
-    </Key>
-    <Property Name="ImageId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Name" Type="varchar" Nullable="false" MaxLength="50" />
-    <Property Name="Description" Type="varchar" Nullable="true" MaxLength="1000" />
-    <Property Name="BeforeImagePath" Type="varchar" Nullable="true" MaxLength="100" />
-    <Property Name="AfterImagePath" Type="varchar" Nullable="true" MaxLength="100" />
-    <Property Name="CombinedImagePath" Type="varchar" Nullable="true" MaxLength="100" />
-    <Property Name="OrderImage" Type="int" Nullable="true" />
-    <Property Name="GalleryImagePathBefore" Type="varchar" Nullable="true" MaxLength="100" />
-    <Property Name="GalleryImagePathAfter" Type="varchar" Nullable="true" MaxLength="100" />
-  </EntityType>
-  <EntityType Name="UserEnquiries">
-    <Key>
-      <PropertyRef Name="id" />
-    </Key>
-    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="companyName" Type="varchar" Nullable="false" MaxLength="50" />
-    <Property Name="personName" Type="varchar" Nullable="false" MaxLength="50" />
-    <Property Name="email" Type="varchar" Nullable="false" MaxLength="50" />
-    <Property Name="postCode" Type="varchar" Nullable="true" MaxLength="50" />
-    <Property Name="phoneNumber" Type="varchar" Nullable="true" MaxLength="50" />
-    <Property Name="enquiry" Type="varchar" Nullable="true" MaxLength="50" />
-  </EntityType>
-  <EntityType Name="Tags">
-    <Key>
-      <PropertyRef Name="TagId" />
-    </Key>
-    <Property Name="TagId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Name" Type="varchar" Nullable="false" MaxLength="50" />
-    <Property Name="Description" Type="varchar" Nullable="true" MaxLength="1000" />
-    <Property Name="ShowInTabs" Type="bit" Nullable="false" />
-    <Property Name="IsEditable" Type="bit" Nullable="false" DefaultValue="true" />
-    <Property Name="OrderNumber" Type="int" Nullable="false" />
-  </EntityType>
-  <EntityType Name="ImageTags">
-    <Key>
-      <PropertyRef Name="ImageId" />
-      <PropertyRef Name="TagId" />
-    </Key>
-    <Property Name="OrderNumber" Type="int" Nullable="false" DefaultValue="0" />
-    <Property Name="ImageId" Type="int" Nullable="false" />
-    <Property Name="TagId" Type="int" Nullable="false" />
-  </EntityType>
-  <Association Name="ImageImageTag">
-    <End Role="Image" Type="WestgateModel.Store.Images" Multiplicity="1" />
-    <End Role="ImageTag" Type="WestgateModel.Store.ImageTags" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Image">
-        <PropertyRef Name="ImageId" />
-      </Principal>
-      <Dependent Role="ImageTag">
-        <PropertyRef Name="ImageId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="TagImageTag">
-    <End Role="Tag" Type="WestgateModel.Store.Tags" Multiplicity="1" />
-    <End Role="ImageTag" Type="WestgateModel.Store.ImageTags" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Tag">
-        <PropertyRef Name="TagId" />
-      </Principal>
-      <Dependent Role="ImageTag">
-        <PropertyRef Name="TagId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-</Schema></edmx:StorageModels>
+    <Schema Namespace="WGLiveModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="WGLiveModelStoreContainer">
+          <EntitySet Name="Images" EntityType="WGLiveModel.Store.Images" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="ImageTags" EntityType="WGLiveModel.Store.ImageTags" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Tags" EntityType="WGLiveModel.Store.Tags" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="UserEnquiries" EntityType="WGLiveModel.Store.UserEnquiries" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_ImageTag_Images" Association="WGLiveModel.Store.FK_ImageTag_Images">
+            <End Role="Images" EntitySet="Images" />
+            <End Role="ImageTags" EntitySet="ImageTags" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ImageTag_Tags" Association="WGLiveModel.Store.FK_ImageTag_Tags">
+            <End Role="Tags" EntitySet="Tags" />
+            <End Role="ImageTags" EntitySet="ImageTags" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Images">
+          <Key>
+            <PropertyRef Name="ImageId" />
+          </Key>
+          <Property Name="ImageId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="Description" Type="varchar" MaxLength="1000" />
+          <Property Name="BeforeImagePath" Type="varchar" MaxLength="500" />
+          <Property Name="AfterImagePath" Type="varchar" MaxLength="500" />
+          <Property Name="CombinedImagePath" Type="varchar" MaxLength="500" />
+          <Property Name="OrderImage" Type="int" />
+          <Property Name="GalleryImagePathBefore" Type="varchar" MaxLength="500" />
+          <Property Name="GalleryImagePathAfter" Type="varchar" MaxLength="500" />
+          <Property Name="HomeImage" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ImageTags">
+          <Key>
+            <PropertyRef Name="ImageId" />
+            <PropertyRef Name="TagId" />
+          </Key>
+          <Property Name="OrderNumber" Type="int" />
+          <Property Name="ImageId" Type="int" Nullable="false" />
+          <Property Name="TagId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Tags">
+          <Key>
+            <PropertyRef Name="TagId" />
+          </Key>
+          <Property Name="TagId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="100" />
+          <Property Name="Description" Type="varchar(max)" />
+          <Property Name="ShowInTabs" Type="bit" Nullable="false" />
+          <Property Name="IsEditable" Type="bit" Nullable="false" />
+          <Property Name="OrderNumber" Type="int" />
+        </EntityType>
+        <EntityType Name="UserEnquiries">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="companyName" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="personName" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="email" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="postCode" Type="varchar" MaxLength="50" />
+          <Property Name="phoneNumber" Type="varchar" MaxLength="50" />
+          <Property Name="enquiry" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK_ImageTag_Images">
+          <End Role="Images" Type="WGLiveModel.Store.Images" Multiplicity="1" />
+          <End Role="ImageTags" Type="WGLiveModel.Store.ImageTags" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Images">
+              <PropertyRef Name="ImageId" />
+            </Principal>
+            <Dependent Role="ImageTags">
+              <PropertyRef Name="ImageId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ImageTag_Tags">
+          <End Role="Tags" Type="WGLiveModel.Store.Tags" Multiplicity="1" />
+          <End Role="ImageTags" Type="WGLiveModel.Store.ImageTags" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tags">
+              <PropertyRef Name="TagId" />
+            </Principal>
+            <Dependent Role="ImageTags">
+              <PropertyRef Name="TagId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="WestgateModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+      <Schema Namespace="WGLiveModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
         <EntityContainer Name="WestgateEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Images" EntityType="WestgateModel.Image" />
-          <EntitySet Name="UserEnquiries" EntityType="WestgateModel.UserEnquiry" />
-          <EntitySet Name="Tags" EntityType="WestgateModel.Tag" />
-          <EntitySet Name="ImageTags" EntityType="WestgateModel.ImageTag" />
-          <AssociationSet Name="ImageImageTag" Association="WestgateModel.ImageImageTag">
+          <EntitySet Name="Images" EntityType="WGLiveModel.Image" />
+          <EntitySet Name="Tags" EntityType="WGLiveModel.Tag" />
+          <EntitySet Name="UserEnquiries" EntityType="WGLiveModel.UserEnquiry" />
+          <EntitySet Name="ImageTags" EntityType="WGLiveModel.ImageTag" />
+          <AssociationSet Name="FK_ImageTag_Images" Association="WGLiveModel.FK_ImageTag_Images">
             <End Role="Image" EntitySet="Images" />
             <End Role="ImageTag" EntitySet="ImageTags" />
           </AssociationSet>
-          <AssociationSet Name="TagImageTag" Association="WestgateModel.TagImageTag">
+          <AssociationSet Name="FK_ImageTag_Tags" Association="WGLiveModel.FK_ImageTag_Tags">
             <End Role="Tag" EntitySet="Tags" />
             <End Role="ImageTag" EntitySet="ImageTags" />
           </AssociationSet>
@@ -114,13 +115,26 @@
           <Property Type="Int32" Name="ImageId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Type="String" Name="Name" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="Description" MaxLength="1000" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="BeforeImagePath" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="AfterImagePath" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="CombinedImagePath" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="BeforeImagePath" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="AfterImagePath" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="CombinedImagePath" MaxLength="500" FixedLength="false" Unicode="false" />
           <Property Type="Int32" Name="OrderImage" />
-          <NavigationProperty Name="ImageTags" Relationship="WestgateModel.ImageImageTag" FromRole="Image" ToRole="ImageTag" />
-          <Property Type="String" Name="GalleryImagePathBefore" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="GalleryImagePathAfter" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="GalleryImagePathBefore" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="GalleryImagePathAfter" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Type="Boolean" Name="HomeImage" Nullable="false" />
+          <NavigationProperty Name="ImageTags" Relationship="WGLiveModel.FK_ImageTag_Images" FromRole="Image" ToRole="ImageTag" />
+        </EntityType>
+        <EntityType Name="Tag">
+          <Key>
+            <PropertyRef Name="TagId" />
+          </Key>
+          <Property Type="Int32" Name="TagId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Description" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="Boolean" Name="ShowInTabs" Nullable="false" />
+          <Property Type="Boolean" Name="IsEditable" Nullable="false" />
+          <Property Type="Int32" Name="OrderNumber" />
+          <NavigationProperty Name="ImageTags" Relationship="WGLiveModel.FK_ImageTag_Tags" FromRole="Tag" ToRole="ImageTag" />
         </EntityType>
         <EntityType Name="UserEnquiry">
           <Key>
@@ -134,32 +148,20 @@
           <Property Type="String" Name="phoneNumber" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="enquiry" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
-        <EntityType Name="Tag">
-          <Key>
-            <PropertyRef Name="TagId" />
-          </Key>
-          <Property Type="Int32" Name="TagId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="String" Name="Name" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="Description" MaxLength="1000" FixedLength="false" Unicode="false" />
-          <Property Type="Boolean" Name="ShowInTabs" Nullable="false" />
-          <NavigationProperty Name="ImageTags" Relationship="WestgateModel.TagImageTag" FromRole="Tag" ToRole="ImageTag" />
-          <Property Type="Boolean" Name="IsEditable" Nullable="false" DefaultValue="True" />
-          <Property Type="Int32" Name="OrderNumber" Nullable="false" />
-        </EntityType>
-        <EntityType Name="ImageTag" >
+        <EntityType Name="ImageTag">
           <Key>
             <PropertyRef Name="ImageId" />
             <PropertyRef Name="TagId" />
           </Key>
-          <Property Type="Int32" Name="OrderNumber" Nullable="false" DefaultValue="0" />
-          <NavigationProperty Name="Image" Relationship="WestgateModel.ImageImageTag" FromRole="ImageTag" ToRole="Image" />
+          <Property Type="Int32" Name="OrderNumber" />
           <Property Type="Int32" Name="ImageId" Nullable="false" />
-          <NavigationProperty Name="Tag" Relationship="WestgateModel.TagImageTag" FromRole="ImageTag" ToRole="Tag" />
           <Property Type="Int32" Name="TagId" Nullable="false" />
+          <NavigationProperty Name="Image" Relationship="WGLiveModel.FK_ImageTag_Images" FromRole="ImageTag" ToRole="Image" />
+          <NavigationProperty Name="Tag" Relationship="WGLiveModel.FK_ImageTag_Tags" FromRole="ImageTag" ToRole="Tag" />
         </EntityType>
-        <Association Name="ImageImageTag">
-          <End Type="WestgateModel.Image" Role="Image" Multiplicity="1" />
-          <End Type="WestgateModel.ImageTag" Role="ImageTag" Multiplicity="*" />
+        <Association Name="FK_ImageTag_Images">
+          <End Type="WGLiveModel.Image" Role="Image" Multiplicity="1" />
+          <End Type="WGLiveModel.ImageTag" Role="ImageTag" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Image">
               <PropertyRef Name="ImageId" />
@@ -169,9 +171,9 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="TagImageTag">
-          <End Type="WestgateModel.Tag" Role="Tag" Multiplicity="1" />
-          <End Type="WestgateModel.ImageTag" Role="ImageTag" Multiplicity="*" />
+        <Association Name="FK_ImageTag_Tags">
+          <End Type="WGLiveModel.Tag" Role="Tag" Multiplicity="1" />
+          <End Type="WGLiveModel.ImageTag" Role="ImageTag" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Tag">
               <PropertyRef Name="TagId" />
@@ -181,63 +183,65 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        </Schema>
+      </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="WestgateModelStoreContainer" CdmEntityContainer="WestgateEntities">
-    <EntitySetMapping Name="Images">
-      <EntityTypeMapping TypeName="IsTypeOf(WestgateModel.Image)">
-        <MappingFragment StoreEntitySet="Images">
-          <ScalarProperty Name="ImageId" ColumnName="ImageId" />
-          <ScalarProperty Name="Name" ColumnName="Name" />
-          <ScalarProperty Name="Description" ColumnName="Description" />
-          <ScalarProperty Name="BeforeImagePath" ColumnName="BeforeImagePath" />
-          <ScalarProperty Name="AfterImagePath" ColumnName="AfterImagePath" />
-          <ScalarProperty Name="CombinedImagePath" ColumnName="CombinedImagePath" />
-          <ScalarProperty Name="OrderImage" ColumnName="OrderImage" />
-          <ScalarProperty Name="GalleryImagePathBefore" ColumnName="GalleryImagePathBefore" />
-          <ScalarProperty Name="GalleryImagePathAfter" ColumnName="GalleryImagePathAfter" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="UserEnquiries">
-      <EntityTypeMapping TypeName="IsTypeOf(WestgateModel.UserEnquiry)">
-        <MappingFragment StoreEntitySet="UserEnquiries">
-          <ScalarProperty Name="id" ColumnName="id" />
-          <ScalarProperty Name="companyName" ColumnName="companyName" />
-          <ScalarProperty Name="personName" ColumnName="personName" />
-          <ScalarProperty Name="email" ColumnName="email" />
-          <ScalarProperty Name="postCode" ColumnName="postCode" />
-          <ScalarProperty Name="phoneNumber" ColumnName="phoneNumber" />
-          <ScalarProperty Name="enquiry" ColumnName="enquiry" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Tags">
-      <EntityTypeMapping TypeName="IsTypeOf(WestgateModel.Tag)">
-        <MappingFragment StoreEntitySet="Tags">
-          <ScalarProperty Name="TagId" ColumnName="TagId" />
-          <ScalarProperty Name="Name" ColumnName="Name" />
-          <ScalarProperty Name="Description" ColumnName="Description" />
-          <ScalarProperty Name="ShowInTabs" ColumnName="ShowInTabs" />
-          <ScalarProperty Name="IsEditable" ColumnName="IsEditable" />
-          <ScalarProperty Name="OrderNumber" ColumnName="OrderNumber" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="ImageTags">
-      <EntityTypeMapping TypeName="IsTypeOf(WestgateModel.ImageTag)">
-        <MappingFragment StoreEntitySet="ImageTags">
-          <ScalarProperty Name="ImageId" ColumnName="ImageId" />
-          <ScalarProperty Name="TagId" ColumnName="TagId" />
-          <ScalarProperty Name="OrderNumber" ColumnName="OrderNumber" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-  </EntityContainerMapping>
-</Mapping></edmx:Mappings>
+        <EntityContainerMapping StorageEntityContainer="WGLiveModelStoreContainer" CdmEntityContainer="WestgateEntities">
+          <EntitySetMapping Name="Images">
+            <EntityTypeMapping TypeName="WGLiveModel.Image">
+              <MappingFragment StoreEntitySet="Images">
+                <ScalarProperty Name="HomeImage" ColumnName="HomeImage" />
+                <ScalarProperty Name="GalleryImagePathAfter" ColumnName="GalleryImagePathAfter" />
+                <ScalarProperty Name="GalleryImagePathBefore" ColumnName="GalleryImagePathBefore" />
+                <ScalarProperty Name="OrderImage" ColumnName="OrderImage" />
+                <ScalarProperty Name="CombinedImagePath" ColumnName="CombinedImagePath" />
+                <ScalarProperty Name="AfterImagePath" ColumnName="AfterImagePath" />
+                <ScalarProperty Name="BeforeImagePath" ColumnName="BeforeImagePath" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ImageId" ColumnName="ImageId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tags">
+            <EntityTypeMapping TypeName="WGLiveModel.Tag">
+              <MappingFragment StoreEntitySet="Tags">
+                <ScalarProperty Name="OrderNumber" ColumnName="OrderNumber" />
+                <ScalarProperty Name="IsEditable" ColumnName="IsEditable" />
+                <ScalarProperty Name="ShowInTabs" ColumnName="ShowInTabs" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="TagId" ColumnName="TagId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserEnquiries">
+            <EntityTypeMapping TypeName="WGLiveModel.UserEnquiry">
+              <MappingFragment StoreEntitySet="UserEnquiries">
+                <ScalarProperty Name="enquiry" ColumnName="enquiry" />
+                <ScalarProperty Name="phoneNumber" ColumnName="phoneNumber" />
+                <ScalarProperty Name="postCode" ColumnName="postCode" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="personName" ColumnName="personName" />
+                <ScalarProperty Name="companyName" ColumnName="companyName" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ImageTags">
+            <EntityTypeMapping TypeName="WGLiveModel.ImageTag">
+              <MappingFragment StoreEntitySet="ImageTags">
+                <ScalarProperty Name="TagId" ColumnName="TagId" />
+                <ScalarProperty Name="ImageId" ColumnName="ImageId" />
+                <ScalarProperty Name="OrderNumber" ColumnName="OrderNumber" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
   </edmx:Runtime>
   <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
   <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
@@ -256,17 +260,17 @@
     <!-- Diagram content (shape and connector positions) -->
     <Diagrams>
       <Diagram Name="WestgateDataModel">
-        <EntityTypeShape EntityType="WestgateModel.Image" Width="2.125" PointX="1" PointY="1.25" Height="2.5571907552083331" IsExpanded="true" />
-        <EntityTypeShape EntityType="WestgateModel.UserEnquiry" Width="1.5" PointX="1.125" PointY="4.625" Height="2.3648893229166674" />
-        <EntityTypeShape EntityType="WestgateModel.Tag" Width="1.5" PointX="7.375" PointY="1.25" Height="2.364889322916667" />
-        <EntityTypeShape EntityType="WestgateModel.ImageTag" Width="1.5" PointX="4" PointY="1.375" Height="1.211080729166667" />
-        <AssociationConnector Association="WestgateModel.ImageImageTag">
-          <ConnectorPoint PointX="3.125" PointY="2.3651432291666667" />
-          <ConnectorPoint PointX="4" PointY="2.3651432291666667" />
+        <EntityTypeShape EntityType="WGLiveModel.Image" Width="1.5" PointX="0.75" PointY="0.75" Height="2.9417936197916656" />
+        <EntityTypeShape EntityType="WGLiveModel.Tag" Width="1.5" PointX="9.375" PointY="1.25" Height="2.364889322916667" />
+        <EntityTypeShape EntityType="WGLiveModel.UserEnquiry" Width="1.5" PointX="2.75" PointY="3.75" Height="2.3648893229166674" />
+        <EntityTypeShape EntityType="WGLiveModel.ImageTag" Width="1.5" PointX="5" PointY="1.375" Height="1.9802864583333317" />
+        <AssociationConnector Association="WGLiveModel.FK_ImageTag_Images" >
+          <ConnectorPoint PointX="2.25" PointY="2.3651432291666659" />
+          <ConnectorPoint PointX="5" PointY="2.3651432291666659" />
         </AssociationConnector>
-        <AssociationConnector Association="WestgateModel.TagImageTag">
-          <ConnectorPoint PointX="7.375" PointY="2.3651432291666667" />
-          <ConnectorPoint PointX="5.5" PointY="2.3651432291666667" />
+        <AssociationConnector Association="WGLiveModel.FK_ImageTag_Tags" >
+          <ConnectorPoint PointX="9.375" PointY="2.3651432291666659" />
+          <ConnectorPoint PointX="6.5" PointY="2.3651432291666659" />
         </AssociationConnector>
       </Diagram>
     </Diagrams>
