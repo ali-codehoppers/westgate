@@ -799,7 +799,7 @@
                         <div style="width: 19%; height: 65px; float: left; padding-left: 10px">
                             <img src="<%=this.ResolveClientUrl("~/images/certificate_1.png")%>" alt="" height="60" />
                         </div>
-                        <div style="width: 60%; float: left; padding-left: 10px" class="txt_pipe">
+                        <div style="width: 45%; float: left; padding-left: 10px" class="txt_pipe">
                             <div style="text-align: center; width: 100%">
                                 Copyright©2011 West Gate Maintenance Limited. All Rights Reserved.</div>
                             <div style="text-align: center; width: 100%">
@@ -807,8 +807,11 @@
                                 | <a href="#" class="top">Disclaimer</a> | <a href="javascript:OnSiteClick()" class="top">
                                     Sitemap</a> | <a href="javascript:OnContactClick()" class="top">Contact Us</a></div>
                         </div>
-                        <div style="width: 10%; height: 80px; float: left; padding-left: 10px;">
-                            <img src="<%=this.ResolveClientUrl("~/images/certificate_2.png")%>" alt="" height="70" />
+                        <div style="width: 30%; height: 80px; float: left; padding-left: 10px;">
+                            <img src="<%=this.ResolveClientUrl("~/images/certificate_2.png")%>" alt="" height="70" width="65"/>
+                            <img src="<%=this.ResolveClientUrl("~/images/Logo_safe.jpg")%>" alt="" height="70" width="65"/>
+                            <img src="<%=this.ResolveClientUrl("~/images/New-QAS-LOGO-Templates-2004.jpg")%>" alt="" height="70" width="65"/>
+                            <img src="<%=this.ResolveClientUrl("~/images/New-QAS-LOGO-Templates-2008.jpg")%>" alt="" height="70" width="65"/>
                         </div>
                     </div>
                 </div>
