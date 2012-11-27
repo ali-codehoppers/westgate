@@ -54,11 +54,11 @@ namespace Westgate.Web.Admin
 
             int orderNumber = 1;
             var result = (from itag in DatabaseContext.ImageTags
-                          where itag.Tag.TagId == tag.TagId
-                          select itag.OrderNumber);
-            if (result != null && result.Count() > 0)
+                         where itag.Tag.TagId == tag.TagId
+                         select itag.OrderNumber).Max();
+            if (result.Value != null && result.Value > 0)
             {
-                orderNumber = result.Max() + 1;
+                orderNumber = result.Value + 1;
             }
 
             foreach (GridViewRow row in GridViewImages.Rows)

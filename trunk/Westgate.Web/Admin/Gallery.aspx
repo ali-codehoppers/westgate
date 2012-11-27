@@ -34,7 +34,7 @@
                 <asp:Repeater ID="Repeater1" runat="server">
                     <ItemTemplate>
                         <div id='imageContainer_<%#Container.ItemIndex%>' style="margin: 3px; padding: 5px; padding-right:0px;
-                            float: left; border: 1px solid #ccc; min-width: 125px; min-height: 110px; max-width: 125px;
+                            float: left; border: 1px solid #ccc; min-width: 130px; min-height: 110px; max-width: 125px;
                             max-height: 110px;">
                             <div style="float: left">
                                 <asp:HyperLink runat="server" ID="link1" NavigateUrl='<%#"AddImageNew.aspx?imageId="+Eval("ImageId")%>'>
@@ -45,7 +45,12 @@
                                 </asp:HyperLink>
                             </div>
                             <div style="" id='<%#Container.ItemIndex%>'>
-                                <img style="max-width: 15px;" src="../images/icon_cancel.png" onclick='javascript:DeleteImage(<%#Container.ItemIndex%>,<%#Eval("ImageId")%> )' />
+                                <div style="padding-bottom:10px;">
+                                    <img style="max-width: 15px;cursor:pointer" src="../images/icon_cancel.png" onclick='javascript:DeleteImage(<%#Container.ItemIndex%>,<%#Eval("ImageId")%> )' />
+                                </div>
+                                <div>
+                                    <img id='<%#Container.ItemIndex%>Img' style="max-width: 15px;cursor:pointer" src="<%# (Eval("HomeImage")).ToString().Equals("False")?"../images/unsave_home.png":"../images/save_home.png"%>" onclick='javascript:SelectImageHome(<%#Container.ItemIndex%>,<%#Eval("ImageId")%>)'/>
+                                </div>
                             </div>
                             <div style="clear: both">
                             </div>
@@ -115,6 +120,23 @@
         function onFail(response) {
             alert("An error has occurred while updating order.");
         }
+        function SelectImageHome(itemId,imgId) {
 
+            $.ajax({
+                type: "POST",
+                url: "ajax/SelectHomeImage.aspx",
+                data: { imageId: imgId },
+                success: function(data){
+                    if($("#"+itemId+"Img").attr("src")!="undefined" && $("#"+itemId+"Img").attr("src")!="../images/save_home.png"){
+                        $("#"+itemId+"Img").attr("src","../images/save_home.png");
+                    }else if($("#"+itemId+"Img").attr("src")!="undefined" && $("#"+itemId+"Img").attr("src")=="../images/save_home.png"){
+                        $("#"+itemId+"Img").attr("src","../images/unsave_home.png");
+                    }
+                },
+                fail: function(data){
+       
+                }
+            });
+        }
     </script>
 </asp:Content>
